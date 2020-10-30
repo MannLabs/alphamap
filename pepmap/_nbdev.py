@@ -6,8 +6,8 @@ index = {"formatInputData": "Preprocessing.ipynb"}
 
 modules = ["preprocessing.py"]
 
-doc_url = "https://fastai.github.io/pepmap/"
+doc_url = "https://ibludau.github.io/pepmap/"
 
-git_url = "https://github.com/fastai/pepmap/tree/master/"
+git_url = "https://github.com/ibludau/pepmap/tree/master/"
 
 def custom_doc_links(name): return None
