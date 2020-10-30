@@ -2,7 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"expandProteinIds": "Preprocessing.ipynb",
+index = {"importSpectronautData": "Importing.ipynb",
+         "expandProteinIds": "Preprocessing.ipynb",
          "fastaError": "Preprocessing.ipynb",
          "pepPositionHelper": "Preprocessing.ipynb",
          "getPeptidePosition": "Preprocessing.ipynb",
@@ -10,7 +11,8 @@ index = {"expandProteinIds": "Preprocessing.ipynb",
          "getModifications": "Preprocessing.ipynb",
          "formatInputData": "Preprocessing.ipynb"}
 
-modules = ["preprocessing.py"]
+modules = ["importing.py",
+           "preprocessing.py"]
 
 doc_url = "https://ibludau.github.io/pepmap/"
 
