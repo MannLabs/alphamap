@@ -2,7 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"formatInputData": "Preprocessing.ipynb"}
+index = {"expandProteinIds": "Preprocessing.ipynb",
+         "fastaError": "Preprocessing.ipynb",
+         "pepPositionHelper": "Preprocessing.ipynb",
+         "getPeptidePosition": "Preprocessing.ipynb",
+         "getPTMsites": "Preprocessing.ipynb",
+         "getModifications": "Preprocessing.ipynb",
+         "formatInputData": "Preprocessing.ipynb"}
 
 modules = ["preprocessing.py"]
 
