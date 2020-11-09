@@ -68,11 +68,11 @@ def extract_positions(posit_string):
 # Cell
 def preprocess_uniprot(path_to_file):
     """
-    A complex complete function to preprocess Uniprot data from specifying the path to the flat text file
+    A complex complete function to preprocess Uniprot data from specifying the path to a flat text file
     to the returning a dataframe containing information about:
         - protein_id(str)
         - feature(category)
-        - isoform_od(str)
+        - isoform_id(str)
         - start(int)
         - end(int)
         - note information(str)
