@@ -40,7 +40,7 @@ def resolve_unclear_position(value):
     if value == '?':
         return -1
     value = value.replace('?', '').replace('>', '').replace('<', '')
-    return int(value)
+    return float(value)
 
 def extract_positions(posit_string):
     """
@@ -73,8 +73,8 @@ def preprocess_uniprot(path_to_file):
         - protein_id(str)
         - feature(category)
         - isoform_id(str)
-        - start(int)
-        - end(int)
+        - start(float)
+        - end(float)
         - note information(str)
     """
     all_data = []
@@ -135,7 +135,6 @@ def preprocess_uniprot(path_to_file):
     uniprot_df = pd.DataFrame(all_data, columns=['protein_id', 'feature', 'isoform_id', 'start', 'end', 'note'])
     # change the dtypes of the columns
     uniprot_df.feature = uniprot_df.feature.astype('category')
-    uniprot_df.end = uniprot_df.end.astype('Int64')
     # to filter the instances that don't have a defined start/end position(start=-1 or end=-1)
     uniprot_df = uniprot_df[(uniprot_df.start != -1) & (uniprot_df.end != -1)]
 
