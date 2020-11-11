@@ -2,7 +2,7 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"importSpectronautData": "Importing.ipynb",
+index = {"import_spectronaut_data": "Importing.ipynb",
          "expandProteinIds": "Preprocessing.ipynb",
          "fastaError": "Preprocessing.ipynb",
          "pepPositionHelper": "Preprocessing.ipynb",
