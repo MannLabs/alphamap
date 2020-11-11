@@ -8,10 +8,15 @@ index = {"import_spectronaut_data": "Importing.ipynb",
          "get_peptide_position": "Preprocessing.ipynb",
          "get_ptm_sites": "Preprocessing.ipynb",
          "get_modifications": "Preprocessing.ipynb",
-         "format_input_data": "Preprocessing.ipynb"}
+         "format_input_data": "Preprocessing.ipynb",
+         "ptm_shape_dict": "SequencePlot.ipynb",
+         "get_plot_data": "SequencePlot.ipynb",
+         "plot_single_peptide_traces": "SequencePlot.ipynb",
+         "plot_peptide_traces": "SequencePlot.ipynb"}
 
 modules = ["importing.py",
-           "preprocessing.py"]
+           "preprocessing.py",
+           "sequenceplot.py"]
 
 doc_url = "https://ibludau.github.io/pepmap/"
 
