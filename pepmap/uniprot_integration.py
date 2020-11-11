@@ -44,7 +44,7 @@ def resolve_unclear_position(value):
 
 def extract_positions(posit_string):
     """
-    Extract isoform_id(str) and start/end positions(int, int/float) of any feature key from the string
+    Extract isoform_id(str) and start/end positions(float) of any feature key from the string
     """
     isoform = ''
     start = end = np.nan
@@ -136,6 +136,6 @@ def preprocess_uniprot(path_to_file):
     # change the dtypes of the columns
     uniprot_df.feature = uniprot_df.feature.astype('category')
     # to filter the instances that don't have a defined start/end position(start=-1 or end=-1)
-    uniprot_df = uniprot_df[(uniprot_df.start != -1) & (uniprot_df.end != -1)]
+    uniprot_df = uniprot_df[(uniprot_df.start != -1) & (uniprot_df.end != -1)].reset_index(drop=True)
 
     return uniprot_df
