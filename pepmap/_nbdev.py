@@ -2,14 +2,13 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"importSpectronautData": "Importing.ipynb",
-         "expandProteinIds": "Preprocessing.ipynb",
-         "fastaError": "Preprocessing.ipynb",
-         "pepPositionHelper": "Preprocessing.ipynb",
-         "getPeptidePosition": "Preprocessing.ipynb",
-         "getPTMsites": "Preprocessing.ipynb",
-         "getModifications": "Preprocessing.ipynb",
-         "formatInputData": "Preprocessing.ipynb",
+index = {"import_spectronaut_data": "Importing.ipynb",
+         "expand_protein_ids": "Preprocessing.ipynb",
+         "pep_position_helper": "Preprocessing.ipynb",
+         "get_peptide_position": "Preprocessing.ipynb",
+         "get_ptm_sites": "Preprocessing.ipynb",
+         "get_modifications": "Preprocessing.ipynb",
+         "format_input_data": "Preprocessing.ipynb",
          "extract_note": "Uniprot_integration.ipynb",
          "extract_note_end": "Uniprot_integration.ipynb",
          "resolve_unclear_position": "Uniprot_integration.ipynb",
