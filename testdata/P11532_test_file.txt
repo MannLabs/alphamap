@@ -1,0 +1,1550 @@
+ID   DMD_HUMAN               Reviewed;        3685 AA.
+AC   P11532; A1L0U9; E7EQR9; E7EQS5; E7ESB2; E9PDN1; E9PDN5; F5GZY3; F8VX32;
+AC   Q02295; Q14169; Q14170; Q5JYU0; Q6NSJ9; Q7KZ48; Q8N754; Q9UCW3; Q9UCW4;
+DT   01-OCT-1989, integrated into UniProtKB/Swiss-Prot.
+DT   30-NOV-2010, sequence version 3.
+DT   07-OCT-2020, entry version 246.
+DE   RecName: Full=Dystrophin;
+GN   Name=DMD;
+OS   Homo sapiens (Human).
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi; Mammalia;
+OC   Eutheria; Euarchontoglires; Primates; Haplorrhini; Catarrhini; Hominidae;
+OC   Homo.
+OX   NCBI_TaxID=9606;
+RN   [1]
+RP   NUCLEOTIDE SEQUENCE [MRNA] (ISOFORM 1), AND VARIANTS GLY-882; LEU-1469 AND
+RP   GLN-2366.
+RC   TISSUE=Muscle;
+RX   PubMed=3282674; DOI=10.1016/0092-8674(88)90383-2;
+RA   Koenig M., Monaco A.P., Kunkel L.M.;
+RT   "The complete sequence of dystrophin predicts a rod-shaped cytoskeletal
+RT   protein.";
+RL   Cell 53:219-228(1988).
+RN   [2]
+RP   NUCLEOTIDE SEQUENCE [MRNA] (ISOFORM 1), AND VARIANTS PRO-133; ILE-623;
+RP   GLY-784; GLY-882; PHE-1197; ASN-1377; HIS-1745 AND SER-1844.
+RX   PubMed=2668885; DOI=10.1093/nar/17.13.5391;
+RA   Rosenthal A., Speer A., Billowitz H., Cross G.S., Forrest S.N.,
+RA   Davies K.E.;
+RT   "Two human cDNA molecules coding for the Duchenne muscular dystrophy (DMD)
+RT   locus are highly homologous.";
+RL   Nucleic Acids Res. 17:5391-5391(1989).
+RN   [3]
+RP   NUCLEOTIDE SEQUENCE [MRNA] (ISOFORM 15), AND TISSUE SPECIFICITY.
+RC   TISSUE=Brain;
+RX   PubMed=1319059; DOI=10.1073/pnas.89.12.5346;
+RA   Lederfein D., Levy Z., Augier N., Mornet D., Morris G., Fuchs O., Yaffe D.,
+RA   Nudel U.;
+RT   "A 71-kilodalton protein is a major product of the Duchenne muscular
+RT   dystrophy gene in brain and other nonmuscle tissues.";
+RL   Proc. Natl. Acad. Sci. U.S.A. 89:5346-5350(1992).
+RN   [4]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA], AND VARIANT ARG-2937.
+RX   PubMed=15772651; DOI=10.1038/nature03440;
+RA   Ross M.T., Grafham D.V., Coffey A.J., Scherer S., McLay K., Muzny D.,
+RA   Platzer M., Howell G.R., Burrows C., Bird C.P., Frankish A., Lovell F.L.,
+RA   Howe K.L., Ashurst J.L., Fulton R.S., Sudbrak R., Wen G., Jones M.C.,
+RA   Hurles M.E., Andrews T.D., Scott C.E., Searle S., Ramser J., Whittaker A.,
+RA   Deadman R., Carter N.P., Hunt S.E., Chen R., Cree A., Gunaratne P.,
+RA   Havlak P., Hodgson A., Metzker M.L., Richards S., Scott G., Steffen D.,
+RA   Sodergren E., Wheeler D.A., Worley K.C., Ainscough R., Ambrose K.D.,
+RA   Ansari-Lari M.A., Aradhya S., Ashwell R.I., Babbage A.K., Bagguley C.L.,
+RA   Ballabio A., Banerjee R., Barker G.E., Barlow K.F., Barrett I.P.,
+RA   Bates K.N., Beare D.M., Beasley H., Beasley O., Beck A., Bethel G.,
+RA   Blechschmidt K., Brady N., Bray-Allen S., Bridgeman A.M., Brown A.J.,
+RA   Brown M.J., Bonnin D., Bruford E.A., Buhay C., Burch P., Burford D.,
+RA   Burgess J., Burrill W., Burton J., Bye J.M., Carder C., Carrel L.,
+RA   Chako J., Chapman J.C., Chavez D., Chen E., Chen G., Chen Y., Chen Z.,
+RA   Chinault C., Ciccodicola A., Clark S.Y., Clarke G., Clee C.M., Clegg S.,
+RA   Clerc-Blankenburg K., Clifford K., Cobley V., Cole C.G., Conquer J.S.,
+RA   Corby N., Connor R.E., David R., Davies J., Davis C., Davis J., Delgado O.,
+RA   Deshazo D., Dhami P., Ding Y., Dinh H., Dodsworth S., Draper H.,
+RA   Dugan-Rocha S., Dunham A., Dunn M., Durbin K.J., Dutta I., Eades T.,
+RA   Ellwood M., Emery-Cohen A., Errington H., Evans K.L., Faulkner L.,
+RA   Francis F., Frankland J., Fraser A.E., Galgoczy P., Gilbert J., Gill R.,
+RA   Gloeckner G., Gregory S.G., Gribble S., Griffiths C., Grocock R., Gu Y.,
+RA   Gwilliam R., Hamilton C., Hart E.A., Hawes A., Heath P.D., Heitmann K.,
+RA   Hennig S., Hernandez J., Hinzmann B., Ho S., Hoffs M., Howden P.J.,
+RA   Huckle E.J., Hume J., Hunt P.J., Hunt A.R., Isherwood J., Jacob L.,
+RA   Johnson D., Jones S., de Jong P.J., Joseph S.S., Keenan S., Kelly S.,
+RA   Kershaw J.K., Khan Z., Kioschis P., Klages S., Knights A.J., Kosiura A.,
+RA   Kovar-Smith C., Laird G.K., Langford C., Lawlor S., Leversha M., Lewis L.,
+RA   Liu W., Lloyd C., Lloyd D.M., Loulseged H., Loveland J.E., Lovell J.D.,
+RA   Lozado R., Lu J., Lyne R., Ma J., Maheshwari M., Matthews L.H.,
+RA   McDowall J., McLaren S., McMurray A., Meidl P., Meitinger T., Milne S.,
+RA   Miner G., Mistry S.L., Morgan M., Morris S., Mueller I., Mullikin J.C.,
+RA   Nguyen N., Nordsiek G., Nyakatura G., O'dell C.N., Okwuonu G., Palmer S.,
+RA   Pandian R., Parker D., Parrish J., Pasternak S., Patel D., Pearce A.V.,
+RA   Pearson D.M., Pelan S.E., Perez L., Porter K.M., Ramsey Y., Reichwald K.,
+RA   Rhodes S., Ridler K.A., Schlessinger D., Schueler M.G., Sehra H.K.,
+RA   Shaw-Smith C., Shen H., Sheridan E.M., Shownkeen R., Skuce C.D.,
+RA   Smith M.L., Sotheran E.C., Steingruber H.E., Steward C.A., Storey R.,
+RA   Swann R.M., Swarbreck D., Tabor P.E., Taudien S., Taylor T., Teague B.,
+RA   Thomas K., Thorpe A., Timms K., Tracey A., Trevanion S., Tromans A.C.,
+RA   d'Urso M., Verduzco D., Villasana D., Waldron L., Wall M., Wang Q.,
+RA   Warren J., Warry G.L., Wei X., West A., Whitehead S.L., Whiteley M.N.,
+RA   Wilkinson J.E., Willey D.L., Williams G., Williams L., Williamson A.,
+RA   Williamson H., Wilming L., Woodmansey R.L., Wray P.W., Yen J., Zhang J.,
+RA   Zhou J., Zoghbi H., Zorilla S., Buck D., Reinhardt R., Poustka A.,
+RA   Rosenthal A., Lehrach H., Meindl A., Minx P.J., Hillier L.W., Willard H.F.,
+RA   Wilson R.K., Waterston R.H., Rice C.M., Vaudin M., Coulson A., Nelson D.L.,
+RA   Weinstock G., Sulston J.E., Durbin R.M., Hubbard T., Gibbs R.A., Beck S.,
+RA   Rogers J., Bentley D.R.;
+RT   "The DNA sequence of the human X chromosome.";
+RL   Nature 434:325-337(2005).
+RN   [5]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
+RA   Mural R.J., Istrail S., Sutton G., Florea L., Halpern A.L., Mobarry C.M.,
+RA   Lippert R., Walenz B., Shatkay H., Dew I., Miller J.R., Flanigan M.J.,
+RA   Edwards N.J., Bolanos R., Fasulo D., Halldorsson B.V., Hannenhalli S.,
+RA   Turner R., Yooseph S., Lu F., Nusskern D.R., Shue B.C., Zheng X.H.,
+RA   Zhong F., Delcher A.L., Huson D.H., Kravitz S.A., Mouchard L., Reinert K.,
+RA   Remington K.A., Clark A.G., Waterman M.S., Eichler E.E., Adams M.D.,
+RA   Hunkapiller M.W., Myers E.W., Venter J.C.;
+RL   Submitted (JUL-2005) to the EMBL/GenBank/DDBJ databases.
+RN   [6]
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORMS 6; 13 AND 14).
+RC   TISSUE=Brain, Placenta, and Testis;
+RX   PubMed=15489334; DOI=10.1101/gr.2596504;
+RG   The MGC Project Team;
+RT   "The status, quality, and expansion of the NIH full-length cDNA project:
+RT   the Mammalian Gene Collection (MGC).";
+RL   Genome Res. 14:2121-2127(2004).
+RN   [7]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 1-1411 (ISOFORMS 4 AND 5).
+RC   TISSUE=Retina;
+RA   White R.A.;
+RL   Submitted (JAN-1996) to the EMBL/GenBank/DDBJ databases.
+RN   [8]
+RP   NUCLEOTIDE SEQUENCE [MRNA] OF 1-497 (ISOFORM 1).
+RX   PubMed=3607877; DOI=10.1016/0092-8674(87)90504-6;
+RA   Koenig M., Hoffman E.P., Bertelson C.J., Monaco A.P., Feener C.,
+RA   Kunkel L.M.;
+RT   "Complete cloning of the Duchenne muscular dystrophy (DMD) cDNA and
+RT   preliminary genomic organization of the DMD gene in normal and affected
+RT   individuals.";
+RL   Cell 50:509-517(1987).
+RN   [9]
+RP   NUCLEOTIDE SEQUENCE [MRNA] OF 1-32 (ISOFORM 2), ALTERNATIVE PROMOTER USAGE,
+RP   AND ALTERNATIVE SPLICING.
+RC   TISSUE=Brain;
+RX   PubMed=2648158; DOI=10.1038/338509a0;
+RA   Feener C.A., Koenig M., Kunkel L.M.;
+RT   "Alternative splicing of human dystrophin mRNA generates isoforms at the
+RT   carboxy terminus.";
+RL   Nature 338:509-511(1989).
+RN   [10]
+RP   NUCLEOTIDE SEQUENCE [MRNA] OF 404-1137, AND VARIANT GLY-882.
+RX   PubMed=3428261; DOI=10.1002/j.1460-2075.1987.tb02646.x;
+RA   Cross G.S., Speer A., Rosenthal A., Forrest S.M., Smith T.J., Edwards Y.,
+RA   Flint T., Hill D., Davies K.E.;
+RT   "Deletions of fetal and adult muscle cDNA in Duchenne and Becker muscular
+RT   dystrophy patients.";
+RL   EMBO J. 6:3277-3283(1987).
+RN   [11]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 665-722; 2098-2204 AND 2305-2366.
+RX   PubMed=3205741; DOI=10.1093/nar/16.23.11141;
+RA   Chamberlain J.S., Gibbs R.A., Ranier J.A., Nguyen P.N., Caskey C.T.;
+RT   "Deletion screening of the Duchenne muscular dystrophy locus via multiplex
+RT   DNA amplification.";
+RL   Nucleic Acids Res. 16:11141-11156(1988).
+RN   [12]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 2147-2204.
+RX   PubMed=2569720; DOI=10.1093/nar/17.14.5611;
+RA   Blonden L.A.J., den Dunnen J.T., van Paassen H.M.B., Wapenaar M.C.,
+RA   Grootscholten P.M., Ginjaar H.B., Bakker E., Pearson P.L.,
+RA   van Ommen G.J.B.;
+RT   "High resolution deletion breakpoint mapping in the DMD gene by whole
+RT   cosmid hybridization.";
+RL   Nucleic Acids Res. 17:5611-5621(1989).
+RN   [13]
+RP   NUCLEOTIDE SEQUENCE [GENOMIC DNA] OF 2305-2364.
+RA   Huth A., Will K., Speer A., Bauer D.;
+RT   "Differences in introns flanking exon 48 of the DMD/BMD gene.";
+RL   Submitted (MAR-1991) to the EMBL/GenBank/DDBJ databases.
+RN   [14]
+RP   NUCLEOTIDE SEQUENCE [MRNA] OF 3670-3685, AND TISSUE SPECIFICITY.
+RC   TISSUE=Amnion;
+RX   PubMed=8541829; DOI=10.1093/hmg/4.9.1475;
+RA   Austin R.C., Howard P.L., D'Souza V.N., Klamut H.J., Ray P.N.;
+RT   "Cloning and characterization of alternatively spliced isoforms of Dp71.";
+RL   Hum. Mol. Genet. 4:1475-1483(1995).
+RN   [15]
+RP   ANALYSIS OF THE DOMAIN STRUCTURE.
+RX   PubMed=2407739;
+RA   Koenig M., Kunkel L.M.;
+RT   "Detailed analysis of the repeat domain of dystrophin reveals four
+RT   potential hinge segments that may confer flexibility.";
+RL   J. Biol. Chem. 265:4560-4566(1990).
+RN   [16]
+RP   INTERACTION WITH DAG1.
+RX   PubMed=7592992; DOI=10.1074/jbc.270.45.27305;
+RA   Jung D., Yang B., Meyer J., Chamberlain J.S., Campbell K.P.;
+RT   "Identification and characterization of the dystrophin anchoring site on
+RT   beta-dystroglycan.";
+RL   J. Biol. Chem. 270:27305-27310(1995).
+RN   [17]
+RP   INTERACTION WITH SNTB1.
+RX   PubMed=7844150; DOI=10.1083/jcb.128.3.363;
+RA   Ahn A.H., Kunkel L.M.;
+RT   "Syntrophin binds to an alternatively spliced exon of dystrophin.";
+RL   J. Cell Biol. 128:363-371(1995).
+RN   [18]
+RP   INTERACTION WITH SNTA1 AND SNTB2.
+RX   PubMed=8576247; DOI=10.1074/jbc.271.5.2724;
+RA   Ahn A.H., Feener C.A., Gussoni E., Yoshida M., Ozawa E., Kunkel L.M.;
+RT   "The three human syntrophin genes are expressed in diverse tissues, have
+RT   distinct chromosomal locations, and each bind to dystrophin and its
+RT   relatives.";
+RL   J. Biol. Chem. 271:2724-2730(1996).
+RN   [19]
+RP   ALTERNATIVE SPLICING (ISOFORMS 15 AND 16), AND DEVELOPMENTAL STAGE.
+RC   TISSUE=Telencephalon;
+RX   PubMed=9370062; DOI=10.1016/s0165-3806(97)00122-3;
+RA   Ceccarini M., Rizzo G., Rosa G., Chelucci C., Macioce P., Petrucci T.C.;
+RT   "A splice variant of Dp71 lacking the syntrophin binding site is expressed
+RT   in early stages of human neural development.";
+RL   Brain Res. Dev. Brain Res. 103:77-82(1997).
+RN   [20]
+RP   INTERACTION WITH SNTG1 AND SNTG2.
+RX   PubMed=10747910; DOI=10.1074/jbc.m000439200;
+RA   Piluso G., Mirabella M., Ricci E., Belsito A., Abbondanza C., Servidei S.,
+RA   Puca A.A., Tonali P., Puca G.A., Nigro V.;
+RT   "Gamma1- and gamma2-syntrophins, two novel dystrophin-binding proteins
+RT   localized in neuronal cells.";
+RL   J. Biol. Chem. 275:15851-15860(2000).
+RN   [21]
+RP   ALTERNATIVE SPLICING (ISOFORM 16).
+RC   TISSUE=Brain;
+RX   PubMed=10734266; DOI=10.1016/s0960-8966(99)00105-4;
+RA   Austin R.C., Morris G.E., Howard P.L., Klamut H.J., Ray P.N.;
+RT   "Expression and synthesis of alternatively spliced variants of Dp71 in
+RT   adult human brain.";
+RL   Neuromuscul. Disord. 10:187-193(2000).
+RN   [22]
+RP   INTERACTION WITH DAG1.
+RX   PubMed=11495720; DOI=10.1016/s0898-6568(01)00188-7;
+RA   Ilsley J.L., Sudol M., Winder S.J.;
+RT   "The interaction of dystrophin with beta-dystroglycan is regulated by
+RT   tyrosine phosphorylation.";
+RL   Cell. Signal. 13:625-632(2001).
+RN   [23]
+RP   REVIEW ON ALTERNATIVE PROMOTER USAGE.
+RX   PubMed=14636778; DOI=10.1016/s1474-4422(03)00585-4;
+RA   Muntoni F., Torelli S., Ferlini A.;
+RT   "Dystrophin and mutations: one gene, several proteins, multiple
+RT   phenotypes.";
+RL   Lancet Neurol. 2:731-740(2003).
+RN   [24]
+RP   INTERACTION WITH KRT19, AND TISSUE SPECIFICITY.
+RX   PubMed=16000376; DOI=10.1091/mbc.e05-02-0112;
+RA   Stone M.R., O'Neill A., Catino D., Bloch R.J.;
+RT   "Specific interaction of the actin-binding domain of dystrophin with
+RT   intermediate filaments containing keratin 19.";
+RL   Mol. Biol. Cell 16:4280-4293(2005).
+RN   [25]
+RP   IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RC   TISSUE=Cervix carcinoma;
+RX   PubMed=17081983; DOI=10.1016/j.cell.2006.09.026;
+RA   Olsen J.V., Blagoev B., Gnad F., Macek B., Kumar C., Mortensen P., Mann M.;
+RT   "Global, in vivo, and site-specific phosphorylation dynamics in signaling
+RT   networks.";
+RL   Cell 127:635-648(2006).
+RN   [26]
+RP   FUNCTION IN THE DYSTROPHIN-ASSOCIATED GLYCOPROTEIN COMPLEX.
+RX   PubMed=16710609; DOI=10.1007/s00018-005-5461-0;
+RA   Haenggi T., Fritschy J.M.;
+RT   "Role of dystrophin and utrophin for assembly and function of the
+RT   dystrophin glycoprotein complex in non-muscle tissue.";
+RL   Cell. Mol. Life Sci. 63:1614-1631(2006).
+RN   [27]
+RP   PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT SER-3483; SER-3613; SER-3617;
+RP   SER-3623 AND SER-3666, PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT THR-340;
+RP   SER-344 AND SER-348 (ISOFORMS 13 AND 15), AND IDENTIFICATION BY MASS
+RP   SPECTROMETRY [LARGE SCALE ANALYSIS].
+RC   TISSUE=Cervix carcinoma;
+RX   PubMed=18669648; DOI=10.1073/pnas.0805139105;
+RA   Dephoure N., Zhou C., Villen J., Beausoleil S.A., Bakalarski C.E.,
+RA   Elledge S.J., Gygi S.P.;
+RT   "A quantitative atlas of mitotic phosphorylation.";
+RL   Proc. Natl. Acad. Sci. U.S.A. 105:10762-10767(2008).
+RN   [28]
+RP   IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RX   PubMed=19413330; DOI=10.1021/ac9004309;
+RA   Gauci S., Helbig A.O., Slijper M., Krijgsveld J., Heck A.J., Mohammed S.;
+RT   "Lys-N and trypsin cover complementary parts of the phosphoproteome in a
+RT   refined SCX-based approach.";
+RL   Anal. Chem. 81:4493-4501(2009).
+RN   [29]
+RP   PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT SER-3612; SER-3613 AND SER-3623,
+RP   AND IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RC   TISSUE=Cervix carcinoma;
+RX   PubMed=20068231; DOI=10.1126/scisignal.2000475;
+RA   Olsen J.V., Vermeulen M., Santamaria A., Kumar C., Miller M.L.,
+RA   Jensen L.J., Gnad F., Cox J., Jensen T.S., Nigg E.A., Brunak S., Mann M.;
+RT   "Quantitative phosphoproteomics reveals widespread full phosphorylation
+RT   site occupancy during mitosis.";
+RL   Sci. Signal. 3:RA3-RA3(2010).
+RN   [30]
+RP   IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RX   PubMed=21269460; DOI=10.1186/1752-0509-5-17;
+RA   Burkard T.R., Planyavsky M., Kaupe I., Breitwieser F.P., Buerckstuemmer T.,
+RA   Bennett K.L., Superti-Furga G., Colinge J.;
+RT   "Initial characterization of the human central proteome.";
+RL   BMC Syst. Biol. 5:17-17(2011).
+RN   [31]
+RP   PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT SER-3612; SER-3623 AND SER-3624,
+RP   AND IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RC   TISSUE=Cervix carcinoma, and Erythroleukemia;
+RX   PubMed=23186163; DOI=10.1021/pr300630k;
+RA   Zhou H., Di Palma S., Preisinger C., Peng M., Polat A.N., Heck A.J.,
+RA   Mohammed S.;
+RT   "Toward a comprehensive characterization of a human cancer cell
+RT   phosphoproteome.";
+RL   J. Proteome Res. 12:260-271(2013).
+RN   [32]
+RP   PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT SER-3490; SER-3500; SER-3623;
+RP   SER-3624 AND SER-3666, PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT THR-616
+RP   (ISOFORM 15), PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT THR-629 (ISOFORM
+RP   14), PHOSPHORYLATION [LARGE SCALE ANALYSIS] AT THR-519 (ISOFORM 16), AND
+RP   IDENTIFICATION BY MASS SPECTROMETRY [LARGE SCALE ANALYSIS].
+RC   TISSUE=Liver;
+RX   PubMed=24275569; DOI=10.1016/j.jprot.2013.11.014;
+RA   Bian Y., Song C., Cheng K., Dong M., Wang F., Huang J., Sun D., Wang L.,
+RA   Ye M., Zou H.;
+RT   "An enzyme assisted RP-RPLC approach for in-depth analysis of human liver
+RT   phosphoproteome.";
+RL   J. Proteomics 96:253-262(2014).
+RN   [33]
+RP   X-RAY CRYSTALLOGRAPHY (2.0 ANGSTROMS) OF 3046-3306 IN COMPLEX WITH DAG1,
+RP   AND INTERACTION WITH DAG1.
+RX   PubMed=10932245; DOI=10.1038/77923;
+RA   Huang X., Poy F., Zhang R., Joachimiak A., Sudol M., Eck M.J.;
+RT   "Structure of a WW domain containing fragment of dystrophin in complex with
+RT   beta-dystroglycan.";
+RL   Nat. Struct. Biol. 7:634-638(2000).
+RN   [34]
+RP   X-RAY CRYSTALLOGRAPHY (2.6 ANGSTROMS) OF 1-246.
+RX   PubMed=10801490; DOI=10.1016/s0969-2126(00)00132-5;
+RA   Norwood F.L.M., Sutherland-Smith A.J., Keep N.H., Kendrick-Jones J.;
+RT   "The structure of the N-terminal actin-binding domain of human dystrophin
+RT   and how mutations in this domain may cause Duchenne or Becker muscular
+RT   dystrophy.";
+RL   Structure 8:481-491(2000).
+RN   [35]
+RP   REVIEW ON DMD VARIANTS.
+RX   PubMed=7951253; DOI=10.1002/humu.1380040102;
+RA   Roberts R.G., Gardner R.J., Bobrow M.;
+RT   "Searching for the 1 in 2,400,000: a review of dystrophin gene point
+RT   mutations.";
+RL   Hum. Mutat. 4:1-11(1994).
+RN   [36]
+RP   REVIEW ON VARIANTS.
+RX   PubMed=8045556; DOI=10.1007/bf00202854;
+RA   Rininsland F., Reiss J.;
+RT   "Microlesions and polymorphisms in the Duchenne/Becker muscular dystrophy
+RT   gene.";
+RL   Hum. Genet. 94:111-116(1994).
+RN   [37]
+RP   VARIANT DMD ARG-54.
+RX   PubMed=8401582; DOI=10.1038/ng0893-357;
+RA   Prior T.W., Papp A.C., Snyder P.J., Burghes A.H.M., Bartolo C., Sedra M.S.,
+RA   Western L.M., Mendell J.R.;
+RT   "A missense mutation in the dystrophin gene in a Duchenne muscular
+RT   dystrophy patient.";
+RL   Nat. Genet. 4:357-360(1993).
+RN   [38]
+RP   VARIANT DMD GLY-645.
+RX   PubMed=7981690; DOI=10.1093/hmg/3.7.1173;
+RA   Prior T.W., Bartolo C., Papp A.C., Snyder P.J., Sedra M.S., Burghes A.H.,
+RA   Mendell J.R.;
+RT   "Identification of a missense mutation, single base deletion and a
+RT   polymorphism in the dystrophin exon 16.";
+RL   Hum. Mol. Genet. 3:1173-1174(1994).
+RN   [39]
+RP   VARIANTS HIS-365; TRP-2191 AND ARG-2937.
+RX   PubMed=7849724; DOI=10.1093/hmg/3.10.1907;
+RA   Nigro V., Nigro G., Esposito M.G., Comi L.I., Molinari A.M., Puca G.A.,
+RA   Politano L.;
+RT   "Novel small mutations along the DMD/BMD gene associated with different
+RT   phenotypes.";
+RL   Hum. Mol. Genet. 3:1907-1908(1994).
+RN   [40]
+RP   VARIANT DMD TYR-3340.
+RX   PubMed=8817332; DOI=10.1093/hmg/5.7.973;
+RA   Lenk U., Oexle K., Voit T., Ancker U., Hellner K.A., Speer A., Hubner C.;
+RT   "A cysteine 3340 substitution in the dystroglycan-binding domain of
+RT   dystrophin associated with Duchenne muscular dystrophy, mental retardation
+RT   and absence of the ERG b-wave.";
+RL   Hum. Mol. Genet. 5:973-975(1996).
+RN   [41]
+RP   VARIANT CMD3B ALA-279.
+RX   PubMed=9170407; DOI=10.1161/01.cir.95.10.2434;
+RA   Ortiz-Lopez R., Li H., Su J., Goytia V., Towbin J.A.;
+RT   "Evidence for a dystrophin missense mutation as a cause of X-linked dilated
+RT   cardiomyopathy.";
+RL   Circulation 95:2434-2440(1997).
+RN   [42]
+RP   VARIANT DMD HIS-3335.
+RX   PubMed=9851445; DOI=10.1002/ana.410440619;
+RA   Goldberg L.R., Hausmanowa-Petrusewicz I., Fidzianska A., Duggan D.J.,
+RA   Steinberg L.S., Hoffman E.P.;
+RT   "A dystrophin missense mutation showing persistence of dystrophin and
+RT   dystrophin-associated proteins yet a severe phenotype.";
+RL   Ann. Neurol. 44:971-976(1998).
+RN   [43]
+RP   VARIANT BMD PRO-171.
+RX   PubMed=10573008; DOI=10.1038/sj.ejhg.5200370;
+RA   Eraslan S., Kayserili H., Apak M.Y., Kirdar B.;
+RT   "Identification of point mutations in Turkish DMD/BMD families using
+RT   multiplex-single stranded conformation analysis (SSCA).";
+RL   Eur. J. Hum. Genet. 7:765-770(1999).
+RN   [44]
+RP   VARIANT LYS-1672.
+RX   PubMed=12354438; DOI=10.1016/s0735-1097(02)02126-5;
+RA   Feng J., Yan J.Y., Buzin C.H., Sommer S.S., Towbin J.A.;
+RT   "Comprehensive mutation scanning of the dystrophin gene in patients with
+RT   nonsyndromic X-linked dilated cardiomyopathy.";
+RL   J. Am. Coll. Cardiol. 40:1120-1124(2002).
+RN   [45]
+RP   VARIANTS CMD3B ASN-18 AND LEU-3228, AND VARIANTS TRP-2155; THR-2299;
+RP   GLN-2366; VAL-2910; ASP-2912 AND ARG-2937.
+RX   PubMed=12359139; DOI=10.1016/s1096-7192(02)00153-1;
+RA   Feng J., Yan J., Buzin C.H., Towbin J.A., Sommer S.S.;
+RT   "Mutations in the dystrophin gene are associated with sporadic dilated
+RT   cardiomyopathy.";
+RL   Mol. Genet. Metab. 77:119-126(2002).
+RN   [46]
+RP   VARIANT DMD PHE-3313, AND VARIANT VAL-165.
+RX   PubMed=12632325; DOI=10.1086/374176;
+RA   Flanigan K.M., von Niederhausern A., Dunn D.M., Alder J., Mendell J.R.,
+RA   Weiss R.B.;
+RT   "Rapid direct sequence analysis of the dystrophin gene.";
+RL   Am. J. Hum. Genet. 72:931-939(2003).
+RN   [47]
+RP   VARIANTS [LARGE SCALE ANALYSIS] PHE-334; GLN-1219; HIS-1470 AND VAL-2164.
+RX   PubMed=16959974; DOI=10.1126/science.1133427;
+RA   Sjoeblom T., Jones S., Wood L.D., Parsons D.W., Lin J., Barber T.D.,
+RA   Mandelker D., Leary R.J., Ptak J., Silliman N., Szabo S., Buckhaults P.,
+RA   Farrell C., Meeh P., Markowitz S.D., Willis J., Dawson D., Willson J.K.V.,
+RA   Gazdar A.F., Hartigan J., Wu L., Liu C., Parmigiani G., Park B.H.,
+RA   Bachman K.E., Papadopoulos N., Vogelstein B., Kinzler K.W.,
+RA   Velculescu V.E.;
+RT   "The consensus coding sequences of human breast and colorectal cancers.";
+RL   Science 314:268-274(2006).
+RN   [48]
+RP   VARIANT ARG-118.
+RX   PubMed=21396098; DOI=10.1186/1471-2350-12-37;
+RA   Magri F., Del Bo R., D'Angelo M.G., Govoni A., Ghezzi S., Gandossini S.,
+RA   Sciacco M., Ciscato P., Bordoni A., Tedeschi S., Fortunato F., Lucchini V.,
+RA   Cereda M., Corti S., Moggio M., Bresolin N., Comi G.P.;
+RT   "Clinical and molecular characterization of a cohort of patients with novel
+RT   nucleotide alterations of the Dystrophin gene detected by direct
+RT   sequencing.";
+RL   BMC Med. Genet. 12:37-37(2011).
+RN   [49]
+RP   CHARACTERIZATION OF VARIANTS DMD PHE-3313; HIS-3335 AND TYR-3340.
+RX   PubMed=24302611; DOI=10.1002/humu.22479;
+RA   Vulin A., Wein N., Strandjord D.M., Johnson E.K., Findlay A.R., Maiti B.,
+RA   Howard M.T., Kaminoh Y.J., Taylor L.E., Simmons T.R., Ray W.C.,
+RA   Montanaro F., Ervasti J.M., Flanigan K.M.;
+RT   "The ZZ domain of dystrophin in DMD: making sense of missense mutations.";
+RL   Hum. Mutat. 35:257-264(2014).
+RN   [50]
+RP   CHARACTERIZATION OF VARIANT CMD3B ASN-18.
+RX   PubMed=25340340; DOI=10.1371/journal.pone.0110439;
+RA   Singh S.M., Bandi S., Shah D.D., Armstrong G., Mallela K.M.;
+RT   "Missense mutation Lys18Asn in dystrophin that triggers X-linked dilated
+RT   cardiomyopathy decreases protein stability, increases protein unfolding,
+RT   and perturbs protein structure, but does not affect protein function.";
+RL   PLoS ONE 9:E110439-E110439(2014).
+CC   -!- FUNCTION: Anchors the extracellular matrix to the cytoskeleton via F-
+CC       actin. Ligand for dystroglycan. Component of the dystrophin-associated
+CC       glycoprotein complex which accumulates at the neuromuscular junction
+CC       (NMJ) and at a variety of synapses in the peripheral and central
+CC       nervous systems and has a structural function in stabilizing the
+CC       sarcolemma. Also implicated in signaling events and synaptic
+CC       transmission. {ECO:0000250|UniProtKB:P11531,
+CC       ECO:0000269|PubMed:16710609}.
+CC   -!- SUBUNIT: Interacts with SYNM (By similarity). Interacts with the
+CC       syntrophins SNTA1, SNTB1, SNTB2, SNTG1 and SNTG2 (PubMed:7844150,
+CC       PubMed:8576247). Interacts with KRT19 (PubMed:16000376). Component of
+CC       the dystrophin-associated glycoprotein complex which is composed of
+CC       three subcomplexes: a cytoplasmic complex comprised of DMD (or UTRN),
+CC       DTNA and a number of syntrophins, such as SNTB1, SNTB2, SNTG1 and
+CC       SNTG2, the transmembrane dystroglycan complex, and the sarcoglycan-
+CC       sarcospan complex. Interacts with DAG1 (betaDAG1) with DMD; the
+CC       interaction is inhibited by phosphorylation on the PPXY motif of DAG1
+CC       (PubMed:7592992, PubMed:11495720, PubMed:10932245). Interacts with
+CC       CMYA5 (By similarity). Directly interacts with ANK2 and ANK3; these
+CC       interactions do not interfere with betaDAG1-binding and are necessary
+CC       for proper localization in muscle cells (By similarity). Identified in
+CC       a dystroglycan complex that contains at least PRX, DRP2, UTRN, DMD and
+CC       DAG1 (By similarity). {ECO:0000250|UniProtKB:P11531,
+CC       ECO:0000269|PubMed:10932245, ECO:0000269|PubMed:11495720,
+CC       ECO:0000269|PubMed:16000376, ECO:0000269|PubMed:7592992,
+CC       ECO:0000269|PubMed:7844150, ECO:0000269|PubMed:8576247}.
+CC   -!- INTERACTION:
+CC       P11532; Q9UBT7: CTNNAL1; NbExp=8; IntAct=EBI-295827, EBI-514206;
+CC       P11532; Q9NRI5: DISC1; NbExp=3; IntAct=EBI-295827, EBI-529989;
+CC       P11532; O60941: DTNB; NbExp=4; IntAct=EBI-295827, EBI-740402;
+CC       P11532; O60941-5: DTNB; NbExp=3; IntAct=EBI-295827, EBI-11984733;
+CC       P11532; Q96CS2: HAUS1; NbExp=4; IntAct=EBI-295827, EBI-2514791;
+CC       P11532; P41235-3: HNF4A; NbExp=3; IntAct=EBI-295827, EBI-12690684;
+CC       P11532; P08727: KRT19; NbExp=2; IntAct=EBI-295827, EBI-742756;
+CC       P11532; Q9NRD5: PICK1; NbExp=3; IntAct=EBI-295827, EBI-79165;
+CC       P11532; Q13884: SNTB1; NbExp=4; IntAct=EBI-295827, EBI-295843;
+CC       P11532; Q13425: SNTB2; NbExp=2; IntAct=EBI-295827, EBI-80411;
+CC       P11532-5; Q01484: ANK2; NbExp=2; IntAct=EBI-1018651, EBI-941975;
+CC       P11532-5; Q3T1J5: Ank3; Xeno; NbExp=2; IntAct=EBI-1018651, EBI-2133962;
+CC   -!- SUBCELLULAR LOCATION: Cell membrane, sarcolemma
+CC       {ECO:0000250|UniProtKB:P11531}; Peripheral membrane protein
+CC       {ECO:0000250|UniProtKB:P11531}; Cytoplasmic side
+CC       {ECO:0000250|UniProtKB:P11531}. Cytoplasm, cytoskeleton
+CC       {ECO:0000250|UniProtKB:P11531}. Cell junction, synapse, postsynaptic
+CC       cell membrane {ECO:0000250|UniProtKB:P11531}. Note=In muscle cells,
+CC       sarcolemma localization requires the presence of ANK2, while
+CC       localization to costameres requires the presence of ANK3. Localizes to
+CC       neuromuscular junctions (NMJs). In adult muscle, NMJ localization
+CC       depends upon ANK2 presence, but not in newborn animals.
+CC       {ECO:0000250|UniProtKB:P11531}.
+CC   -!- ALTERNATIVE PRODUCTS:
+CC       Event=Alternative promoter usage, Alternative splicing; Named isoforms=17;
+CC       Name=1; Synonyms=Dystrophin-4, Dp427m;
+CC         IsoId=P11532-1; Sequence=Displayed;
+CC       Name=2; Synonyms=Dystrophin-3, Dp427c;
+CC         IsoId=P11532-4; Sequence=VSP_006809;
+CC       Name=3; Synonyms=Dp427p;
+CC         IsoId=P11532-11; Sequence=VSP_060274;
+CC       Name=4; Synonyms=Dystrophin-1, Dp260-1;
+CC         IsoId=P11532-2; Sequence=VSP_006806, VSP_006807;
+CC       Name=5; Synonyms=Dystrophin-2, Dp260-2;
+CC         IsoId=P11532-3; Sequence=VSP_006808, VSP_006807;
+CC       Name=6; Synonyms=Dp140;
+CC         IsoId=P11532-12; Sequence=VSP_060275;
+CC       Name=7; Synonyms=Dp140c;
+CC         IsoId=P11532-13; Sequence=VSP_060275, VSP_046319;
+CC       Name=8; Synonyms=Dp140b;
+CC         IsoId=P11532-14; Sequence=VSP_060275, VSP_017493;
+CC       Name=9; Synonyms=Dp140ab;
+CC         IsoId=P11532-15; Sequence=VSP_060275, VSP_017492, VSP_017493;
+CC       Name=10; Synonyms=Dp140bc;
+CC         IsoId=P11532-16; Sequence=VSP_060275, VSP_046319, VSP_017493;
+CC       Name=11; Synonyms=Dp116;
+CC         IsoId=P11532-17; Sequence=VSP_060276, VSP_060277;
+CC       Name=12; Synonyms=Dp71;
+CC         IsoId=P11532-7; Sequence=VSP_017490, VSP_017491;
+CC       Name=13; Synonyms=Dp71a;
+CC         IsoId=P11532-8; Sequence=VSP_017490, VSP_017491, VSP_017492;
+CC       Name=14; Synonyms=Dp71b;
+CC         IsoId=P11532-6; Sequence=VSP_017490, VSP_017491, VSP_017493;
+CC       Name=15; Synonyms=Dp71ab;
+CC         IsoId=P11532-5; Sequence=VSP_017490, VSP_017491, VSP_017492,
+CC                                  VSP_017493;
+CC       Name=16; Synonyms=Dp60, Dp71delta110;
+CC         IsoId=P11532-9; Sequence=VSP_017490, VSP_017491, VSP_046319,
+CC                                  VSP_017493;
+CC       Name=17; Synonyms=Dp40;
+CC         IsoId=P11532-18; Sequence=VSP_017490, VSP_017491, VSP_060278;
+CC   -!- TISSUE SPECIFICITY: Expressed in muscle fibers accumulating in the
+CC       costameres of myoplasm at the sarcolemma. Expressed in brain, muscle,
+CC       kidney, lung and testis. Most tissues contain transcripts of multiple
+CC       isoforms. Isoform 15: Only isoform to be detected in heart and liver
+CC       and is also expressed in brain, testis and hepatoma cells.
+CC       {ECO:0000269|PubMed:1319059, ECO:0000269|PubMed:16000376,
+CC       ECO:0000269|PubMed:8541829}.
+CC   -!- DEVELOPMENTAL STAGE: Isoform 15: Expressed in embryonic neural tissue
+CC       from the sixth week of development. Isoform 16: Detected in all
+CC       embryonic tissues examined. {ECO:0000269|PubMed:9370062}.
+CC   -!- DISEASE: Duchenne muscular dystrophy (DMD) [MIM:310200]: Most common
+CC       form of muscular dystrophy; a sex-linked recessive disorder. It
+CC       typically presents in boys aged 3 to 7 year as proximal muscle weakness
+CC       causing waddling gait, toe-walking, lordosis, frequent falls, and
+CC       difficulty in standing up and climbing up stairs. The pelvic girdle is
+CC       affected first, then the shoulder girdle. Progression is steady and
+CC       most patients are confined to a wheelchair by age of 10 or 12. Flexion
+CC       contractures and scoliosis ultimately occur. About 50% of patients have
+CC       a lower IQ than their genetic expectations would suggest. There is no
+CC       treatment. {ECO:0000269|PubMed:12632325, ECO:0000269|PubMed:24302611,
+CC       ECO:0000269|PubMed:7981690, ECO:0000269|PubMed:8401582,
+CC       ECO:0000269|PubMed:8817332, ECO:0000269|PubMed:9851445}. Note=The
+CC       disease is caused by mutations affecting the gene represented in this
+CC       entry.
+CC   -!- DISEASE: Becker muscular dystrophy (BMD) [MIM:300376]: A neuromuscular
+CC       disorder characterized by dystrophin deficiency. It appears between the
+CC       age of 5 and 15 years with a proximal motor deficiency of variable
+CC       progression. Heart involvement can be the initial sign. Becker muscular
+CC       dystrophy has a more benign course than Duchenne muscular dystrophy.
+CC       {ECO:0000269|PubMed:10573008}. Note=The disease is caused by mutations
+CC       affecting the gene represented in this entry.
+CC   -!- DISEASE: Cardiomyopathy, dilated, X-linked 3B (CMD3B) [MIM:302045]: A
+CC       disorder characterized by ventricular dilation and impaired systolic
+CC       function, resulting in congestive heart failure and arrhythmia.
+CC       Patients are at risk of premature death. {ECO:0000269|PubMed:12359139,
+CC       ECO:0000269|PubMed:25340340, ECO:0000269|PubMed:9170407}. Note=The
+CC       disease is caused by mutations affecting the gene represented in this
+CC       entry.
+CC   -!- MISCELLANEOUS: The DMD gene is the largest known gene in humans. It is
+CC       2.4 million base-pairs in size, comprises 79 exons and takes over 16
+CC       hours to be transcribed and cotranscriptionally spliced.
+CC   -!- MISCELLANEOUS: [Isoform 1]: Produced by alternative promoter usage.
+CC   -!- MISCELLANEOUS: [Isoform 2]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 3]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 4]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 5]: Produced by alternative splicing of isoform
+CC       4. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 6]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 7]: Produced by alternative splicing of isoform
+CC       6. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 8]: Produced by alternative splicing of isoform
+CC       6. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 9]: Produced by alternative splicing of isoform
+CC       6. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 10]: Produced by alternative splicing of
+CC       isoform 6. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 11]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 12]: Produced by alternative promoter usage.
+CC       {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 13]: Produced by alternative splicing of
+CC       isoform 12. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 14]: Produced by alternative splicing of
+CC       isoform 12. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 15]: Produced by alternative splicing of
+CC       isoform 12. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 16]: Produced by alternative splicing of
+CC       isoform 12. {ECO:0000305}.
+CC   -!- MISCELLANEOUS: [Isoform 17]: Produced by alternative splicing of
+CC       isoform 12. {ECO:0000305}.
+CC   -!- WEB RESOURCE: Name=DMD; Note=Dystrophin Mutation Database;
+CC       URL="http://www.dmd.nl/database.html";
+CC   -!- WEB RESOURCE: Name=SHMPD; Note=The Singapore human mutation and
+CC       polymorphism database;
+CC       URL="http://shmpd.bii.a-star.edu.sg/gene.php?genestart=A&genename=DMD";
+CC   -!- WEB RESOURCE: Name=Wikipedia; Note=Dystrophin entry;
+CC       URL="https://en.wikipedia.org/wiki/Dystrophin";
+CC   ---------------------------------------------------------------------------
+CC   Copyrighted by the UniProt Consortium, see https://www.uniprot.org/terms
+CC   Distributed under the Creative Commons Attribution (CC BY 4.0) License
+CC   ---------------------------------------------------------------------------
+DR   EMBL; M18533; AAA53189.1; -; mRNA.
+DR   EMBL; X14298; CAA32479.1; -; mRNA.
+DR   EMBL; M92650; AAA52316.1; -; mRNA.
+DR   EMBL; AC078957; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; AL031542; CAI42229.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL096699; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139278; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL451144; CAI42229.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI43058.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031542; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL096699; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139278; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL451144; CAI43058.1; JOINED; Genomic_DNA.
+DR   EMBL; AL049643; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; AL050305; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; AL096699; CAI42225.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031542; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139278; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL451144; CAI42225.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI42950.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031542; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL096699; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139278; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL451144; CAI42950.1; JOINED; Genomic_DNA.
+DR   EMBL; AL121880; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; AL139278; CAI42991.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031542; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL096699; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL451144; CAI42991.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139401; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; AL451144; CAI39566.1; -; Genomic_DNA.
+DR   EMBL; AC004468; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC006061; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC078958; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079143; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079175; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079177; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC079864; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC090632; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093167; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC093193; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AC096506; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031542; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL031643; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL096699; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL109609; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL139278; CAI39566.1; JOINED; Genomic_DNA.
+DR   EMBL; AL596023; -; NOT_ANNOTATED_CDS; Genomic_DNA.
+DR   EMBL; CH471074; EAW99065.1; -; Genomic_DNA.
+DR   EMBL; BC028720; AAH28720.1; -; mRNA.
+DR   EMBL; BC070078; AAH70078.1; -; mRNA.
+DR   EMBL; BC094758; AAH94758.1; -; mRNA.
+DR   EMBL; BC127103; AAI27104.2; -; mRNA.
+DR   EMBL; U27203; AAA86115.1; -; Genomic_DNA.
+DR   EMBL; U27203; AAA86116.1; -; Genomic_DNA.
+DR   EMBL; X15148; CAA33245.1; -; mRNA.
+DR   EMBL; X06178; CAA29544.1; -; mRNA.
+DR   EMBL; X06179; CAA29545.1; -; mRNA.
+DR   EMBL; X13045; CAA31451.1; -; Genomic_DNA.
+DR   EMBL; X13046; CAA31452.1; -; Genomic_DNA.
+DR   EMBL; X13047; CAA31453.1; -; Genomic_DNA.
+DR   EMBL; X13048; CAA31454.1; -; Genomic_DNA.
+DR   EMBL; X15495; CAA33518.1; -; Genomic_DNA.
+DR   EMBL; X54820; CAA38589.1; -; Genomic_DNA.
+DR   CCDS; CCDS14231.1; -. [P11532-6]
+DR   CCDS; CCDS14232.1; -. [P11532-5]
+DR   CCDS; CCDS14233.1; -. [P11532-1]
+DR   CCDS; CCDS14234.1; -. [P11532-7]
+DR   CCDS; CCDS48091.1; -. [P11532-12]
+DR   CCDS; CCDS55394.1; -. [P11532-13]
+DR   CCDS; CCDS55395.1; -. [P11532-11]
+DR   CCDS; CCDS75965.1; -. [P11532-17]
+DR   PIR; A45255; A45255.
+DR   RefSeq; NP_000100.2; NM_000109.3.
+DR   RefSeq; NP_003997.1; NM_004006.2.
+DR   RefSeq; NP_004000.1; NM_004009.3.
+DR   RefSeq; NP_004001.1; NM_004010.3.
+DR   RefSeq; NP_004002.2; NM_004011.3.
+DR   RefSeq; NP_004003.1; NM_004012.3.
+DR   RefSeq; NP_004004.1; NM_004013.2. [P11532-12]
+DR   RefSeq; NP_004005.1; NM_004014.2. [P11532-17]
+DR   RefSeq; NP_004006.1; NM_004015.2. [P11532-7]
+DR   RefSeq; NP_004007.1; NM_004016.2. [P11532-6]
+DR   RefSeq; NP_004008.1; NM_004017.2. [P11532-8]
+DR   RefSeq; NP_004009.1; NM_004018.2. [P11532-5]
+DR   RefSeq; NP_004010.1; NM_004019.2. [P11532-18]
+DR   RefSeq; NP_004011.2; NM_004020.3. [P11532-13]
+DR   RefSeq; NP_004012.1; NM_004021.2.
+DR   RefSeq; NP_004013.1; NM_004022.2. [P11532-15]
+DR   RefSeq; NP_004014.1; NM_004023.2.
+DR   PDB; 1DXX; X-ray; 2.60 A; A/B/C/D=1-246.
+DR   PDB; 1EG3; X-ray; 2.00 A; A=3046-3306.
+DR   PDB; 1EG4; X-ray; 2.00 A; A=3046-3306.
+DR   PDB; 3UUN; X-ray; 2.30 A; A/B=338-456.
+DR   PDBsum; 1DXX; -.
+DR   PDBsum; 1EG3; -.
+DR   PDBsum; 1EG4; -.
+DR   PDBsum; 3UUN; -.
+DR   SASBDB; P11532; -.
+DR   SMR; P11532; -.
+DR   BioGRID; 108096; 65.
+DR   DIP; DIP-32593N; -.
+DR   IntAct; P11532; 54.
+DR   MINT; P11532; -.
+DR   STRING; 9606.ENSP00000354923; -.
+DR   DrugBank; DB15593; Golodirsen.
+DR   TCDB; 8.A.66.1.2; the dystrophin (dystrophin) family.
+DR   CarbonylDB; P11532; -.
+DR   iPTMnet; P11532; -.
+DR   PhosphoSitePlus; P11532; -.
+DR   SwissPalm; P11532; -.
+DR   BioMuta; DMD; -.
+DR   DMDM; 313104240; -.
+DR   EPD; P11532; -.
+DR   jPOST; P11532; -.
+DR   MassIVE; P11532; -.
+DR   MaxQB; P11532; -.
+DR   PaxDb; P11532; -.
+DR   PeptideAtlas; P11532; -.
+DR   PRIDE; P11532; -.
+DR   ProteomicsDB; 17631; -.
+DR   ProteomicsDB; 17635; -.
+DR   ProteomicsDB; 17951; -.
+DR   ProteomicsDB; 19709; -.
+DR   ProteomicsDB; 19712; -.
+DR   ProteomicsDB; 25166; -.
+DR   ProteomicsDB; 29059; -.
+DR   ProteomicsDB; 52788; -. [P11532-1]
+DR   ProteomicsDB; 52789; -. [P11532-2]
+DR   ProteomicsDB; 52790; -. [P11532-3]
+DR   ProteomicsDB; 52791; -. [P11532-4]
+DR   ProteomicsDB; 52792; -. [P11532-5]
+DR   ProteomicsDB; 52793; -. [P11532-6]
+DR   Antibodypedia; 476; 613 antibodies.
+DR   DNASU; 1756; -.
+DR   Ensembl; ENST00000361471; ENSP00000354464; ENSG00000198947. [P11532-5]
+DR   Ensembl; ENST00000378680; ENSP00000367951; ENSG00000198947. [P11532-9]
+DR   Ensembl; ENST00000378702; ENSP00000367974; ENSG00000198947. [P11532-7]
+DR   Ensembl; ENST00000378723; ENSP00000367997; ENSG00000198947. [P11532-6]
+DR   GeneID; 1756; -.
+DR   KEGG; hsa:1756; -.
+DR   UCSC; uc004dcm.2; human. [P11532-1]
+DR   UCSC; uc004dcq.1; human.
+DR   UCSC; uc004dcr.1; human.
+DR   UCSC; uc004dct.1; human.
+DR   UCSC; uc004dcu.2; human.
+DR   UCSC; uc004dcv.1; human.
+DR   UCSC; uc004dcy.2; human.
+DR   CTD; 1756; -.
+DR   DisGeNET; 1756; -.
+DR   EuPathDB; HostDB:ENSG00000198947.15; -.
+DR   GeneCards; DMD; -.
+DR   GeneReviews; DMD; -.
+DR   HGNC; HGNC:2928; DMD.
+DR   HPA; ENSG00000198947; Low tissue specificity.
+DR   MalaCards; DMD; -.
+DR   MIM; 300376; phenotype.
+DR   MIM; 300377; gene.
+DR   MIM; 302045; phenotype.
+DR   MIM; 310200; phenotype.
+DR   neXtProt; NX_P11532; -.
+DR   OpenTargets; ENSG00000198947; -.
+DR   Orphanet; 98895; Becker muscular dystrophy.
+DR   Orphanet; 98896; Duchenne muscular dystrophy.
+DR   Orphanet; 154; Familial isolated dilated cardiomyopathy.
+DR   Orphanet; 206546; Symptomatic form of muscular dystrophy of Duchenne and Becker in female carriers.
+DR   Orphanet; 777; X-linked non-syndromic intellectual disability.
+DR   PharmGKB; PA27378; -.
+DR   eggNOG; KOG4286; Eukaryota.
+DR   GeneTree; ENSGT00940000154342; -.
+DR   HOGENOM; CLU_001187_1_2_1; -.
+DR   InParanoid; P11532; -.
+DR   KO; K10366; -.
+DR   OrthoDB; 924518at2759; -.
+DR   PhylomeDB; P11532; -.
+DR   TreeFam; TF320178; -.
+DR   PathwayCommons; P11532; -.
+DR   Reactome; R-HSA-3000171; Non-integrin membrane-ECM interactions.
+DR   Reactome; R-HSA-390522; Striated Muscle Contraction.
+DR   SignaLink; P11532; -.
+DR   SIGNOR; P11532; -.
+DR   BioGRID-ORCS; 1756; 2 hits in 505 CRISPR screens.
+DR   ChiTaRS; DMD; human.
+DR   EvolutionaryTrace; P11532; -.
+DR   GeneWiki; Dystrophin; -.
+DR   GenomeRNAi; 1756; -.
+DR   Pharos; P11532; Tbio.
+DR   PRO; PR:P11532; -.
+DR   Proteomes; UP000005640; Chromosome X.
+DR   RNAct; P11532; protein.
+DR   Bgee; ENSG00000198947; Expressed in trigeminal ganglion and 247 other tissues.
+DR   ExpressionAtlas; P11532; baseline and differential.
+DR   Genevisible; P11532; HS.
+DR   GO; GO:0009986; C:cell surface; IDA:UniProtKB.
+DR   GO; GO:0030055; C:cell-substrate junction; ISS:BHF-UCL.
+DR   GO; GO:0043034; C:costamere; IDA:UniProtKB.
+DR   GO; GO:0005856; C:cytoskeleton; TAS:ProtInc.
+DR   GO; GO:0005829; C:cytosol; TAS:Reactome.
+DR   GO; GO:0016010; C:dystrophin-associated glycoprotein complex; IDA:UniProtKB.
+DR   GO; GO:0030175; C:filopodium; IDA:BHF-UCL.
+DR   GO; GO:0031527; C:filopodium membrane; IDA:BHF-UCL.
+DR   GO; GO:0045121; C:membrane raft; ISS:BHF-UCL.
+DR   GO; GO:0044306; C:neuron projection terminus; ISS:BHF-UCL.
+DR   GO; GO:0005634; C:nucleus; IDA:BHF-UCL.
+DR   GO; GO:0005886; C:plasma membrane; TAS:BHF-UCL.
+DR   GO; GO:0045211; C:postsynaptic membrane; IEA:UniProtKB-SubCell.
+DR   GO; GO:0032991; C:protein-containing complex; IDA:MGI.
+DR   GO; GO:0042383; C:sarcolemma; IDA:BHF-UCL.
+DR   GO; GO:0045202; C:synapse; ISS:BHF-UCL.
+DR   GO; GO:0016013; C:syntrophin complex; TAS:BHF-UCL.
+DR   GO; GO:0030018; C:Z disc; ISS:BHF-UCL.
+DR   GO; GO:0003779; F:actin binding; IDA:BHF-UCL.
+DR   GO; GO:0002162; F:dystroglycan binding; IPI:UniProtKB.
+DR   GO; GO:0017022; F:myosin binding; IDA:BHF-UCL.
+DR   GO; GO:0050998; F:nitric-oxide synthase binding; ISS:BHF-UCL.
+DR   GO; GO:0005200; F:structural constituent of cytoskeleton; TAS:ProtInc.
+DR   GO; GO:0008307; F:structural constituent of muscle; IDA:UniProtKB.
+DR   GO; GO:0017166; F:vinculin binding; IPI:BHF-UCL.
+DR   GO; GO:0008270; F:zinc ion binding; IEA:InterPro.
+DR   GO; GO:0086001; P:cardiac muscle cell action potential; ISS:BHF-UCL.
+DR   GO; GO:0060048; P:cardiac muscle contraction; IMP:BHF-UCL.
+DR   GO; GO:0034613; P:cellular protein localization; IMP:BHF-UCL.
+DR   GO; GO:0034622; P:cellular protein-containing complex assembly; ISS:BHF-UCL.
+DR   GO; GO:0035633; P:maintenance of blood-brain barrier; NAS:ARUK-UCL.
+DR   GO; GO:0044458; P:motile cilium assembly; TAS:BHF-UCL.
+DR   GO; GO:0046716; P:muscle cell cellular homeostasis; ISS:BHF-UCL.
+DR   GO; GO:0048747; P:muscle fiber development; ISS:BHF-UCL.
+DR   GO; GO:0030049; P:muscle filament sliding; TAS:Reactome.
+DR   GO; GO:0007517; P:muscle organ development; NAS:ProtInc.
+DR   GO; GO:1902083; P:negative regulation of peptidyl-cysteine S-nitrosylation; ISS:BHF-UCL.
+DR   GO; GO:0033137; P:negative regulation of peptidyl-serine phosphorylation; ISS:BHF-UCL.
+DR   GO; GO:0043043; P:peptide biosynthetic process; IDA:UniProtKB.
+DR   GO; GO:0045666; P:positive regulation of neuron differentiation; IMP:BHF-UCL.
+DR   GO; GO:0010976; P:positive regulation of neuron projection development; IMP:BHF-UCL.
+DR   GO; GO:2000651; P:positive regulation of sodium ion transmembrane transporter activity; ISS:BHF-UCL.
+DR   GO; GO:0010881; P:regulation of cardiac muscle contraction by regulation of the release of sequestered calcium ion; ISS:BHF-UCL.
+DR   GO; GO:0090287; P:regulation of cellular response to growth factor stimulus; IMP:BHF-UCL.
+DR   GO; GO:0002027; P:regulation of heart rate; IMP:BHF-UCL.
+DR   GO; GO:0010880; P:regulation of release of sequestered calcium ion into cytosol by sarcoplasmic reticulum; ISS:BHF-UCL.
+DR   GO; GO:0060314; P:regulation of ryanodine-sensitive calcium-release channel activity; ISS:BHF-UCL.
+DR   GO; GO:0014819; P:regulation of skeletal muscle contraction; ISS:BHF-UCL.
+DR   GO; GO:0014809; P:regulation of skeletal muscle contraction by regulation of release of sequestered calcium ion; ISS:BHF-UCL.
+DR   GO; GO:1901385; P:regulation of voltage-gated calcium channel activity; ISS:BHF-UCL.
+DR   GO; GO:0035994; P:response to muscle stretch; ISS:BHF-UCL.
+DR   CDD; cd00014; CH; 2.
+DR   CDD; cd00201; WW; 1.
+DR   Gene3D; 1.10.418.10; -; 2.
+DR   Gene3D; 3.30.60.90; -; 1.
+DR   IDEAL; IID00267; -.
+DR   InterPro; IPR001589; Actinin_actin-bd_CS.
+DR   InterPro; IPR001715; CH-domain.
+DR   InterPro; IPR036872; CH_dom_sf.
+DR   InterPro; IPR035436; Dystrophin/utrophin.
+DR   InterPro; IPR011992; EF-hand-dom_pair.
+DR   InterPro; IPR015153; EF-hand_dom_typ1.
+DR   InterPro; IPR015154; EF-hand_dom_typ2.
+DR   InterPro; IPR018159; Spectrin/alpha-actinin.
+DR   InterPro; IPR002017; Spectrin_repeat.
+DR   InterPro; IPR001202; WW_dom.
+DR   InterPro; IPR036020; WW_dom_sf.
+DR   InterPro; IPR000433; Znf_ZZ.
+DR   InterPro; IPR043145; Znf_ZZ_sf.
+DR   Pfam; PF00307; CH; 2.
+DR   Pfam; PF09068; EF-hand_2; 1.
+DR   Pfam; PF09069; EF-hand_3; 1.
+DR   Pfam; PF00435; Spectrin; 17.
+DR   Pfam; PF00397; WW; 1.
+DR   Pfam; PF00569; ZZ; 1.
+DR   PIRSF; PIRSF002341; Dystrophin/utrophin; 1.
+DR   SMART; SM00033; CH; 2.
+DR   SMART; SM00150; SPEC; 22.
+DR   SMART; SM00456; WW; 1.
+DR   SMART; SM00291; ZnF_ZZ; 1.
+DR   SUPFAM; SSF47473; SSF47473; 2.
+DR   SUPFAM; SSF47576; SSF47576; 1.
+DR   SUPFAM; SSF51045; SSF51045; 1.
+DR   PROSITE; PS00019; ACTININ_1; 1.
+DR   PROSITE; PS00020; ACTININ_2; 1.
+DR   PROSITE; PS50021; CH; 2.
+DR   PROSITE; PS01159; WW_DOMAIN_1; 1.
+DR   PROSITE; PS50020; WW_DOMAIN_2; 1.
+DR   PROSITE; PS01357; ZF_ZZ_1; 1.
+DR   PROSITE; PS50135; ZF_ZZ_2; 1.
+PE   1: Evidence at protein level;
+KW   3D-structure; Actin-binding; Alternative promoter usage;
+KW   Alternative splicing; Calcium; Cardiomyopathy; Cell junction;
+KW   Cell membrane; Cytoplasm; Cytoskeleton; Disease mutation; Membrane;
+KW   Metal-binding; Phosphoprotein; Polymorphism; Postsynaptic cell membrane;
+KW   Reference proteome; Repeat; Synapse; Zinc; Zinc-finger.
+FT   CHAIN           1..3685
+FT                   /note="Dystrophin"
+FT                   /id="PRO_0000076075"
+FT   DOMAIN          15..119
+FT                   /note="Calponin-homology (CH) 1"
+FT                   /evidence="ECO:0000255|PROSITE-ProRule:PRU00044"
+FT   DOMAIN          134..240
+FT                   /note="Calponin-homology (CH) 2"
+FT                   /evidence="ECO:0000255|PROSITE-ProRule:PRU00044"
+FT   REPEAT          339..447
+FT                   /note="Spectrin 1"
+FT   REPEAT          448..556
+FT                   /note="Spectrin 2"
+FT   REPEAT          559..667
+FT                   /note="Spectrin 3"
+FT   REPEAT          719..828
+FT                   /note="Spectrin 4"
+FT   REPEAT          830..934
+FT                   /note="Spectrin 5"
+FT   REPEAT          943..1045
+FT                   /note="Spectrin 6"
+FT   REPEAT          1048..1154
+FT                   /note="Spectrin 7"
+FT   REPEAT          1157..1263
+FT                   /note="Spectrin 8"
+FT   REPEAT          1266..1367
+FT                   /note="Spectrin 9"
+FT   REPEAT          1368..1463
+FT                   /note="Spectrin 10"
+FT   REPEAT          1468..1568
+FT                   /note="Spectrin 11"
+FT   REPEAT          1571..1676
+FT                   /note="Spectrin 12"
+FT   REPEAT          1679..1778
+FT                   /note="Spectrin 13"
+FT   REPEAT          1779..1874
+FT                   /note="Spectrin 14"
+FT   REPEAT          1877..1979
+FT                   /note="Spectrin 15"
+FT   REPEAT          1992..2101
+FT                   /note="Spectrin 16"
+FT   REPEAT          2104..2208
+FT                   /note="Spectrin 17"
+FT   REPEAT          2211..2318
+FT                   /note="Spectrin 18"
+FT   REPEAT          2319..2423
+FT                   /note="Spectrin 19"
+FT   REPEAT          2475..2577
+FT                   /note="Spectrin 20"
+FT   REPEAT          2580..2686
+FT                   /note="Spectrin 21"
+FT   REPEAT          2689..2802
+FT                   /note="Spectrin 22"
+FT   REPEAT          2808..2930
+FT                   /note="Spectrin 23"
+FT   REPEAT          2935..3040
+FT                   /note="Spectrin 24"
+FT   DOMAIN          3055..3088
+FT                   /note="WW"
+FT                   /evidence="ECO:0000255|PROSITE-ProRule:PRU00224"
+FT   ZN_FING         3307..3354
+FT                   /note="ZZ-type"
+FT                   /evidence="ECO:0000255|PROSITE-ProRule:PRU00228"
+FT   REGION          1..240
+FT                   /note="Actin-binding"
+FT   REGION          63..72
+FT                   /note="ANK2- and ANK-3 binding"
+FT                   /evidence="ECO:0000250"
+FT   REGION          1415..1913
+FT                   /note="Interaction with SYNM"
+FT                   /evidence="ECO:0000250"
+FT   REGION          3058..3408
+FT                   /note="Interaction with SYNM"
+FT                   /evidence="ECO:0000250"
+FT   REGION          3466..3518
+FT                   /note="Binds to SNTB1"
+FT   MOD_RES         3483
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         3490
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:24275569"
+FT   MOD_RES         3500
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:24275569"
+FT   MOD_RES         3612
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:20068231,
+FT                   ECO:0000244|PubMed:23186163"
+FT   MOD_RES         3613
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648,
+FT                   ECO:0000244|PubMed:20068231"
+FT   MOD_RES         3617
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         3623
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648,
+FT                   ECO:0000244|PubMed:20068231, ECO:0000244|PubMed:23186163,
+FT                   ECO:0000244|PubMed:24275569"
+FT   MOD_RES         3624
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:23186163,
+FT                   ECO:0000244|PubMed:24275569"
+FT   MOD_RES         3666
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648,
+FT                   ECO:0000244|PubMed:24275569"
+FT   VAR_SEQ         1..3068
+FT                   /note="Missing (in isoform 12, isoform 13, isoform 14,
+FT                   isoform 15, isoform 16 and isoform 17)"
+FT                   /evidence="ECO:0000303|PubMed:1319059,
+FT                   ECO:0000303|PubMed:15489334, ECO:0000303|PubMed:8541829"
+FT                   /id="VSP_017490"
+FT   VAR_SEQ         1..2729
+FT                   /note="Missing (in isoform 11)"
+FT                   /id="VSP_060276"
+FT   VAR_SEQ         1..2460
+FT                   /note="Missing (in isoform 6, isoform 7, isoform 8, isoform
+FT                   9 and isoform 10)"
+FT                   /id="VSP_060275"
+FT   VAR_SEQ         1..11
+FT                   /note="MLWWEEVEDCY -> MED (in isoform 2)"
+FT                   /evidence="ECO:0000303|PubMed:2648158"
+FT                   /id="VSP_006809"
+FT   VAR_SEQ         1..11
+FT                   /note="MLWWEEVEDCY -> MSEVSSD (in isoform 3)"
+FT                   /id="VSP_060274"
+FT   VAR_SEQ         1
+FT                   /note="M -> MTEIILLIFFPAYFLN (in isoform 4)"
+FT                   /id="VSP_006806"
+FT   VAR_SEQ         1
+FT                   /note="M -> MSARKLRNLSYKK (in isoform 5)"
+FT                   /evidence="ECO:0000305"
+FT                   /id="VSP_006808"
+FT   VAR_SEQ         2..1357
+FT                   /note="Missing (in isoform 4 and isoform 5)"
+FT                   /id="VSP_006807"
+FT   VAR_SEQ         2730..2739
+FT                   /note="GVKELMKQWQ -> MLHRKTYHVK (in isoform 11)"
+FT                   /id="VSP_060277"
+FT   VAR_SEQ         3069..3075
+FT                   /note="KVPYYIN -> MREQLKG (in isoform 12, isoform 13,
+FT                   isoform 14, isoform 15, isoform 16 and isoform 17)"
+FT                   /evidence="ECO:0000303|PubMed:1319059,
+FT                   ECO:0000303|PubMed:15489334, ECO:0000303|PubMed:8541829"
+FT                   /id="VSP_017491"
+FT   VAR_SEQ         3409..3685
+FT                   /note="Missing (in isoform 17)"
+FT                   /id="VSP_060278"
+FT   VAR_SEQ         3409..3518
+FT                   /note="Missing (in isoform 7, isoform 10 and isoform 16)"
+FT                   /id="VSP_046319"
+FT   VAR_SEQ         3409..3421
+FT                   /note="Missing (in isoform 9, isoform 13 and isoform 15)"
+FT                   /evidence="ECO:0000303|PubMed:1319059,
+FT                   ECO:0000303|PubMed:15489334, ECO:0000303|PubMed:8541829"
+FT                   /id="VSP_017492"
+FT   VAR_SEQ         3673..3685
+FT                   /note="RNTPGKPMREDTM -> HNVGSLFHMADDLGRAMESLVSVMTDEEGAE (in
+FT                   isoform 8, isoform 9, isoform 10, isoform 14, isoform 15
+FT                   and isoform 16)"
+FT                   /evidence="ECO:0000303|PubMed:1319059,
+FT                   ECO:0000303|PubMed:15489334, ECO:0000303|PubMed:8541829"
+FT                   /id="VSP_017493"
+FT   VARIANT         18
+FT                   /note="K -> N (in CMD3B; decreased thermodynamic stability;
+FT                   accelerated unfolding, perturbed protein structure; no
+FT                   effect on anchoring function)"
+FT                   /evidence="ECO:0000269|PubMed:12359139,
+FT                   ECO:0000269|PubMed:25340340"
+FT                   /id="VAR_023537"
+FT   VARIANT         32..62
+FT                   /note="Missing (in BMD)"
+FT                   /id="VAR_005146"
+FT   VARIANT         54
+FT                   /note="L -> R (in DMD)"
+FT                   /evidence="ECO:0000269|PubMed:8401582"
+FT                   /id="VAR_005147"
+FT   VARIANT         118
+FT                   /note="W -> R (in a patient with Becker muscular
+FT                   dystrophy)"
+FT                   /evidence="ECO:0000269|PubMed:21396098"
+FT                   /id="VAR_065764"
+FT   VARIANT         133
+FT                   /note="Q -> P (in dbSNP:rs1800256)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005148"
+FT   VARIANT         165
+FT                   /note="D -> V (in one patient with Becker muscular
+FT                   dystrophy)"
+FT                   /evidence="ECO:0000269|PubMed:12632325"
+FT                   /id="VAR_023538"
+FT   VARIANT         168
+FT                   /note="A -> D (in BMD)"
+FT                   /id="VAR_005149"
+FT   VARIANT         171
+FT                   /note="A -> P (in BMD)"
+FT                   /evidence="ECO:0000269|PubMed:10573008"
+FT                   /id="VAR_023539"
+FT   VARIANT         231
+FT                   /note="Y -> N (in BMD)"
+FT                   /id="VAR_005150"
+FT   VARIANT         279
+FT                   /note="T -> A (in CMD3B)"
+FT                   /evidence="ECO:0000269|PubMed:9170407"
+FT                   /id="VAR_023540"
+FT   VARIANT         334
+FT                   /note="L -> F (in a colorectal cancer sample; somatic
+FT                   mutation)"
+FT                   /evidence="ECO:0000269|PubMed:16959974"
+FT                   /id="VAR_036353"
+FT   VARIANT         365
+FT                   /note="Q -> H (in dbSNP:rs1800266)"
+FT                   /evidence="ECO:0000269|PubMed:7849724"
+FT                   /id="VAR_005151"
+FT   VARIANT         409
+FT                   /note="T -> S (in dbSNP:rs34155804)"
+FT                   /id="VAR_057642"
+FT   VARIANT         495..534
+FT                   /note="Missing (in BMD)"
+FT                   /id="VAR_005152"
+FT   VARIANT         573
+FT                   /note="A -> V (in dbSNP:rs5972599)"
+FT                   /id="VAR_057643"
+FT   VARIANT         623
+FT                   /note="L -> I (in dbSNP:rs1800259)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005153"
+FT   VARIANT         645
+FT                   /note="D -> G (in DMD)"
+FT                   /evidence="ECO:0000269|PubMed:7981690"
+FT                   /id="VAR_023541"
+FT   VARIANT         666
+FT                   /note="S -> L (in dbSNP:rs34563188)"
+FT                   /id="VAR_062110"
+FT   VARIANT         715
+FT                   /note="T -> S (in dbSNP:rs16998350)"
+FT                   /id="VAR_057644"
+FT   VARIANT         773
+FT                   /note="K -> E (in DMD)"
+FT                   /id="VAR_005154"
+FT   VARIANT         784
+FT                   /note="A -> G (in dbSNP:rs1800260)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005155"
+FT   VARIANT         882
+FT                   /note="D -> G (in dbSNP:rs228406)"
+FT                   /evidence="ECO:0000269|PubMed:2668885,
+FT                   ECO:0000269|PubMed:3282674, ECO:0000269|PubMed:3428261"
+FT                   /id="VAR_005156"
+FT   VARIANT         1136
+FT                   /note="T -> S (in dbSNP:rs3827462)"
+FT                   /id="VAR_057645"
+FT   VARIANT         1197
+FT                   /note="V -> F (in dbSNP:rs1800262)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005157"
+FT   VARIANT         1219
+FT                   /note="E -> Q (in a breast cancer sample; somatic
+FT                   mutation)"
+FT                   /evidence="ECO:0000269|PubMed:16959974"
+FT                   /id="VAR_036354"
+FT   VARIANT         1245
+FT                   /note="T -> I (in dbSNP:rs1800269)"
+FT                   /id="VAR_005158"
+FT   VARIANT         1278
+FT                   /note="A -> P (in dbSNP:rs1800270)"
+FT                   /id="VAR_005159"
+FT   VARIANT         1377
+FT                   /note="K -> N (in dbSNP:rs1800263)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005160"
+FT   VARIANT         1388
+FT                   /note="F -> V (in dbSNP:rs28715870)"
+FT                   /id="VAR_057646"
+FT   VARIANT         1469
+FT                   /note="Q -> L (in dbSNP:rs1057872)"
+FT                   /evidence="ECO:0000269|PubMed:3282674"
+FT                   /id="VAR_005161"
+FT   VARIANT         1470
+FT                   /note="R -> H (in a breast cancer sample; somatic
+FT                   mutation)"
+FT                   /evidence="ECO:0000269|PubMed:16959974"
+FT                   /id="VAR_036355"
+FT   VARIANT         1672
+FT                   /note="N -> K (in dbSNP:rs16990264)"
+FT                   /evidence="ECO:0000269|PubMed:12354438"
+FT                   /id="VAR_023542"
+FT   VARIANT         1745
+FT                   /note="R -> H (in dbSNP:rs1801187)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005162"
+FT   VARIANT         1844
+FT                   /note="R -> S (in dbSNP:rs1801186)"
+FT                   /evidence="ECO:0000269|PubMed:2668885"
+FT                   /id="VAR_005163"
+FT   VARIANT         2108
+FT                   /note="R -> C (in dbSNP:rs16990169)"
+FT                   /id="VAR_057647"
+FT   VARIANT         2155
+FT                   /note="R -> W (in dbSNP:rs1800273)"
+FT                   /evidence="ECO:0000269|PubMed:12359139"
+FT                   /id="VAR_005164"
+FT   VARIANT         2164
+FT                   /note="A -> V (in a colorectal cancer sample; somatic
+FT                   mutation)"
+FT                   /evidence="ECO:0000269|PubMed:16959974"
+FT                   /id="VAR_036356"
+FT   VARIANT         2191
+FT                   /note="R -> W"
+FT                   /evidence="ECO:0000269|PubMed:7849724"
+FT                   /id="VAR_005165"
+FT   VARIANT         2299
+FT                   /note="N -> T"
+FT                   /evidence="ECO:0000269|PubMed:12359139"
+FT                   /id="VAR_023543"
+FT   VARIANT         2305..2366
+FT                   /note="Missing (in DMD)"
+FT                   /id="VAR_005166"
+FT   VARIANT         2366
+FT                   /note="K -> Q (in dbSNP:rs1800275)"
+FT                   /evidence="ECO:0000269|PubMed:12359139,
+FT                   ECO:0000269|PubMed:3282674"
+FT                   /id="VAR_005167"
+FT   VARIANT         2910
+FT                   /note="E -> V (in dbSNP:rs41305353)"
+FT                   /evidence="ECO:0000269|PubMed:12359139"
+FT                   /id="VAR_005168"
+FT   VARIANT         2912
+FT                   /note="N -> D (in dbSNP:rs1800278)"
+FT                   /evidence="ECO:0000269|PubMed:12359139"
+FT                   /id="VAR_005169"
+FT   VARIANT         2921
+FT                   /note="H -> R (in BMD; dbSNP:rs1800279)"
+FT                   /id="VAR_005170"
+FT   VARIANT         2937
+FT                   /note="Q -> R (in dbSNP:rs1800280)"
+FT                   /evidence="ECO:0000269|PubMed:12359139,
+FT                   ECO:0000269|PubMed:15772651, ECO:0000269|PubMed:7849724"
+FT                   /id="VAR_005171"
+FT   VARIANT         3228
+FT                   /note="F -> L (in CMD3B)"
+FT                   /evidence="ECO:0000269|PubMed:12359139"
+FT                   /id="VAR_023544"
+FT   VARIANT         3313
+FT                   /note="C -> F (in DMD; results in highly reduced protein
+FT                   levels and expression at the sarcolemma)"
+FT                   /evidence="ECO:0000269|PubMed:12632325,
+FT                   ECO:0000269|PubMed:24302611"
+FT                   /id="VAR_023545"
+FT   VARIANT         3335
+FT                   /note="D -> H (in DMD; does not affect protein stability;
+FT                   does not affect protein expression at the sarcolemma;
+FT                   interaction with DAG1 is reduced)"
+FT                   /evidence="ECO:0000269|PubMed:24302611,
+FT                   ECO:0000269|PubMed:9851445"
+FT                   /id="VAR_023546"
+FT   VARIANT         3340
+FT                   /note="C -> Y (in DMD; results in highly reduced protein
+FT                   levels and expression at the sarcolemma)"
+FT                   /evidence="ECO:0000269|PubMed:24302611,
+FT                   ECO:0000269|PubMed:8817332"
+FT                   /id="VAR_023547"
+FT   VARIANT         3421
+FT                   /note="A -> V (in BMD)"
+FT                   /id="VAR_005172"
+FT   CONFLICT        664
+FT                   /note="Q -> QM (in Ref. 10; CAA29544)"
+FT                   /evidence="ECO:0000305"
+FT   CONFLICT        2361
+FT                   /note="G -> E (in Ref. 13; CAA38589)"
+FT                   /evidence="ECO:0000305"
+FT   CONFLICT        3542
+FT                   /note="P -> T (in Ref. 6; AAH70078)"
+FT                   /evidence="ECO:0000305"
+FT   CONFLICT        3546
+FT                   /note="M -> V (in Ref. 6; AAH70078)"
+FT                   /evidence="ECO:0000305"
+FT   HELIX           14..31
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   TURN            40..46
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           48..58
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           70..86
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           96..100
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           104..118
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   TURN            119..121
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           122..131
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           136..148
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   STRAND          158..160
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           161..163
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           167..176
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           178..180
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           183..187
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           192..205
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           215..218
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   STRAND          219..222
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           225..236
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   STRAND          243..245
+FT                   /evidence="ECO:0000244|PDB:1DXX"
+FT   HELIX           339..365
+FT                   /evidence="ECO:0000244|PDB:3UUN"
+FT   HELIX           372..409
+FT                   /evidence="ECO:0000244|PDB:3UUN"
+FT   HELIX           414..452
+FT                   /evidence="ECO:0000244|PDB:3UUN"
+FT   HELIX           3050..3054
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3061..3065
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3071..3075
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   TURN            3076..3079
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3080..3084
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3086..3094
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3095..3098
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3104..3118
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3121..3123
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3126..3135
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3143..3146
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3147..3164
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3165..3168
+FT                   /evidence="ECO:0000244|PDB:1EG4"
+FT   HELIX           3171..3186
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3192..3195
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3196..3205
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   STRAND          3207..3209
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3211..3222
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3231..3247
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3251..3254
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3260..3269
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   TURN            3270..3272
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3278..3286
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   TURN            3290..3293
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   HELIX           3294..3304
+FT                   /evidence="ECO:0000244|PDB:1EG3"
+FT   MOD_RES         P11532-5:340
+FT                   /note="Phosphothreonine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-5:344
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-5:348
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-5:616
+FT                   /note="Phosphothreonine"
+FT                   /evidence="ECO:0000244|PubMed:24275569"
+FT   MOD_RES         P11532-6:629
+FT                   /note="Phosphothreonine"
+FT                   /evidence="ECO:0000244|PubMed:24275569"
+FT   MOD_RES         P11532-8:340
+FT                   /note="Phosphothreonine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-8:344
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-8:348
+FT                   /note="Phosphoserine"
+FT                   /evidence="ECO:0000244|PubMed:18669648"
+FT   MOD_RES         P11532-9:519
+FT                   /note="Phosphothreonine"
+FT                   /evidence="ECO:0000244|PubMed:24275569"
+SQ   SEQUENCE   3685 AA;  426750 MW;  24FF7E83F1E6BF8D CRC64;
+     MLWWEEVEDC YEREDVQKKT FTKWVNAQFS KFGKQHIENL FSDLQDGRRL LDLLEGLTGQ
+     KLPKEKGSTR VHALNNVNKA LRVLQNNNVD LVNIGSTDIV DGNHKLTLGL IWNIILHWQV
+     KNVMKNIMAG LQQTNSEKIL LSWVRQSTRN YPQVNVINFT TSWSDGLALN ALIHSHRPDL
+     FDWNSVVCQQ SATQRLEHAF NIARYQLGIE KLLDPEDVDT TYPDKKSILM YITSLFQVLP
+     QQVSIEAIQE VEMLPRPPKV TKEEHFQLHH QMHYSQQITV SLAQGYERTS SPKPRFKSYA
+     YTQAAYVTTS DPTRSPFPSQ HLEAPEDKSF GSSLMESEVN LDRYQTALEE VLSWLLSAED
+     TLQAQGEISN DVEVVKDQFH THEGYMMDLT AHQGRVGNIL QLGSKLIGTG KLSEDEETEV
+     QEQMNLLNSR WECLRVASME KQSNLHRVLM DLQNQKLKEL NDWLTKTEER TRKMEEEPLG
+     PDLEDLKRQV QQHKVLQEDL EQEQVRVNSL THMVVVVDES SGDHATAALE EQLKVLGDRW
+     ANICRWTEDR WVLLQDILLK WQRLTEEQCL FSAWLSEKED AVNKIHTTGF KDQNEMLSSL
+     QKLAVLKADL EKKKQSMGKL YSLKQDLLST LKNKSVTQKT EAWLDNFARC WDNLVQKLEK
+     STAQISQAVT TTQPSLTQTT VMETVTTVTT REQILVKHAQ EELPPPPPQK KRQITVDSEI
+     RKRLDVDITE LHSWITRSEA VLQSPEFAIF RKEGNFSDLK EKVNAIEREK AEKFRKLQDA
+     SRSAQALVEQ MVNEGVNADS IKQASEQLNS RWIEFCQLLS ERLNWLEYQN NIIAFYNQLQ
+     QLEQMTTTAE NWLKIQPTTP SEPTAIKSQL KICKDEVNRL SDLQPQIERL KIQSIALKEK
+     GQGPMFLDAD FVAFTNHFKQ VFSDVQAREK ELQTIFDTLP PMRYQETMSA IRTWVQQSET
+     KLSIPQLSVT DYEIMEQRLG ELQALQSSLQ EQQSGLYYLS TTVKEMSKKA PSEISRKYQS
+     EFEEIEGRWK KLSSQLVEHC QKLEEQMNKL RKIQNHIQTL KKWMAEVDVF LKEEWPALGD
+     SEILKKQLKQ CRLLVSDIQT IQPSLNSVNE GGQKIKNEAE PEFASRLETE LKELNTQWDH
+     MCQQVYARKE ALKGGLEKTV SLQKDLSEMH EWMTQAEEEY LERDFEYKTP DELQKAVEEM
+     KRAKEEAQQK EAKVKLLTES VNSVIAQAPP VAQEALKKEL ETLTTNYQWL CTRLNGKCKT
+     LEEVWACWHE LLSYLEKANK WLNEVEFKLK TTENIPGGAE EISEVLDSLE NLMRHSEDNP
+     NQIRILAQTL TDGGVMDELI NEELETFNSR WRELHEEAVR RQKLLEQSIQ SAQETEKSLH
+     LIQESLTFID KQLAAYIADK VDAAQMPQEA QKIQSDLTSH EISLEEMKKH NQGKEAAQRV
+     LSQIDVAQKK LQDVSMKFRL FQKPANFEQR LQESKMILDE VKMHLPALET KSVEQEVVQS
+     QLNHCVNLYK SLSEVKSEVE MVIKTGRQIV QKKQTENPKE LDERVTALKL HYNELGAKVT
+     ERKQQLEKCL KLSRKMRKEM NVLTEWLAAT DMELTKRSAV EGMPSNLDSE VAWGKATQKE
+     IEKQKVHLKS ITEVGEALKT VLGKKETLVE DKLSLLNSNW IAVTSRAEEW LNLLLEYQKH
+     METFDQNVDH ITKWIIQADT LLDESEKKKP QQKEDVLKRL KAELNDIRPK VDSTRDQAAN
+     LMANRGDHCR KLVEPQISEL NHRFAAISHR IKTGKASIPL KELEQFNSDI QKLLEPLEAE
+     IQQGVNLKEE DFNKDMNEDN EGTVKELLQR GDNLQQRITD ERKREEIKIK QQLLQTKHNA
+     LKDLRSQRRK KALEISHQWY QYKRQADDLL KCLDDIEKKL ASLPEPRDER KIKEIDRELQ
+     KKKEELNAVR RQAEGLSEDG AAMAVEPTQI QLSKRWREIE SKFAQFRRLN FAQIHTVREE
+     TMMVMTEDMP LEISYVPSTY LTEITHVSQA LLEVEQLLNA PDLCAKDFED LFKQEESLKN
+     IKDSLQQSSG RIDIIHSKKT AALQSATPVE RVKLQEALSQ LDFQWEKVNK MYKDRQGRFD
+     RSVEKWRRFH YDIKIFNQWL TEAEQFLRKT QIPENWEHAK YKWYLKELQD GIGQRQTVVR
+     TLNATGEEII QQSSKTDASI LQEKLGSLNL RWQEVCKQLS DRKKRLEEQK NILSEFQRDL
+     NEFVLWLEEA DNIASIPLEP GKEQQLKEKL EQVKLLVEEL PLRQGILKQL NETGGPVLVS
+     APISPEEQDK LENKLKQTNL QWIKVSRALP EKQGEIEAQI KDLGQLEKKL EDLEEQLNHL
+     LLWLSPIRNQ LEIYNQPNQE GPFDVKETEI AVQAKQPDVE EILSKGQHLY KEKPATQPVK
+     RKLEDLSSEW KAVNRLLQEL RAKQPDLAPG LTTIGASPTQ TVTLVTQPVV TKETAISKLE
+     MPSSLMLEVP ALADFNRAWT ELTDWLSLLD QVIKSQRVMV GDLEDINEMI IKQKATMQDL
+     EQRRPQLEEL ITAAQNLKNK TSNQEARTII TDRIERIQNQ WDEVQEHLQN RRQQLNEMLK
+     DSTQWLEAKE EAEQVLGQAR AKLESWKEGP YTVDAIQKKI TETKQLAKDL RQWQTNVDVA
+     NDLALKLLRD YSADDTRKVH MITENINASW RSIHKRVSER EAALEETHRL LQQFPLDLEK
+     FLAWLTEAET TANVLQDATR KERLLEDSKG VKELMKQWQD LQGEIEAHTD VYHNLDENSQ
+     KILRSLEGSD DAVLLQRRLD NMNFKWSELR KKSLNIRSHL EASSDQWKRL HLSLQELLVW
+     LQLKDDELSR QAPIGGDFPA VQKQNDVHRA FKRELKTKEP VIMSTLETVR IFLTEQPLEG
+     LEKLYQEPRE LPPEERAQNV TRLLRKQAEE VNTEWEKLNL HSADWQRKID ETLERLQELQ
+     EATDELDLKL RQAEVIKGSW QPVGDLLIDS LQDHLEKVKA LRGEIAPLKE NVSHVNDLAR
+     QLTTLGIQLS PYNLSTLEDL NTRWKLLQVA VEDRVRQLHE AHRDFGPASQ HFLSTSVQGP
+     WERAISPNKV PYYINHETQT TCWDHPKMTE LYQSLADLNN VRFSAYRTAM KLRRLQKALC
+     LDLLSLSAAC DALDQHNLKQ NDQPMDILQI INCLTTIYDR LEQEHNNLVN VPLCVDMCLN
+     WLLNVYDTGR TGRIRVLSFK TGIISLCKAH LEDKYRYLFK QVASSTGFCD QRRLGLLLHD
+     SIQIPRQLGE VASFGGSNIE PSVRSCFQFA NNKPEIEAAL FLDWMRLEPQ SMVWLPVLHR
+     VAAAETAKHQ AKCNICKECP IIGFRYRSLK HFNYDICQSC FFSGRVAKGH KMHYPMVEYC
+     TPTTSGEDVR DFAKVLKNKF RTKRYFAKHP RMGYLPVQTV LEGDNMETPV TLINFWPVDS
+     APASSPQLSH DDTHSRIEHY ASRLAEMENS NGSYLNDSIS PNESIDDEHL LIQHYCQSLN
+     QDSPLSQPRS PAQILISLES EERGELERIL ADLEEENRNL QAEYDRLKQQ HEHKGLSPLP
+     SPPEMMPTSP QSPRDAELIA EAKLLRQHKG RLEARMQILE DHNKQLESQL HRLRQLLEQP
+     QAEAKVNGTT VSSPSTSLQR SDSSQPMLLR VVGSQTSDSM GEEDLLSPPQ DTSTGLEEVM
+     EQLNNSFPSS RGRNTPGKPM REDTM
+//
