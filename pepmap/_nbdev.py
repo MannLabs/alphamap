@@ -8,10 +8,16 @@ index = {"import_spectronaut_data": "Importing.ipynb",
          "get_peptide_position": "Preprocessing.ipynb",
          "get_ptm_sites": "Preprocessing.ipynb",
          "get_modifications": "Preprocessing.ipynb",
-         "format_input_data": "Preprocessing.ipynb"}
+         "format_input_data": "Preprocessing.ipynb",
+         "extract_note": "Uniprot_integration.ipynb",
+         "extract_note_end": "Uniprot_integration.ipynb",
+         "resolve_unclear_position": "Uniprot_integration.ipynb",
+         "extract_positions": "Uniprot_integration.ipynb",
+         "preprocess_uniprot": "Uniprot_integration.ipynb"}
 
 modules = ["importing.py",
-           "preprocessing.py"]
+           "preprocessing.py",
+           "uniprot_integration.py"]
 
 doc_url = "https://ibludau.github.io/pepmap/"
 
