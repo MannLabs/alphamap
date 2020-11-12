@@ -144,9 +144,12 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
 
 import plotly.graph_objects as go
 
-def plot_peptide_traces(df,name,protein,fasta):
+def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features):
 
     colors = ['#E24A33', '#348ABD', '#988ED5', '#777777', '#FBC15E', '#8EBA42', '#FFB5B8']
+
+    uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
+    uniprot_annotation_p_f = uniprot_annotation_p[uniprot_annotation_p.feature.isin(selected_features)]
 
     if isinstance(df, pd.DataFrame):
         df_plot = get_plot_data(protein=protein,
@@ -157,6 +160,14 @@ def plot_peptide_traces(df,name,protein,fasta):
 
         observed_mods = list(set(df_plot.PTMtype))
         ptm_shape_dict_sub = {key: ptm_shape_dict[key] for key in observed_mods if key in ptm_shape_dict}
+
+        fig = plot_single_peptide_traces(df_plot,protein=protein,fasta = fasta)
+        fig.update_layout(yaxis=dict(showticklabels=True,
+                                     tickmode = 'array',
+                                     tickvals = [0],
+                                     ticktext = [name]))
+
+        y_max = 1
 
     elif isinstance(df, list):
 
@@ -183,13 +194,6 @@ def plot_peptide_traces(df,name,protein,fasta):
             df_plot[i].color = colors[i]
             df_plot[i].height = 1+i
 
-    if isinstance(df_plot, pd.DataFrame):
-        fig = plot_single_peptide_traces(df_plot,protein=protein,fasta = fasta)
-        fig.update_layout(yaxis=dict(showticklabels=True,
-                                     tickmode = 'array',
-                                     tickvals = [0],
-                                     ticktext = [name]))
-    elif isinstance(df_plot, list):
         plot_list = [plot_single_peptide_traces(df,protein=protein,fasta = fasta) for df in df_plot]
         new_data = [p.data for p in plot_list]
         new_data = sum(new_data, ())
@@ -204,6 +208,9 @@ def plot_peptide_traces(df,name,protein,fasta):
                                      tickvals = np.arange(0, len(df_plot))+1,
                                      ticktext = np.array(name)))
 
+        y_max = len(df_plot)+1
+
+
     ptm_shape_dict_sub = dict(sorted(ptm_shape_dict_sub.items()))
     for i in range(len(ptm_shape_dict_sub)):
         fig.add_trace(go.Scatter(y=[None],
@@ -212,5 +219,36 @@ def plot_peptide_traces(df,name,protein,fasta):
                                              color='black'),
                                  name=list(ptm_shape_dict_sub.keys())[i],
                                  showlegend=True))
+
+    unique_features = list(set(uniprot_annotation_p_f.feature))
+    if len(unique_features) > 0:
+        for j in range(0,len(unique_features)):
+            domain = unique_features[j]
+            domain_info_sub = uniprot_annotation_p_f[uniprot_annotation_p_f.feature==domain].reset_index(drop=True)
+            for i in range(0, domain_info_sub.shape[0]):
+                start=int(domain_info_sub.start[i])
+                end=int(domain_info_sub.end[i])
+                if start==end:
+                    end=end+1
+
+                fig.add_shape(
+                    dict(
+                        type="line",
+                        x0=start-1,
+                        y0=y_max+j+(i/5),
+                        x1=end-1,
+                        y1=y_max+j+(i/5),
+                        line=dict(
+                            color="pink",
+                            width=6
+                        )
+                    )
+                )
+
+            fig.update_yaxes(showticklabels=True,
+                             tickvals=y_max+np.arange(0,len(unique_features)),
+                             ticktext=unique_features,
+                             automargin=True,
+                             range=[0, y_max+j+1])
 
     return fig

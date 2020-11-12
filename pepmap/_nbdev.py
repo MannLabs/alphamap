@@ -23,7 +23,7 @@ modules = ["importing.py",
            "preprocessing.py",
            "sequenceplot.py",
            "uniprot_integration.py"]
-           
+
 doc_url = "https://ibludau.github.io/pepmap/"
 
 git_url = "https://github.com/ibludau/pepmap/tree/master/"
