@@ -17,7 +17,8 @@ index = {"import_spectronaut_data": "Importing.ipynb",
          "extract_note_end": "Uniprot_integration.ipynb",
          "resolve_unclear_position": "Uniprot_integration.ipynb",
          "extract_positions": "Uniprot_integration.ipynb",
-         "preprocess_uniprot": "Uniprot_integration.ipynb"}
+         "preprocess_uniprot": "Uniprot_integration.ipynb",
+         "uniprot_feature_dict": "Uniprot_integration.ipynb"}
 
 modules = ["importing.py",
            "preprocessing.py",
