@@ -81,12 +81,16 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                                marker_line_color=df_plot_pep.color,
                                marker_color=df_plot_pep.color,
                                marker_opacity=1,
-                               text=df_plot_pep.seq_position+1,
-                               hovertemplate='%{text}', name='',
+                       hovertext=df_plot_pep.seq_position+1,
+                                     hoverinfo='all',
+                               #text=df_plot_pep.seq_position+1,
+                               #hovertemplate='%{text}',
+                       name='',
                        showlegend=False)
 
     ## PTM dots
     df_plot_ptm = df_plot.dropna(subset=['PTM'])
+    #print(df_plot_ptm)
     plot2 = go.Scatter(x=df_plot_ptm.seq_position,
                                y=df_plot_ptm.height+0.3,
                                xaxis='x1',
@@ -96,8 +100,11 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                                marker_line_color=df_plot_ptm.color,
                                marker_color=df_plot_ptm.color,
                                marker_opacity=1,
-                               text=df_plot_ptm.seq_position+1,
-                               hovertemplate='%{text}', name='',
+                       hovertext=df_plot_ptm.PTMtype,
+                                     hoverinfo='text',
+                               #text=df_plot_ptm.PTMtype,
+                               #hovertemplate='%{text}',
+                       name='',
                        showlegend=False)
 
     layout = go.Layout(
@@ -116,7 +123,7 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                 tickangle=0
             ),
         #showlegend=False,
-        height=400, width=1000,
+        #height=400, width=1000,
         plot_bgcolor='rgba(0,0,0,0)',
         title=f"Sequence plot for {protein}:"
         )
@@ -231,24 +238,43 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features):
                 if start==end:
                     end=end+1
 
-                fig.add_shape(
-                    dict(
-                        type="line",
-                        x0=start-1,
-                        y0=y_max+j+(i/5),
-                        x1=end-1,
-                        y1=y_max+j+(i/5),
-                        line=dict(
-                            color="pink",
-                            width=6
-                        )
-                    )
-                )
+                #fig.add_shape(
+                #    dict(
+                #        type="line",
+                #        x0=start-1,
+                #        y0=y_max+j+(i/5),
+                #        x1=end-1,
+                #        y1=y_max+j+(i/5),
+                #        line=dict(
+                #            color="pink",
+                #            width=6
+                #        )
+                #    )
+                #)
+                fig.add_trace(go.Bar(x=list(range(start-1,end-1)),
+                         y=list(np.repeat(0.2,end-start)),
+                         base=list(np.repeat(y_max+j,end-start)-0.1),
+                         marker_color='grey',
+                                     opacity=0.8,
+                                     showlegend=False,
+                                     name='',
+                                   hovertext=domain_info_sub.note[i],
+                                     hoverinfo='text'
+                                    ))
+        fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
 
-            fig.update_yaxes(showticklabels=True,
-                             tickvals=y_max+np.arange(0,len(unique_features)),
-                             ticktext=unique_features,
-                             automargin=True,
-                             range=[0, y_max+j+1])
+
+    if isinstance(df, pd.DataFrame):
+        fig.update_yaxes(showticklabels=True,
+                         tickvals= np.arange(0, 1+len(unique_features)),
+                         ticktext=np.append(np.array(name),np.array(unique_features)),
+                         automargin=True,
+                         range=[0, 1+len(unique_features)+1])
+    elif isinstance(df, list):
+        fig.update_yaxes(showticklabels=True,
+                         tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)),
+                         ticktext=np.append(np.array(name),np.array(unique_features)),
+                         automargin=True,
+                         range=[0, len(df_plot)+len(unique_features)+1])
 
     return fig
