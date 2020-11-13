@@ -238,19 +238,6 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features):
                 if start==end:
                     end=end+1
 
-                #fig.add_shape(
-                #    dict(
-                #        type="line",
-                #        x0=start-1,
-                #        y0=y_max+j+(i/5),
-                #        x1=end-1,
-                #        y1=y_max+j+(i/5),
-                #        line=dict(
-                #            color="pink",
-                #            width=6
-                #        )
-                #    )
-                #)
                 fig.add_trace(go.Bar(x=list(range(start-1,end-1)),
                          y=list(np.repeat(0.2,end-start)),
                          base=list(np.repeat(y_max+j,end-start)-0.1),
@@ -264,16 +251,17 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features):
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
 
 
+    mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
         fig.update_yaxes(showticklabels=True,
                          tickvals= np.arange(0, 1+len(unique_features)),
-                         ticktext=np.append(np.array(name),np.array(unique_features)),
+                         ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
                          automargin=True,
                          range=[0, 1+len(unique_features)+1])
     elif isinstance(df, list):
         fig.update_yaxes(showticklabels=True,
                          tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)),
-                         ticktext=np.append(np.array(name),np.array(unique_features)),
+                         ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
                          automargin=True,
                          range=[0, len(df_plot)+len(unique_features)+1])
 
