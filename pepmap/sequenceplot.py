@@ -219,13 +219,18 @@ import plotly.graph_objects as go
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict):
 
+    # colors for experimental data traces
     colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c"]
 
+    # generation of a reverse uniprot_feature_dict
     uniprot_feature_dict_rev = {v: k for k, v in uniprot_feature_dict.items()}
     uniprot_feature_dict_rev["STRUCTURE"] = "Secondary structure"
 
+    # subsetting of the uniprot annotation to the selected features
     uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
     uniprot_annotation_p_f = uniprot_annotation_p[uniprot_annotation_p.feature.isin(selected_features)]
+    # formatting of uniprot annotations
+    uniprot_annotation_p_f_f = format_uniprot_annotation(uniprot_annotation_p_f)
 
     if isinstance(df, pd.DataFrame):
         df_plot = get_plot_data(protein=protein,
@@ -297,12 +302,12 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                  showlegend=True))
 
     all_uniprot_features = list(uniprot_color_dict.keys())
-    available_features = list(set(uniprot_annotation_p_f.feature))
+    available_features = list(set(uniprot_annotation_p_f_f.feature))
     unique_features = [x for x in all_uniprot_features if x in available_features]
     if len(unique_features) > 0:
         for j in range(0,len(unique_features)):
             domain = unique_features[j]
-            domain_info_sub = uniprot_annotation_p_f[uniprot_annotation_p_f.feature==domain].reset_index(drop=True)
+            domain_info_sub = uniprot_annotation_p_f_f[uniprot_annotation_p_f_f.feature==domain].reset_index(drop=True)
             for i in range(0, domain_info_sub.shape[0]):
                 start = int(domain_info_sub.start[i])
                 end = domain_info_sub.end[i]
