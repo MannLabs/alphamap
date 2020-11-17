@@ -196,9 +196,7 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'INTRAMEM': custom_color_palettes['col_turquises'][0],
                       'TOPO_DOM': custom_color_palettes['col_turquises'][1],
                       'TRANSMEM': custom_color_palettes['col_turquises'][2],
-                      'STRAND': 'black',
-                      'HELIX': 'black',
-                      'TURN': 'black',
+                      'STRUCTURE': 'black',
                       'BINDING': custom_color_palettes['col_darkpinks'][0],
                       'CA_BIND': custom_color_palettes['col_darkpinks'][1],
                       'DNA_BIND': custom_color_palettes['col_darkpinks'][2],
@@ -224,6 +222,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c"]
 
     uniprot_feature_dict_rev = {v: k for k, v in uniprot_feature_dict.items()}
+    uniprot_feature_dict_rev["STRUCTURE"] = "Secondary structure"
 
     uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
     uniprot_annotation_p_f = uniprot_annotation_p[uniprot_annotation_p.feature.isin(selected_features)]
