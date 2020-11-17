@@ -290,10 +290,12 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
             domain = unique_features[j]
             domain_info_sub = uniprot_annotation_p_f[uniprot_annotation_p_f.feature==domain].reset_index(drop=True)
             for i in range(0, domain_info_sub.shape[0]):
-                start=int(domain_info_sub.start[i])
-                end=int(domain_info_sub.end[i])
-                if start==end:
-                    end=end+1
+                start = int(domain_info_sub.start[i])
+                end = domain_info_sub.end[i]
+                if np.isnan(domain_info_sub.end[i]):
+                    end=start+1
+                else:
+                    end=int(end)
 
                 fig.add_trace(go.Bar(x=list(range(start-1,end-1)),
                          y=list(np.repeat(0.2,end-start)),
