@@ -166,5 +166,19 @@ uniprot_feature_dict = {
     'Transmembrane': 'TRANSMEM',
     'Beta strand': 'STRAND',
     'Helix': 'HELIX',
-    'Turn': 'TURN'
+    'Turn': 'TURN',
+    'Active site': 'ACT_SITE',
+    'Binding site': 'BINDING',
+    'Calcium binding': 'CA_BIND',
+    'DNA binding': 'DNA_BIND',
+    'Metal binding': 'METAL',
+    'Nucleotide binding': 'NP_BIND',
+    'Site': 'SITE',
+    'Non-standard residue': 'NON_STD',
+    'Non-adjacent residues': 'NON_CONS',
+    'Non-terminal residue': 'NON_TER',
+    'Natural variant': 'VARIANT',
+    'Sequence conflict': 'CONFLICT',
+    'Alternative sequence': 'VAR_SEQ',
+    'Sequence uncertainty': 'UNSURE'
 }
