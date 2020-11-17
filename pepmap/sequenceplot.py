@@ -209,7 +209,11 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'VARIANT': custom_color_palettes['col_browns'][3],
                       'CONFLICT': custom_color_palettes['col_browns'][4],
                       'VAR_SEQ': '#FFD151',
-                      'UNSURE': 'grey'
+                      'UNSURE': 'grey',
+                      # extra structures
+                      'Helix': '#008BF8',
+                      'Turn': '#DC0073',
+                      'Beta strand': '#04E762',
                      }
 
 # Cell
@@ -228,9 +232,11 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
     # subsetting of the uniprot annotation to the selected features
     uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
-    uniprot_annotation_p_f = uniprot_annotation_p[uniprot_annotation_p.feature.isin(selected_features)]
     # formatting of uniprot annotations
-    uniprot_annotation_p_f_f = format_uniprot_annotation(uniprot_annotation_p_f)
+    uniprot_annotation_p_f = format_uniprot_annotation(uniprot_annotation_p)
+    # subset for selected features
+    uniprot_annotation_p_f_f = uniprot_annotation_p_f[uniprot_annotation_p_f.feature.isin(selected_features)]
+
 
     if isinstance(df, pd.DataFrame):
         df_plot = get_plot_data(protein=protein,
@@ -316,14 +322,19 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                 else:
                     end=int(end)
 
+                if domain_info_sub.feature[i] == "STRUCTURE":
+                    marker_col = uniprot_color_dict[domain_info_sub.note[i]]
+                else:
+                    marker_col = uniprot_color_dict[domain_info_sub.feature[i]]
+
                 fig.add_trace(go.Bar(x=list(range(start-1,end-1)),
-                         y=list(np.repeat(0.2,end-start)),
-                         base=list(np.repeat(y_max+j,end-start)-0.1),
-                         marker_color=uniprot_color_dict[domain_info_sub.feature[i]],
+                                     y=list(np.repeat(0.2,end-start)),
+                                     base=list(np.repeat(y_max+j,end-start)-0.1),
+                                     marker_color=marker_col,
                                      opacity=0.8,
                                      showlegend=False,
                                      name='',
-                                   hovertext=domain_info_sub.note[i],
+                                     hovertext=domain_info_sub.note[i],
                                      hoverinfo='text'
                                     ))
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
