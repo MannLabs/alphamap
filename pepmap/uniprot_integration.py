@@ -180,5 +180,7 @@ uniprot_feature_dict = {
     'Natural variant': 'VARIANT',
     'Sequence conflict': 'CONFLICT',
     'Alternative sequence': 'VAR_SEQ',
-    'Sequence uncertainty': 'UNSURE'
+    'Sequence uncertainty': 'UNSURE',
+    'Secondary structure': 'STRUCTURE',
+    'Mutagenesis': 'MUTAGEN'
 }
