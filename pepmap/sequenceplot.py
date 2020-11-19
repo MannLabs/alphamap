@@ -210,6 +210,7 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'CONFLICT': custom_color_palettes['col_browns'][4],
                       'VAR_SEQ': '#FFD151',
                       'UNSURE': 'grey',
+                      'MUTAGEN': 'black',
                       # extra structures
                       'Helix': '#008BF8',
                       'Turn': '#DC0073',
@@ -228,7 +229,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
     # generation of a reverse uniprot_feature_dict
     uniprot_feature_dict_rev = {v: k for k, v in uniprot_feature_dict.items()}
-    uniprot_feature_dict_rev["STRUCTURE"] = "Secondary structure"
+    #uniprot_feature_dict_rev["STRUCTURE"] = "Secondary structure"
 
     # subsetting of the uniprot annotation to the selected features
     uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
