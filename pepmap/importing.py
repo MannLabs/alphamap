@@ -6,12 +6,22 @@ __all__ = ['import_spectronaut_data', 'import_maxquant_data', 'import_data']
 import pandas as pd
 import re
 
-def import_spectronaut_data(file):
+def import_spectronaut_data(file, sample=None):
     """
     Function to import peptide level data from Spectronaut
     """
     data = pd.read_csv(file, sep=',')
-    data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
+    if sample:
+        if isinstance(sample, list):
+            raise NotImplementedError("Import not available for sample lists at this moment.")
+        elif isinstance(sample, str):
+            qval_col = sample + ".EG.Qvalue"
+            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence",qval_col]]
+            data_sub = data_sub[data_sub[qval_col] != 'Filtered']
+            data_sub = data_sub[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
+    else:
+        data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
+
     # get modified sequence
     mod_seq = data_sub.apply(lambda row: re.sub('_','',row["EG.ModifiedSequence"]), axis=1)
     data_sub = data_sub.assign(modified_sequence=mod_seq.values)
@@ -27,12 +37,23 @@ def import_spectronaut_data(file):
 import pandas as pd
 import re
 
-def import_maxquant_data(file):
+def import_maxquant_data(file, sample=None):
     """
     Function to import peptide level data from MaxQuant
     """
     data = pd.read_csv(file, sep='\t')
-    data_sub = data[["Proteins","Modified sequence"]]
+
+    if sample:
+        if isinstance(sample, list):
+            raise NotImplementedError("Import not available for sample lists at this moment.")
+        elif isinstance(sample, str):
+            raise NotImplementedError("Import not available for single samples at this moment.")
+            #data_sub = data[["Proteins","Modified sequence","Experiment"]]
+            #data_sub = data_sub[data_sub["Experiment"] == sample]
+            #data_sub = data_sub[["Proteins","Modified sequence"]]
+    else:
+        data_sub = data[["Proteins","Modified sequence"]]
+
     # get modified sequence
     mod_seq = data_sub.apply(lambda row: re.sub('_','',row["Modified sequence"]), axis=1)
     data_sub = data_sub.assign(modified_sequence=mod_seq.values)
@@ -53,7 +74,7 @@ def import_maxquant_data(file):
 import pandas as pd
 import re
 
-def import_data(file, verbose=True):
+def import_data(file, sample = None, verbose=True):
     tab_cols = pd.read_csv(file,index_col=0,nrows=0, sep='\t').columns
     csv_cols = pd.read_csv(file,index_col=0,nrows=0, sep=',').columns
     if len(csv_cols) > len(tab_cols):
@@ -67,7 +88,7 @@ def import_data(file, verbose=True):
     elif set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]).issubset(set(cols)):
         if verbose:
             print("Import Spectronaut input")
-        data = import_spectronaut_data(file)
+        data = import_spectronaut_data(file, sample = sample)
     else:
         raise TypeError(f'Input data format for {file} not known.')
     return data
