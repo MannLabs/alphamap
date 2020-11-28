@@ -63,11 +63,11 @@ def import_data(file, verbose=True):
     if set(["Proteins","Modified sequence"]).issubset(set(cols)):
         if verbose:
             print("Import MaxQuant input")
-        data = import_maxquant_data(file, verbose=verbose)
+        data = import_maxquant_data(file)
     elif set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]).issubset(set(cols)):
         if verbose:
             print("Import Spectronaut input")
-        data = import_spectronaut_data(file, verbose=verbose)
+        data = import_spectronaut_data(file)
     else:
         raise TypeError(f'Input data format for {file} not known.')
     return data
