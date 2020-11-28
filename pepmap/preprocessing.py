@@ -19,18 +19,20 @@ def expand_protein_ids(df):
 import re
 import numpy as np
 
-def pep_position_helper(seq,prot,fasta):
+def pep_position_helper(seq, prot, fasta, verbose=True):
     try:
         fasta_prot = fasta[prot]
         search_res = re.search(seq,fasta_prot.sequence)
         if search_res is None:
             start, end = np.NaN, np.NaN
-            warnings.warn(f'Peptide sequence {seq} could not be mached to {prot} in the selected fasta.')
+            if verbose:
+                warnings.warn(f'Peptide sequence {seq} could not be mached to {prot} in the selected fasta.')
         else:
             start, end = search_res.span()
     except:
         start, end = np.NaN, np.NaN
-        warnings.warn(f'No matching entry for {prot} in the selected fasta.')
+        if verbose:
+            warnings.warn(f'No matching entry for {prot} in the selected fasta.')
 
     return start, end-1
 
@@ -39,14 +41,15 @@ def pep_position_helper(seq,prot,fasta):
 
 import warnings
 
-def get_peptide_position(df, fasta):
+def get_peptide_position(df, fasta, verbose=True):
     """
     Function to get start and end position of each peptide in the given protein
     """
     res = df.copy(deep=True)
     res[['start','end']] = res.apply(lambda row: pep_position_helper(row['naked_sequence'],
                                                                      row['unique_protein_id'],
-                                                                     fasta),
+                                                                     fasta,
+                                                                     verbose=verbose),
                                      axis=1, result_type='expand')
 
     res_na = res[res.isnull().any(1)]
@@ -96,12 +99,12 @@ def get_modifications(df, mod_reg):
 
 # Cell
 
-def format_input_data(df, fasta, modification_exp):
+def format_input_data(df, fasta, modification_exp, verbose=True):
     """
     Function to format input data and to annotate sequence start and end positions plus PTM sites
     """
     res = df.copy(deep=True)
     res = expand_protein_ids(res)
-    res = get_peptide_position(res, fasta = fasta)
+    res = get_peptide_position(res, fasta = fasta, verbose=verbose)
     res = get_modifications(res, mod_reg = modification_exp)
     return res
