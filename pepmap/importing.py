@@ -45,12 +45,12 @@ def import_maxquant_data(file, sample=None):
 
     if sample:
         if isinstance(sample, list):
-            data_sub = data[["Proteins","Modified sequence","Experiment"]]
-            data_sub = data_sub[data_sub["Experiment"].isin(sample)]
+            data_sub = data[["Proteins","Modified sequence","Raw file"]]
+            data_sub = data_sub[data_sub["Raw file"].isin(sample)]
             data_sub = data_sub[["Proteins","Modified sequence"]]
         elif isinstance(sample, str):
-            data_sub = data[["Proteins","Modified sequence","Experiment"]]
-            data_sub = data_sub[data_sub["Experiment"] == sample]
+            data_sub = data[["Proteins","Modified sequence","Raw file"]]
+            data_sub = data_sub[data_sub["Raw file"] == sample]
             data_sub = data_sub[["Proteins","Modified sequence"]]
     else:
         data_sub = data[["Proteins","Modified sequence"]]
