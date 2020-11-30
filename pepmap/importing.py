@@ -47,10 +47,9 @@ def import_maxquant_data(file, sample=None):
         if isinstance(sample, list):
             raise NotImplementedError("Import not available for sample lists at this moment.")
         elif isinstance(sample, str):
-            raise NotImplementedError("Import not available for single samples at this moment.")
-            #data_sub = data[["Proteins","Modified sequence","Experiment"]]
-            #data_sub = data_sub[data_sub["Experiment"] == sample]
-            #data_sub = data_sub[["Proteins","Modified sequence"]]
+            data_sub = data[["Proteins","Modified sequence","Experiment"]]
+            data_sub = data_sub[data_sub["Experiment"] == sample]
+            data_sub = data_sub[["Proteins","Modified sequence"]]
     else:
         data_sub = data[["Proteins","Modified sequence"]]
 
