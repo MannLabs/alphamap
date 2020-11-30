@@ -10,14 +10,20 @@ def import_spectronaut_data(file, sample=None):
     """
     Function to import peptide level data from Spectronaut
     """
-    data = pd.read_csv(file, sep=',')
+    file_type = file[file.rindex('.')+1:]
+    if file_type == 'csv':
+        data = pd.read_csv(file, sep=',')
+    else:
+        data = pd.read_csv(file, sep='\t')
+
     if sample:
         if isinstance(sample, list):
-            raise NotImplementedError("Import not available for sample lists at this moment.")
+            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]]
+            data_sub = data_sub[data_sub["R.FileName"].isin(sample)]
+            data_sub = data_sub[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
         elif isinstance(sample, str):
-            qval_col = sample + ".EG.Qvalue"
-            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence",qval_col]]
-            data_sub = data_sub[data_sub[qval_col] != 'Filtered']
+            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]]
+            data_sub = data_sub[data_sub["R.FileName"] == sample]
             data_sub = data_sub[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
     else:
         data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
@@ -76,20 +82,26 @@ import pandas as pd
 import re
 
 def import_data(file, sample = None, verbose=True):
-    tab_cols = pd.read_csv(file,index_col=0,nrows=0, sep='\t').columns
-    csv_cols = pd.read_csv(file,index_col=0,nrows=0, sep=',').columns
-    if len(csv_cols) > len(tab_cols):
-        cols = csv_cols
-    else:
-        cols = tab_cols
-    if set(["Proteins","Modified sequence"]).issubset(set(cols)):
-        if verbose:
-            print("Import MaxQuant input")
-        data = import_maxquant_data(file)
-    elif set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]).issubset(set(cols)):
-        if verbose:
-            print("Import Spectronaut input")
-        data = import_spectronaut_data(file, sample = sample)
+    file_type = file[file.rindex('.')+1:]
+    if file_type == 'txt':
+        cols = pd.read_csv(file, sep='\t', nrows=0).columns
+        if set(["Proteins","Modified sequence","Raw file"]).issubset(set(cols)):
+            if verbose:
+                print("Import MaxQuant input")
+            data = import_maxquant_data(file)
+        else:
+            raise TypeError(f'Input data format for {file} not known.')
+    elif file_type in ['tsv','csv']:
+        if file_type == 'csv':
+            cols = pd.read_csv(file, sep=',', nrows=0).columns
+        else:
+            cols = pd.read_csv(file, sep='\t', nrows=0).columns
+        if set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]).issubset(set(cols)):
+            if verbose:
+                print("Import Spectronaut input")
+            data = import_spectronaut_data(file, sample = sample)
+        else:
+            raise TypeError(f'Input data format for {file} not known.')
     else:
         raise TypeError(f'Input data format for {file} not known.')
     return data
