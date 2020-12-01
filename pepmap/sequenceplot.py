@@ -79,14 +79,14 @@ def get_plot_data(protein,df,fasta):
                     if mod != 'nan':
                         df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = ptm_shape_dict[mod]
 
-    df_plot["AA"] = list(protein_sequence)
-
     return(df_plot)
 
 # Cell
 import plotly.graph_objects as go
 
 def plot_single_peptide_traces(df_plot,protein,fasta):
+    protein_sequence = fasta[protein].sequence
+
     ## Peptide backbone
     df_plot_pep = df_plot.dropna(subset=['modified_sequence'])
     plot1 = go.Scatter(x=df_plot_pep.seq_position,
@@ -132,9 +132,9 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
             xaxis=dict(
                 title= 'protein sequence',
                 tickmode = 'array',
-                range=[-10, df_plot.shape[0]+10],
-                tickvals = np.arange(0,df_plot.shape[0]),
-                ticktext = df_plot.AA,
+                range=[-10, len(protein_sequence)+10],
+                tickvals = np.arange(0,len(protein_sequence)),
+                ticktext = list(protein_sequence),
                 tickangle=0
             ),
         #showlegend=False,
