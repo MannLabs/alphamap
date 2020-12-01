@@ -10,20 +10,15 @@ def import_spectronaut_data(file, sample=None):
     """
     Function to import peptide level data from Spectronaut
     """
-    file_type = file[file.rindex('.')+1:]
-    if file_type == 'csv':
-        data = pd.read_csv(file, sep=',')
-    else:
-        data = pd.read_csv(file, sep='\t')
+    spectronaut_columns = ["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]
+    data = pd.read_csv(file, sep=None, engine='python', usecols=spectronaut_columns)
 
     if sample:
         if isinstance(sample, list):
-            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]]
-            data_sub = data_sub[data_sub["R.FileName"].isin(sample)]
+            data_sub = data[data["R.FileName"].isin(sample)]
             data_sub = data_sub[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
         elif isinstance(sample, str):
-            data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]]
-            data_sub = data_sub[data_sub["R.FileName"] == sample]
+            data_sub = data[data["R.FileName"] == sample]
             data_sub = data_sub[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
     else:
         data_sub = data[["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence"]]
@@ -47,20 +42,18 @@ def import_maxquant_data(file, sample=None):
     """
     Function to import peptide level data from MaxQuant
     """
-    data = pd.read_csv(file, sep='\t')
+    mq_columns = ["Proteins","Modified sequence","Raw file"]
+    data = pd.read_csv(file, sep='\t', usecols=mq_columns)
 
     if sample:
         if isinstance(sample, list):
-            data_sub = data[["Proteins","Modified sequence","Raw file"]]
-            data_sub = data_sub[data_sub["Raw file"].isin(sample)]
+            data_sub = data[data["Raw file"].isin(sample)]
             data_sub = data_sub[["Proteins","Modified sequence"]]
         elif isinstance(sample, str):
-            data_sub = data[["Proteins","Modified sequence","Raw file"]]
-            data_sub = data_sub[data_sub["Raw file"] == sample]
+            data_sub = data[data["Raw file"] == sample]
             data_sub = data_sub[["Proteins","Modified sequence"]]
     else:
         data_sub = data[["Proteins","Modified sequence"]]
-
     # get modified sequence
     mod_seq = data_sub.apply(lambda row: re.sub('_','',row["Modified sequence"]), axis=1)
     data_sub = data_sub.assign(modified_sequence=mod_seq.values)
@@ -80,28 +73,23 @@ def import_maxquant_data(file, sample=None):
 # Cell
 import pandas as pd
 import re
+from io import StringIO
 
-def import_data(file, sample = None, verbose=True):
-    file_type = file[file.rindex('.')+1:]
-    if file_type == 'txt':
-        cols = pd.read_csv(file, sep='\t', nrows=0).columns
-        if set(["Proteins","Modified sequence","Raw file"]).issubset(set(cols)):
-            if verbose:
-                print("Import MaxQuant input")
-            data = import_maxquant_data(file)
-        else:
-            raise TypeError(f'Input data format for {file} not known.')
-    elif file_type in ['tsv','csv']:
-        if file_type == 'csv':
-            cols = pd.read_csv(file, sep=',', nrows=0).columns
-        else:
-            cols = pd.read_csv(file, sep='\t', nrows=0).columns
-        if set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]).issubset(set(cols)):
-            if verbose:
-                print("Import Spectronaut input")
-            data = import_spectronaut_data(file, sample = sample)
-        else:
-            raise TypeError(f'Input data format for {file} not known.')
+def import_data(file, sample=None, verbose=True, dashboard=False):
+    if dashboard:
+        uploaded_data_columns = set(pd.read_csv(StringIO(str(file, "utf-8")), nrows=0, sep=None, engine='python').columns)
+        input_info = StringIO(str(file, "utf-8"))
+    else:
+        uploaded_data_columns = set(pd.read_csv(file, nrows=0, sep=None, engine='python').columns)
+        input_info = file
+    if set(["Proteins","Modified sequence","Raw file"]).issubset(uploaded_data_columns):
+        if verbose:
+            print("Import MaxQuant input")
+        data = import_maxquant_data(input_info)
+    elif set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]).issubset(uploaded_data_columns):
+        if verbose:
+            print("Import Spectronaut input")
+        data = import_spectronaut_data(input_info, sample=sample)
     else:
         raise TypeError(f'Input data format for {file} not known.')
     return data
