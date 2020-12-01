@@ -40,8 +40,9 @@ def get_plot_data(protein,df,fasta):
         df_peps = [np.arange(row['start'], row['end']+1) for _, row in df_prot.iterrows()]
         df_peps  = pd.DataFrame.from_records(data=df_peps)
         df_peps['modified_sequence'] = df_prot['modified_sequence'].values
-        df_peps = df_peps.melt(id_vars=['modified_sequence'])
-        df_peps = df_peps[['modified_sequence','value']].dropna()
+        df_peps['all_protein_ids'] = df_prot['all_protein_ids'].values
+        df_peps = df_peps.melt(id_vars=['modified_sequence','all_protein_ids'])
+        df_peps = df_peps[['modified_sequence','all_protein_ids','value']].dropna()
         df_peps = df_peps.rename(columns={"value": "seq_position"})
         df_peps['marker_symbol'] = 1
         df_peps['marker_size'] = 8
@@ -78,29 +79,29 @@ def get_plot_data(protein,df,fasta):
                     if mod != 'nan':
                         df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = ptm_shape_dict[mod]
 
+    df_plot["AA"] = list(protein_sequence)
+
     return(df_plot)
 
 # Cell
 import plotly.graph_objects as go
 
 def plot_single_peptide_traces(df_plot,protein,fasta):
-    protein_sequence = fasta[protein].sequence
-
     ## Peptide backbone
     df_plot_pep = df_plot.dropna(subset=['modified_sequence'])
     plot1 = go.Scatter(x=df_plot_pep.seq_position,
-                               y=df_plot.height,
-                               xaxis='x1',
-                               mode='markers',
-                               marker_size=df_plot_pep.marker_size,
-                               marker_symbol=df_plot_pep.marker_symbol,
-                               marker_line_color=df_plot_pep.color,
-                               marker_color=df_plot_pep.color,
-                               marker_opacity=1,
-                       hovertext=df_plot_pep.seq_position+1,
-                                     hoverinfo='all',
-                               #text=df_plot_pep.seq_position+1,
-                               #hovertemplate='%{text}',
+                       y=df_plot.height,
+                       xaxis='x1',
+                       mode='markers',
+                       marker_size=df_plot_pep.marker_size,
+                       marker_symbol=df_plot_pep.marker_symbol,
+                       marker_line_color=df_plot_pep.color,
+                       marker_color=df_plot_pep.color,
+                       marker_opacity=1,
+                       meta=df_plot_pep.modified_sequence,
+                       text=df_plot_pep.all_protein_ids,
+                       hovertemplate ='Peptide: %{meta}<br>' +
+                       'Protein IDs: %{text}',
                        name='',
                        showlegend=False)
 
@@ -108,18 +109,16 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
     df_plot_ptm = df_plot.dropna(subset=['PTM'])
     #print(df_plot_ptm)
     plot2 = go.Scatter(x=df_plot_ptm.seq_position,
-                               y=df_plot_ptm.height+0.3,
-                               xaxis='x1',
-                               mode='markers',
-                               marker_size=8,
-                               marker_symbol=df_plot_ptm.PTMshape,
-                               marker_line_color=df_plot_ptm.color,
-                               marker_color=df_plot_ptm.color,
-                               marker_opacity=1,
+                       y=df_plot_ptm.height+0.3,
+                       xaxis='x1',
+                       mode='markers',
+                       marker_size=8,
+                       marker_symbol=df_plot_ptm.PTMshape,
+                       marker_line_color=df_plot_ptm.color,
+                       marker_color=df_plot_ptm.color,
+                       marker_opacity=1,
                        hovertext=df_plot_ptm.PTMtype,
-                                     hoverinfo='text',
-                               #text=df_plot_ptm.PTMtype,
-                               #hovertemplate='%{text}',
+                       hoverinfo='text',
                        name='',
                        showlegend=False)
 
@@ -133,9 +132,9 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
             xaxis=dict(
                 title= 'protein sequence',
                 tickmode = 'array',
-                range=[-10, len(protein_sequence)+10],
-                tickvals = np.arange(0,len(protein_sequence)),
-                ticktext = list(protein_sequence),
+                range=[-10, df_plot.shape[0]+10],
+                tickvals = np.arange(0,df_plot.shape[0]),
+                ticktext = df_plot.AA,
                 tickangle=0
             ),
         #showlegend=False,
