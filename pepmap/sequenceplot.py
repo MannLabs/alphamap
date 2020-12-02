@@ -354,4 +354,12 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                          automargin=True,
                          range=[0, len(df_plot)+len(unique_features)+1])
 
-    return fig
+    config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
+                                       'filename': 'custom_image',
+                                       'height': 500,
+                                       'width': 1500,
+                                       'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
+                                      }
+             }
+
+    return fig.show(config=config)
