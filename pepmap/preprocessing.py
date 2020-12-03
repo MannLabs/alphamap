@@ -10,8 +10,8 @@ def expand_protein_ids(df):
     Function split all_protein_ids into separate rows
     """
     df = df.copy(deep=True)
-    df["all_protein_ids_all"] = df.all_protein_ids
     df.all_protein_ids = df.all_protein_ids.str.split(';')
+    df["all_protein_ids_all"] = df.all_protein_ids.apply(lambda x: ';'.join(sorted(x)))
     res = df.explode('all_protein_ids').reset_index(drop=True)
     res.columns = ['unique_protein_id','modified_sequence','naked_sequence','all_protein_ids']
     return res
