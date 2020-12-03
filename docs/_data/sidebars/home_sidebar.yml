@@ -7,24 +7,22 @@ entries:
 - folders:
   - folderitems:
     - output: web,pdf
-      title: Export to modules
-      url: /export.html
+      title: Overview
+      url: /
     - output: web,pdf
-      title: Convert to html
-      url: /export2html.html
+      title: This notebook provides a function to import peptide level data from Spectronaut
+        or MaxQuant
+      url: Importing.html
     - output: web,pdf
-      title: Show doc
-      url: /showdoc.html
+      title: This notebook provides functions to format input data for sequence plotting
+      url: Preprocessing.html
     - output: web,pdf
-      title: Test functions
-      url: /test.html
+      title: Title
+      url: SequencePlot.html
     - output: web,pdf
-      title: Core functions
-      url: /core.html
-    - output: web,pdf
-      title: Command line functions
-      url: /cli.html
+      title: Integration of Uniprot Data
+      url: Uniprot_integration.html
     output: web
-    title: Notebook
+    title: pepmap
   output: web
   title: Sidebar
