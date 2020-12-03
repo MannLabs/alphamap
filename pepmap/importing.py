@@ -8,7 +8,10 @@ import re
 
 def import_spectronaut_data(file, sample=None):
     """
-    Function to import peptide level data from Spectronaut
+    Function to import peptide level data from Spectronaut returning a dataframe containing information about:
+        - all_protein_ids (str)
+        - modified_sequence (str)
+        - naked_sequence (str)
     """
     spectronaut_columns = ["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]
     data = pd.read_csv(file, sep=None, engine='python', usecols=spectronaut_columns)
@@ -40,7 +43,10 @@ import re
 
 def import_maxquant_data(file, sample=None):
     """
-    Function to import peptide level data from MaxQuant
+    Function to import peptide level data from MaxQuant returning a dataframe containing information about:
+        - all_protein_ids (str)
+        - modified_sequence (str)
+        - naked_sequence (str)
     """
     mq_columns = ["Proteins","Modified sequence","Raw file"]
     data = pd.read_csv(file, sep='\t', usecols=mq_columns)
@@ -76,6 +82,14 @@ import re
 from io import StringIO
 
 def import_data(file, sample=None, verbose=True, dashboard=False):
+    """
+    Function to import peptide level data. Depending on available columns in the provided file,
+    the function calls import_maxquant_data or import_spectronaut_data, finally returning a
+    dataframe containing information about:
+        - all_protein_ids (str)
+        - modified_sequence (str)
+        - naked_sequence (str)
+    """
     if dashboard:
         uploaded_data_columns = set(pd.read_csv(StringIO(str(file, "utf-8")), nrows=0, sep=None, engine='python').columns)
         input_info = StringIO(str(file, "utf-8"))
@@ -85,7 +99,7 @@ def import_data(file, sample=None, verbose=True, dashboard=False):
     if set(["Proteins","Modified sequence","Raw file"]).issubset(uploaded_data_columns):
         if verbose:
             print("Import MaxQuant input")
-        data = import_maxquant_data(input_info)
+        data = import_maxquant_data(input_info, sample=sample)
     elif set(["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]).issubset(uploaded_data_columns):
         if verbose:
             print("Import Spectronaut input")
