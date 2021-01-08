@@ -34,6 +34,7 @@ def import_spectronaut_data(file, sample=None):
     data_sub = data_sub.assign(naked_sequence=nak_seq.values)
     data_sub = data_sub.rename(columns={"PEP.AllOccurringProteinAccessions": "all_protein_ids"})
     input_data = data_sub[["all_protein_ids","modified_sequence","naked_sequence"]]
+    input_data = input_data.dropna()
     input_data = input_data.drop_duplicates().reset_index(drop=True)
     return input_data
 
@@ -73,6 +74,7 @@ def import_maxquant_data(file, sample=None):
     data_sub = data_sub.assign(naked_sequence=nak_seq.values)
     data_sub = data_sub.rename(columns={"Proteins": "all_protein_ids"})
     input_data = data_sub[["all_protein_ids","modified_sequence","naked_sequence"]]
+    input_data = input_data.dropna() # remove missing values
     input_data = input_data.drop_duplicates().reset_index(drop=True)
     return input_data
 
