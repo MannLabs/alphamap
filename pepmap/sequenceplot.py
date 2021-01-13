@@ -87,11 +87,16 @@ import plotly.graph_objects as go
 def plot_single_peptide_traces(df_plot,protein,fasta):
     protein_sequence = fasta[protein].sequence
 
+    plot0 = go.Scatter(y=[None],
+                       name='',
+                       xaxis='x1',
+                       showlegend=False)
+
     ## Peptide backbone
     df_plot_pep = df_plot.dropna(subset=['modified_sequence'])
-    plot1 = go.Scatter(x=df_plot_pep.seq_position,
+    plot1 = go.Scatter(x=df_plot_pep.seq_position+1,
                        y=df_plot.height,
-                       xaxis='x1',
+                       xaxis='x2',
                        mode='markers',
                        marker_size=df_plot_pep.marker_size,
                        marker_symbol=df_plot_pep.marker_symbol,
@@ -108,9 +113,9 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
     ## PTM dots
     df_plot_ptm = df_plot.dropna(subset=['PTM'])
     #print(df_plot_ptm)
-    plot2 = go.Scatter(x=df_plot_ptm.seq_position,
+    plot2 = go.Scatter(x=df_plot_ptm.seq_position+1,
                        y=df_plot_ptm.height+0.3,
-                       xaxis='x1',
+                       xaxis='x2',
                        mode='markers',
                        marker_size=8,
                        marker_symbol=df_plot_ptm.PTMshape,
@@ -127,31 +132,52 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                 title = "",
                 ticks = None,
                 showticklabels=False,
-                range=[-1, 2]
+                range=[-1, 2],
+                showgrid=False,
+                zeroline=False
                 ),
-            xaxis=dict(
+            xaxis1=dict(
                 title= 'protein sequence',
                 tickmode = 'array',
                 range=[-10, len(protein_sequence)+10],
-                tickvals = np.arange(0,len(protein_sequence)),
+                tickvals = np.arange(1,len(protein_sequence)+1),
                 ticktext = list(protein_sequence),
-                tickangle=0
-            ),
+                tickangle=0,
+                matches="x2",
+                type="linear",
+                anchor="y",
+                showgrid=False,
+                zeroline=False
+                ),
+            xaxis2=dict(
+                title= 'AA position',
+                tickmode = 'auto',
+                range=[-10, len(protein_sequence)+10],
+                tickangle=0,
+                matches="x1",
+                side="top",
+                type="linear",
+                anchor="y",
+                showgrid=False,
+                zeroline=False,
+                tickformat = '.d'
+                ),
         #showlegend=False,
         #height=400, width=1000,
         plot_bgcolor='rgba(0,0,0,0)',
         title=f"Sequence plot for {protein}:"
         )
 
-    fig = go.Figure(data=[plot1,plot2], layout=layout)
+    fig = go.Figure(data=[plot1,plot2,plot0], layout=layout)
 
     for i in range(0, df_plot_ptm.shape[0]):
             fig.add_shape(
                     dict(
                         type="line",
-                        x0=df_plot_ptm.seq_position.values[i],
+                        xref="x2",
+                        x0=df_plot_ptm.seq_position.values[i] +1,
                         y0=df_plot_ptm.height.values[i],
-                        x1=df_plot_ptm.seq_position.values[i],
+                        x1=df_plot_ptm.seq_position.values[i] +1,
                         y1=df_plot_ptm.height.values[i]+0.3,
                         line=dict(
                             color=df_plot_ptm.color.values[i],
@@ -252,7 +278,8 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
         fig.update_layout(yaxis=dict(showticklabels=True,
                                      tickmode = 'array',
                                      tickvals = [0],
-                                     ticktext = [name]))
+                                     ticktext = [name],
+                                     showgrid=False))
 
         y_max = 1
 
@@ -293,7 +320,8 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                      showticklabels=True,
                                      tickmode = 'array',
                                      tickvals = np.arange(0, len(df_plot))+1,
-                                     ticktext = np.array(name)))
+                                     ticktext = np.array(name),
+                                     showgrid=False))
 
         y_max = len(df_plot)+1
 
@@ -302,6 +330,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     for i in range(len(ptm_shape_dict_sub)):
         fig.add_trace(go.Scatter(y=[None],
                                  mode='markers',
+                                 xaxis='x2',
                                  marker=dict(symbol=list(ptm_shape_dict_sub.values())[i],
                                              color='black'),
                                  name=list(ptm_shape_dict_sub.keys())[i],
@@ -318,7 +347,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                 start = int(domain_info_sub.start[i])
                 end = domain_info_sub.end[i]
                 if np.isnan(domain_info_sub.end[i]):
-                    end=start+1
+                    end=start #+1
                 else:
                     end=int(end)
 
@@ -327,12 +356,13 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                 else:
                     marker_col = uniprot_color_dict[domain_info_sub.feature[i]]
 
-                fig.add_trace(go.Bar(x=list(range(start-1,end-1)),
-                                     y=list(np.repeat(0.2,end-start)),
-                                     base=list(np.repeat(y_max+j,end-start)-0.1),
+                fig.add_trace(go.Bar(x=list(range(start+1,end+2)),
+                                     y=list(np.repeat(0.2,end-start+1)),
+                                     base=list(np.repeat(y_max+j,end-start+1)-0.1),
                                      marker_color=marker_col,
                                      opacity=0.8,
                                      showlegend=False,
+                                     xaxis='x2',
                                      name='',
                                      hovertext=domain_info_sub.note[i],
                                      hoverinfo='text'
@@ -346,13 +376,20 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                          tickvals= np.arange(0, 1+len(unique_features)),
                          ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
                          automargin=True,
-                         range=[-1, 1+len(unique_features)+1])
+                         range=[-1, 1+len(unique_features)+0.1],
+                         showgrid=False)
     elif isinstance(df, list):
         fig.update_yaxes(showticklabels=True,
                          tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)),
                          ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
                          automargin=True,
-                         range=[0, len(df_plot)+len(unique_features)+1])
+                         range=[0, len(df_plot)+len(unique_features)+1],
+                         showgrid=False)
+
+    #fig.add_trace(go.Scatter(y=[None],
+    #                         name='',
+    #                         xaxis='x2',
+    #                         showlegend=False))
 
     #config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
     #                                   'filename': 'custom_image',
