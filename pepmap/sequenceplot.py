@@ -356,7 +356,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                 else:
                     marker_col = uniprot_color_dict[domain_info_sub.feature[i]]
 
-                fig.add_trace(go.Bar(x=list(range(start+1,end+2)),
+                fig.add_trace(go.Bar(x=list(range(start,end+1)),
                                      y=list(np.repeat(0.2,end-start+1)),
                                      base=list(np.repeat(y_max+j,end-start+1)-0.1),
                                      marker_color=marker_col,
