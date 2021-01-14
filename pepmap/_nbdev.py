@@ -23,12 +23,15 @@ index = {"import_spectronaut_data": "Importing.ipynb",
          "resolve_unclear_position": "Uniprot_integration.ipynb",
          "extract_positions": "Uniprot_integration.ipynb",
          "preprocess_uniprot": "Uniprot_integration.ipynb",
-         "uniprot_feature_dict": "Uniprot_integration.ipynb"}
+         "uniprot_feature_dict": "Uniprot_integration.ipynb",
+         "protease_dict": "proteolytic_cleavage.ipynb",
+         "get_cleavage_sites": "proteolytic_cleavage.ipynb"}
 
 modules = ["importing.py",
            "preprocessing.py",
            "sequenceplot.py",
-           "uniprot_integration.py"]
+           "uniprot_integration.py",
+           "proteolytic_cleavage.py"]
 
 doc_url = "https://ibludau.github.io/pepmap/"
 
