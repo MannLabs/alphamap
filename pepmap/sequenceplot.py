@@ -122,8 +122,9 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                        marker_line_color=df_plot_ptm.color,
                        marker_color=df_plot_ptm.color,
                        marker_opacity=1,
-                       hovertext=df_plot_ptm.PTMtype,
-                       hoverinfo='text',
+                       text=df_plot_ptm.PTMtype,
+                       hovertemplate = 'PTM: %{text}',
+                       #hoverinfo='text',
                        name='',
                        showlegend=False)
 
@@ -247,7 +248,7 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
 import plotly.graph_objects as go
 
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
-                        uniprot_feature_dict,uniprot_color_dict):
+                        uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
 
     # colors for experimental data traces
     colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c"]
@@ -262,7 +263,6 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     uniprot_annotation_p_f = format_uniprot_annotation(uniprot_annotation_p)
     # subset for selected features
     uniprot_annotation_p_f_f = uniprot_annotation_p_f[uniprot_annotation_p_f.feature.isin(selected_features)]
-
 
     if isinstance(df, pd.DataFrame):
         df_plot = get_plot_data(protein=protein,
@@ -369,27 +369,40 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                     ))
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
 
+    if len(selected_proteases) > 0:
+        protein_sequence = fasta[protein].sequence
+        for u in range(0,len(selected_proteases)):
+            protease = selected_proteases[u]
+            sites = get_cleavage_sites(protein_sequence,protease)
+            for s in sites:
+                fig.add_trace(go.Bar(x=list(range(s,s+1)),
+                                     y=[0.2],
+                                     base=y_max+len(unique_features)+u-0.1,
+                                     marker_color="grey",
+                                     opacity=0.8,
+                                     showlegend=False,
+                                     xaxis='x2',
+                                     name='',
+                                     hovertext=protease,
+                                     hoverinfo='text'
+                                    ))
+
 
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
         fig.update_yaxes(showticklabels=True,
-                         tickvals= np.arange(0, 1+len(unique_features)),
-                         ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
+                         tickvals= np.arange(0, 1+len(unique_features)+len(selected_proteases)),
+                         ticktext=np.hstack((np.array(name),np.array(mapped_feature_names),np.array(selected_proteases))),
                          automargin=True,
-                         range=[-1, 1+len(unique_features)+0.1],
+                         range=[-1, 1+len(unique_features)+len(selected_proteases)+0.1],
                          showgrid=False)
     elif isinstance(df, list):
         fig.update_yaxes(showticklabels=True,
-                         tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)),
-                         ticktext=np.append(np.array(name),np.array(mapped_feature_names)),
+                         tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)+len(selected_proteases)),
+                         ticktext=np.hstack((np.array(name),np.array(mapped_feature_names),selected_proteases)),
                          automargin=True,
-                         range=[0, len(df_plot)+len(unique_features)+1],
+                         range=[0, len(df_plot)+len(unique_features)+len(selected_proteases)+1],
                          showgrid=False)
-
-    #fig.add_trace(go.Scatter(y=[None],
-    #                         name='',
-    #                         xaxis='x2',
-    #                         showlegend=False))
 
     #config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
     #                                   'filename': 'custom_image',
