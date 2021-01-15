@@ -375,7 +375,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
             protease = selected_proteases[u]
             sites = get_cleavage_sites(protein_sequence,protease)
             for s in sites:
-                fig.add_trace(go.Bar(x=list(range(s,s+1)),
+                fig.add_trace(go.Bar(x=list(range(s+1,s+2)),
                                      y=[0.2],
                                      base=y_max+len(unique_features)+u-0.1,
                                      marker_color="grey",
