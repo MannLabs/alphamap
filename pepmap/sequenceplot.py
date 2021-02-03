@@ -392,6 +392,17 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                     ))
 
 
+    fig.add_trace(go.Scatter(x=np.arange(1,len(protein_sequence)+1,1),
+                        y=np.repeat(0,len(protein_sequence)),
+                        marker=dict(color='rgba(135, 206, 250, 0)'),
+                        name='',
+                        mode='markers',
+                        xaxis='x2',
+                        text=np.arange(1,len(protein_sequence)+1,1),
+                        meta=list(protein_sequence),
+                        hovertemplate ='<b>%{meta}: %{text}<b>',
+                        showlegend=False))
+
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
         fig.update_yaxes(showticklabels=True,
