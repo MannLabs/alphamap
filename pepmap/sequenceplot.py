@@ -278,6 +278,8 @@ from .proteolytic_cleavage import get_cleavage_sites
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
 
+    protein_sequence = fasta[protein].sequence
+
     # colors for experimental data traces
     colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c"]
 
@@ -400,7 +402,6 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
 
     if len(selected_proteases) > 0:
-        protein_sequence = fasta[protein].sequence
         for u in range(0,len(selected_proteases)):
             protease = selected_proteases[u]
             sites = get_cleavage_sites(protein_sequence,protease)
