@@ -86,6 +86,8 @@ import plotly.graph_objects as go
 
 def plot_single_peptide_traces(df_plot,protein,fasta):
     protein_sequence = fasta[protein].sequence
+    entry_name = fasta[protein].description['entry']
+    protein_name = fasta[protein].description['name']
 
     plot0 = go.Scatter(y=[None],
                        name='',
@@ -166,7 +168,8 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
         #showlegend=False,
         #height=400, width=1000,
         plot_bgcolor='rgba(0,0,0,0)',
-        title=f"Sequence plot for {protein}:"
+        title=f"Sequence plot for: {protein_name}<br>{entry_name} - {protein}",
+        margin = dict(l=20, r=20, t=150, b=20)
         )
 
     fig = go.Figure(data=[plot1,plot2,plot0], layout=layout)
@@ -246,7 +249,7 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
 # Cell
 
 import plotly.graph_objects as go
-from pepmap.proteolytic_cleavage import get_cleavage_sites
+from .proteolytic_cleavage import get_cleavage_sites
 
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
