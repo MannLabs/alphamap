@@ -34,8 +34,8 @@ modules = ["importing.py",
            "uniprot_integration.py",
            "proteolytic_cleavage.py"]
 
-doc_url = "https://ibludau.github.io/pepmap/"
+doc_url = "https://ibludau.github.io/alphamap/"
 
-git_url = "https://github.com/ibludau/pepmap/tree/master/"
+git_url = "https://github.com/ibludau/alphamap/tree/master/"
 
 def custom_doc_links(name): return None
