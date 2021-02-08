@@ -166,7 +166,8 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                 tickformat = '.d'
                 ),
         #showlegend=False,
-        #height=400, width=1000,
+        #height=400,
+        #width=1000,
         plot_bgcolor='rgba(0,0,0,0)',
         title=f"Sequence plot for: {protein_name}<br>{entry_name} - {protein}",
         margin = dict(l=20, r=20, t=150, b=20)
@@ -278,6 +279,8 @@ from .proteolytic_cleavage import get_cleavage_sites
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
 
+    figure_height = 200
+
     protein_sequence = fasta[protein].sequence
 
     # colors for experimental data traces
@@ -355,6 +358,8 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
         y_max = len(df_plot)+1
 
+        figure_height = figure_height + (len(df_plot)*50)
+
 
     ptm_shape_dict_sub = dict(sorted(ptm_shape_dict_sub.items()))
     for i in range(len(ptm_shape_dict_sub)):
@@ -371,6 +376,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     unique_features = [x for x in all_uniprot_features if x in available_features]
     if len(unique_features) > 0:
         for j in range(0,len(unique_features)):
+
+            figure_height = figure_height + 50
+
             domain = unique_features[j]
             domain_info_sub = uniprot_annotation_p_f_f[uniprot_annotation_p_f_f.feature==domain].reset_index(drop=True)
             for i in range(0, domain_info_sub.shape[0]):
@@ -403,6 +411,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
     if len(selected_proteases) > 0:
         for u in range(0,len(selected_proteases)):
+
+            figure_height = figure_height + 50
+
             protease = selected_proteases[u]
             sites = get_cleavage_sites(protein_sequence,protease)
             for s in sites:
@@ -432,7 +443,8 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         hovertemplate ='<b>%{meta}: %{text}<b>',
                         showlegend=False))
 
-    fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
+    fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1,
+                      width=1500, height=figure_height)
 
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
