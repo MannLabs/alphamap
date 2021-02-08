@@ -6,7 +6,7 @@ __all__ = ['format_uniprot_annotation', 'ptm_shape_dict', 'get_plot_data', 'plot
 # Cell
 import pandas as pd
 
-def format_uniprot_annotation(uniprot_ann):
+def format_uniprot_annotation(uniprot_ann, uniprot_feature_dict):
     """
     Function to format uniprot annotation for plotting
     """
@@ -15,6 +15,12 @@ def format_uniprot_annotation(uniprot_ann):
     uniprot.loc[uniprot.feature == "STRAND", "note"] = "Beta strand"
     uniprot.loc[uniprot.feature == "TURN", "note"] = "Turn"
     uniprot.loc[uniprot.feature.isin(["HELIX","STRAND","TURN"]), "feature"] = "STRUCTURE"
+
+    uniprot_feature_dict_rev = {v: k for k, v in uniprot_feature_dict.items()}
+
+    uniprot['annotation'] = uniprot['note']
+    uniprot.loc[uniprot['annotation'].isnull(), 'annotation'] = uniprot['feature']
+    uniprot = uniprot.replace({"annotation": uniprot_feature_dict_rev})
     return uniprot
 
 
@@ -293,7 +299,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     # subsetting of the uniprot annotation to the selected features
     uniprot_annotation_p = uniprot[uniprot.protein_id==protein]
     # formatting of uniprot annotations
-    uniprot_annotation_p_f = format_uniprot_annotation(uniprot_annotation_p)
+    uniprot_annotation_p_f = format_uniprot_annotation(uniprot_annotation_p, uniprot_feature_dict)
     # subset for selected features
     uniprot_annotation_p_f_f = uniprot_annotation_p_f[uniprot_annotation_p_f.feature.isin(selected_features)]
 
@@ -390,7 +396,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                     end=int(end)
 
                 if domain_info_sub.feature[i] == "STRUCTURE":
-                    marker_col = uniprot_color_dict[domain_info_sub.note[i]]
+                    marker_col = uniprot_color_dict[domain_info_sub.annotation[i]]
                 else:
                     marker_col = uniprot_color_dict[domain_info_sub.feature[i]]
 
@@ -402,9 +408,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                      showlegend=False,
                                      xaxis='x2',
                                      name='',
-                                     text=np.repeat(domain_info_sub.note[i],len(range(start,end+1))),
+                                     text=np.repeat(domain_info_sub.annotation[i],len(range(start,end+1))),
                                      hovertemplate ='%{text}'
-                                     #hovertext=domain_info_sub.note[i],
+                                     #hovertext=domain_info_sub.annotation[i],
                                      #hoverinfo='text'
                                     ))
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
