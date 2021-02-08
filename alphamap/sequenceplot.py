@@ -415,6 +415,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                                     ))
         fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1)
 
+    selected_proteases = sorted(selected_proteases)
     if len(selected_proteases) > 0:
         for u in range(0,len(selected_proteases)):
 
@@ -448,6 +449,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         meta=list(protein_sequence),
                         hovertemplate ='<b>%{meta}: %{text}<b>',
                         showlegend=False))
+
+    if figure_height < 500:
+        figure_height = 500
 
     fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1,
                       width=1500, height=figure_height)
