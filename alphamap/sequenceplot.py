@@ -118,6 +118,10 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
                        name='',
                        showlegend=False)
 
+    covered_AA = len(df_plot_pep.seq_position.unique())
+    percent_AA_coverage = int(np.round(100/len(protein_sequence)*covered_AA))
+    #print(percent_AA_coverage)
+
     ## PTM dots
     df_plot_ptm = df_plot.dropna(subset=['PTM'])
     #print(df_plot_ptm)
@@ -176,10 +180,13 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
         #width=1000,
         plot_bgcolor='rgba(0,0,0,0)',
         title=f"Sequence plot for: {protein_name}<br>{entry_name} - {protein}",
+        meta=percent_AA_coverage,
         margin = dict(l=20, r=20, t=150, b=20)
         )
 
     fig = go.Figure(data=[plot1,plot2,plot0], layout=layout)
+
+    #print(fig.layout.meta)
 
     for i in range(0, df_plot_ptm.shape[0]):
             fig.add_shape(
@@ -314,10 +321,14 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
         ptm_shape_dict_sub = {key: ptm_shape_dict[key] for key in observed_mods if key in ptm_shape_dict}
 
         fig = plot_single_peptide_traces(df_plot,protein=protein,fasta = fasta)
+
+        AA_coverage = fig.layout.meta
+        trace_name = [name + "<br> (" + str(AA_coverage) + "% coverage)"]
+
         fig.update_layout(yaxis=dict(showticklabels=True,
                                      tickmode = 'array',
                                      tickvals = [0],
-                                     ticktext = [name],
+                                     ticktext = [name + "(" + str(AA_coverage) + "%)"],
                                      showgrid=False))
 
         y_max = 1
@@ -354,12 +365,15 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
         shapes = [p.layout.shapes for p in plot_list]
         shapes = sum(shapes, ())
         new_layout.shapes = new_layout.shapes + tuple(shapes)
+        AA_coverage = [p.layout.meta for p in plot_list]
+        trace_name = [n + "<br> (" + str(c) + "% coverage)" for n,c in zip(name,AA_coverage)]
+
         fig = go.Figure(data=new_data, layout=new_layout)
         fig.update_layout(yaxis=dict(range=[0,len(df_plot)+1],
                                      showticklabels=True,
                                      tickmode = 'array',
                                      tickvals = np.arange(0, len(df_plot))+1,
-                                     ticktext = np.array(name),
+                                     ticktext = np.array(trace_name),
                                      showgrid=False))
 
         y_max = len(df_plot)+1
@@ -460,14 +474,14 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     if isinstance(df, pd.DataFrame):
         fig.update_yaxes(showticklabels=True,
                          tickvals= np.arange(0, 1+len(unique_features)+len(selected_proteases)),
-                         ticktext=np.hstack((np.array(name),np.array(mapped_feature_names),np.array(selected_proteases))),
+                         ticktext=np.hstack((np.array(trace_name),np.array(mapped_feature_names),np.array(selected_proteases))),
                          automargin=True,
                          range=[-1, 1+len(unique_features)+len(selected_proteases)+0.1],
                          showgrid=False)
     elif isinstance(df, list):
         fig.update_yaxes(showticklabels=True,
                          tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)+len(selected_proteases)),
-                         ticktext=np.hstack((np.array(name),np.array(mapped_feature_names),selected_proteases)),
+                         ticktext=np.hstack((np.array(trace_name),np.array(mapped_feature_names),selected_proteases)),
                          automargin=True,
                          range=[0, len(df_plot)+len(unique_features)+len(selected_proteases)+1],
                          showgrid=False)
