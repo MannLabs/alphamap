@@ -294,7 +294,7 @@ aa_color_dict = {'A':'Alanine',
 # Cell
 
 import plotly.graph_objects as go
-from .proteolytic_cleavage import get_cleavage_sites
+from proteolytic_cleavage import get_cleavage_sites
 
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
