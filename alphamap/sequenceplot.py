@@ -395,6 +395,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     available_features = list(set(uniprot_annotation_p_f_f.feature))
     unique_features = [x for x in all_uniprot_features if x in available_features]
     if len(unique_features) > 0:
+
+        y_max = y_max+1
+
         for j in range(0,len(unique_features)):
 
             figure_height = figure_height + 50
@@ -416,7 +419,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
                 fig.add_trace(go.Bar(x=list(range(start,end+1)),
                                      y=list(np.repeat(0.2,end-start+1)),
-                                     base=list(np.repeat(y_max+j,end-start+1)-0.1),
+                                     base=list(np.repeat(y_max+(j/2),end-start+1)-0.1),
                                      marker_color=marker_col,
                                      opacity=0.8,
                                      showlegend=False,
@@ -431,6 +434,9 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
 
     selected_proteases = sorted(selected_proteases)
     if len(selected_proteases) > 0:
+
+        y_max = y_max+1
+
         for u in range(0,len(selected_proteases)):
 
             figure_height = figure_height + 50
@@ -440,7 +446,7 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
             for s in sites:
                 fig.add_trace(go.Bar(x=list(range(s+1,s+2)),
                                      y=[0.2],
-                                     base=y_max+len(unique_features)+u-0.1,
+                                     base=y_max+(len(unique_features)/2)+(u/2)-0.1,
                                      marker_color="grey",
                                      opacity=0.8,
                                      showlegend=False,
@@ -473,17 +479,19 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
         fig.update_yaxes(showticklabels=True,
-                         tickvals= np.arange(0, 1+len(unique_features)+len(selected_proteases)),
+                         #tickvals= np.arange(0, 1+len(unique_features)+len(selected_proteases)),
+                         tickvals= np.concatenate((np.array([0]),np.arange(1+1,1+1+(len(unique_features)/2),0.5),np.arange(1+1+(len(unique_features)/2)+1,1+1+(len(unique_features)/2)+1+(len(selected_proteases)/2),0.5))),
                          ticktext=np.hstack((np.array(trace_name),np.array(mapped_feature_names),np.array(selected_proteases))),
                          automargin=True,
-                         range=[-1, 1+len(unique_features)+len(selected_proteases)+0.1],
+                         range=[-1, y_max+(len(unique_features)/2)+(len(selected_proteases)/2)+0.2],
                          showgrid=False)
     elif isinstance(df, list):
         fig.update_yaxes(showticklabels=True,
-                         tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)+len(selected_proteases)),
+                         #tickvals= 1 + np.arange(0, len(df_plot)+len(unique_features)+len(selected_proteases)),
+                         tickvals= 1 + np.concatenate((np.array([0]),np.arange(1,len(df_plot),1),np.arange(len(df_plot)+1,len(df_plot)+1+(len(unique_features)/2),0.5),np.arange(len(df_plot)+1+(len(unique_features)/2)+1,len(df_plot)+1+(len(unique_features)/2)+1+(len(selected_proteases)/2),0.5))),
                          ticktext=np.hstack((np.array(trace_name),np.array(mapped_feature_names),selected_proteases)),
                          automargin=True,
-                         range=[0, len(df_plot)+len(unique_features)+len(selected_proteases)+1],
+                         range=[0, y_max+(len(unique_features)/2)+(len(selected_proteases)/2)+0.2],
                          showgrid=False)
 
     #config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
