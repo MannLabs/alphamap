@@ -208,10 +208,10 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
 
 # Cell
 custom_color_palettes = {
-    'col_greens':["#004b23","#006400","#007200","#008000","#38b000","#70e000","#9ef01a","#ccff33"],
+    'col_greens':["#5C965D","#6AA16B","#77AC78","#84B786","#91C193","#9FCCA1","#B3DCB5","#C6EBC9"],
     'col_ornages':["#ff4800","#ff5400","#ff6000","#ff6d00","#ff7900","#ff8500","#ff9100","#ff9e00","#ffaa00","#ffb600"],
-    'col_purples':["#31116a","#531cb3","#8240c9","#944bbb","#aa7bc3","#8b4b95","#cc92c2","#b45581","#dba8ac"],
-    'col_turquises':["#092327","#0b5351","#00a9a5","#4e8098","#90c2e7"],
+    'col_purples':["#ffa69e","#febaae","#fcb088","#d9f3e2","#b8f2e6","#aed9e0","#9baed9","#9199d5","#8783d1"],
+    'col_turquises':["#00a9a5","#4e8098","#90c2e7"],
     'col_darkpinks':["#42033d","#6f0c59","#901468","#7c238c","#924ea6","#9c5eae"],
     'col_browns':["#5a2a27","#5c4742","#8d5b4c","#a5978b","#c4bbaf"]
 }
@@ -224,11 +224,7 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'PROPEP': custom_color_palettes['col_greens'][3],
                       'SIGNAL': custom_color_palettes['col_greens'][4],
                       'TRANSIT': custom_color_palettes['col_greens'][5],
-                      'CROSSLNK': custom_color_palettes['col_ornages'][2],
-                      'DISULFID': custom_color_palettes['col_ornages'][3],
-                      'CARBOHYD': custom_color_palettes['col_ornages'][4],
-                      'LIPID': custom_color_palettes['col_ornages'][5],
-                      'MOD_RES': custom_color_palettes['col_ornages'][6],
+
                       'COILED': custom_color_palettes['col_purples'][0],
                       'COMPBIAS': custom_color_palettes['col_purples'][1],
                       'DOMAIN': custom_color_palettes['col_purples'][2],
@@ -236,28 +232,39 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'REGION': custom_color_palettes['col_purples'][4],
                       'REPEAT': custom_color_palettes['col_purples'][5],
                       'ZN_FING': custom_color_palettes['col_purples'][6],
+
                       'INTRAMEM': custom_color_palettes['col_turquises'][0],
                       'TOPO_DOM': custom_color_palettes['col_turquises'][1],
                       'TRANSMEM': custom_color_palettes['col_turquises'][2],
+
                       'STRUCTURE': 'black',
+                      # extra structures
+                      'Helix': '#5dabe8',
+                      'Turn': '#e094bc',
+                      'Beta strand': '#8cdbad',
+
+                      'CROSSLNK': custom_color_palettes['col_ornages'][2],
+                      'DISULFID': custom_color_palettes['col_ornages'][3],
+                      'CARBOHYD': custom_color_palettes['col_ornages'][4],
+                      'LIPID': custom_color_palettes['col_ornages'][5],
+                      'MOD_RES': custom_color_palettes['col_ornages'][6],
+
                       'BINDING': custom_color_palettes['col_darkpinks'][0],
                       'CA_BIND': custom_color_palettes['col_darkpinks'][1],
                       'DNA_BIND': custom_color_palettes['col_darkpinks'][2],
                       'METAL': custom_color_palettes['col_darkpinks'][3],
                       'NP_BIND': custom_color_palettes['col_darkpinks'][4],
                       'SITE': custom_color_palettes['col_darkpinks'][5],
+
                       'NON_STD': custom_color_palettes['col_browns'][0],
                       'NON_CONS': custom_color_palettes['col_browns'][1],
                       'NON_TER': custom_color_palettes['col_browns'][2],
                       'VARIANT': custom_color_palettes['col_browns'][3],
                       'CONFLICT': custom_color_palettes['col_browns'][4],
-                      'VAR_SEQ': '#FFD151',
+
+                      'VAR_SEQ': '#fae7b1',
                       'UNSURE': 'grey',
-                      'MUTAGEN': 'black',
-                      # extra structures
-                      'Helix': '#008BF8',
-                      'Turn': '#DC0073',
-                      'Beta strand': '#04E762',
+                      'MUTAGEN': 'darkgrey',
                      }
 
 # Cell
