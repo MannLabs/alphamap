@@ -158,8 +158,7 @@ SERVER = None
 
 
 ### PATHS
-base_path = os.path.dirname(__file__)
-root_path = base_path
+root_path = os.path.dirname(__file__)
 mpi_biochem_logo_path = os.path.join(root_path, "data", "img", "mpi_logo.png")
 mpi_logo_path = os.path.join(root_path,"data", "img", "max-planck-gesellschaft.jpg")
 github_logo_path = os.path.join(root_path, "data", "img", "github.png")
@@ -582,9 +581,11 @@ project_instuction = pn.pane.Markdown(
     align='start',
     margin=(20, 80, 0, 10)
 )
-
+alphamap_tutorial_path = os.path.join(root_path, "data", "alphamap_tutorial.pdf")
+spectronaut_scheme_path = os.path.join(root_path, "data", "spectronaut_export_scheme.rs")
+print(alphamap_tutorial_path, spectronaut_scheme_path)
 alphamap_tutorial = pn.widgets.FileDownload(
-    file='docs/alphamap_tutorial.pdf',
+    file=alphamap_tutorial_path,
     filename='AlphaMap tutorial',
     button_type='default',
     auto=True,
@@ -592,7 +593,6 @@ alphamap_tutorial = pn.widgets.FileDownload(
     align='start',
     margin=(10, 80, 5, 10),
     css_classes=['spectronaut_instr']
-
 )
 
 spectronaut_description = pn.pane.Markdown(
@@ -612,7 +612,7 @@ spectronaut_description = pn.pane.Markdown(
 )
 
 spectronaut_scheme = pn.widgets.FileDownload(
-    file=os.path.join(root_path, "data", "spectronaut_export_scheme.rs"),
+    file=spectronaut_scheme_path,
     filename='spectronaut_export_scheme.rs',
     button_type='default',
     auto=True,
