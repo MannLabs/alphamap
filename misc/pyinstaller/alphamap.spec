@@ -74,7 +74,8 @@ else:
 
 
 hidden_imports = [h for h in hidden_imports if "__pycache__" not in h]
-datas = [d for d in datas if "__pycache__" not in d[0]]
+# datas = [d for d in datas if "__pycache__" not in d[0]]
+datas = [d for d in datas if ("__pycache__" not in d[0]) and ("." != d[1])]
 
 
 a = Analysis(
