@@ -12,13 +12,13 @@ import pyteomics.fasta
 import panel as pn
 import plotly.graph_objects as go
 # local
-from importing import import_data
-from preprocessing import format_input_data
-from sequenceplot import plot_peptide_traces
-from uniprot_integration import uniprot_feature_dict
-from sequenceplot import uniprot_color_dict
-from proteolytic_cleavage import protease_dict
-from organisms_data import all_organisms
+from alphamap.importing import import_data
+from alphamap.preprocessing import format_input_data
+from alphamap.sequenceplot import plot_peptide_traces
+from alphamap.uniprot_integration import uniprot_feature_dict
+from alphamap.sequenceplot import uniprot_color_dict
+from alphamap.proteolytic_cleavage import protease_dict
+from alphamap.organisms_data import all_organisms
 
 
 # EXTENSIONS
@@ -720,28 +720,28 @@ main_part = pn.Column(
 
 # switch to different websites
 uniprot_link = pn.pane.PNG(
-    'data/img/uniprot_logo.png',
+    os.path.join(root_path, "data", "img", "uniprot_logo.png"),
     width=120,
     height=60,
     align='start',
     margin=(0, 30, 0, 40)
 )
 phosposite_link = pn.pane.PNG(
-    'data/img/phosphosite_logo.png',
+    os.path.join(root_path, "data", "img", "phosphosite_logo.png"),
     width=200,
     height=60,
     align='start',
     margin=(0, 20)
 )
 protter_link = pn.pane.PNG(
-    'data/img/protter_logo.png',
+    os.path.join(root_path, "data", "img", "protter_logo.png"),
     width=140,
     height=60,
     align='start',
     margin=(0, 20)
 )
 pdb_link = pn.pane.PNG(
-    'data/img/pdb_logo.png',
+    os.path.join(root_path, "data", "img", "pdb_logo.png"),
     width=120,
     height=60,
     align='start',
