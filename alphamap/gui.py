@@ -159,7 +159,7 @@ SERVER = None
 
 ### PATHS
 base_path = os.path.dirname(__file__)
-root_path = os.path.dirname(base_path)
+root_path = base_path
 mpi_biochem_logo_path = os.path.join(root_path, "data", "img", "mpi_logo.png")
 mpi_logo_path = os.path.join(root_path,"data", "img", "max-planck-gesellschaft.jpg")
 github_logo_path = os.path.join(root_path, "data", "img", "github.png")
