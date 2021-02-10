@@ -612,7 +612,7 @@ spectronaut_description = pn.pane.Markdown(
 )
 
 spectronaut_scheme = pn.widgets.FileDownload(
-    file='data/spectronaut_export_scheme.rs',
+    file=os.path.join(root_path, "data", "spectronaut_export_scheme.rs"),
     filename='spectronaut_export_scheme.rs',
     button_type='default',
     auto=True,
@@ -866,8 +866,8 @@ def upload_organism_info():
     global full_fasta, full_uniprot
     fasta_name = all_organisms[select_organism.value]['fasta_name']
     uniprot_name = all_organisms[select_organism.value]['uniprot_name']
-    full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(SETTINGS['path_to_folder_fasta_files'], fasta_name))
-    full_uniprot = pd.read_csv(os.path.join(SETTINGS['path_to_folder_fasta_files'], uniprot_name))
+    full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(root_path, "data", fasta_name))
+    full_uniprot = pd.read_csv(os.path.join(root_path, "data", uniprot_name))
 
 
 def extract_samples(path):
