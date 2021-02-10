@@ -159,11 +159,10 @@ SERVER = None
 
 ### PATHS
 base_path = os.path.dirname(__file__)
-# image_path = os.path.join(base_path, "..\\data\\img")
-
-mpi_biochem_logo_path = os.path.join(base_path, "..\\data\\img\\mpi_logo.png")
-mpi_logo_path = os.path.join(base_path, "..\\data\\img\\max-planck-gesellschaft.jpg")
-github_logo_path = os.path.join(base_path, "..\\data\\img\\github.png")
+root_path = os.path.dirname(base_path)
+mpi_biochem_logo_path = os.path.join(root_path, "data", "img", "mpi_logo.png")
+mpi_logo_path = os.path.join(root_path,"data", "img", "max-planck-gesellschaft.jpg")
+github_logo_path = os.path.join(root_path, "data", "img", "github.png")
 
 
 ### HEADER
@@ -1270,6 +1269,7 @@ def exit_button_event(*args):
 
 
 def run():
+    import logging
     global SERVER
     layout = pn.Column(
         header,
@@ -1278,6 +1278,9 @@ def run():
         visualize_plot
     )
     SERVER = layout.show(threaded=True)
+    logging.info("************************")
+    logging.info(f"* AlphaMap *")
+    logging.info("************************")
 
 
 if __name__ == '__main__':
