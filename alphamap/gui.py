@@ -1080,11 +1080,11 @@ def change_proteases_selection(select, clear):
     search_by.param.value,
     watch=True
 )
-def change_autocomplete_input(is_gene_selected):
+def change_autocomplete_input(search_by):
     if any(
         [experimental_data_sample.value, experimental_data_2_sample.value, experimental_data_3_sample.value]
     ):
-        if is_gene_selected:
+        if search_by == 'Search by a gene name':
             select_protein.options = list(ac_gene_conversion.values())
         else:
             select_protein.options = list(ac_gene_conversion.keys())
