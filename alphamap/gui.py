@@ -151,17 +151,30 @@ full_fasta = None
 full_uniprot = None
 ac_gene_conversion = None
 SETTINGS = {
-    'path_to_folder_fasta_files':'data',
     'max_file_size_gb':20
 }
 SERVER = None
 
+# ERROR/WARNING MESSAGES
+error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
+error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 
 ### PATHS
-root_path = os.path.dirname(__file__)
-mpi_biochem_logo_path = os.path.join(root_path, "data", "img", "mpi_logo.png")
-mpi_logo_path = os.path.join(root_path,"data", "img", "max-planck-gesellschaft.jpg")
-github_logo_path = os.path.join(root_path, "data", "img", "github.png")
+BASE_PATH = os.path.dirname(__file__)
+DATA_PATH = os.path.join(BASE_PATH, "data")
+IMAGE_PATH = os.path.join(BASE_PATH, "data", "img")
+
+mpi_biochem_logo_path = os.path.join(IMAGE_PATH, "mpi_logo.png")
+mpi_logo_path = os.path.join(IMAGE_PATH, "max-planck-gesellschaft.jpg")
+github_logo_path = os.path.join(IMAGE_PATH, "github.png")
+
+alphamap_tutorial_path = os.path.join(DATA_PATH, "alphamap_tutorial.pdf")
+spectronaut_scheme_path = os.path.join(DATA_PATH, "spectronaut_export_scheme.rs")
+
+uniprot_link_path = os.path.join(IMAGE_PATH, "uniprot_logo.png")
+phosposite_link_path = os.path.join(IMAGE_PATH, "phosphosite_logo.png")
+protter_link_path = os.path.join(IMAGE_PATH, "protter_logo.png")
+pdb_link_path = os.path.join(IMAGE_PATH, "pdb_logo.png")
 
 
 ### HEADER
@@ -517,7 +530,6 @@ uniprot_options_tab = pn.Card(
 
 
 ### List of proteases
-
 proteases_options = pn.widgets.CheckBoxGroup(
     options=list(protease_dict.keys()),
     value=['trypsin'],
@@ -581,9 +593,7 @@ project_instuction = pn.pane.Markdown(
     align='start',
     margin=(20, 80, 0, 10)
 )
-alphamap_tutorial_path = os.path.join(root_path, "data", "alphamap_tutorial.pdf")
-spectronaut_scheme_path = os.path.join(root_path, "data", "spectronaut_export_scheme.rs")
-print(alphamap_tutorial_path, spectronaut_scheme_path)
+
 alphamap_tutorial = pn.widgets.FileDownload(
     file=alphamap_tutorial_path,
     filename='AlphaMap tutorial',
@@ -593,6 +603,7 @@ alphamap_tutorial = pn.widgets.FileDownload(
     align='start',
     margin=(10, 80, 5, 10),
     css_classes=['spectronaut_instr']
+
 )
 
 spectronaut_description = pn.pane.Markdown(
@@ -694,6 +705,7 @@ selection_box = pn.Column(
     css_classes=['selection_box'],
 )
 
+
 main_part = pn.Column(
     project_description,
     divider_descr,
@@ -710,7 +722,7 @@ main_part = pn.Column(
     pn.Row(
         upload_button,
         upload_spinner,
-        exit_button
+        exit_button,
     ),
     background='#eaeaea',
     width=1510,
@@ -720,28 +732,28 @@ main_part = pn.Column(
 
 # switch to different websites
 uniprot_link = pn.pane.PNG(
-    os.path.join(root_path, "data", "img", "uniprot_logo.png"),
+    uniprot_link_path,
     width=120,
     height=60,
     align='start',
     margin=(0, 30, 0, 40)
 )
 phosposite_link = pn.pane.PNG(
-    os.path.join(root_path, "data", "img", "phosphosite_logo.png"),
+    phosposite_link_path,
     width=200,
     height=60,
     align='start',
     margin=(0, 20)
 )
 protter_link = pn.pane.PNG(
-    os.path.join(root_path, "data", "img", "protter_logo.png"),
+    protter_link_path,
     width=140,
     height=60,
     align='start',
     margin=(0, 20)
 )
 pdb_link = pn.pane.PNG(
-    os.path.join(root_path, "data", "img", "pdb_logo.png"),
+    pdb_link_path,
     width=120,
     height=60,
     align='start',
@@ -866,8 +878,8 @@ def upload_organism_info():
     global full_fasta, full_uniprot
     fasta_name = all_organisms[select_organism.value]['fasta_name']
     uniprot_name = all_organisms[select_organism.value]['uniprot_name']
-    full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(root_path, "data", fasta_name))
-    full_uniprot = pd.read_csv(os.path.join(root_path, "data", uniprot_name))
+    full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(DATA_PATH, fasta_name))
+    full_uniprot = pd.read_csv(os.path.join(DATA_PATH, uniprot_name))
 
 
 def extract_samples(path):
@@ -920,10 +932,6 @@ def clear_dashboard(*args):
     visualize_button.clicks = 0
     upload_data
     visualize_plot
-
-
-error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
-error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 
 
 @pn.depends(
@@ -1205,6 +1213,31 @@ def visualize_plot(clicks):
         return None
 
 
+@pn.depends(
+    exit_button.param.clicks,
+    watch=True
+)
+def exit_button_event(*args):
+    print("Quitting server...")
+    exit_button.name = "Server closed"
+    SERVER.stop()
+
+
+def run():
+    import alphamap
+    global SERVER
+    layout = pn.Column(
+        header,
+        main_part,
+        upload_data,
+        visualize_plot
+    )
+    SERVER = layout.show(threaded=True)
+    print("*"*30)
+    print(f"* AlphaMap {alphamap.__version__} *".center(30, '*'))
+    print("*"*30)
+
+
 ### JS callbacks to control the behaviour of pn.Cards
 uniprot_options_tab.jscallback(
     collapsed="""
@@ -1255,32 +1288,6 @@ maxquant_instructions.jscallback(
         """,
     args={'card': maxquant_instructions}
 );
-
-
-@pn.depends(
-    exit_button.param.clicks,
-    watch=True
-)
-def exit_button_event(*args):
-    import logging
-    logging.info("Quitting server...")
-    exit_button.name = "Server closed"
-    SERVER.stop()
-
-
-def run():
-    import logging
-    global SERVER
-    layout = pn.Column(
-        header,
-        main_part,
-        upload_data,
-        visualize_plot
-    )
-    SERVER = layout.show(threaded=True)
-    logging.info("************************")
-    logging.info(f"* AlphaMap *")
-    logging.info("************************")
 
 
 if __name__ == '__main__':
