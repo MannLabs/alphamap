@@ -92,7 +92,7 @@ import plotly.graph_objects as go
 
 def plot_single_peptide_traces(df_plot,protein,fasta):
     protein_sequence = fasta[protein].sequence
-    entry_name = fasta[protein].description['entry']
+    entry_name = fasta[protein].description['GN']
     protein_name = fasta[protein].description['name']
 
     plot0 = go.Scatter(y=[None],

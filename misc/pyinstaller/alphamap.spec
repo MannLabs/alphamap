@@ -8,6 +8,7 @@ import PyInstaller.utils.hooks
 import pkg_resources
 import importlib.metadata
 import alphamap
+import shutil
 
 
 ##################### User definitions
@@ -21,7 +22,7 @@ block_cipher = None
 location = os.getcwd()
 project = "alphamap"
 remove_tests = True
-bundle_name = "alphamap"
+bundle_name = "alphamap.app"
 bundle_identifier = f"{bundle_name}.{alphamap.__version__}"
 #####################
 
@@ -147,4 +148,9 @@ else:
 			icon=icon,
 			bundle_identifier=bundle_identifier,
 			# console=True
+		)
+		import cmath
+		shutil.copyfile(
+			cmath.__file__,
+			f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
 		)
