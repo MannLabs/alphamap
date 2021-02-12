@@ -54,6 +54,12 @@ css = '''
     letter-spacing: 1.5px;
 }
 
+.bk-root .bk-btn-default {
+    color: dimgrey;
+    font-size: 11px;
+    font-weight: 700;
+}
+
 .bk.card-title {
     font-size: 13px;
     font-weight: initial;
@@ -424,8 +430,8 @@ upload_spinner = pn.indicators.LoadingSpinner(
     height=40
 )
 exit_button = pn.widgets.Button(
-    name='Quit',
-    button_type='primary',
+    name='QUIT',
+    button_type='default',
     css_classes=['button_options'],
     height=40,
     width=170,
@@ -1219,7 +1225,7 @@ def visualize_plot(clicks):
 )
 def exit_button_event(*args):
     print("Quitting server...")
-    exit_button.name = "Server closed"
+    exit_button.name = "Server closed".upper()
     SERVER.stop()
 
 
