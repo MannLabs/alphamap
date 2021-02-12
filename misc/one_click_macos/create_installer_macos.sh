@@ -10,7 +10,6 @@ conda activate alphamapinstaller
 pip install '../../.[gui]'
 pip install pyinstaller
 pyinstaller ../pyinstaller/alphamap.spec -y
-mv dist/alphamap dist/alphamap.app
 tar -czf dist/alphamap.app.zip dist/alphamap.app
 # chmod +x dist/alphatims.app
 # TODO No console is opened and program not blocked untill close, meaning loose threads!
