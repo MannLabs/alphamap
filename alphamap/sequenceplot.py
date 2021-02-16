@@ -25,11 +25,53 @@ def format_uniprot_annotation(uniprot_ann, uniprot_feature_dict):
 
 
 # Cell
-ptm_shape_dict = {'[Phospho (STY)]': 0,
-                '[GlyGly (K)]':2,
-                '[Carbamidomethyl (C)]':3,
-                '[Oxidation (M)]':4,
-                '[Acetyl (Protein N-term)]':5}
+#ptm_shape_dict = {'[Phospho (STY)]': 0,
+#                '[GlyGly (K)]':2,
+#                '[Carbamidomethyl (C)]':3,
+#                '[Oxidation (M)]':4,
+#                '[Acetyl (Protein N-term)]':5}
+
+# Cell
+ptm_shape_dict = {
+    '[Acetyl (K)]': 5,
+    '[Acetyl (Protein N-term)]': 5,
+    '[Carbamidomethyl (C)]': 3,
+    '[Oxidation (M)]': 4,
+    '[Phospho (STY)]': 0,
+    '[GlyGly (K)]': 2,
+    '[Methyl (KR)]': 6,
+    '[Dimethyl (KR)]': 6,
+    '[Trimethyl (K)]': 6,
+    '[Pro5]': 9,
+    '[Pro6]': 10,
+    '[Glu->pyro-Glu]': 11,
+    '[Gln->pyro-Glu]': 12,
+    '[QQTGG (K)]': 13,
+    '[Deamidation (N)]': 14,
+    '[Deamidation 18O (N)]': 14,
+    '[Deamidation (NQ)]': 14,
+    '[Hydroxyproline]': 15,
+    '[Carbamyl (N-term)]': 16,
+    '[Delta:H(2)C(2) (N-term)]': 19,
+    '[Dioxidation (MW)]': 4,
+    '[Trioxidation (C)]': 4,
+    '[Dethiomethyl (M)]': 20,
+    '[Cation:Na (DE)]': 21,
+    '[Methyl (E)]': 6,
+    '[Dehydrated (ST)]': 23,
+    '[Oxidation (P)]': 4,
+    '[Dimethyl (K)]': 6,
+    '[Amidated (Protein C-term)]': 22,
+    '[Sulfo (STY)]': 24,
+    '[Acetyl (N-term)]': 5,
+    '[Amidated (C-term)]': 22,
+    '[Sulfation (Y)]': 25,
+    '[Phospho (ST)]': 0,
+    '[Cys-Cys]': 26,
+    '[Cysteinyl]': 27,
+    '[Cysteinyl - carbamidomethyl]': 28,
+    '[Oxidation (MP)]': 4
+}
 
 # Cell
 import numpy as np
@@ -83,7 +125,12 @@ def get_plot_data(protein,df,fasta):
             if len(unique_mods) > 0:
                 for mod in df_plot['PTMtype'].dropna().unique():
                     if mod != 'nan':
+                        #print(mod)
+                        if mod not in ptm_shape_dict.keys():
+                            ptm_shape_dict.update({mod : 17})
+
                         df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = ptm_shape_dict[mod]
+                        #df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = 17
 
     return(df_plot)
 
