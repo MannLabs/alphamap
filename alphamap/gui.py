@@ -960,6 +960,7 @@ def update_data_sample_info(data1):
             experimental_data_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_warning.object = error_message_upload
+        preprocessed_exp_data.value = None
         experimental_data_sample.disabled = True
         experimental_data_sample_name.disabled = True
         experimental_data_sample_name.value = ''
@@ -987,6 +988,7 @@ def update_data_2_sample_info(data2):
             experimental_data_2_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_2_warning.object = error_message_upload
+        preprocessed_exp_data_2.value = None
         experimental_data_2_sample.disabled = True
         experimental_data_2_sample_name.disabled = True
         experimental_data_2_sample_name.value = ''
@@ -1014,6 +1016,7 @@ def update_data_3_sample_info(data3):
             experimental_data_3_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_3_warning.object = error_message_upload
+        preprocessed_exp_data_3.value = None
         experimental_data_3_sample.disabled = True
         experimental_data_3_sample_name.disabled = True
         experimental_data_3_sample_name.value = ''
