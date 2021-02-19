@@ -805,20 +805,25 @@ def visualize_buttons(_):
 ### PREPROCESSING
 def upload_experimental_data():
     global ac_gene_conversion
-    if experimental_data_sample.value == ['All samples']:
-        data_samples = None
-    else:
-        data_samples = experimental_data_sample.value
-    preprocessed_exp_data.value = format_input_data(
-        df = import_data(
-            experimental_data.value.replace("\\", "/"),
-            verbose=False,
-            sample=data_samples
-        ),
-        fasta = full_fasta,
-        modification_exp = r'\[.*?\]',
-        verbose = False)
-    all_unique_proteins = preprocessed_exp_data.value.unique_protein_id.unique().tolist()
+    all_unique_proteins = []
+    if experimental_data.value:
+        if experimental_data_sample.value == ['All samples']:
+            data_samples = None
+        else:
+            data_samples = experimental_data_sample.value
+        try:
+            preprocessed_exp_data.value = format_input_data(
+                df = import_data(
+                    experimental_data.value.replace("\\", "/"),
+                    verbose=False,
+                    sample=data_samples
+                ),
+                fasta = full_fasta,
+                modification_exp = r'\[.*?\]',
+                verbose = False)
+        except (TypeError, AttributeError) as e:
+            pass
+        all_unique_proteins.extend(preprocessed_exp_data.value.unique_protein_id.unique().tolist())
     if experimental_data_2.value:
         if experimental_data_2_sample.value == ['All samples']:
             data_2_samples = None
