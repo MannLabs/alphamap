@@ -977,7 +977,7 @@ def update_data_2_sample_info(data2):
         experimental_data_2_sample.options = ['All samples'] + extract_samples(data2)
         experimental_data_2_sample.value = ['All samples']
         experimental_data_2_sample_name_remove_part.disabled = False
-    except (TypeError, MemoryError) as e:
+    except (TypeError, MemoryError, FileNotFoundError) as e:
         if type(e).__name__ == 'MemoryError':
             experimental_data_2_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
@@ -1004,7 +1004,7 @@ def update_data_3_sample_info(data3):
         experimental_data_3_sample.options = ['All samples'] + extract_samples(data3)
         experimental_data_3_sample.value = ['All samples']
         experimental_data_3_sample_name_remove_part.disabled = False
-    except (TypeError, MemoryError) as e:
+    except (TypeError, MemoryError, FileNotFoundError) as e:
         if type(e).__name__ == 'MemoryError':
             experimental_data_3_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
