@@ -12,7 +12,7 @@ import pyteomics.fasta
 import panel as pn
 import plotly.graph_objects as go
 # local
-from alphamap.importing import import_data
+from alphamap.importing import import_data, extract_rawfile_unique_values
 from alphamap.preprocessing import format_input_data
 from alphamap.sequenceplot import plot_peptide_traces
 from alphamap.uniprot_integration import uniprot_feature_dict
@@ -811,7 +811,7 @@ def upload_experimental_data():
         data_samples = experimental_data_sample.value
     preprocessed_exp_data.value = format_input_data(
         df = import_data(
-            experimental_data.value,
+            experimental_data.value.replace("\\", "/"),
             verbose=False,
             sample=data_samples
         ),
@@ -827,7 +827,7 @@ def upload_experimental_data():
         try:
             preprocessed_exp_data_2.value = format_input_data(
                 df = import_data(
-                    experimental_data_2.value,
+                    experimental_data_2.value.replace("\\", "/"),
                     verbose=False,
                     sample=data_2_samples
                 ),
@@ -845,7 +845,7 @@ def upload_experimental_data():
         try:
             preprocessed_exp_data_3.value = format_input_data(
                 df = import_data(
-                    experimental_data_3.value,
+                    experimental_data_3.value.replace("\\", "/"),
                     verbose=False,
                     sample=data_3_samples
                 ),
@@ -892,13 +892,11 @@ def extract_samples(path):
     """
     Extract information about unique sample names that present in the raw file analyzed by MaxQuant or Spectronaut.
     """
-    sample_columns = ['R.FileName', 'Raw file']
     file_size_gb = os.stat(path).st_size / 1024**3
     if file_size_gb > SETTINGS['max_file_size_gb']:
         raise MemoryError
     try:
-        unique_samples = pd.read_csv(path, sep=None, engine='python',
-            usecols=lambda col: col in sample_columns).iloc[:, 0].unique().tolist()
+        unique_samples = extract_rawfile_unique_values(path.replace("\\", "/"))
     except:
         raise TypeError("This file can't be uploaded.")
     return unique_samples
