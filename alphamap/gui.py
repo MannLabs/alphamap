@@ -508,7 +508,8 @@ def download_pdf_report():
 
 download_pdf = pn.widgets.FileDownload(
     callback=download_pdf_report,
-    filename='AlphaMap PDF',
+    label='PDF for a list of pre-selected proteins',
+    filename='alphamap_pdf_report.pdf',
     button_type='default',
     height=31,
     width=369,
@@ -661,14 +662,13 @@ project_instuction = pn.pane.Markdown(
 
 alphamap_tutorial = pn.widgets.FileDownload(
     file=alphamap_tutorial_path,
-    filename='AlphaMap tutorial',
+    label='AlphaMap tutorial',
     button_type='default',
     auto=True,
     width=530,
     align='start',
     margin=(10, 80, 5, 10),
     css_classes=['spectronaut_instr']
-
 )
 
 spectronaut_description = pn.pane.Markdown(

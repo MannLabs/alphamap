@@ -582,7 +582,7 @@ def create_pdf_report(proteins, df, name, fasta, uniprot, selected_features,
     pdf_buf = BytesIO()
     pdf_report = canvas.Canvas(pdf_buf, pagesize=(1600,max_height))
 
-    if isinstance(df, list):
+    if isinstance(proteins, list):
         for p in range(0,len(proteins)):
             plot = plot_peptide_traces(df=df, name=name, protein=proteins[p], fasta=fasta,
                                        uniprot=uniprot, selected_features=selected_features,
