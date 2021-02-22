@@ -14,9 +14,8 @@ import plotly.graph_objects as go
 # local
 from alphamap.importing import import_data, extract_rawfile_unique_values
 from alphamap.preprocessing import format_input_data
-from alphamap.sequenceplot import plot_peptide_traces
+from alphamap.sequenceplot import plot_peptide_traces, uniprot_color_dict, create_pdf_report
 from alphamap.uniprot_integration import uniprot_feature_dict
-from alphamap.sequenceplot import uniprot_color_dict
 from alphamap.proteolytic_cleavage import protease_dict
 from alphamap.organisms_data import all_organisms
 
@@ -157,7 +156,7 @@ full_fasta = None
 full_uniprot = None
 ac_gene_conversion = None
 SETTINGS = {
-    'max_file_size_gb':20
+    'max_file_size_gb': 50
 }
 SERVER = None
 
@@ -456,6 +455,66 @@ visualize_spinner = pn.indicators.LoadingSpinner(
     height=40
 )
 
+
+def download_pdf_report():
+    uniprot_options_combined = sum([each.value for each in uniprot_options.objects if each.value], [])
+    # extract all experimental data and names
+    all_data = []
+    all_names = []
+    if preprocessed_exp_data.value is not None:
+        all_data.append(preprocessed_exp_data.value)
+        all_names.append(
+            extract_name(os.path.splitext(os.path.basename(experimental_data.value))[0],
+                         experimental_data_sample.value,
+                         experimental_data_sample_name.value,
+                         experimental_data_sample_name_remove_part.value
+            )
+        )
+    if preprocessed_exp_data_2.value is not None:
+        all_data.append(preprocessed_exp_data_2.value)
+        all_names.append(
+            extract_name(os.path.splitext(os.path.basename(experimental_data_2.value))[0],
+                         experimental_data_2_sample.value,
+                         experimental_data_2_sample_name.value,
+                         experimental_data_2_sample_name_remove_part.value
+            )
+        )
+    if preprocessed_exp_data_3.value is not None:
+        all_data.append(preprocessed_exp_data_3.value)
+        all_names.append(
+            extract_name(os.path.splitext(os.path.basename(experimental_data_3.value))[0],
+                         experimental_data_3_sample.value,
+                         experimental_data_3_sample_name.value,
+                         experimental_data_3_sample_name_remove_part.value
+            )
+        )
+    # if only one experimental file is uploaded we need to return a string for input into plot_peptide_traces
+    if len(all_data) == 1:
+        all_data = all_data[0]
+        all_names = all_names[0]
+
+    report = create_pdf_report(
+        proteins = select_protein.options,
+        df = all_data,
+        name = all_names,
+        fasta = full_fasta,
+        uniprot = full_uniprot,
+        selected_features=[uniprot_feature_dict[each] for each in uniprot_options_combined],
+        uniprot_feature_dict=uniprot_feature_dict,
+        uniprot_color_dict=uniprot_color_dict,
+        selected_proteases=proteases_options.value
+    )
+    return report
+
+download_pdf = pn.widgets.FileDownload(
+    callback=download_pdf_report,
+    filename='AlphaMap PDF',
+    button_type='default',
+    height=31,
+    width=369,
+    margin=(5, 20, 15, 12),
+    align='center'
+)
 
 ### UNIPROT OPTIONS
 options_preprocessing_events = pn.widgets.CheckButtonGroup(
@@ -1123,7 +1182,8 @@ def upload_data(clicks):
                     select_protein,
                     search_by,
                     predefined_protein_list_titel,
-                    predefined_protein_list
+                    predefined_protein_list,
+                    download_pdf
                 ),
                 pn.layout.VSpacer(width=80),
                 pn.Column(
@@ -1208,7 +1268,7 @@ def visualize_plot(clicks):
                 fig,
                 config={'toImageButtonOptions':
                            {'format': 'svg', # one of png, svg, jpeg, webp
-                            'filename': 'custom_image',
+                            'filename': f"alphamap_{full_fasta[selected_protein].description['name']}_{full_fasta[selected_protein].description['id']}",
                             'height': 500,
                             'width': 1500,
                             'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
