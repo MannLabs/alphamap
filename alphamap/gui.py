@@ -935,8 +935,9 @@ def upload_experimental_data():
 )
 def filter_proteins(data):
     global ac_gene_conversion
-    predefined_list = StringIO(str(data, "utf-8")).readline().replace(' ', '').split(';')
-    predefined_list = [protein.upper() for protein in predefined_list]
+    predefined_list = []
+    for line in StringIO(str(predefined_protein_list.value, "utf-8")).readlines():
+        predefined_list.append(line.strip().upper())
     ac_gene_conversion = {k:v for k,v in ac_gene_conversion.items() if (k in predefined_list or v.split()[0] in predefined_list)}
     if search_by.value == 'Search by a gene name':
         select_protein.options = list(ac_gene_conversion.values())
