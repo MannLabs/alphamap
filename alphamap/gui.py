@@ -953,6 +953,12 @@ def upload_organism_info():
     full_uniprot = pd.read_csv(os.path.join(DATA_PATH, uniprot_name))
 
 
+def natural_sort(l):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+    return sorted(l, key = alphanum_key)
+
+
 def extract_samples(path):
     """
     Extract information about unique sample names that present in the raw file analyzed by MaxQuant or Spectronaut.
@@ -964,7 +970,8 @@ def extract_samples(path):
         unique_samples = extract_rawfile_unique_values(path.replace("\\", "/"))
     except:
         raise TypeError("This file can't be uploaded.")
-    return unique_samples
+    unique_samples_sorted = natural_sort(unique_samples)
+    return unique_samples_sorted
 
 
 def extract_name(filename, sample, sample_name, sample_name_remove_prefix):
