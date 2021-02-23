@@ -492,9 +492,9 @@ def download_pdf_report():
     if len(all_data) == 1:
         all_data = all_data[0]
         all_names = all_names[0]
-
+    print(f"The proteins that will be included into the report: {list(ac_gene_conversion.keys())}")
     report = create_pdf_report(
-        proteins = select_protein.options,
+        proteins = list(ac_gene_conversion.keys()),
         df = all_data,
         name = all_names,
         fasta = full_fasta,
@@ -934,15 +934,20 @@ def upload_experimental_data():
     watch=True
 )
 def filter_proteins(data):
-    global ac_gene_conversion
-    predefined_list = []
-    for line in StringIO(str(predefined_protein_list.value, "utf-8")).readlines():
-        predefined_list.append(line.strip().upper())
-    ac_gene_conversion = {k:v for k,v in ac_gene_conversion.items() if (k in predefined_list or v.split()[0] in predefined_list)}
-    if search_by.value == 'Search by a gene name':
-        select_protein.options = list(ac_gene_conversion.values())
-    else:
-        select_protein.options = list(ac_gene_conversion.keys())
+    if data:
+        print('inside filter proteins')
+        global ac_gene_conversion
+        predefined_list = []
+        for line in StringIO(str(data, "utf-8")).readlines():
+            predefined_list.append(line.strip().upper())
+        print(predefined_list)
+        ac_gene_conversion = {k:v for k,v in ac_gene_conversion.items() if (k in predefined_list or v.split()[0] in predefined_list)}
+        if search_by.value == 'Search by a gene name':
+            select_protein.options = list(ac_gene_conversion.values())
+        else:
+            select_protein.options = list(ac_gene_conversion.keys())
+        print([(k,v) for k,v in ac_gene_conversion.items()])
+        print(select_protein.options)
 
 
 def upload_organism_info():
@@ -997,8 +1002,10 @@ def extract_name(filename, sample, sample_name, sample_name_remove_prefix):
     watch=True
 )
 def clear_dashboard(*args):
+    global ac_gene_conversion
     upload_button.clicks = 0
     visualize_button.clicks = 0
+    predefined_protein_list.value = None
     upload_data
     visualize_plot
 
