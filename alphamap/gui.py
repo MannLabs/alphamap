@@ -1324,7 +1324,7 @@ def run():
         upload_data,
         visualize_plot
     )
-    SERVER = layout.show(threaded=True)
+    SERVER = layout.show(threaded=True, title='AlphaMap')
     print("*"*30)
     print(f"* AlphaMap {alphamap.__version__} *".center(30, '*'))
     print("*"*30)
