@@ -139,6 +139,13 @@ h4 {
     font-size: 12px;
 }
 
+.bk.alert-primary {
+    background-color: white;
+    border: 0px white solid;
+    padding: 0;
+    font-size: 12px;
+}
+
 .bk.alert-info {
     background-color: #EAEAEA;
     border: 0px #EAEAEA solid;
@@ -156,13 +163,16 @@ full_fasta = None
 full_uniprot = None
 ac_gene_conversion = None
 SETTINGS = {
-    'max_file_size_gb': 50
+    'max_file_size_gb': 50,
+    'max_num_proteins_report': 100
 }
 SERVER = None
 
 # ERROR/WARNING MESSAGES
 error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
+error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
+
 
 ### PATHS
 BASE_PATH = os.path.dirname(__file__)
@@ -457,6 +467,7 @@ visualize_spinner = pn.indicators.LoadingSpinner(
 
 
 def download_pdf_report():
+    download_pdf_error.object = ''
     uniprot_options_combined = sum([each.value for each in uniprot_options.objects if each.value], [])
     # extract all experimental data and names
     all_data = []
@@ -492,8 +503,12 @@ def download_pdf_report():
     if len(all_data) == 1:
         all_data = all_data[0]
         all_names = all_names[0]
+    proteins_in_report = list(ac_gene_conversion.keys())
+    if len(proteins_in_report) > SETTINGS['max_num_proteins_report']:
+        download_pdf_error.object = error_message_report_long
+        proteins_in_report = proteins_in_report[:SETTINGS['max_num_proteins_report']]
     report = create_pdf_report(
-        proteins = list(ac_gene_conversion.keys()),
+        proteins = proteins_in_report,
         df = all_data,
         name = all_names,
         fasta = full_fasta,
@@ -505,15 +520,23 @@ def download_pdf_report():
     )
     return report
 
+
 download_pdf = pn.widgets.FileDownload(
     callback=download_pdf_report,
     label='PDF for a list of pre-selected proteins',
+    disabled=True,
     filename='alphamap_pdf_report.pdf',
     button_type='default',
     height=31,
+    width=390,
+    margin=(5, 20, 0, 6),
+)
+
+download_pdf_error = pn.pane.Alert(
     width=369,
-    margin=(5, 20, 15, 12),
-    align='center'
+    margin=(-22, 20, 20, 20),
+    alert_type="primary",
+    background='white'
 )
 
 ### UNIPROT OPTIONS
@@ -934,6 +957,7 @@ def upload_experimental_data():
 )
 def filter_proteins(data):
     if data:
+        download_pdf.disabled=False
         global ac_gene_conversion
         predefined_list = []
         for line in StringIO(str(data, "utf-8")).readlines():
@@ -1009,6 +1033,7 @@ def clear_dashboard(*args):
         callback=download_pdf_report,
         label='PDF for a list of pre-selected proteins',
         filename='alphamap_pdf_report.pdf',
+        disabled=True,
         button_type='default',
         height=31,
         width=369,
@@ -1018,6 +1043,7 @@ def clear_dashboard(*args):
     upload_button.clicks = 0
     visualize_button.clicks = 0
     predefined_protein_list.value = None
+    download_pdf_error.object = ''
     upload_data
     visualize_plot
 
@@ -1203,7 +1229,8 @@ def upload_data(clicks):
                     search_by,
                     predefined_protein_list_titel,
                     predefined_protein_list,
-                    download_pdf
+                    download_pdf,
+                    download_pdf_error
                 ),
                 pn.layout.VSpacer(width=80),
                 pn.Column(
@@ -1267,10 +1294,14 @@ def visualize_plot(clicks):
         if len(all_data) == 1:
             all_data = all_data[0]
             all_names = all_names[0]
-        if search_by.value == 'Search by a gene name':
-            selected_protein = re.findall(r"\((?P<id>.+?)\)", select_protein.value)[0]
-        else:
-            selected_protein = select_protein.value
+        try:
+            if search_by.value == 'Search by a gene name':
+                selected_protein = re.findall(r"\((?P<id>.+?)\)", select_protein.value)[0]
+            else:
+                selected_protein = select_protein.value
+        except IndexError:
+            visualize_spinner.value = False
+            return None
         # create a main figure
         fig =  plot_peptide_traces(
             df = all_data,
