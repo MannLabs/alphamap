@@ -468,6 +468,7 @@ visualize_spinner = pn.indicators.LoadingSpinner(
 
 def download_pdf_report():
     download_pdf_error.object = ''
+    download_pdf_loading_spinner.value = True
     uniprot_options_combined = sum([each.value for each in uniprot_options.objects if each.value], [])
     # extract all experimental data and names
     all_data = []
@@ -518,6 +519,7 @@ def download_pdf_report():
         uniprot_color_dict=uniprot_color_dict,
         selected_proteases=proteases_options.value
     )
+    download_pdf_loading_spinner.value = False
     return report
 
 
@@ -529,7 +531,16 @@ download_pdf = pn.widgets.FileDownload(
     button_type='default',
     height=31,
     width=390,
-    margin=(5, 20, 0, 6),
+    margin=(5, 10, 0, 6),
+)
+
+download_pdf_loading_spinner = pn.indicators.LoadingSpinner(
+    value=False,
+    bgcolor='light',
+    color='secondary',
+    margin=(11,0,3,0),
+    width=30,
+    height=30
 )
 
 download_pdf_error = pn.pane.Alert(
@@ -1229,7 +1240,10 @@ def upload_data(clicks):
                     search_by,
                     predefined_protein_list_titel,
                     predefined_protein_list,
-                    download_pdf,
+                    pn.Row(
+                        download_pdf,
+                        download_pdf_loading_spinner
+                    ),
                     download_pdf_error
                 ),
                 pn.layout.VSpacer(width=80),
