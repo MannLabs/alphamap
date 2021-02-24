@@ -190,6 +190,7 @@ uniprot_link_path = os.path.join(IMAGE_PATH, "uniprot_logo.png")
 phosposite_link_path = os.path.join(IMAGE_PATH, "phosphosite_logo.png")
 protter_link_path = os.path.join(IMAGE_PATH, "protter_logo.png")
 pdb_link_path = os.path.join(IMAGE_PATH, "pdb_logo.png")
+peptide_atlas_link_path = os.path.join(IMAGE_PATH, "peptide_atlas_logo.png")
 
 
 ### HEADER
@@ -857,6 +858,13 @@ pdb_link = pn.pane.PNG(
     align='start',
     margin=(0, 20)
 )
+peptide_atlas_link = pn.pane.PNG(
+    peptide_atlas_link_path,
+    width=120,
+    height=60,
+    align='start',
+    margin=(0, 20)
+)
 
 
 def extract_uniprot_ai(protein, search_by):
@@ -871,7 +879,7 @@ def update_all_links():
     phosposite_link.link_url = 'http://www.phosphosite.org/uniprotAccAction?id=' + selected_protein_id
     protter_link.link_url = 'https://wlab.ethz.ch/protter/#up=' + selected_protein_id
     pdb_link.link_url = f'https://www.rcsb.org/search?request=%7B%22query%22%3A%7B%22parameters%22%3A%7B%22value%22%3A%22{selected_protein_id}%22%7D%2C%22type%22%3A%22terminal%22%2C%22service%22%3A%22text%22%2C%22node_id%22%3A0%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22pager%22%3A%7B%22start%22%3A0%2C%22rows%22%3A100%7D%2C%22scoring_strategy%22%3A%22combined%22%2C%22sort%22%3A%5B%7B%22sort_by%22%3A%22score%22%2C%22direction%22%3A%22desc%22%7D%5D%7D%2C%22request_info%22%3A%7B%22src%22%3A%22ui%22%2C%22query_id%22%3A%223407f72e3370cd10196490437be3ec87%22%7D%7D'
-
+    peptide_atlas_link.link_url = f"https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/GetProtein?protein_name={selected_protein_id}&action=QUERY"
 
 @pn.depends(visualize_button.param.clicks)
 def visualize_buttons(_):
@@ -886,6 +894,7 @@ def visualize_buttons(_):
             phosposite_link,
             protter_link,
             pdb_link,
+            peptide_atlas_link,
             height=60,
             margin=(50, 0, 50, 80)
         )
