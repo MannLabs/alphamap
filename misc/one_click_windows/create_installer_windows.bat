@@ -7,7 +7,8 @@ call conda activate alphamapinstaller
 REM call conda install git -y
 REM call pip install 'git+https://github.com/MannLabs/alphamap.git#egg=alphamap[gui]'
 REM call conda install freetype
-call pip install ../../.[gui]
+REM call pip install ../../.[gui]
+call pip install -r ../../requirements_windows.txt
 call pip install pyinstaller
 call pip install numpy==1.19.3
 REM
