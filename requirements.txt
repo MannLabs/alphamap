@@ -9,3 +9,4 @@ pdfrw==0.4
 psutil==5.8.0
 reportlab==3.5.59
 kaleido==0.1.0
+bokeh==2.2.2
