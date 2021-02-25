@@ -1351,6 +1351,7 @@ def visualize_plot(clicks):
             uniprot_feature_dict = uniprot_feature_dict,
             uniprot_color_dict = uniprot_color_dict,
             selected_proteases=proteases_options.value,
+            dashboard=True
         )
         plot =  pn.Column(
             pn.Pane(
@@ -1368,6 +1369,7 @@ def visualize_plot(clicks):
                 # width=1500
             ),
             visualize_buttons,
+            align='center',
             sizing_mode='stretch_width'
         )
         visualize_spinner.value = False
