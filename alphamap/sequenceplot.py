@@ -529,7 +529,8 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
         figure_height = 500
 
     fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1,
-                      width=1500, height=figure_height)
+#                       width=1500,
+                      height=figure_height)
 
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
