@@ -928,7 +928,7 @@ def upload_experimental_data():
         try:
             preprocessed_exp_data.value = format_input_data(
                 df = import_data(
-                    experimental_data.value.replace("\\", "/"),
+                    experimental_data.value.replace("\\", "/").replace('"', ''),
                     verbose=False,
                     sample=data_samples
                 ),
@@ -946,7 +946,7 @@ def upload_experimental_data():
         try:
             preprocessed_exp_data_2.value = format_input_data(
                 df = import_data(
-                    experimental_data_2.value.replace("\\", "/"),
+                    experimental_data_2.value.replace("\\", "/").replace('"', ''),
                     verbose=False,
                     sample=data_2_samples
                 ),
@@ -964,7 +964,7 @@ def upload_experimental_data():
         try:
             preprocessed_exp_data_3.value = format_input_data(
                 df = import_data(
-                    experimental_data_3.value.replace("\\", "/"),
+                    experimental_data_3.value.replace("\\", "/").replace('"', ''),
                     verbose=False,
                     sample=data_3_samples
                 ),
@@ -1020,6 +1020,7 @@ def extract_samples(path):
     """
     Extract information about unique sample names that present in the raw file analyzed by MaxQuant or Spectronaut.
     """
+    path = path.replace('"', '')
     file_size_gb = os.stat(path).st_size / 1024**3
     if file_size_gb > SETTINGS['max_file_size_gb']:
         raise MemoryError
