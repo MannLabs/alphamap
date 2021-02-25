@@ -661,7 +661,7 @@ proteases_options_tab = pn.Card(
 
 ### MAIN PART
 project_description = pn.pane.Markdown(
-    """### This website enables the exploration of proteomic datasets on the peptide level. It is possible to evaluate the sequence coverage of any identified protein and its post-translational modifications (PTMs). AlphaMap further integrates all available UniProt sequence annotations as well as information about proteolytic cleavage sites.""",
+    """### AlphaMap enables the exploration of proteomic datasets on the peptide level. It is possible to evaluate the sequence coverage of any identified protein and its post-translational modifications (PTMs). AlphaMap further integrates all available UniProt sequence annotations as well as information about proteolytic cleavage sites.""",
     margin=(10, 0, -20, 0),
     css_classes=['main-part'],
     width=635
