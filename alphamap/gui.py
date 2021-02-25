@@ -196,12 +196,14 @@ peptide_atlas_link_path = os.path.join(IMAGE_PATH, "peptide_atlas_logo.png")
 ### HEADER
 header_titel = pn.pane.Markdown(
     '# AlphaMap',
-    width=1250,
+    # width=1250,
+    sizing_mode='stretch_width',
     css_classes=['main_header']
 )
 divider = pn.pane.HTML(
     '<hr style="height: 2px; border:none; background-color: #045082; width: 1480px">',
-    width=1500,
+    # width=1500,
+    sizing_mode='stretch_width',
     align='center'
 )
 mpi_biochem_logo = pn.pane.PNG(
@@ -224,13 +226,15 @@ github_logo = pn.pane.PNG(
     github_logo_path,
     link_url='https://github.com/MannLabs/pepmap',
     height=70,
+    align='end'
 )
 header = pn.Row(
     mpi_biochem_logo,
     mpi_logo,
     header_titel,
     github_logo,
-    height=70
+    height=70,
+    sizing_mode='stretch_width'
 )
 
 
@@ -429,13 +433,14 @@ upload_button = pn.widgets.Button(
     css_classes=['button_options'],
     height=40,
     width=170,
-    margin=(0,0,0,638)
+    align='center',
+    # margin=(0,0,0,638)
 )
 upload_spinner = pn.indicators.LoadingSpinner(
     value=False,
     bgcolor='light',
     color='secondary',
-    margin=(0,0,20,10),
+    margin=(5,5,0,5),
     width=40,
     height=40
 )
@@ -445,7 +450,8 @@ exit_button = pn.widgets.Button(
     css_classes=['button_options'],
     height=40,
     width=170,
-    margin=(0,0,0,430)
+    align='end',
+    # margin=(0,0,0,430)
 )
 visualize_button = pn.widgets.Button(
     name='Visualize protein',
@@ -663,7 +669,8 @@ project_description = pn.pane.Markdown(
 
 divider_descr = pn.pane.HTML(
     '<hr style="height: 8px; border:none; background-color: #045082; width: 640px">',
-    width=1510,
+    # width=1510,
+    sizing_mode='stretch_width',
     align='center'
 )
 
@@ -816,15 +823,20 @@ main_part = pn.Column(
             maxquant_instructions
         ),
         selection_box,
-        align='center'
+        align='center',
+        sizing_mode='stretch_width',
     ),
     pn.Row(
         upload_button,
         upload_spinner,
         exit_button,
+        align='center',
+        margin=(20, 0),
+        sizing_mode='stretch_width',
     ),
     background='#eaeaea',
-    width=1510,
+    # min_width=1510,
+    sizing_mode='stretch_width',
     margin=(5, 0, 10, 0)
 )
 
@@ -834,35 +846,35 @@ uniprot_link = pn.pane.PNG(
     uniprot_link_path,
     width=120,
     height=60,
-    align='start',
+    # align='center',
     margin=(0, 30, 0, 40)
 )
 phosposite_link = pn.pane.PNG(
     phosposite_link_path,
     width=200,
     height=60,
-    align='start',
+    # align='center',
     margin=(0, 20)
 )
 protter_link = pn.pane.PNG(
     protter_link_path,
     width=140,
     height=60,
-    align='start',
+    # align='center',
     margin=(0, 20)
 )
 pdb_link = pn.pane.PNG(
     pdb_link_path,
     width=120,
     height=60,
-    align='start',
+    # align='center',
     margin=(0, 20)
 )
 peptide_atlas_link = pn.pane.PNG(
     peptide_atlas_link_path,
     width=120,
     height=60,
-    align='start',
+    # align='center',
     margin=(0, 20)
 )
 
@@ -881,22 +893,23 @@ def update_all_links():
     pdb_link.link_url = f'https://www.rcsb.org/search?request=%7B%22query%22%3A%7B%22parameters%22%3A%7B%22value%22%3A%22{selected_protein_id}%22%7D%2C%22type%22%3A%22terminal%22%2C%22service%22%3A%22text%22%2C%22node_id%22%3A0%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22pager%22%3A%7B%22start%22%3A0%2C%22rows%22%3A100%7D%2C%22scoring_strategy%22%3A%22combined%22%2C%22sort%22%3A%5B%7B%22sort_by%22%3A%22score%22%2C%22direction%22%3A%22desc%22%7D%5D%7D%2C%22request_info%22%3A%7B%22src%22%3A%22ui%22%2C%22query_id%22%3A%223407f72e3370cd10196490437be3ec87%22%7D%7D'
     peptide_atlas_link.link_url = f"https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/GetProtein?protein_name={selected_protein_id}&action=QUERY"
 
-@pn.depends(visualize_button.param.clicks)
-def visualize_buttons(_):
+def visualize_buttons():
     if select_protein.value:
         update_all_links()
         buttons_layout = pn.Row(
             pn.pane.Markdown(
                 "### Inspect target protein on other platforms:",
-                margin=(2, 0, 0, 0)
+                margin=(10, 0, 0, 50)
             ),
+            pn.layout.VSpacer(width=30),
             uniprot_link,
             phosposite_link,
             protter_link,
             pdb_link,
             peptide_atlas_link,
             height=60,
-            margin=(50, 0, 50, 80)
+            sizing_mode='stretch_width',
+            margin=(50,0)
         )
         return buttons_layout
     else:
@@ -1243,7 +1256,7 @@ def upload_data(clicks):
         # create a layout
         app = pn.Column(
             pn.Row(
-                pn.layout.VSpacer(width=100),
+                # pn.layout.VSpacer(width=100),
                 pn.Column(
                     select_protein,
                     search_by,
@@ -1269,6 +1282,7 @@ def upload_data(clicks):
                 align='center'
             ),
             divider,
+            sizing_mode='stretch_width',
             margin=(20, 0)
         )
         upload_spinner.value = False
@@ -1349,9 +1363,11 @@ def visualize_plot(clicks):
                            }
                        },
                 align='center',
-                width=1500
+                sizing_mode='stretch_width',
+                # width=1500
             ),
-            visualize_buttons
+            visualize_buttons,
+            sizing_mode='stretch_width'
         )
         visualize_spinner.value = False
         return plot
@@ -1376,7 +1392,8 @@ def run():
         header,
         main_part,
         upload_data,
-        visualize_plot
+        visualize_plot,
+        sizing_mode='stretch_width'
     )
     SERVER = layout.show(threaded=True, title='AlphaMap')
     print("*"*30)
