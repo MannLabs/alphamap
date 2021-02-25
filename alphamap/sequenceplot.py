@@ -344,7 +344,8 @@ import plotly.graph_objects as go
 from .proteolytic_cleavage import get_cleavage_sites
 
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
-                        uniprot_feature_dict,uniprot_color_dict, selected_proteases=[]):
+                        uniprot_feature_dict,uniprot_color_dict, selected_proteases=[],
+                        dashboard=False):
 
     figure_height = 200
 
@@ -528,9 +529,13 @@ def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
     if figure_height < 500:
         figure_height = 500
 
+    if dashboard:
+        plot_width = None
+    else:
+        plot_width = 1500
+
     fig.update_layout(barmode='stack', bargap=0, hovermode='x unified',hoverdistance=1,
-#                       width=1500,
-                      height=figure_height)
+                      width=plot_width, height=figure_height)
 
     mapped_feature_names = [uniprot_feature_dict_rev.get(key) for key in unique_features]
     if isinstance(df, pd.DataFrame):
