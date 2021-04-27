@@ -156,5 +156,5 @@ else:
 		import shutil
 		shutil.copyfile(
 			cmath.__file__,
-			f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
+			f"dist/{exe_name}/{os.path.basename(cmath.__file__)}"
 		)
