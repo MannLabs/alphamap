@@ -167,6 +167,7 @@ SETTINGS = {
     'max_num_proteins_report': 100
 }
 SERVER = None
+TAB_COUNTER = 0
 
 # ERROR/WARNING MESSAGES
 error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
@@ -1390,6 +1391,7 @@ def exit_button_event(*args):
 
 def run():
     import alphamap
+    import bokeh.server.views.ws
     global SERVER
     layout = pn.Column(
         header,
@@ -1398,10 +1400,41 @@ def run():
         visualize_plot,
         sizing_mode='stretch_width'
     )
+    original_open = bokeh.server.views.ws.WSHandler.open
+    bokeh.server.views.ws.WSHandler.open = open_browser_tab(original_open)
+    original_on_close = bokeh.server.views.ws.WSHandler.on_close
+    bokeh.server.views.ws.WSHandler.on_close = close_browser_tab(
+        original_on_close
+    )
     SERVER = layout.show(threaded=True, title='AlphaMap')
+    SERVER.join()
     print("*"*30)
     print(f"* AlphaMap {alphamap.__version__} *".center(30, '*'))
     print("*"*30)
+
+
+def open_browser_tab(func):
+    def wrapper(*args, **kwargs):
+        global TAB_COUNTER
+        TAB_COUNTER += 1
+        return func(*args, **kwargs)
+    return wrapper
+
+
+def close_browser_tab(func):
+    def wrapper(*args, **kwargs):
+        global TAB_COUNTER
+        TAB_COUNTER -= 1
+        return_value = func(*args, **kwargs)
+        if TAB_COUNTER == 0:
+            quit_server()
+        return return_value
+    return wrapper
+
+
+def quit_server():
+    print("Quitting server...")
+    SERVER.stop()
 
 
 ### JS callbacks to control the behaviour of pn.Cards
