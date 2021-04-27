@@ -142,8 +142,9 @@ checklink/cookies.txt
 .gitconfig
 
 
-# Custom 
+# Custom
 misc/one_click_macos/alphamap.pkg
 misc/one_click_macos/resources/LICENSE
 misc/one_click_macos/resources/alpha_logo.png
 misc/one_click_windows/inno
+*sandbox*
