@@ -151,9 +151,10 @@ else:
 		upx_exclude=[],
 		name=exe_name
 	)
-	import cmath
-	import shutil
-	shutil.copyfile(
-		cmath.__file__,
-		f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
-	)
+	if sys.platform[:6] == "darwin":
+		import cmath
+		import shutil
+		shutil.copyfile(
+			cmath.__file__,
+			f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
+		)
