@@ -8,7 +8,6 @@ import PyInstaller.utils.hooks
 import pkg_resources
 import importlib.metadata
 import alphamap
-import shutil
 
 
 ##################### User definitions
@@ -22,8 +21,7 @@ block_cipher = None
 location = os.getcwd()
 project = "alphamap"
 remove_tests = True
-bundle_name = "alphamap.app"
-bundle_identifier = f"{bundle_name}.{alphamap.__version__}"
+bundle_name = "AlphaMap"
 #####################
 
 
@@ -75,9 +73,21 @@ else:
 
 
 hidden_imports = [h for h in hidden_imports if "__pycache__" not in h]
-# datas = [d for d in datas if "__pycache__" not in d[0]]
-datas = [d for d in datas if ("__pycache__" not in d[0]) and ("." != d[1])]
+datas = [d for d in datas if ("__pycache__" not in d[0]) and (d[1] not in [".", "Resources", "scripts"])]
 
+
+if sys.platform[:5] == "win32":
+	base_path = os.path.dirname(sys.executable)
+	library_path = os.path.join(base_path, "Library", "bin")
+	dll_path = os.path.join(base_path, "DLLs")
+	libcrypto_dll_path = os.path.join(dll_path, "libcrypto-1_1-x64.dll")
+	libssl_dll_path = os.path.join(dll_path, "libssl-1_1-x64.dll")
+	libcrypto_lib_path = os.path.join(library_path, "libcrypto-1_1-x64.dll")
+	libssl_lib_path = os.path.join(library_path, "libssl-1_1-x64.dll")
+	if not os.path.exists(libcrypto_dll_path):
+		datas.append((libcrypto_lib_path, "."))
+	if not os.path.exists(libssl_dll_path):
+		datas.append((libssl_lib_path, "."))
 
 a = Analysis(
 	[script_name],
@@ -141,16 +151,9 @@ else:
 		upx_exclude=[],
 		name=exe_name
 	)
-	if sys.platform[:6] == "darwin":
-		app = BUNDLE(
-			coll,
-			name=bundle_name,
-			icon=icon,
-			bundle_identifier=bundle_identifier,
-			# console=True
-		)
-		import cmath
-		shutil.copyfile(
-			cmath.__file__,
-			f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
-		)
+	import cmath
+	import shutil
+	shutil.copyfile(
+		cmath.__file__,
+		f"dist/{bundle_name}/Contents/MacOS/{os.path.basename(cmath.__file__)}"
+	)
