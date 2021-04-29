@@ -1,5 +1,5 @@
 # AlphaMap
-> A python-based library that enables the exploration of proteomic datasets on the peptide level. 
+> A python-based library that enables the exploration of proteomic datasets on the peptide level.
 
 
 ## Description
@@ -8,13 +8,13 @@ AlphaMap is a tool for peptide level MS data exploration. You can load and inspe
 
 ## Installation instructions
 
-We recommend the Anaconda or Miniconda Python distribution, which comes with a powerful package manager. 
+We recommend the Anaconda or Miniconda Python distribution, which comes with a powerful package manager.
 
 It is recommended to install AlphaMap in its own environment.
 
 1. Open the console and create a new conda environment: conda create --name alphamap python=3
 2. Activate the environment: conda activate alphamap
-3. Redirect to the folder of choice and clone the repository: git clone git@github.com:MannLabs/pepmap.git
+3. Redirect to the folder of choice and clone the repository: git clone git@github.com:MannLabs/alphamap.git
 4. Navigate to the alphamap folder and install the package with pip install . (default users) or with pip install -e . to enable developers mode.
 5. If AlphaMap is installed correctly, you should be able to import alphamap as a package within the environment; see below.
 
@@ -25,13 +25,13 @@ If you would like to use AlphaMap in a jupyter notebook environment, additionall
 ### Import MS data
 
 ```python
-from pepmap.importing import import_data
+from alphamap.importing import import_data
 ```
 
 Import the entire dataset
 
 ```python
-data_all = import_data('../testdata/test_maxquant_input.txt', 
+data_all = import_data('../testdata/test_maxquant_input.txt',
                        verbose = False)
 ```
 
@@ -39,37 +39,37 @@ Import a single or multiple selected raw files
 
 ```python
 # single selected raw file
-data_raw_01 = import_data('../testdata/test_maxquant_input.txt', 
-                          sample="raw_1", 
+data_raw_01 = import_data('../testdata/test_maxquant_input.txt',
+                          sample="raw_1",
                           verbose = False)
 
 # multiple selected raw files
-data_raw_01_raw_02 = import_data('../testdata/test_spectronaut_input.csv', 
-                                 sample=["raw_01", "raw_02"], 
+data_raw_01_raw_02 = import_data('../testdata/test_spectronaut_input.csv',
+                                 sample=["raw_01", "raw_02"],
                                  verbose = False)
 ```
 
 ### Data preprocessing
 
 ```python
-from pepmap.preprocessing import format_input_data
+from alphamap.preprocessing import format_input_data
 from pyteomics import fasta
 full_human_fasta = fasta.IndexedUniProt('../data/human.fasta')
 ```
 
 ```python
-formatted_proteome_data = format_input_data(df = data_all, 
-                                            fasta = full_human_fasta, 
+formatted_proteome_data = format_input_data(df = data_all,
+                                            fasta = full_human_fasta,
                                             modification_exp = r'\[.*?\]')
 ```
 
 ### Data visualization
 
 ```python
-from pepmap.sequenceplot import plot_peptide_traces, uniprot_color_dict
-from pepmap.uniprot_integration import uniprot_feature_dict
+from alphamap.sequenceplot import plot_peptide_traces, uniprot_color_dict
+from alphamap.uniprot_integration import uniprot_feature_dict
 import pandas as pd
-uniprot_annotation = pd.read_csv('../data/preprocessed_uniprot_human.csv',low_memory=False) 
+uniprot_annotation = pd.read_csv('../data/preprocessed_uniprot_human.csv',low_memory=False)
 ```
 
 ```python
@@ -80,7 +80,7 @@ plot_peptide_traces(formatted_proteome_data,
                     fasta = full_human_fasta,
                     uniprot=uniprot_annotation,
                     selected_features=["STRUCTURE","MOD_RES", "DOMAIN"],
-                    uniprot_feature_dict=uniprot_feature_dict, 
+                    uniprot_feature_dict=uniprot_feature_dict,
                     uniprot_color_dict=uniprot_color_dict)
 ```
 
@@ -88,5 +88,3 @@ plot_peptide_traces(formatted_proteome_data,
 
 
 ![png](docs/images/output_17_0.png)
-
-
