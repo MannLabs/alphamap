@@ -31,8 +31,9 @@ cp ../alpha_logo.png Resources/alpha_logo.png
 
 if false; then
   # https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
-  for f in $(find dist/alphamap -name '*.so' -or -name '*.dylib'); do codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" $f; done
+  for f in $(find dist/alphamap -name '*.so' -or -name   '*.dylib'); do codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" $f; done
   codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" dist/alphamap/Contents/MacOS/alphamap_gui --force --options=runtime --entitlements entitlements.xml
+  codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" dist/alphamap/Contents/MacOS/kaleido/executable/bin/kaleido --force --options=runtime --entitlements entitlements.xml
   pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.0.1 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg --sign "Developer ID Installer: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)"
   productbuild --distribution distribution.xml --resources Resources --package-path alphamap.pkg dist/alphamap_gui_installer_macos.pkg --sign "Developer ID Installer: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)"
   requestUUID=$(xcrun altool --notarize-app --primary-bundle-id "de.mpg.biochem.alphamap.app" --username "willems@biochem.mpg.de" --password "@keychain:Alphatims-develop" --asc-provider 7QSY5527AQ --file dist/alphamap_gui_installer_macos.pkg 2>&1 | awk '/RequestUUID/ { print $NF; }')
