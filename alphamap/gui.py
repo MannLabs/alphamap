@@ -2,6 +2,8 @@
 
 # external
 import os
+import urllib.request
+import shutil
 import re
 import sys
 import numpy as np
@@ -1007,6 +1009,29 @@ def upload_organism_info():
     global full_fasta, full_uniprot
     fasta_name = all_organisms[select_organism.value]['fasta_name']
     uniprot_name = all_organisms[select_organism.value]['uniprot_name']
+
+    if not os.path.exists(os.path.join(DATA_PATH, fasta_name)):
+        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
+
+        github_file = os.path.join(
+            github_url_data_folder,
+            os.path.basename(os.path.join(DATA_PATH, fasta_name)),
+            '?raw=true')
+
+        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, fasta_name), 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
+
+    if not os.path.exists(os.path.join(DATA_PATH, uniprot_name)):
+        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
+
+        github_file = os.path.join(
+            github_url_data_folder,
+            os.path.basename(os.path.join(DATA_PATH, uniprot_name)),
+            '?raw=true')
+
+        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, uniprot_name), 'wb') as out_file:
+            shutil.copyfileobj(response, out_file)
+
     full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(DATA_PATH, fasta_name))
     full_uniprot = pd.read_csv(os.path.join(DATA_PATH, uniprot_name))
 
