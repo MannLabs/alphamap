@@ -29,6 +29,9 @@ cp alphamap_terminal dist/alphamap/Contents/MacOS
 cp ../../LICENSE Resources/LICENSE
 cp ../alpha_logo.png Resources/alpha_logo.png
 
+cp ../../alphamap/data/*.fasta dist/alphamap/Contents/MacOS/alphamap/data
+cp ../../alphamap/data/*.csv dist/alphamap/Contents/MacOS/alphamap/data
+
 if false; then
   # https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
   for f in $(find dist/alphamap -name '*.so' -or -name   '*.dylib'); do codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" $f; done
