@@ -29,4 +29,4 @@ PyPi up-to-date?
   conda activate alphamap_pip_test
   # WARNING!!!!! Test on all OS
   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap"
-  twine upload dist/*
+  #twine upload dist/*
