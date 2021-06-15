@@ -73,8 +73,7 @@ def import_fasta(organism):
 
         github_file = os.path.join(
             github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, fasta_name)),
-            '?raw=true')
+            os.path.basename(os.path.join(DATA_PATH, fasta_name))) + '/?raw=true'
 
         with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, fasta_name), 'wb') as out_file:
             shutil.copyfileobj(response, out_file)
@@ -111,8 +110,7 @@ def import_uniprot_annotation(organism):
 
         github_file = os.path.join(
             github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, uniprot_name)),
-            '?raw=true')
+            os.path.basename(os.path.join(DATA_PATH, uniprot_name))) + '/?raw=true'
 
         with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, uniprot_name), 'wb') as out_file:
             shutil.copyfileobj(response, out_file)
