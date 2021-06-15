@@ -20,5 +20,8 @@ call pip install pyinstaller==4.2
 call pyinstaller ../pyinstaller/alphamap.spec -y
 call conda deactivate
 
+call cp ..\..\alphamap\data\*.fasta dist\alphamap_gui\alphamap\data
+call cp ..\..\alphamap\data\*.csv dist\alphamap_gui\alphamap\data
+
 
 call "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" alphamap_innoinstaller.iss
