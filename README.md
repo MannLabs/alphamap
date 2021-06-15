@@ -75,7 +75,7 @@ Next, download the AlphaMap repository from GitHub either directly or with a `gi
 git clone https://github.com/MannLabs/alphamap.git
 ```
 
-For any Python package, it is highly recommended to use a [conda virtual environment](https://docs.conda.io/en/latest/). AlphaMap can either be installed in a new conda environment or in an already existing environment. *Note that dependancy conflicts can occur with already existing packages in the latter case*! Once a conda environment is activated, AlphaMap and all its [dependancies](requirements) need to be installed.
+For any Python package, it is highly recommended to use a [conda virtual environment](https://docs.conda.io/en/latest/). AlphaMap can either be installed in a new conda environment or in an already existing environment. *Note that dependency conflicts can occur with already existing packages in the latter case*! Once a conda environment is activated, AlphaMap and all its [dependencies](requirements) need to be installed.
 
 ```bash
 conda create -n alphamap python=3.8 -y
@@ -83,7 +83,7 @@ conda activate alphamap
 pip install -e .
 ```
 
-***By using the editable flag `-e`, all modifications to the AlphaMap [source code folder](alphamap) are directly reflected when running AlphaMap. Note that the AlphaMap folder cannot be moved and/or renamed if an editable version is installed.***
+* By using the editable flag `-e`, all modifications to the AlphaMap [source code folder](alphamap) are directly reflected when running AlphaMap. Note that the AlphaMap folder cannot be moved and/or renamed if an editable version is installed.
 
 * When using Jupyter notebooks and multiple conda environments direcly from the terminal, it is recommended to `conda install nb_conda_kernels` in the conda base environment. Hereafter, running a `jupyter notebook` from the conda base environment should have a `python [conda env: alphamap]` kernel available, in addition to all other conda kernels in which the command `conda install ipykernel` was run.
 
@@ -93,16 +93,17 @@ pip install -e .
 AlphaMap has direct data import options for MaxQuant and Spectronaut.
 
 ### MaxQuant
-AlphaMap takes the *evidence.txt* file from MaxQuant as input format. A reduced example file is available for [download](https://github.com/MannLabs/alphamap/blob/master/testdata/test_maxquant_input.txt).
+AlphaMap takes the *evidence.txt* file from MaxQuant as input format. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/blob/master/testdata/test_maxquant_input.txt).
 
 ### Spectronaut
 AlphaMap takes Spectronaut results exported in normal long format (.csv or .tsv) as input. Necessary columns include:
 * PEP.AllOccuringProteinAccessions
 * EG.ModifiedSequence
 * R.FileName
-To ensure proper formatting of the Spectronaut output, an export scheme is available for [download](https://github.com/MannLabs/alphamap/blob/master/alphamap/data/spectronaut_export_scheme.rs).
 
-A reduced example file is also available for [download](https://github.com/MannLabs/alphamap/blob/master/testdata/test_spectronaut_input.csv).
+To ensure proper formatting of the Spectronaut output, an export scheme is available for [download here](https://github.com/MannLabs/alphamap/blob/master/alphamap/data/spectronaut_export_scheme.rs).
+
+A reduced example file is also available for [download here](https://github.com/MannLabs/alphamap/blob/master/testdata/test_spectronaut_input.csv).
 
 
 ---
