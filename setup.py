@@ -25,9 +25,10 @@ with open("requirements.txt") as requirements_file:
     requirements = []
     for line in requirements_file:
         # TODO, this should be a proper regex parsing
-        requirement, version = line.split("==")
-        requirements.append(requirement)
-            
+        # requirement, version = line.split("==")
+        # requirements.append(requirement)
+        requirements.append(line)
+
 lic = licenses[cfg['license']]
 min_python = cfg['min_python']
 
@@ -51,4 +52,3 @@ setuptools.setup(
     zip_safe = False,
     entry_points = { 'console_scripts': cfg.get('console_scripts','').split() },
     **setup_cfg)
-

@@ -1,0 +1,33 @@
+######## ALWAYS TODO ########
+
+Versions updated
+  conda activate alphamap
+  cd misc
+  bumpversion patch --config-file bumpversion.cfg
+  conda deactivate
+  # bumpversion patch --new-version VERSION --config-file bumpversion.cfg
+
+Releases for all Windows and MacOS?
+
+  cd misc/one_click_macos
+  source create_installer_macos.sh
+  # mv dist/alphamap_gui_installer_macos.pkg ../releases/VERSION
+
+  cd misc/one_click_windows
+  create_installer_windows.bat
+  # mv dist/alphamap_gui_installer_windows.exe ../releases/VERSION
+
+PyPi up-to-date?
+  # https://realpython.com/pypi-publish-python-package/
+  conda activate alphamap
+  rm -rf dist
+  rm -rf build
+  python setup.py sdist bdist_wheel
+  twine check dist/*
+  twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+  conda remove --name alphamap_pip_test --all
+  conda create -n alphamap_pip_test python=3.8 -y
+  conda activate alphamap_pip_test
+  # WARNING!!!!! Test on all OS
+  pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap"
+  #twine upload dist/*
