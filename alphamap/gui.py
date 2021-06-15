@@ -19,7 +19,7 @@ from alphamap.preprocessing import format_input_data
 from alphamap.sequenceplot import plot_peptide_traces, uniprot_color_dict, create_pdf_report
 from alphamap.uniprot_integration import uniprot_feature_dict
 from alphamap.proteolytic_cleavage import protease_dict
-from alphamap.organisms_data import all_organisms
+from alphamap.organisms_data import all_organisms, import_fasta, import_uniprot_annotation
 
 
 # EXTENSIONS
@@ -1007,33 +1007,9 @@ def filter_proteins(data):
 
 def upload_organism_info():
     global full_fasta, full_uniprot
-    fasta_name = all_organisms[select_organism.value]['fasta_name']
-    uniprot_name = all_organisms[select_organism.value]['uniprot_name']
 
-    if not os.path.exists(os.path.join(DATA_PATH, fasta_name)):
-        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
-
-        github_file = os.path.join(
-            github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, fasta_name)),
-            '?raw=true')
-
-        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, fasta_name), 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
-
-    if not os.path.exists(os.path.join(DATA_PATH, uniprot_name)):
-        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
-
-        github_file = os.path.join(
-            github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, uniprot_name)),
-            '?raw=true')
-
-        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, uniprot_name), 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
-
-    full_fasta = pyteomics.fasta.IndexedUniProt(os.path.join(DATA_PATH, fasta_name))
-    full_uniprot = pd.read_csv(os.path.join(DATA_PATH, uniprot_name))
+    full_fasta = import_fasta(select_organism.value)
+    full_uniprot = import_uniprot_annotation(select_organism.value)
 
 
 def natural_sort(l):

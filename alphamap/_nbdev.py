@@ -30,6 +30,7 @@ index = {"read_file": "Importing.ipynb",
          "uniprot_feature_dict": "Uniprot_integration.ipynb",
          "all_organisms": "organisms_data.ipynb",
          "import_fasta": "organisms_data.ipynb",
+         "import_uniprot_annotation": "organisms_data.ipynb",
          "protease_dict": "proteolytic_cleavage.ipynb",
          "get_cleavage_sites": "proteolytic_cleavage.ipynb"}
 
