@@ -25,6 +25,7 @@ PyPi up-to-date?
   python setup.py sdist bdist_wheel
   twine check dist/*
   twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+  conda remove --name alphamap_pip_test --all
   conda create -n alphamap_pip_test python=3.8 -y
   conda activate alphamap_pip_test
   # WARNING!!!!! Test on all OS
