@@ -263,7 +263,8 @@ select_organism = pn.widgets.Select(
     name='Select an organism:',
     value='Human',
     options=['Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold',
-             'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae'],
+             'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae', 
+             'SARS-CoV', 'SARS-CoV2'],
     align='center',
     margin=(0,0,0,7),
     width=300
