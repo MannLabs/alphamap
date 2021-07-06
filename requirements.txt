@@ -8,6 +8,5 @@ nbdev==1.1.13
 pdfrw==0.4
 psutil==5.8.0
 reportlab==3.5.59
-kaleido==0.1.0.post1; sys_platform=='win32'
-kaleido==0.1.0; sys_platform=='darwin'
+kaleido==0.2.1.post1
 bokeh==2.2.2
