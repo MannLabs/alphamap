@@ -18,11 +18,11 @@ entries:
       url: Preprocessing.html
     - output: web,pdf
       title: Title
-      url: SequencePlot.html
+      url: proteolytic_cleavage.html
     - output: web,pdf
       title: Integration of Uniprot Data
       url: Uniprot_integration.html
     output: web
-    title: pepmap
+    title: alphamap
   output: web
   title: Sidebar
