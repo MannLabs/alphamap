@@ -59,7 +59,7 @@ nb_path: "nbs/organisms_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="import_fasta" class="doc_header"><code>import_fasta</code><a href="https://github.com/ibludau/alphamap/tree/master/alphamap/organisms_data.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_fasta</code>(<strong><code>organism</code></strong>)</p>
+<h4 id="import_fasta" class="doc_header"><code>import_fasta</code><a href="https://github.com/ibludau/alphamap/tree/master/alphamap/organisms_data.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_fasta</code>(<strong><code>organism</code></strong>)</p>
 </blockquote>
 <p>Import fasta file for the selected organism.
 This downloads the file from github if not present.</p>
@@ -95,7 +95,7 @@ This downloads the file from github if not present.</p>
         <span class="n">out</span> <span class="o">=</span> <span class="n">import_fasta</span><span class="p">(</span><span class="n">organism</span><span class="o">=</span><span class="s1">&#39;rat&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;]&quot;</span> 
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;, &#39;SARS-CoV&#39;, &#39;SARS-CoV2&#39;]&quot;</span> 
     
     <span class="c1"># Test if fasta is read correctly</span>
     <span class="n">ecoli_fasta</span> <span class="o">=</span> <span class="n">import_fasta</span><span class="p">(</span><span class="s1">&#39;Escherichia coli&#39;</span><span class="p">)</span>
@@ -105,20 +105,6 @@ This downloads the file from github if not present.</p>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The fasta file for Escherichia coli is downloaded from github.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -142,7 +128,7 @@ This downloads the file from github if not present.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="import_uniprot_annotation" class="doc_header"><code>import_uniprot_annotation</code><a href="https://github.com/ibludau/alphamap/tree/master/alphamap/organisms_data.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_uniprot_annotation</code>(<strong><code>organism</code></strong>)</p>
+<h4 id="import_uniprot_annotation" class="doc_header"><code>import_uniprot_annotation</code><a href="https://github.com/ibludau/alphamap/tree/master/alphamap/organisms_data.py#L97" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_uniprot_annotation</code>(<strong><code>organism</code></strong>)</p>
 </blockquote>
 <p>Import uniprot annotation file for the selected organism.
 This downloads the file from github if not present.</p>
@@ -178,7 +164,7 @@ This downloads the file from github if not present.</p>
         <span class="n">out</span> <span class="o">=</span> <span class="n">import_uniprot_annotation</span><span class="p">(</span><span class="n">organism</span><span class="o">=</span><span class="s1">&#39;rat&#39;</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">out</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;]&quot;</span> 
+    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;, &#39;SARS-CoV&#39;, &#39;SARS-CoV2&#39;]&quot;</span> 
     
     <span class="c1"># Test if fasta is read correctly</span>
     <span class="n">ecoli_uniprot</span> <span class="o">=</span> <span class="n">import_uniprot_annotation</span><span class="p">(</span><span class="s1">&#39;Escherichia coli&#39;</span><span class="p">)</span>
@@ -188,20 +174,6 @@ This downloads the file from github if not present.</p>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>The uniprot annotation file for Escherichia coli is downloaded from github.
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
