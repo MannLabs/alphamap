@@ -5,8 +5,21 @@ __all__ = ['read_file', 'extract_rawfile_unique_values', 'import_spectronaut_dat
 
 # Cell
 import os
+import pandas as pd
 
-def read_file(file, column_names):
+def read_file(
+    file: str,
+    column_names: list
+) -> pd.DataFrame:
+    """Load a specified columns of the file as a pandas dataframe.
+
+    Args:
+        file (str): The name of a file.
+        column_names (list): The list of three columns that should be extracted from the file.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe with all the data stored in the specified columns.
+    """
     file_ext = os.path.splitext(file)[-1]
     if file_ext=='.csv':
         sep=','
@@ -44,11 +57,16 @@ def read_file(file, column_names):
     return res
 
 
-def extract_rawfile_unique_values(file):
-    """
-    A function that allows extracting the values of one column in the selected file, either from "R.FileName"
-    that all Spectronaut output files contain or "Raw file" - from MaxQuant output table.
-    It returns a set of unique raw file values from the file.
+def extract_rawfile_unique_values(
+    file: str
+) -> list:
+    """Extract the unique raw file names either from "R.FileName" (Spectronaut output) or "Raw file" (MaxQuant output) column.
+
+    Args:
+        file (str): The name of a file.
+
+    Returns:
+        list: A sorted list of unique raw file names from the file.
     """
     file_ext = os.path.splitext(file)[-1]
     if file_ext == '.csv':
@@ -81,18 +99,26 @@ def extract_rawfile_unique_values(file):
 # Cell
 import pandas as pd
 import re
+from typing import Union
 
-def import_spectronaut_data(file, sample=None):
-    """
-    Function to import peptide level data from Spectronaut returning a dataframe containing information about:
-        - all_protein_ids (str)
-        - modified_sequence (str)
-        - naked_sequence (str)
+def import_spectronaut_data(
+    file: str,
+    sample: Union[str, list, None] = None
+) -> pd.DataFrame:
+    """Import peptide level data from Spectronaut.
+
+    Args:
+        file (str): The name of a file.
+        sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing information about:
+            - all_protein_ids (str)
+            - modified_sequence (str)
+            - naked_sequence (str)
     """
     spectronaut_columns = ["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]
 
-
-    #data = pd.read_csv(file, sep=None, engine='python', usecols=spectronaut_columns)
     data = read_file(file, spectronaut_columns)
 
     if sample:
@@ -121,15 +147,24 @@ def import_spectronaut_data(file, sample=None):
 import pandas as pd
 import re
 
-def import_maxquant_data(file, sample=None):
-    """
-    Function to import peptide level data from MaxQuant returning a dataframe containing information about:
-        - all_protein_ids (str)
-        - modified_sequence (str)
-        - naked_sequence (str)
+def import_maxquant_data(
+    file: str,
+    sample: Union[str, list, None] = None
+) -> pd.DataFrame:
+    """Import peptide level data from MaxQuant.
+
+    Args:
+        file (str): The name of a file.
+        sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing information about:
+            - all_protein_ids (str)
+            - modified_sequence (str)
+            - naked_sequence (str)
     """
     mq_columns = ["Proteins","Modified sequence","Raw file"]
-    #data = pd.read_csv(file, sep='\t', usecols=mq_columns)
+
     data = read_file(file, mq_columns)
 
     if sample:
@@ -141,6 +176,7 @@ def import_maxquant_data(file, sample=None):
             data_sub = data_sub[["Proteins","Modified sequence"]]
     else:
         data_sub = data[["Proteins","Modified sequence"]]
+
     # get modified sequence
     mod_seq = data_sub.apply(lambda row: re.sub('_','',row["Modified sequence"]), axis=1)
     data_sub = data_sub.assign(modified_sequence=mod_seq.values)
@@ -164,14 +200,28 @@ import re
 from io import StringIO
 import os
 
-def import_data(file, sample=None, verbose=True, dashboard=False):
-    """
-    Function to import peptide level data. Depending on available columns in the provided file,
-    the function calls import_maxquant_data or import_spectronaut_data, finally returning a
-    dataframe containing information about:
-        - all_protein_ids (str)
-        - modified_sequence (str)
-        - naked_sequence (str)
+def import_data(
+    file :str,
+    sample: Union[str, list, None] = None,
+    verbose: bool = True,
+    dashboard: bool = False
+) -> pd.DataFrame:
+    """Import peptide level data. Depending on available columns in the provided file, the function calls import_maxquant_data or import_spectronaut_data.
+
+    Args:
+        file (str): The name of a file.
+        sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
+        verbose (bool): if True, print the type of input that is used. Defaults to True.
+        dashboard (bool): If True, the function is used for the dashboard output (StringIO object). Defaults to False.
+
+    Raises:
+        TypeError: If the input data format is unknown.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing information about:
+            - all_protein_ids (str)
+            - modified_sequence (str)
+            - naked_sequence (str)
     """
     if dashboard:
         file = StringIO(str(file, "utf-8"))
@@ -194,7 +244,6 @@ def import_data(file, sample=None, verbose=True, dashboard=False):
                 break
 
         uploaded_data_columns = set(l)
-        #uploaded_data_columns = set(pd.read_csv(file, nrows=0, sep=None, engine='python').columns)
         input_info = file
     if set(["Proteins","Modified sequence","Raw file"]).issubset(uploaded_data_columns):
         if verbose:
