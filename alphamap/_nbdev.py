@@ -41,8 +41,8 @@ modules = ["importing.py",
            "organisms_data.py",
            "proteolytic_cleavage.py"]
 
-doc_url = "https://ibludau.github.io/alphamap/"
+doc_url = "https://mannlabs.github.io/alphamap/"
 
-git_url = "https://github.com/ibludau/alphamap/tree/master/"
+git_url = "https://github.com/mannlabs/alphamap/tree/master/"
 
 def custom_doc_links(name): return None
