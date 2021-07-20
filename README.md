@@ -23,7 +23,7 @@ AlphaMap is a tool for peptide level MS data exploration. You can load and inspe
 ---
 ## License
 
-AlphaMap was developed by the [Mann Labs at the Max Planck Institute of Biochemistry](https://www.biochem.mpg.de/mann) and is freely available with an [Apache License](LICENSE.txt).
+AlphaMap was developed by the [Mann Labs at the Max Planck Institute of Biochemistry](https://www.biochem.mpg.de/mann) and is freely available with an [Apache License](LICENSE).
 
 ---
 ## Installation
@@ -55,8 +55,10 @@ pip install alphamap
 When a new version of AlphaMap becomes available, the old version can easily be upgraded by running e.g. the command again with an additional `--upgrade` flag:
 
 ```bash
-pip install "alphamap" --upgrade
+pip install alphamap --upgrade
 ```
+
+NOTE: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
 
 ### Developer
 
@@ -67,12 +69,11 @@ mkdir ~/folder/where/to/install/software
 cd ~/folder/where/to/install/software
 ```
 
-***The following commands assume you do not perform any additional `cd` commands anymore***.
-
 Next, download the AlphaMap repository from GitHub either directly or with a `git` command. This creates a new AlphaMap subfolder in your current directory.
 
 ```bash
 git clone https://github.com/MannLabs/alphamap.git
+cd alphamap
 ```
 
 For any Python package, it is highly recommended to use a [conda virtual environment](https://docs.conda.io/en/latest/). AlphaMap can either be installed in a new conda environment or in an already existing environment. *Note that dependency conflicts can occur with already existing packages in the latter case*! Once a conda environment is activated, AlphaMap and all its [dependencies](requirements) need to be installed.
@@ -104,7 +105,7 @@ AlphaMap takes Spectronaut results exported in normal long format (.csv or .tsv)
 To ensure proper formatting of the Spectronaut output, an export scheme is available for [download here](https://github.com/MannLabs/alphamap/blob/master/alphamap/data/spectronaut_export_scheme.rs).
 
 A reduced example file is also available for [download here](https://github.com/MannLabs/alphamap/blob/master/testdata/test_spectronaut_input.csv).
-
+<!-- It is not directly clear how to download this individual file from here. Luckily, the two larger ones have a "download" button on the top right -->
 
 ---
 ## Usage
