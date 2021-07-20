@@ -108,7 +108,8 @@ def get_plot_data(protein,df,fasta):
             df_peps['marker_size'] = np.where(df_peps.seq_position == end_uid, 6, df_peps.marker_size)
 
             df_PTMs_uid = df_prot[df_prot.modified_sequence==uid]
-            PTMsites = df_PTMs_uid.PTMsites.tolist()[0] + start_uid
+            #PTMsites = df_PTMs_uid.PTMsites.tolist()[0] + start_uid
+            PTMsites = [x+start_uid for x in df_PTMs_uid.PTMsites.tolist()[0]]
             PTMtypes = df_PTMs_uid.PTMtypes.tolist()[0]
 
             for i in range(0,len(PTMsites)):

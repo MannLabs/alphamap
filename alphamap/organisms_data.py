@@ -42,6 +42,12 @@ all_organisms = {
               },
     'Saccharomyces cerevisiae': {'fasta_name': 'yeast_[559292].fasta',
                'uniprot_name': 'preprocessed_uniprot_yeast.csv'
+              },
+    'SARS-CoV': {'fasta_name': 'cov.fasta',
+               'uniprot_name': 'preprocessed_uniprot_cov.csv'
+              },
+    'SARS-CoV2': {'fasta_name': 'cov2.fasta',
+               'uniprot_name': 'preprocessed_uniprot_cov2.csv'
               }
 }
 
