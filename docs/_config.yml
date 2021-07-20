@@ -1,9 +1,9 @@
-repository: fastai/nbdev_template
+repository: mannlabs/alphamap
 output: web
-topnav_title: nbdev_template
-site_title: nbdev_template
-company_name: openthings
-description: test
+topnav_title: alphamap
+site_title: alphamap
+company_name: Mann Labs
+description: A python-based library that enables the exploration of proteomic datasets on the peptide level.
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
