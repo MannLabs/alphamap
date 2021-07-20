@@ -1,6 +1,6 @@
 ---
 
-title: This notebook provides functions to format input data for sequence plotting
+title: Data preprocessig
 
 
 keywords: fastai
@@ -29,6 +29,23 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="This-notebook-provides-functions-to-format-input-data-for-sequence-plotting">This notebook provides functions to format input data for sequence plotting<a class="anchor-link" href="#This-notebook-provides-functions-to-format-input-data-for-sequence-plotting"> </a></h2><p>The formatted input data is returned as pandas dataframe containing following columns:</p>
+<ul>
+<li>unique_protein_id: a single uniprot accession</li>
+<li>modified_sequence: modified peptide sequence</li>
+<li>naked_sequence: naked peptide sequence    </li>
+<li>all_protein_ids: all UniProt IDs the peptide map to separated by ';'</li>
+<li>start: peptide start position on protein sequence</li>
+<li>end: peptide end position on protein sequence</li>
+<li>PTMsites: list with PTM positions</li>
+<li>PTMtypes: list with PTM types</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Generate-input-data-for-testing">Generate input data for testing<a class="anchor-link" href="#Generate-input-data-for-testing"> </a></h2>

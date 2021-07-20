@@ -1,6 +1,6 @@
 ---
 
-title: Integration of Uniprot Data
+title: UniProt data formatting
 
 
 keywords: fastai
@@ -36,6 +36,20 @@ nb_path: "nbs/Uniprot_integration.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Integration-of-Uniprot-Data">Integration of Uniprot Data<a class="anchor-link" href="#Integration-of-Uniprot-Data"> </a></h2><p>This notebook allows to download Uniprot data and save them in a csv format.</p>
+<p>The preprocessed downloaded data will include information about:</p>
+<ul>
+<li><strong>the known preprocessing events</strong> for proteins, such as signal peptide, transit peptide, propeptide, chain, peptide;</li>
+<li>information on all available in Uniprot <strong>post translational modificatios</strong>, like modified residues (Phosphorylation, Methylation, Acetylation, etc.), Lipidation, Glycosylation, etc.;</li>
+<li>information on <strong>sequence similarities</strong> with other proteins and <strong>the domain(s)</strong> present in a protein, such as domain, repeat, region, motif, etc.;</li>
+<li>information on <strong>the secondary and tertiary structure</strong> of proteins, such as turn, beta strand, helix.</li>
+</ul>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Instructions-on-how-to-download-a-UniProt-annotation-file">Instructions on how to download a UniProt annotation file<a class="anchor-link" href="#Instructions-on-how-to-download-a-UniProt-annotation-file"> </a></h3><ol>
