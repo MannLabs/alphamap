@@ -112,10 +112,7 @@ def import_spectronaut_data(
         sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
 
     Returns:
-        pd.DataFrame: A pandas dataframe containing information about:
-            - all_protein_ids (str)
-            - modified_sequence (str)
-            - naked_sequence (str)
+        pd.DataFrame: A pandas dataframe containing information about: all_protein_ids (str), modified_sequence (str), naked_sequence (str)
     """
     spectronaut_columns = ["PEP.AllOccurringProteinAccessions","EG.ModifiedSequence","R.FileName"]
 
@@ -158,10 +155,7 @@ def import_maxquant_data(
         sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
 
     Returns:
-        pd.DataFrame: A pandas dataframe containing information about:
-            - all_protein_ids (str)
-            - modified_sequence (str)
-            - naked_sequence (str)
+        pd.DataFrame: A pandas dataframe containing information about: all_protein_ids (str), modified_sequence (str), naked_sequence (str)
     """
     mq_columns = ["Proteins","Modified sequence","Raw file"]
 
@@ -270,10 +264,7 @@ def import_alphapept_data(
         sample (Union[str, list, None]): The unique raw file name(s) to filter the original file. Defaults to None. In this case data for all raw files will be extracted.
 
     Returns:
-        pd.DataFrame: A pandas dataframe containing information about:
-            - all_protein_ids (str)
-            - modified_sequence (str)
-            - naked_sequence (str)
+        pd.DataFrame: A pandas dataframe containing information about: all_protein_ids (str), modified_sequence (str), naked_sequence (str)
     """
     ap_columns = ["protein_group", "sequence", "shortname"]
 
@@ -333,10 +324,7 @@ def import_data(
         TypeError: If the input data format is unknown.
 
     Returns:
-        pd.DataFrame: A pandas dataframe containing information about:
-            - all_protein_ids (str)
-            - modified_sequence (str)
-            - naked_sequence (str)
+        pd.DataFrame: A pandas dataframe containing information about: all_protein_ids (str), modified_sequence (str), naked_sequence (str)
     """
     if dashboard:
         file = StringIO(str(file, "utf-8"))
