@@ -219,8 +219,8 @@ def convert_ap_mq_mod(
     mods = re.findall('[a-z0-9]+', sequence)
     if mods:
         for mod in mods:
-            i = sequence.index(mod)
-            sequence = sequence.replace(mod, '')
+            i = re.search(f'(?<!\[){mod}', sequence).start()
+            sequence = re.sub(f'(?<!\[){mod}', '', string=sequence, count=1)
             if mod == 'ox':
                 if sequence[i:i+2] == 'MP':
                     add_aa = 'MP'
