@@ -276,7 +276,8 @@ def import_alphapept_data(
     """
     ap_columns = ["protein_group", "sequence", "shortname"]
 
-    data = read_file(file, ap_columns)
+    data = pd.read_csv(file, usecols=ap_columns)
+    # TO DO: add later the file reading using read_file function. For now it doesn't work for the protein groups that should be split later
 
     if sample:
         if isinstance(sample, list):
@@ -295,7 +296,7 @@ def import_alphapept_data(
     data_sub['modified_sequence'] = modif_seq.values
 
     # get a list of proteins_id
-    proteins = data_sub.apply(lambda row: ",".join([_.split('|')[1] for _ in row.protein_group.split(',')]), axis=1)
+    proteins = data_sub.apply(lambda row: ";".join([_.split('|')[1] for _ in row.protein_group.split(',')]), axis=1)
     data_sub['all_protein_ids'] = proteins.values
 
     # get naked sequence
@@ -319,8 +320,7 @@ def import_data(
     verbose: bool = True,
     dashboard: bool = False
 ) -> pd.DataFrame:
-    """Import peptide level data. Depending on available columns in the provided file,
-    the function calls other specific functions for each tool.
+    """Import peptide level data. Depending on available columns in the provided file, the function calls other specific functions for each tool.
 
     Args:
         file (str): The name of a file.
