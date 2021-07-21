@@ -208,6 +208,7 @@ def convert_ap_mq_mod(
     Returns:
         str: The peptide sequence with modification in a similar to MaxQuant style.
     """
+    # TODO: add more AP modifications
     modif_convers_dict = {
         '[oxM]': '[Oxidation (M)]', '[oxP]': '[Oxidation (P)]', '[oxMP]': '[Oxidation (MP)]',
         '[a]': '[Acetyl (Protein N-term)]', '[aK]': '[Acetyl (K)]',
@@ -277,7 +278,7 @@ def import_alphapept_data(
     ap_columns = ["protein_group", "sequence", "shortname"]
 
     data = pd.read_csv(file, usecols=ap_columns)
-    # TO DO: add later the file reading using read_file function. For now it doesn't work for the protein groups that should be split later
+    # TODO: add later the file reading using read_file function. For now it doesn't work for the protein groups that should be split later
 
     if sample:
         if isinstance(sample, list):
