@@ -35,9 +35,50 @@ nb_path: "nbs/organisms_data.ipynb"
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The import functions herein are only for loading data specified in the <em>all_organisms</em> dictionary. This means that the uniprot annotation files referred to herein have already been processed and formatted by alphamap.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_organisms</span><span class="p">[</span><span class="s1">&#39;Rat&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;fasta_name&#39;: &#39;rat_[10116].fasta&#39;,
+ &#39;uniprot_name&#39;: &#39;preprocessed_uniprot_rat.csv&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -85,36 +126,6 @@ Returns:
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_import_fasta</span><span class="p">():</span>
-    
-    <span class="c1"># Test if exception works</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">import_fasta</span><span class="p">(</span><span class="n">organism</span><span class="o">=</span><span class="s1">&#39;rat&#39;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;, &#39;SARS-CoV&#39;, &#39;SARS-CoV2&#39;]&quot;</span> 
-    
-    <span class="c1"># Test if fasta is read correctly</span>
-    <span class="n">ecoli_fasta</span> <span class="o">=</span> <span class="n">import_fasta</span><span class="p">(</span><span class="s1">&#39;Escherichia coli&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">ecoli_fasta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;MSQNTLKVHDLNEDAEFDENGVEVFDEKALVEQEPSDNDLAEEELLSQGATQRVLDATQLYLGEIGYSPLLTAEEEVYFARRALRGDVASRRRMIESNLRLVVKIARRYGNRGLALLDLIEEGNLGLIRAVEKFDPERGFRFSTYATWWIRQTIERAIMNQTRTIRLPIHIVKELNVYLRTARELSHKLDHEPSAEEIAEQLDKPVDDVSRMLRLNERITSVDTPLGGDSEKALLDILADEKENGPEDTTQDDDMKQSIVKWLFELNAKQREVLARRFGLLGYEAATLEDVGREIGLTRERVRQIQVEGLRRLREILQTQGLNIEALFRE&quot;</span>
-    
-<span class="n">test_import_fasta</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Function-to-load-uniprot-annotations-for-a-selected-organism">Function to load uniprot annotations for a selected organism<a class="anchor-link" href="#Function-to-load-uniprot-annotations-for-a-selected-organism"> </a></h2>
@@ -154,36 +165,6 @@ Returns:
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_import_uniprot_annotation</span><span class="p">():</span>
-    
-    <span class="c1"># Test if exception works</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">import_uniprot_annotation</span><span class="p">(</span><span class="n">organism</span><span class="o">=</span><span class="s1">&#39;rat&#39;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="n">e</span>
-    <span class="k">assert</span> <span class="nb">str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;Organism rat is not available. Please select one of the following: [&#39;Human&#39;, &#39;Mouse&#39;, &#39;Rat&#39;, &#39;Cow&#39;, &#39;Zebrafish&#39;, &#39;Drosophila&#39;, &#39;Caenorhabditis elegans&#39;, &#39;Slime mold&#39;, &#39;Arabidopsis thaliana&#39;, &#39;Rice&#39;, &#39;Escherichia coli&#39;, &#39;Bacillus subtilis&#39;, &#39;Saccharomyces cerevisiae&#39;, &#39;SARS-CoV&#39;, &#39;SARS-CoV2&#39;]&quot;</span> 
-    
-    <span class="c1"># Test if fasta is read correctly</span>
-    <span class="n">ecoli_uniprot</span> <span class="o">=</span> <span class="n">import_uniprot_annotation</span><span class="p">(</span><span class="s1">&#39;Escherichia coli&#39;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">ecoli_uniprot</span><span class="o">.</span><span class="n">protein_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;P27685&quot;</span>
-    
-<span class="n">test_import_uniprot_annotation</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
     {% endraw %}
