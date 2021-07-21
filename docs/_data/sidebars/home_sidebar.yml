@@ -23,7 +23,7 @@ entries:
       title: UniProt data formatting
       url: Uniprot_integration.html
     - output: web,pdf
-      title: Load UniProt information for different organisms
+      title: UniProt import for different organisms
       url: organisms_data.html
     - output: web,pdf
       title: Protease information

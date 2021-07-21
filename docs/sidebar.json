@@ -5,7 +5,7 @@
     "Data preprocessig": "Preprocessing.html",
     "Sequence visualization": "SequencePlot.html",
     "UniProt data formatting": "Uniprot_integration.html",
-    "Load UniProt information for different organisms": "organisms_data.html",
+    "UniProt import for different organisms": "organisms_data.html",
     "Protease information": "proteolytic_cleavage.html"
   }
 }

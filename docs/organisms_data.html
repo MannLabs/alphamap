@@ -1,6 +1,6 @@
 ---
 
-title: Load UniProt information for different organisms
+title: UniProt import for different organisms
 
 
 keywords: fastai
@@ -31,7 +31,7 @@ nb_path: "nbs/organisms_data.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dictionary-with-data-about-all-available-organisms">Dictionary with data about all available organisms<a class="anchor-link" href="#Dictionary-with-data-about-all-available-organisms"> </a></h2>
+<h2 id="Dictionary-linking-organisms-to-their-available-fasta-files-and-uniprot-annotations">Dictionary linking organisms to their available fasta files and uniprot annotations<a class="anchor-link" href="#Dictionary-linking-organisms-to-their-available-fasta-files-and-uniprot-annotations"> </a></h2>
 </div>
 </div>
 </div>
@@ -44,7 +44,7 @@ nb_path: "nbs/organisms_data.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Functions-to-load-fasta-data">Functions to load fasta data<a class="anchor-link" href="#Functions-to-load-fasta-data"> </a></h2>
+<h2 id="Function-to-load-fasta-file-for-a-selected-organism">Function to load fasta file for a selected organism<a class="anchor-link" href="#Function-to-load-fasta-file-for-a-selected-organism"> </a></h2>
 </div>
 </div>
 </div>
@@ -59,10 +59,14 @@ nb_path: "nbs/organisms_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="import_fasta" class="doc_header"><code>import_fasta</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/organisms_data.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_fasta</code>(<strong><code>organism</code></strong>)</p>
+<h4 id="import_fasta" class="doc_header"><code>import_fasta</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/organisms_data.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_fasta</code>(<strong><code>organism</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Import fasta file for the selected organism.
 This downloads the file from github if not present.</p>
+<p>Args:
+    organism (str): Organism for which the fasta file should be imported.
+Returns:
+    fasta: Fasta file imported by pyteomics 'fasta.IndexedUniProt' for the selected organism.</p>
 
 </div>
 
@@ -113,7 +117,7 @@ This downloads the file from github if not present.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Functions-to-load-uniprot-data">Functions to load uniprot data<a class="anchor-link" href="#Functions-to-load-uniprot-data"> </a></h2>
+<h2 id="Function-to-load-uniprot-annotations-for-a-selected-organism">Function to load uniprot annotations for a selected organism<a class="anchor-link" href="#Function-to-load-uniprot-annotations-for-a-selected-organism"> </a></h2>
 </div>
 </div>
 </div>
@@ -128,10 +132,14 @@ This downloads the file from github if not present.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="import_uniprot_annotation" class="doc_header"><code>import_uniprot_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/organisms_data.py#L97" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_uniprot_annotation</code>(<strong><code>organism</code></strong>)</p>
+<h4 id="import_uniprot_annotation" class="doc_header"><code>import_uniprot_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/organisms_data.py#L102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>import_uniprot_annotation</code>(<strong><code>organism</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Import uniprot annotation file for the selected organism.
 This downloads the file from github if not present.</p>
+<p>Args:
+    organism (str): Organism for which the uniprot annotation should be imported.
+Returns:
+    pd.DataFrame: Dataframe with the uniprot annotations for the selected organism.</p>
 
 </div>
 
@@ -180,12 +188,6 @@ This downloads the file from github if not present.</p>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Export-notebook-to-script">Export notebook to script<a class="anchor-link" href="#Export-notebook-to-script"> </a></h2>
-</div>
-</div>
-</div>
 </div>
  
 

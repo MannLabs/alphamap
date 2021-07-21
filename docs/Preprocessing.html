@@ -54,7 +54,7 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <code>all_protein_ids</code> column in <code>df</code> is split by ';' to result in unique rows for each UniProt accession. The exploded dataframe has a new column <code>unique_protein_id</code>.</p>
+<p>The <em>all_protein_ids</em> column in <em>df</em> is split by ';' to result in unique rows for each UniProt accession. The exploded dataframe has a new column <em>unique_protein_id</em>.</p>
 
 </div>
 </div>
@@ -104,7 +104,7 @@ Returns:
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="/Preprocessing.html#get_peptide_position"><code>get_peptide_position</code></a> function annotates a peptide's start and end position in the given protein sequence.</p>
+<p>The <em>get_peptide_position</em> function annotates a peptide's start and end position in the given protein sequence.</p>
 
 </div>
 </div>
@@ -194,7 +194,7 @@ Returns:
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="/Preprocessing.html#get_modifications"><code>get_modifications</code></a> function annotates sequence positions and modification types of all PTMs on a peptide.</p>
+<p>The <em>get_modifications</em> function annotates sequence positions and modification types of all PTMs on a peptide.</p>
 
 </div>
 </div>
@@ -281,11 +281,11 @@ Returns:
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="/Preprocessing.html#format_input_data"><code>format_input_data</code></a> function is a wrapper for all previous functions described in this notebook. It calls following functios:</p>
+<p>The <em>format_input_data</em> function is a wrapper for all previous functions described in this notebook. It calls following functios:</p>
 <ul>
-<li><a href="/Preprocessing.html#expand_protein_ids"><code>expand_protein_ids</code></a>: to split protein groups into unique uniprot accessions</li>
-<li><a href="/Preprocessing.html#get_peptide_position"><code>get_peptide_position</code></a>: to annotate each peptide with its start and end position on its respective protein sequence</li>
-<li><a href="/Preprocessing.html#get_modifications"><code>get_modifications</code></a>: To get the sequence positions and modification types of all PTMs of a peptide.</li>
+<li><em>expand_protein_ids</em>: to split protein groups into unique uniprot accessions</li>
+<li><em>get_peptide_position</em>: to annotate each peptide with its start and end position on its respective protein sequence</li>
+<li><em>get_modifications</em>: To get the sequence positions and modification types of all PTMs of a peptide.</li>
 </ul>
 
 </div>

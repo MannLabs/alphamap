@@ -79,9 +79,14 @@ nb_path: "nbs/Uniprot_integration.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_note" class="doc_header"><code>extract_note</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_note</code>(<strong><code>string</code></strong>, <strong><code>splitted</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="extract_note" class="doc_header"><code>extract_note</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_note</code>(<strong><code>string</code></strong>:<code>str</code>, <strong><code>splitted</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
 </blockquote>
-<p>Function to extract information about note of the protein from Uniprot using regular expression</p>
+<p>Helper function to extract information about note of the protein from Uniprot using regular expression.</p>
+<p>Args:
+    string (str): Uniprot annotation string.
+    splitted (bool, optional): Flag to allow linebreaks. Default is 'False'.
+Returns:
+    str: Extracted string of the uniprot note section.</p>
 
 </div>
 
@@ -104,8 +109,14 @@ nb_path: "nbs/Uniprot_integration.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_note_end" class="doc_header"><code>extract_note_end</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_note_end</code>(<strong><code>string</code></strong>, <strong><code>has_mark</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="extract_note_end" class="doc_header"><code>extract_note_end</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_note_end</code>(<strong><code>string</code></strong>:<code>str</code>, <strong><code>has_mark</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
+<p>Helper function to extract information about note of the protein from Uniprot using regular expression.</p>
+<p>Args:
+    string (str): Uniprot annotation string.
+    has_mark (bool, optional): Flag if end quotation marks are present. Default is 'False'.
+Returns:
+    str: Extracted string of the uniprot note section.</p>
 
 </div>
 
@@ -135,10 +146,14 @@ nb_path: "nbs/Uniprot_integration.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="resolve_unclear_position" class="doc_header"><code>resolve_unclear_position</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>resolve_unclear_position</code>(<strong><code>value</code></strong>)</p>
+<h4 id="resolve_unclear_position" class="doc_header"><code>resolve_unclear_position</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L48" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>resolve_unclear_position</code>(<strong><code>value</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Replace unclear position of the start/end of the modification defined as '?' with -1 and if it's defined as '?N'
-or "&gt;N" - by removing the '?'/'&gt;'/'&lt;' signs</p>
+or "&gt;N" - by removing the '?'/'&gt;'/'&lt;' signs.</p>
+<p>Args:
+    value (str): Unclear sequence position from uniprot.
+Returns:
+    float: Resolved sequence position.</p>
 
 </div>
 
@@ -161,9 +176,13 @@ or "&gt;N" - by removing the '?'/'&gt;'/'&lt;' signs</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_positions" class="doc_header"><code>extract_positions</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_positions</code>(<strong><code>posit_string</code></strong>)</p>
+<h4 id="extract_positions" class="doc_header"><code>extract_positions</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L66" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_positions</code>(<strong><code>posit_string</code></strong>:<code>str</code>)</p>
 </blockquote>
-<p>Extract isoform_id(str) and start/end positions(float) of any feature key from the string</p>
+<p>Extract isoform_id(str) and start/end positions(float) of any feature key from the string.</p>
+<p>Args:
+    posit_string (str): Uniprot position string.
+Returns:
+    [str, float, float]: str: Uniprot isoform accession, float: start position, float: end position</p>
 
 </div>
 
@@ -193,7 +212,7 @@ or "&gt;N" - by removing the '?'/'&gt;'/'&lt;' signs</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preprocess_uniprot" class="doc_header"><code>preprocess_uniprot</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L70" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_uniprot</code>(<strong><code>path_to_file</code></strong>)</p>
+<h4 id="preprocess_uniprot" class="doc_header"><code>preprocess_uniprot</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/uniprot_integration.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_uniprot</code>(<strong><code>path_to_file</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>A complex complete function to preprocess Uniprot data from specifying the path to a flat text file
 to the returning a dataframe containing information about:</p>
@@ -203,7 +222,13 @@ to the returning a dataframe containing information about:</p>
 - isoform_id(str)
 - start(float)
 - end(float)
-- note information(str)</code></pre>
+- note information(str)
+
+</code></pre>
+<p>Args:
+    path_to_file (str): Path to a .txt annotation file directly downloaded from uniprot.
+Returns:
+    pd.DataFrame: Dataframe with formatted uniprot annotations for alphamap.</p>
 
 </div>
 
@@ -224,7 +249,14 @@ to the returning a dataframe containing information about:</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-following-is-a-dictionary-that-maps-feature-names-to-the-feature-entries-in-the-processed-uniprot-annotation-file">The following is a dictionary that maps feature names to the feature entries in the processed uniprot annotation file<a class="anchor-link" href="#The-following-is-a-dictionary-that-maps-feature-names-to-the-feature-entries-in-the-processed-uniprot-annotation-file"> </a></h3>
+<h2 id="UniProt-feature-dictionary">UniProt feature dictionary<a class="anchor-link" href="#UniProt-feature-dictionary"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following is a dictionary that maps feature names to the feature entries in the processed uniprot annotation file.</p>
+
 </div>
 </div>
 </div>
@@ -235,12 +267,6 @@ to the returning a dataframe containing information about:</p>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Export-notebook-to-script">Export notebook to script<a class="anchor-link" href="#Export-notebook-to-script"> </a></h1>
-</div>
-</div>
-</div>
 </div>
  
 

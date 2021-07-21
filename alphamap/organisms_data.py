@@ -57,10 +57,15 @@ import urllib.request
 import shutil
 import imp
 from pyteomics import fasta
-def import_fasta(organism):
+def import_fasta(organism: str):
     """
     Import fasta file for the selected organism.
     This downloads the file from github if not present.
+
+    Args:
+        organism (str): Organism for which the fasta file should be imported.
+    Returns:
+        fasta: Fasta file imported by pyteomics 'fasta.IndexedUniProt' for the selected organism.
     """
     if not organism in all_organisms.keys():
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
@@ -94,10 +99,16 @@ import urllib.request
 import shutil
 import imp
 import pandas as pd
-def import_uniprot_annotation(organism):
+def import_uniprot_annotation(organism: str):
     """
     Import uniprot annotation file for the selected organism.
     This downloads the file from github if not present.
+
+    Args:
+        organism (str): Organism for which the uniprot annotation should be imported.
+    Returns:
+        pd.DataFrame: Dataframe with the uniprot annotations for the selected organism.
+
     """
     if not organism in all_organisms.keys():
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")

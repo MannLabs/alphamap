@@ -45,9 +45,16 @@ protease_dict["trypsin"] = "([KR](?=[^P]))"
 
 # Cell
 import re
-def get_cleavage_sites(sequence, protease):
+def get_cleavage_sites(sequence: str, protease: str):
     """
     Function to get the position of proteolytic cleavage sites in a sequence.
+
+    Args:
+        sequence (str): Amino acid sequence.
+        protease (str): Protease to use for in silico digestion.
+    Returns:
+        list: List of cleavage site indices for the selected protease.
+
     """
     pattern = re.compile(protease_dict[protease])
     pattern_idx = pattern.finditer(sequence)
