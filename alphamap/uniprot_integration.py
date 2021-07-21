@@ -10,9 +10,15 @@ import pandas as pd
 import numpy as np
 
 # Cell
-def extract_note(string, splitted=False):
+def extract_note(string: str, splitted:bool = False):
     """
-    Function to extract information about note of the protein from Uniprot using regular expression
+    Helper function to extract information about note of the protein from Uniprot using regular expression.
+
+    Args:
+        string (str): Uniprot annotation string.
+        splitted (bool, optional): Flag to allow linebreaks. Default is 'False'.
+    Returns:
+        str: Extracted string of the uniprot note section.
     """
     if not splitted:
         regex = r"\/note=\"(?P<note>.+?)\""
@@ -21,7 +27,16 @@ def extract_note(string, splitted=False):
     result = re.findall(regex, string)
     return result
 
-def extract_note_end(string, has_mark=True):
+def extract_note_end(string: str, has_mark:bool = True):
+    """
+    Helper function to extract information about note of the protein from Uniprot using regular expression.
+
+    Args:
+        string (str): Uniprot annotation string.
+        has_mark (bool, optional): Flag if end quotation marks are present. Default is 'False'.
+    Returns:
+        str: Extracted string of the uniprot note section.
+    """
     if has_mark:
         regex = r"FT\s+(?P<note>.*)\""
     else:
@@ -30,10 +45,15 @@ def extract_note_end(string, has_mark=True):
     return result
 
 # Cell
-def resolve_unclear_position(value):
+def resolve_unclear_position(value: str):
     """
     Replace unclear position of the start/end of the modification defined as '?' with -1 and if it's defined as '?N'
-    or ">N" - by removing the '?'/'>'/'<' signs
+    or ">N" - by removing the '?'/'>'/'<' signs.
+
+    Args:
+        value (str): Unclear sequence position from uniprot.
+    Returns:
+        float: Resolved sequence position.
     """
     # if it's "1..?" or "?..345" for start or end -> remove -1 that we can filter later
     # if it's "31..?327" or "?31..327" -> remove the question mark
@@ -43,9 +63,14 @@ def resolve_unclear_position(value):
     value = value.replace('?', '').replace('>', '').replace('<', '')
     return float(value)
 
-def extract_positions(posit_string):
+def extract_positions(posit_string: str):
     """
-    Extract isoform_id(str) and start/end positions(float) of any feature key from the string
+    Extract isoform_id(str) and start/end positions(float) of any feature key from the string.
+
+    Args:
+        posit_string (str): Uniprot position string.
+    Returns:
+        [str, float, float]: str: Uniprot isoform accession, float: start position, float: end position
     """
     isoform = ''
     start = end = np.nan
@@ -67,7 +92,7 @@ def extract_positions(posit_string):
     return isoform, start, end
 
 # Cell
-def preprocess_uniprot(path_to_file):
+def preprocess_uniprot(path_to_file: str):
     """
     A complex complete function to preprocess Uniprot data from specifying the path to a flat text file
     to the returning a dataframe containing information about:
@@ -77,6 +102,12 @@ def preprocess_uniprot(path_to_file):
         - start(float)
         - end(float)
         - note information(str)
+
+    Args:
+        path_to_file (str): Path to a .txt annotation file directly downloaded from uniprot.
+    Returns:
+        pd.DataFrame: Dataframe with formatted uniprot annotations for alphamap.
+
     """
     all_data = []
     with open(path_to_file) as f:

@@ -1,6 +1,6 @@
 ---
 
-title: Title
+title: Sequence visualization
 
 
 keywords: fastai
@@ -31,7 +31,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Format-uniprot-annotation">Format uniprot annotation<a class="anchor-link" href="#Format-uniprot-annotation"> </a></h3>
+<h2 id="Format-uniprot-annotation">Format uniprot annotation<a class="anchor-link" href="#Format-uniprot-annotation"> </a></h2>
 </div>
 </div>
 </div>
@@ -46,9 +46,65 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="format_uniprot_annotation" class="doc_header"><code>format_uniprot_annotation</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/sequenceplot.py#L9" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_uniprot_annotation</code>(<strong><code>uniprot_ann</code></strong>)</p>
+<h4 id="format_uniprot_annotation" class="doc_header"><code>format_uniprot_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L9" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_uniprot_annotation</code>(<strong><code>uniprot_ann</code></strong>:<code>DataFrame</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>)</p>
 </blockquote>
-<p>Function to format uniprot annotation for plotting</p>
+<p>Function to format uniprot annotation for plotting.</p>
+<p>Args:
+    uniprot_ann (pd.DataFrame): Formatted uniprot annotations from alphamap.
+    uniprot_feature_dict (dict): Uniprot feature dictionary defined by alphamap.
+Returns:
+    pd.DataFrame: Uniprot annotation with a combined structure entry for helix, strand and turn.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Format-data-for-plotting">Format data for plotting<a class="anchor-link" href="#Format-data-for-plotting"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L84" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
+</blockquote>
+<p>Function to format experimental data for plotting.</p>
+<p>Args:
+    protein (str): Uniprot protein accession.
+    df (pd.DataFrame): Experimental data imported and formatted according to alphamap standards.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+Returns:
+    pd.DataFrame: Formatted dataframe for plotting.</p>
 
 </div>
 
@@ -69,17 +125,10 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Generate-input-data-for-testing">Generate input data for testing<a class="anchor-link" href="#Generate-input-data-for-testing"> </a></h2>
+<h2 id="Function-to-plot-a-single-dataset">Function to plot a single dataset<a class="anchor-link" href="#Function-to-plot-a-single-dataset"> </a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -91,8 +140,88 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/sequenceplot.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L155" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
 </blockquote>
+<p>Function to plot single peptide trace.</p>
+<p>Args:
+    df_plot (pd.DataFrame): Formatted dataframe for plotting, generated by get_plot_data.
+    protein (str): Uniprot protein accession.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+Returns:
+    go.Figure: Figure data for a single dataset.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plotting-function-for-the-full-sequence-plot">Plotting function for the full sequence plot<a class="anchor-link" href="#Plotting-function-for-the-full-sequence-plot"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L378" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>dashboard</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>)</p>
+</blockquote>
+<p>Function to generate the sequence plot.</p>
+<p>Args:
+    df (pd.DataFrame/list): Single dataframe or list of dataframes containing the datasets to plot.
+    name (str/list): Single string or list of strings containing the names for each dataset in df.
+    protein (str): Uniprot protein accession.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+    uniprot (pd.DataFrame): Uniprot annotations formatted by alphamap.
+    selected_features (list): List of uniprot features to plot.
+    uniprot_feature_dict (dict): Uniprot feature dictionary.
+    uniprot_color_dict (dict): Uniprot color dictionary.
+    selected_proteases (list, optional): List of proteases to plot. Default is an empty list.
+    dashboard (bool, optional): Flag if the function is called from the dashboard. Default is 'False'.
+    trace_colors (list, optional): List of manualy selected colors for each dataset in df. Default is an empty list.</p>
+<p>Returns:
+    go.Figure: Sequence plot.</p>
 
 </div>
 
@@ -113,8 +242,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>@ need to write tests for get_plot_data</p>
-
+<h2 id="Create-a-pdf-report">Create a pdf report<a class="anchor-link" href="#Create-a-pdf-report"> </a></h2>
 </div>
 </div>
 </div>
@@ -129,8 +257,22 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/sequenceplot.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="create_pdf_report" class="doc_header"><code>create_pdf_report</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L636" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_pdf_report</code>(<strong><code>proteins</code></strong>:<code>list</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>)</p>
 </blockquote>
+<p>Function to write pdf reports for selected proteins</p>
+<p>Args:
+    proteins (list): List of uniprot protein accessions.
+    df (pd.DataFrame/list): Single dataframe or list of dataframes containing the datasets to plot.
+    name (str/list): Single string or list of strings containing the names for each dataset in df.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+    uniprot (pd.DataFrame): Uniprot annotations formatted by alphamap.
+    selected_features (list): List of uniprot features to plot.
+    uniprot_feature_dict (dict): Uniprot feature dictionary.
+    uniprot_color_dict (dict): Uniprot color dictionary.
+    selected_proteases (list, optional): List of proteases to plot. Default is an empty list.
+    trace_colors (list, optional): List of manualy selected colors for each dataset in df. Default is an empty list.</p>
+<p>Returns:
+    BytesIO: BytesIO object for writing a pdf report.</p>
 
 </div>
 
@@ -145,103 +287,6 @@ nb_path: "nbs/SequencePlot.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/sequenceplot.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>, <strong><code>name</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>, <strong><code>uniprot</code></strong>, <strong><code>selected_features</code></strong>, <strong><code>uniprot_feature_dict</code></strong>, <strong><code>uniprot_color_dict</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_annotatins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uniprot_annotation</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">all_annotatins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;STRUCTURE&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
     {% endraw %}

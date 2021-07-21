@@ -1,9 +1,11 @@
 {
-  "pepmap": {
+  "alphamap": {
     "Overview": "/",
     "This notebook provides a function to import peptide level data from Spectronaut or MaxQuant": "Importing.html",
-    "This notebook provides functions to format input data for sequence plotting": "Preprocessing.html",
-    "Title": "SequencePlot.html",
-    "Integration of Uniprot Data": "Uniprot_integration.html"
+    "Data preprocessig": "Preprocessing.html",
+    "Sequence visualization": "SequencePlot.html",
+    "UniProt data formatting": "Uniprot_integration.html",
+    "UniProt import for different organisms": "organisms_data.html",
+    "Protease information": "proteolytic_cleavage.html"
   }
 }

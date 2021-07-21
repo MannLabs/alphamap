@@ -1,6 +1,6 @@
 ---
 
-title: This notebook provides functions to format input data for sequence plotting
+title: Data preprocessig
 
 
 keywords: fastai
@@ -31,38 +31,31 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Generate-input-data-for-testing">Generate input data for testing<a class="anchor-link" href="#Generate-input-data-for-testing"> </a></h2>
+<h2 id="This-notebook-provides-functions-to-format-input-data-for-sequence-plotting">This notebook provides functions to format input data for sequence plotting<a class="anchor-link" href="#This-notebook-provides-functions-to-format-input-data-for-sequence-plotting"> </a></h2><p>The formatted input data is returned as pandas dataframe containing following columns:</p>
+<ul>
+<li>unique_protein_id: a single uniprot accession</li>
+<li>modified_sequence: modified peptide sequence</li>
+<li>naked_sequence: naked peptide sequence    </li>
+<li>all_protein_ids: all UniProt IDs the peptide map to separated by ';'</li>
+<li>start: peptide start position on protein sequence</li>
+<li>end: peptide end position on protein sequence</li>
+<li>PTMsites: list with PTM positions</li>
+<li>PTMtypes: list with PTM types</li>
+</ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>@ToDO: Maybe write .fasta import function to remove dependency for pyteomics</p>
-
+<h2 id="Split-protein-group-into-unique-protein-accessions">Split protein group into unique protein accessions<a class="anchor-link" href="#Split-protein-group-into-unique-protein-accessions"> </a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyteomics</span> <span class="kn">import</span> <span class="n">fasta</span>
-<span class="n">test_fasta</span> <span class="o">=</span> <span class="n">fasta</span><span class="o">.</span><span class="n">IndexedUniProt</span><span class="p">(</span><span class="s2">&quot;../testdata/test.fasta&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Expand-shared-protein-ids-to-unique">Expand shared protein ids to unique<a class="anchor-link" href="#Expand-shared-protein-ids-to-unique"> </a></h2>
+<p>The <em>all_protein_ids</em> column in <em>df</em> is split by ';' to result in unique rows for each UniProt accession. The exploded dataframe has a new column <em>unique_protein_id</em>.</p>
+
 </div>
 </div>
 </div>
@@ -77,9 +70,14 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="expand_protein_ids" class="doc_header"><code>expand_protein_ids</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>expand_protein_ids</code>(<strong><code>df</code></strong>)</p>
+<h4 id="expand_protein_ids" class="doc_header"><code>expand_protein_ids</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>expand_protein_ids</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
-<p>Function split all_protein_ids into separate rows</p>
+<p>Function to split protein groups in 'all_protein_ids' by ';' into separate rows.
+The resulting dataframe has a new column 'unique_protein_id'.</p>
+<p>Args:
+    df (pd.DataFrame): Experimental data that was imported by the 'import_data' function.
+Returns:
+    pd.DataFrame: Exploded dataframe with a new column 'unique_protein_id'.</p>
 
 </div>
 
@@ -104,6 +102,13 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>get_peptide_position</em> function annotates a peptide's start and end position in the given protein sequence.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -115,8 +120,16 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="pep_position_helper" class="doc_header"><code>pep_position_helper</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L23" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pep_position_helper</code>(<strong><code>seq</code></strong>, <strong><code>prot</code></strong>, <strong><code>fasta</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="pep_position_helper" class="doc_header"><code>pep_position_helper</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pep_position_helper</code>(<strong><code>seq</code></strong>:<code>str</code>, <strong><code>prot</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
+<p>Helper function for 'get_peptide_position'.</p>
+<p>Args:
+    seq (str): Naked peptide sequence.
+    prot (str): UniProt protein accession.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+    verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+Returns:
+    [int, int]: int: peptide start position, int: peptide end position</p>
 
 </div>
 
@@ -146,9 +159,15 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_peptide_position" class="doc_header"><code>get_peptide_position</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_peptide_position</code>(<strong><code>df</code></strong>, <strong><code>fasta</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="get_peptide_position" class="doc_header"><code>get_peptide_position</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_peptide_position</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Function to get start and end position of each peptide in the given protein</p>
+<p>Function to get start and end position of each peptide in the given protein.</p>
+<p>Args:
+    df (pd.DataFrame): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+    verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+Returns:
+    pd.DataFrame: Dataframe with a new columns 'start' and 'end', indicating the start and end index position of the peptide sequence.</p>
 
 </div>
 
@@ -169,7 +188,14 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grep-all-modifications">Grep all modifications<a class="anchor-link" href="#Grep-all-modifications"> </a></h2>
+<h2 id="Annotate-each-peptide-with-PTM-site-indices-and-modification-types">Annotate each peptide with PTM site indices and modification types<a class="anchor-link" href="#Annotate-each-peptide-with-PTM-site-indices-and-modification-types"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>get_modifications</em> function annotates sequence positions and modification types of all PTMs on a peptide.</p>
+
 </div>
 </div>
 </div>
@@ -184,9 +210,14 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_ptm_sites" class="doc_header"><code>get_ptm_sites</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ptm_sites</code>(<strong><code>peptide</code></strong>, <strong><code>modification_reg</code></strong>)</p>
+<h4 id="get_ptm_sites" class="doc_header"><code>get_ptm_sites</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ptm_sites</code>(<strong><code>peptide</code></strong>:<code>str</code>, <strong><code>modification_reg</code></strong>:<code>str</code>)</p>
 </blockquote>
-<p>Function to get sequence positions of all PTMs of a peptide in the given protein</p>
+<p>Function to get sequence positions of all PTMs of a peptide in the given protein.</p>
+<p>Args:
+    peptide (str): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+    modification_reg (str): Regular expression for the modifications.
+Returns:
+    list: List of integers with PTM site location indices on the peptide.</p>
 
 </div>
 
@@ -216,9 +247,14 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_modifications" class="doc_header"><code>get_modifications</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L91" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_modifications</code>(<strong><code>df</code></strong>, <strong><code>mod_reg</code></strong>)</p>
+<h4 id="get_modifications" class="doc_header"><code>get_modifications</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_modifications</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>mod_reg</code></strong>:<code>str</code>)</p>
 </blockquote>
-<p>Function to get sequence positions and modification types of all PTMs of a peptide in the given protein</p>
+<p>Function to get sequence positions and modification types of all PTMs of a peptide in the given protein.</p>
+<p>Args:
+    df (pd.DataFrame): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+    mod_reg (str): Regular expression for the modifications.
+Returns:
+    pd.DataFrame: Dataframe with a new columns 'PTMsites' and 'PTMtypes' containing lists of PTM site indices and modification types, respectively.</p>
 
 </div>
 
@@ -243,6 +279,18 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>format_input_data</em> function is a wrapper for all previous functions described in this notebook. It calls following functios:</p>
+<ul>
+<li><em>expand_protein_ids</em>: to split protein groups into unique uniprot accessions</li>
+<li><em>get_peptide_position</em>: to annotate each peptide with its start and end position on its respective protein sequence</li>
+<li><em>get_modifications</em>: To get the sequence positions and modification types of all PTMs of a peptide.</li>
+</ul>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -254,9 +302,16 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="format_input_data" class="doc_header"><code>format_input_data</code><a href="https://github.com/ibludau/pepmap/tree/master/pepmap/preprocessing.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_input_data</code>(<strong><code>df</code></strong>, <strong><code>fasta</code></strong>, <strong><code>modification_exp</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="format_input_data" class="doc_header"><code>format_input_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L145" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_input_data</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>modification_exp</code></strong>:<code>str</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Function to format input data and to annotate sequence start and end positions plus PTM sites</p>
+<p>Function to format input data and to annotate sequence start and end positions plus PTM sites.</p>
+<p>Args:
+    df (pd.DataFrame): Experimental data that was imported by the 'import_data' function.
+    fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+    modification_exp (str): Regular expression for the modifications.
+    verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+Returns:
+    pd.DataFrame: Dataframe with unique uniprot accessions, sequence start and end positions, and PTM site information.</p>
 
 </div>
 
@@ -275,12 +330,6 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Export-notebook-to-script">Export notebook to script<a class="anchor-link" href="#Export-notebook-to-script"> </a></h2>
-</div>
-</div>
-</div>
 </div>
  
 

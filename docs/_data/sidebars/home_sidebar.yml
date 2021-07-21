@@ -14,15 +14,21 @@ entries:
         or MaxQuant
       url: Importing.html
     - output: web,pdf
-      title: This notebook provides functions to format input data for sequence plotting
+      title: Data preprocessig
       url: Preprocessing.html
     - output: web,pdf
-      title: Title
+      title: Sequence visualization
       url: SequencePlot.html
     - output: web,pdf
-      title: Integration of Uniprot Data
+      title: UniProt data formatting
       url: Uniprot_integration.html
+    - output: web,pdf
+      title: UniProt import for different organisms
+      url: organisms_data.html
+    - output: web,pdf
+      title: Protease information
+      url: proteolytic_cleavage.html
     output: web
-    title: pepmap
+    title: alphamap
   output: web
   title: Sidebar
