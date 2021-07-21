@@ -7,7 +7,14 @@ __all__ = ['expand_protein_ids', 'pep_position_helper', 'get_peptide_position', 
 import pandas as pd
 def expand_protein_ids(df):
     """
-    Function split all_protein_ids into separate rows
+    Function to split protein groups in 'all_protein_ids' by ';' into separate rows.
+    The resulting dataframe has a new column 'unique_protein_id'.
+
+    Args:
+        df (pd.DataFrame): Experimental data that was imported by the 'import_data' function.
+    Returns:
+        pd.DataFrame: Exploded dataframe with a new column 'unique_protein_id'.
+
     """
     df = df.copy(deep=True)
     df.all_protein_ids = df.all_protein_ids.str.split(';')
@@ -21,6 +28,18 @@ import re
 import numpy as np
 
 def pep_position_helper(seq, prot, fasta, verbose=True):
+    """
+    Helper function for 'get_peptide_position'.
+
+    Args:
+        seq (str): Naked peptide sequence.
+        prot (str): UniProt protein accession.
+        fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+        verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+    Returns:
+        [int, int]: int: peptide start position, int: peptide end position
+
+    """
     try:
         fasta_prot = fasta[prot]
         search_res = re.search(seq,fasta_prot.sequence)
@@ -44,7 +63,15 @@ import warnings
 
 def get_peptide_position(df, fasta, verbose=True):
     """
-    Function to get start and end position of each peptide in the given protein
+    Function to get start and end position of each peptide in the given protein.
+
+    Args:
+        df (pd.DataFrame): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+        fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+        verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+    Returns:
+        pd.DataFrame: Dataframe with a new columns 'start' and 'end', indicating the start and end index position of the peptide sequence.
+
     """
     res = df.copy(deep=True)
     res[['start','end']] = res.apply(lambda row: pep_position_helper(row['naked_sequence'],
@@ -66,7 +93,14 @@ import numpy as np
 
 def get_ptm_sites(peptide, modification_reg):
     """
-    Function to get sequence positions of all PTMs of a peptide in the given protein
+    Function to get sequence positions of all PTMs of a peptide in the given protein.
+
+    Args:
+        peptide (str): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+        modification_reg (str): Regular expression for the modifications.
+    Returns:
+        list: List of integers with PTM site location indices on the peptide.
+
     """
     r = re.compile(modification_reg)
     starts=[]
@@ -90,7 +124,14 @@ import re
 
 def get_modifications(df, mod_reg):
     """
-    Function to get sequence positions and modification types of all PTMs of a peptide in the given protein
+    Function to get sequence positions and modification types of all PTMs of a peptide in the given protein.
+
+    Args:
+        df (pd.DataFrame): Experimental data that was imported by the 'import_data' function and processed by 'expand_protein_ids'.
+        mod_reg (str): Regular expression for the modifications.
+    Returns:
+        pd.DataFrame: Dataframe with a new columns 'PTMsites' and 'PTMtypes' containing lists of PTM site indices and modification types, respectively.
+
     """
     res = df.copy(deep=True)
     res['PTMsites'] = res.apply(lambda row: get_ptm_sites(row['modified_sequence'],
@@ -102,7 +143,16 @@ def get_modifications(df, mod_reg):
 
 def format_input_data(df, fasta, modification_exp, verbose=True):
     """
-    Function to format input data and to annotate sequence start and end positions plus PTM sites
+    Function to format input data and to annotate sequence start and end positions plus PTM sites.
+
+    Args:
+        df (pd.DataFrame): Experimental data that was imported by the 'import_data' function.
+        fasta (fasta): Fasta file imported by pyteomics 'fasta.IndexedUniProt'.
+        modification_exp (str): Regular expression for the modifications.
+        verbose (bool, optional): Flag to print warnings if no matching sequence is found for a protein in the provided fasta. Defaults to 'True'.
+    Returns:
+        pd.DataFrame: Dataframe with unique uniprot accessions, sequence start and end positions, and PTM site information.
+
     """
     res = df.copy(deep=True)
     res = expand_protein_ids(res)
