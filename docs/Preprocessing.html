@@ -46,23 +46,6 @@ nb_path: "nbs/Preprocessing.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyteomics</span> <span class="kn">import</span> <span class="n">fasta</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Split-protein-group-into-unique-protein-accessions">Split protein group into unique protein accessions<a class="anchor-link" href="#Split-protein-group-into-unique-protein-accessions"> </a></h2>
@@ -87,7 +70,7 @@ nb_path: "nbs/Preprocessing.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="expand_protein_ids" class="doc_header"><code>expand_protein_ids</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>expand_protein_ids</code>(<strong><code>df</code></strong>)</p>
+<h4 id="expand_protein_ids" class="doc_header"><code>expand_protein_ids</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>expand_protein_ids</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 <p>Function to split protein groups in 'all_protein_ids' by ';' into separate rows.
 The resulting dataframe has a new column 'unique_protein_id'.</p>
@@ -137,7 +120,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="pep_position_helper" class="doc_header"><code>pep_position_helper</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pep_position_helper</code>(<strong><code>seq</code></strong>, <strong><code>prot</code></strong>, <strong><code>fasta</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="pep_position_helper" class="doc_header"><code>pep_position_helper</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L31" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pep_position_helper</code>(<strong><code>seq</code></strong>:<code>str</code>, <strong><code>prot</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Helper function for 'get_peptide_position'.</p>
 <p>Args:
@@ -176,7 +159,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_peptide_position" class="doc_header"><code>get_peptide_position</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_peptide_position</code>(<strong><code>df</code></strong>, <strong><code>fasta</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="get_peptide_position" class="doc_header"><code>get_peptide_position</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_peptide_position</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Function to get start and end position of each peptide in the given protein.</p>
 <p>Args:
@@ -227,7 +210,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_ptm_sites" class="doc_header"><code>get_ptm_sites</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L94" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ptm_sites</code>(<strong><code>peptide</code></strong>, <strong><code>modification_reg</code></strong>)</p>
+<h4 id="get_ptm_sites" class="doc_header"><code>get_ptm_sites</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ptm_sites</code>(<strong><code>peptide</code></strong>:<code>str</code>, <strong><code>modification_reg</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Function to get sequence positions of all PTMs of a peptide in the given protein.</p>
 <p>Args:
@@ -264,7 +247,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_modifications" class="doc_header"><code>get_modifications</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L125" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_modifications</code>(<strong><code>df</code></strong>, <strong><code>mod_reg</code></strong>)</p>
+<h4 id="get_modifications" class="doc_header"><code>get_modifications</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_modifications</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>mod_reg</code></strong>:<code>str</code>)</p>
 </blockquote>
 <p>Function to get sequence positions and modification types of all PTMs of a peptide in the given protein.</p>
 <p>Args:
@@ -319,7 +302,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="format_input_data" class="doc_header"><code>format_input_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_input_data</code>(<strong><code>df</code></strong>, <strong><code>fasta</code></strong>, <strong><code>modification_exp</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="format_input_data" class="doc_header"><code>format_input_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/preprocessing.py#L145" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_input_data</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>modification_exp</code></strong>:<code>str</code>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Function to format input data and to annotate sequence start and end positions plus PTM sites.</p>
 <p>Args:

@@ -5,7 +5,7 @@ __all__ = ['expand_protein_ids', 'pep_position_helper', 'get_peptide_position', 
 
 # Cell
 import pandas as pd
-def expand_protein_ids(df):
+def expand_protein_ids(df: pd.DataFrame):
     """
     Function to split protein groups in 'all_protein_ids' by ';' into separate rows.
     The resulting dataframe has a new column 'unique_protein_id'.
@@ -26,8 +26,9 @@ def expand_protein_ids(df):
 # Cell
 import re
 import numpy as np
+from pyteomics import fasta
 
-def pep_position_helper(seq, prot, fasta, verbose=True):
+def pep_position_helper(seq: str, prot: str, fasta: fasta, verbose: bool = True):
     """
     Helper function for 'get_peptide_position'.
 
@@ -61,7 +62,7 @@ def pep_position_helper(seq, prot, fasta, verbose=True):
 
 import warnings
 
-def get_peptide_position(df, fasta, verbose=True):
+def get_peptide_position(df: pd.DataFrame, fasta: fasta, verbose:bool = True):
     """
     Function to get start and end position of each peptide in the given protein.
 
@@ -91,7 +92,7 @@ def get_peptide_position(df, fasta, verbose=True):
 # Cell
 import numpy as np
 
-def get_ptm_sites(peptide, modification_reg):
+def get_ptm_sites(peptide: str, modification_reg: str):
     """
     Function to get sequence positions of all PTMs of a peptide in the given protein.
 
@@ -122,7 +123,7 @@ def get_ptm_sites(peptide, modification_reg):
 # Cell
 import re
 
-def get_modifications(df, mod_reg):
+def get_modifications(df: pd.DataFrame, mod_reg: str):
     """
     Function to get sequence positions and modification types of all PTMs of a peptide in the given protein.
 
@@ -141,7 +142,7 @@ def get_modifications(df, mod_reg):
 
 # Cell
 
-def format_input_data(df, fasta, modification_exp, verbose=True):
+def format_input_data(df: pd.DataFrame, fasta: fasta, modification_exp: str, verbose:bool = True):
     """
     Function to format input data and to annotate sequence start and end positions plus PTM sites.
 
