@@ -31,7 +31,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Format-uniprot-annotation">Format uniprot annotation<a class="anchor-link" href="#Format-uniprot-annotation"> </a></h3>
+<h2 id="Format-uniprot-annotation">Format uniprot annotation<a class="anchor-link" href="#Format-uniprot-annotation"> </a></h2>
 </div>
 </div>
 </div>
@@ -67,26 +67,19 @@ nb_path: "nbs/SequencePlot.ipynb"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Generate-input-data-for-testing">Generate input data for testing<a class="anchor-link" href="#Generate-input-data-for-testing"> </a></h2>
+<h2 id="Format-data-for-plotting">Format data for plotting<a class="anchor-link" href="#Format-data-for-plotting"> </a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -98,7 +91,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L81" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -125,6 +118,12 @@ nb_path: "nbs/SequencePlot.ipynb"
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Function-to-plot-a-single-peptide-trace">Function to plot a single peptide trace<a class="anchor-link" href="#Function-to-plot-a-single-peptide-trace"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -136,7 +135,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L141" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -177,6 +176,12 @@ nb_path: "nbs/SequencePlot.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plotting-function-for-the-full-sequence-plot">Plotting function for the full sequence plot<a class="anchor-link" href="#Plotting-function-for-the-full-sequence-plot"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -188,7 +193,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L347" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>, <strong><code>name</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>, <strong><code>uniprot</code></strong>, <strong><code>selected_features</code></strong>, <strong><code>uniprot_feature_dict</code></strong>, <strong><code>uniprot_color_dict</code></strong>, <strong><code>selected_proteases</code></strong>=<em><code>[]</code></em>, <strong><code>dashboard</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L349" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>, <strong><code>name</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>, <strong><code>uniprot</code></strong>, <strong><code>selected_features</code></strong>, <strong><code>uniprot_feature_dict</code></strong>, <strong><code>uniprot_color_dict</code></strong>, <strong><code>selected_proteases</code></strong>=<em><code>[]</code></em>, <strong><code>dashboard</code></strong>=<em><code>False</code></em>, <strong><code>trace_colors</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -204,24 +209,6 @@ nb_path: "nbs/SequencePlot.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_annotatins</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uniprot_annotation</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="n">all_annotatins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;STRUCTURE&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
     {% endraw %}
@@ -244,6 +231,12 @@ nb_path: "nbs/SequencePlot.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Create-a-pdf-report">Create a pdf report<a class="anchor-link" href="#Create-a-pdf-report"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -255,7 +248,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_pdf_report" class="doc_header"><code>create_pdf_report</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L572" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_pdf_report</code>(<strong><code>proteins</code></strong>, <strong><code>df</code></strong>, <strong><code>name</code></strong>, <strong><code>fasta</code></strong>, <strong><code>uniprot</code></strong>, <strong><code>selected_features</code></strong>, <strong><code>uniprot_feature_dict</code></strong>, <strong><code>uniprot_color_dict</code></strong>, <strong><code>selected_proteases</code></strong>)</p>
+<h4 id="create_pdf_report" class="doc_header"><code>create_pdf_report</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L578" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_pdf_report</code>(<strong><code>proteins</code></strong>, <strong><code>df</code></strong>, <strong><code>name</code></strong>, <strong><code>fasta</code></strong>, <strong><code>uniprot</code></strong>, <strong><code>selected_features</code></strong>, <strong><code>uniprot_feature_dict</code></strong>, <strong><code>uniprot_color_dict</code></strong>, <strong><code>selected_proteases</code></strong>)</p>
 </blockquote>
 <p>Function to write pdf reports for selected proteins</p>
 
@@ -272,23 +265,6 @@ nb_path: "nbs/SequencePlot.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
     {% endraw %}

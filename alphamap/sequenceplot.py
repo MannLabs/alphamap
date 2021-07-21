@@ -25,13 +25,9 @@ def format_uniprot_annotation(uniprot_ann, uniprot_feature_dict):
 
 
 # Cell
-#ptm_shape_dict = {'[Phospho (STY)]': 0,
-#                '[GlyGly (K)]':2,
-#                '[Carbamidomethyl (C)]':3,
-#                '[Oxidation (M)]':4,
-#                '[Acetyl (Protein N-term)]':5}
 
-# Cell
+# The PTM shape dictionary defines the shapes for each modification, so they are consistent across datasets and analyses.
+
 ptm_shape_dict = {
     '[Acetyl (K)]': 5,
     '[Acetyl (Protein N-term)]': 5,
@@ -255,6 +251,8 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
     return fig
 
 # Cell
+
+# Color palettes used for the different uniprot annotation features
 custom_color_palettes = {
     'col_greens':["#5C965D","#6AA16B","#77AC78","#84B786","#91C193","#9FCCA1","#B3DCB5","#C6EBC9"],
     'col_ornages':["#ff4800","#ff5400","#ff6000","#ff6d00","#ff7900","#ff8500","#ff9100","#ff9e00","#ffaa00","#ffb600"],
@@ -266,6 +264,8 @@ custom_color_palettes = {
 
 
 # Cell
+
+# The uniprot_color_dict maps each uniprot annotation feature to a color in the custom_color_palettes.
 uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                       'INIT_MET': custom_color_palettes['col_greens'][1],
                       'PEPTIDE': custom_color_palettes['col_greens'][2],
@@ -316,6 +316,8 @@ uniprot_color_dict = {'CHAIN': custom_color_palettes['col_greens'][0],
                      }
 
 # Cell
+
+# Dictionary that maps one-letter amino acid abbreviations to their full name.
 aa_color_dict = {'A':'Alanine',
                  'R':'Arginine',
                  'N':'Asparagine',
@@ -346,14 +348,18 @@ from .proteolytic_cleavage import get_cleavage_sites
 
 def plot_peptide_traces(df,name,protein,fasta,uniprot,selected_features,
                         uniprot_feature_dict,uniprot_color_dict, selected_proteases=[],
-                        dashboard=False):
+                        dashboard=False, trace_colors=None):
 
     figure_height = 200
 
     protein_sequence = fasta[protein].sequence
 
     # colors for experimental data traces
-    colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c"]
+    if trace_colors is None:
+        colors = ["#023e8a","#0096c7","#90e0ef","#7fd14d","#26a96c",
+                  "#0D7F8B", "#24B4AB", "#9DE7BE", "#1B9CC6", "#016699"]
+    else:
+        colors = trace_colors
 
     # generation of a reverse uniprot_feature_dict
     uniprot_feature_dict_rev = {v: k for k, v in uniprot_feature_dict.items()}
