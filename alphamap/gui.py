@@ -682,7 +682,7 @@ project_instuction = pn.pane.Markdown(
     """#### How to use AlphaMap:
     1. Select the organism of your proteomic study.
     2. Provide the filepath to your proteomic datasets analyzed by
-    AlphaPept, MaxQuant or Spectronaut.
+    AlphaPept, MaxQuant, Spectronaut or DIA-NN.
         - Wait for samples to be displayed in the 'Select samples' field.
         - (optional) Select either all samples (default) or any specific
         sample(s) to visualize together as one trace.
@@ -1021,7 +1021,7 @@ def natural_sort(l):
 
 def extract_samples(path):
     """
-    Extract information about unique sample names that present in the raw file analyzed by MaxQuant or Spectronaut.
+    Extract information about unique sample names that present in the raw file analyzed by MaxQuant, Spectronaut, AlphaPept or DIA-NN.
     """
     path = path.replace('"', '')
     file_size_gb = os.stat(path).st_size / 1024**3
