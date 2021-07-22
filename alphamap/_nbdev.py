@@ -11,12 +11,17 @@ index = {"read_file": "Importing.ipynb",
          "convert_diann_mq_mod": "Importing.ipynb",
          "import_diann_data": "Importing.ipynb",
          "import_data": "Importing.ipynb",
+         "all_organisms": "organisms_data.ipynb",
+         "import_fasta": "organisms_data.ipynb",
+         "import_uniprot_annotation": "organisms_data.ipynb",
          "expand_protein_ids": "Preprocessing.ipynb",
          "pep_position_helper": "Preprocessing.ipynb",
          "get_peptide_position": "Preprocessing.ipynb",
          "get_ptm_sites": "Preprocessing.ipynb",
          "get_modifications": "Preprocessing.ipynb",
          "format_input_data": "Preprocessing.ipynb",
+         "protease_dict": "proteolytic_cleavage.ipynb",
+         "get_cleavage_sites": "proteolytic_cleavage.ipynb",
          "format_uniprot_annotation": "SequencePlot.ipynb",
          "ptm_shape_dict": "SequencePlot.ipynb",
          "get_plot_data": "SequencePlot.ipynb",
@@ -31,19 +36,14 @@ index = {"read_file": "Importing.ipynb",
          "resolve_unclear_position": "Uniprot_integration.ipynb",
          "extract_positions": "Uniprot_integration.ipynb",
          "preprocess_uniprot": "Uniprot_integration.ipynb",
-         "uniprot_feature_dict": "Uniprot_integration.ipynb",
-         "all_organisms": "organisms_data.ipynb",
-         "import_fasta": "organisms_data.ipynb",
-         "import_uniprot_annotation": "organisms_data.ipynb",
-         "protease_dict": "proteolytic_cleavage.ipynb",
-         "get_cleavage_sites": "proteolytic_cleavage.ipynb"}
+         "uniprot_feature_dict": "Uniprot_integration.ipynb"}
 
 modules = ["importing.py",
-           "preprocessing.py",
-           "sequenceplot.py",
-           "uniprot_integration.py",
            "organisms_data.py",
-           "proteolytic_cleavage.py"]
+           "preprocessing.py",
+           "proteolytic_cleavage.py",
+           "sequenceplot.py",
+           "uniprot_integration.py"]
 
 doc_url = "https://mannlabs.github.io/alphamap/"
 

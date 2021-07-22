@@ -60,7 +60,8 @@ def read_file(
 def extract_rawfile_unique_values(
     file: str
 ) -> list:
-    """Extract the unique raw file names either from "R.FileName" (Spectronaut output) or "Raw file" (MaxQuant output) column.
+    """Extract the unique raw file names from "R.FileName" (Spectronaut output), "Raw file" (MaxQuant output),
+    "shortname" (AlphaPept output) or "Run" (DIA-NN output) column.
 
     Args:
         file (str): The name of a file.
@@ -83,10 +84,12 @@ def extract_rawfile_unique_values(
             l = l.split(sep)
             # just do it for the first line
             if i == 0:
-                try:
-                    filename_col_index = l.index('R.FileName')
-                except ValueError as err:
-                    filename_col_index = l.index('Raw file')
+                for col in ['R.FileName', 'Raw file', 'shortname', 'Run']:
+                    try:
+                        filename_col_index = l.index(col)
+                        break
+                    except :
+                        pass
             else:
                 filename_data.append(l[filename_col_index])
             i += 1
@@ -489,6 +492,10 @@ def import_data(
         if verbose:
             print("Import AlphaPept input")
         data = import_alphapept_data(input_info, sample=sample)
+    elif set(["Protein.Ids", "Modified.Sequence", "Run"]).issubset(uploaded_data_columns):
+        if verbose:
+            print("Import DIA-NN input")
+        data = import_diann_data(input_info, sample=sample)
     else:
         raise TypeError(f'Input data format for {file} not known.')
     return data
