@@ -813,6 +813,16 @@ alphapept_instructions = pn.Card(
     css_classes=['spectronaut_instr']
 )
 
+diann_instructions = pn.Card(
+    diann_description,
+    title='DIA-NN instructions',
+    collapsed=True,
+    width=530,
+    align='start',
+    margin=(0, 80, 5, 10),
+    css_classes=['spectronaut_instr']
+)
+
 additional_data_card = pn.Card(
     pn.Row(
         experimental_data_2,
@@ -863,7 +873,8 @@ main_part = pn.Column(
             alphamap_tutorial,
             spectronaut_instructions,
             maxquant_instructions,
-            alphapept_instructions
+            alphapept_instructions,
+            diann_instructions
         ),
         selection_box,
         align='center',
