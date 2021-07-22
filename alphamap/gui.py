@@ -448,15 +448,7 @@ upload_spinner = pn.indicators.LoadingSpinner(
     width=40,
     height=40
 )
-exit_button = pn.widgets.Button(
-    name='QUIT',
-    button_type='default',
-    css_classes=['button_options'],
-    height=40,
-    width=170,
-    align='end',
-    # margin=(0,0,0,430)
-)
+
 visualize_button = pn.widgets.Button(
     name='Visualize protein',
     button_type='primary',
@@ -883,7 +875,6 @@ main_part = pn.Column(
     pn.Row(
         upload_button,
         upload_spinner,
-        exit_button,
         align='center',
         margin=(20, 0),
         sizing_mode='stretch_width',
@@ -1429,16 +1420,6 @@ def visualize_plot(clicks):
         return plot
     else:
         return None
-
-
-@pn.depends(
-    exit_button.param.clicks,
-    watch=True
-)
-def exit_button_event(*args):
-    print("Quitting server...")
-    exit_button.name = "Server closed".upper()
-    SERVER.stop()
 
 
 def run():
