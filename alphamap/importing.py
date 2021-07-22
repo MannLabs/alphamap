@@ -204,50 +204,48 @@ def convert_ap_mq_mod(
     """
     # TODO: add more AP modifications
     modif_convers_dict = {
-        '[oxM]': '[Oxidation (M)]', '[oxP]': '[Oxidation (P)]', '[oxMP]': '[Oxidation (MP)]',
-        '[a]': '[Acetyl (Protein N-term)]', '[aK]': '[Acetyl (K)]',
-        '[am]': '[Amidated (C-term)]', '[deamN]': '[Deamidation (N)]', '[deamNQ]': '[Deamidation (NQ)]',
-        '[p]': '[Phospho (STY)]',
-        '[pgE]': '[Glu->pyro-Glu]', '[pgQ]': '[Gln->pyro-Glu]',
-        '[c]': '[Cys-Cys]'
+        'ox': '[Oxidation ({})]',
+        'a': '[Acetyl ({})]',
+        'am': '[Amidated ({})]',
+        'deam': '[Deamidation ({})]',
+        'p': '[Phospho ({})]',
+        'pg': '[{}->pyro-Glu]',
+        'c': '[Cys-Cys]'
     }
     mods = re.findall('[a-z0-9]+', sequence)
     if mods:
         for mod in mods:
-            i = re.search(f'(?<!\[){mod}', sequence).start()
-            sequence = re.sub(f'(?<!\[){mod}', '', string=sequence, count=1)
+            posit = re.search(mod, sequence)
+            i = posit.start()
+            if i == 0 and mod == 'a':
+                add_aa = 'N-term'
+            elif posit.end() == len(sequence) - 1 and mod == 'am':
+                add_aa = sequence[posit.end()]
+                sequence = sequence.replace(mod + add_aa, add_aa + mod, 1)
+                add_aa = 'C-term'
+            else:
+                add_aa = sequence[posit.end()]
+                sequence = sequence.replace(mod + add_aa, add_aa + mod, 1)
+
             if mod == 'ox':
-                if sequence[i:i+2] == 'MP':
+                if add_aa == 'M':
+                    add_aa = 'M'
+                elif add_aa in 'MP':
                     add_aa = 'MP'
-                    sequence = sequence[:i+2] + f'[{mod}{add_aa}]' + sequence[i+2:]
-                else:
-                    add_aa = sequence[i]
-                    sequence = sequence[:i+1] + f'[{mod}{add_aa}]' + sequence[i+1:]
-            elif mod == 'a':
-                if i == 0:
-                    sequence = f'[{mod}]' + sequence[i:]
-                elif sequence[i] == 'K':
-                    sequence = sequence[:i+1] + f'[{mod}{sequence[i]}]' + sequence[i+1:]
-            elif mod == 'am':
-                if i == len(sequence)-1:
-                    sequence = sequence + f'[{mod}]'
             elif mod == 'deam':
-                if sequence[i:i+2] == 'NQ':
+                if add_aa in 'NQ':
                     add_aa = 'NQ'
-                    sequence = sequence[:i+2] + f'[{mod}{add_aa}]' + sequence[i+2:]
-                else:
-                    add_aa = sequence[i]
-                    sequence = sequence[:i+1] + f'[{mod}{add_aa}]' + sequence[i+1:]
             elif mod == 'p':
-                sequence = sequence[:i+1] + f'[{mod}]' + sequence[i+1:]
+                if add_aa in 'STY':
+                    add_aa = 'STY'
             elif mod == 'pg':
-                add_aa = sequence[i]
-                sequence = sequence[:i+1] + f'[{mod}{add_aa}]' + sequence[i+1:]
-            elif mod == 'c':
-                sequence = sequence[:i+1] + f'[{mod}]' + sequence[i+1:]
-        for k,v in modif_convers_dict.items():
-            if k in sequence:
-                sequence = sequence.replace(k, v)
+                if add_aa == 'E':
+                    add_aa = 'Glu'
+                elif add_aa == 'Q':
+                    add_aa = 'Gln'
+
+            if mod in modif_convers_dict.keys():
+                sequence = sequence.replace(mod, modif_convers_dict.get(mod).format(add_aa), 1)
     return sequence
 
 # Cell
