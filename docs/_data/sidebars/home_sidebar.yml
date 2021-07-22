@@ -13,20 +13,20 @@ entries:
       title: Data import
       url: Importing.html
     - output: web,pdf
-      title: UniProt import for different organisms
-      url: organisms_data.html
-    - output: web,pdf
       title: Data preprocessig
       url: Preprocessing.html
-    - output: web,pdf
-      title: Protease information
-      url: proteolytic_cleavage.html
     - output: web,pdf
       title: Sequence visualization
       url: SequencePlot.html
     - output: web,pdf
       title: UniProt data formatting
       url: Uniprot_integration.html
+    - output: web,pdf
+      title: UniProt import for different organisms
+      url: organisms_data.html
+    - output: web,pdf
+      title: Protease information
+      url: proteolytic_cleavage.html
     output: web
     title: alphamap
   output: web
