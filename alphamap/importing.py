@@ -84,7 +84,7 @@ def extract_rawfile_unique_values(
             l = l.split(sep)
             # just do it for the first line
             if i == 0:
-                for col in ['R.FileName', 'Raw file', 'shortname', 'Run']:
+                for col in ['R.FileName', 'Raw file', 'Run', 'shortname']:
                     try:
                         filename_col_index = l.index(col)
                         break
