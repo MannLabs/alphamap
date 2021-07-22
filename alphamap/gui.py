@@ -789,6 +789,16 @@ maxquant_instructions = pn.Card(
     css_classes=['spectronaut_instr']
 )
 
+alphapept_instructions = pn.Card(
+    alphapept_description,
+    title='AlphaPept instructions',
+    collapsed=True,
+    width=530,
+    align='start',
+    margin=(0, 80, 5, 10),
+    css_classes=['spectronaut_instr']
+)
+
 additional_data_card = pn.Card(
     pn.Row(
         experimental_data_2,
@@ -838,7 +848,8 @@ main_part = pn.Column(
             project_instuction,
             alphamap_tutorial,
             spectronaut_instructions,
-            maxquant_instructions
+            maxquant_instructions,
+            alphapept_instructions
         ),
         selection_box,
         align='center',
