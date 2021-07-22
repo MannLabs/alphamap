@@ -754,6 +754,20 @@ maxquant_description = pn.pane.Markdown(
     margin=(0, 80, 0, 20)
 )
 
+alphapept_description = pn.pane.Markdown(
+    """
+    To visualize the proteins which were analyzed by the AlphaPept software please use the **results.csv** file.
+
+    The following columns from the file are used for visualization:
+    >- protein_group
+    >- sequence
+    >- shortname
+    """,
+    width=530,
+    align='start',
+    margin=(0, 80, 0, 20)
+)
+
 spectronaut_instructions = pn.Card(
     spectronaut_description,
     spectronaut_scheme,
