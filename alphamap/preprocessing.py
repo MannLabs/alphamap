@@ -85,8 +85,8 @@ def get_peptide_position(df: pd.DataFrame, fasta: fasta, verbose:bool = True):
     prots_na = res_na.unique_protein_id.unique()
 
     res = res.dropna()
-    res['start'] = res['start'].astype(int)
-    res['end'] = res['end'].astype(int)
+    res['start'] = res['start'].astype('int64')
+    res['end'] = res['end'].astype('int64')
     return res
 
 # Cell
