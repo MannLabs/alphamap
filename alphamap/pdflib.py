@@ -15,6 +15,7 @@ from pdfrw.toreportlab import makerl
 from reportlab.platypus import Flowable
 from reportlab.lib.enums import TA_JUSTIFY,TA_LEFT,TA_CENTER,TA_RIGHT
 
+# The following class was copied from https://stackoverflow.com/questions/3448365/pdf-image-in-pdf-document-using-reportlab-python (answer from skidzo, 2017)
 class PdfImage(Flowable):
     """
     PdfImage wraps the first page from a PDF file as a Flowable
