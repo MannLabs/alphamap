@@ -30,7 +30,6 @@ def format_uniprot_annotation(uniprot_ann: pd.DataFrame, uniprot_feature_dict: d
     uniprot = uniprot.replace({"annotation": uniprot_feature_dict_rev})
     return uniprot
 
-
 # Cell
 
 # The PTM shape dictionary defines the shapes for each modification, so they are consistent across datasets and analyses.
@@ -290,7 +289,6 @@ custom_color_palettes = {
     'col_darkpinks':["#42033d","#6f0c59","#901468","#7c238c","#924ea6","#9c5eae"],
     'col_browns':["#5a2a27","#5c4742","#8d5b4c","#a5978b","#c4bbaf"]
 }
-
 
 # Cell
 

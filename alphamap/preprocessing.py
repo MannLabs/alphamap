@@ -57,7 +57,6 @@ def pep_position_helper(seq: str, prot: str, fasta: fasta, verbose: bool = True)
 
     return start, end-1
 
-
 # Cell
 
 import warnings
@@ -117,8 +116,6 @@ def get_ptm_sites(peptide: str, modification_reg: str):
             previous_len=0
         PTM_sites[idx] = starts[idx] - previous_len - 1
     return [int(i) for i in PTM_sites]
-
-
 
 # Cell
 import re
