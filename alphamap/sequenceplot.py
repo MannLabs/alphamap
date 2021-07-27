@@ -125,9 +125,14 @@ def get_plot_data(protein,df,fasta):
             PTMsites = [x+start_uid for x in df_PTMs_uid.PTMsites.tolist()[0]]
             PTMtypes = df_PTMs_uid.PTMtypes.tolist()[0]
 
+            #print(PTMsites)
+            #print(PTMtypes)
+
             for i in range(0,len(PTMsites)):
                 df_peps['PTM'] = np.where(df_peps["seq_position"]==PTMsites[i], 1, df_peps.PTM)
                 df_peps['PTMtype'] = np.where(df_peps["seq_position"]==PTMsites[i], PTMtypes[i], df_peps.PTMtype)
+
+            #print(df_peps)
 
             df_seq = pd.DataFrame({'seq_position':np.arange(0,len(protein_sequence))})
 
@@ -145,6 +150,22 @@ def get_plot_data(protein,df,fasta):
 
                         df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = ptm_shape_dict[mod]
                         #df_plot.loc[df_plot.PTMtype == mod, 'PTMshape'] = 17
+
+        #print(df_plot)
+
+        df_plot['modified_sequence']= df_plot['modified_sequence'].astype(str)
+        df_plot = df_plot.groupby('seq_position').agg({'modified_sequence':'; '.join,
+                                                       'all_protein_ids': 'first',
+                                                       'marker_symbol': 'first',
+                                                       'marker_size': 'first',
+                                                       'PTM': 'first',
+                                                       'PTMtype': 'first',
+                                                       'PTMshape': 'first',
+                                                       'height': 'first',
+                                                       'color': 'first'
+                                                      }).reset_index()
+
+        #print(df_plot)
 
     return(df_plot)
 
@@ -174,6 +195,7 @@ def plot_single_peptide_traces(df_plot,protein,fasta):
 
     ## Peptide backbone
     df_plot_pep = df_plot.dropna(subset=['modified_sequence'])
+    df_plot_pep = df_plot_pep[~df_plot_pep.modified_sequence.str.contains('nan')]
     plot1 = go.Scatter(x=df_plot_pep.seq_position+1,
                        y=df_plot.height,
                        xaxis='x2',

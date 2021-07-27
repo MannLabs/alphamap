@@ -115,7 +115,8 @@ def get_ptm_sites(peptide: str, modification_reg: str):
         else:
             previous_len=0
         PTM_sites[idx] = starts[idx] - previous_len - 1
-    return [int(i) for i in PTM_sites]
+    PTM_sites = [int(i)+1 if i < 0 else int(i) for i in PTM_sites]
+    return PTM_sites
 
 # Cell
 import re
