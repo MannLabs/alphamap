@@ -2,6 +2,7 @@
 
 # external
 import os
+import platform
 import urllib.request
 import shutil
 import re
@@ -175,7 +176,10 @@ TAB_COUNTER = 0
 error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
-
+if platform.system() == 'Windows':
+    filepath_placeholder = 'D:\spectronaut_output.csv'
+else:
+    filepath_placeholder = '/Users/test/Desktop/spectronaut_output.csv'
 
 ### PATHS
 BASE_PATH = os.path.dirname(__file__)
@@ -300,7 +304,7 @@ proteases_clear_all = pn.widgets.Checkbox(
 # first experimental file
 experimental_data = pn.widgets.TextInput(
     name='Upload a result file:',
-    placeholder='D:\spectronaut_output.csv',
+    placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
 )
@@ -340,7 +344,7 @@ experimental_data_sample_name_remove_part = pn.widgets.TextInput(
 # second experimental file
 experimental_data_2 = pn.widgets.TextInput(
     name='Upload a result file:',
-    placeholder='D:\spectronaut_output.csv',
+    placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
 )
@@ -380,7 +384,7 @@ experimental_data_2_sample_name_remove_part = pn.widgets.TextInput(
 # third experimental file
 experimental_data_3 = pn.widgets.TextInput(
     name='Upload a result file:',
-    placeholder='D:\spectronaut_output.csv',
+    placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
 )
