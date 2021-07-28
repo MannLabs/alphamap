@@ -353,36 +353,6 @@ nb_path: "nbs/Importing.ipynb"
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">test_import_diann_data</span><span class="p">():</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">import_diann_data</span><span class="p">(</span><span class="s2">&quot;../testdata/test_diann_input.tsv&quot;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-    
-    <span class="n">data_s1</span> <span class="o">=</span> <span class="n">import_diann_data</span><span class="p">(</span><span class="s2">&quot;../testdata/test_diann_input.tsv&quot;</span><span class="p">,</span> 
-                                  <span class="n">sample</span> <span class="o">=</span> <span class="s2">&quot;20201218_tims03_Evo03_PS_SA_HeLa_200ng_high_speed_21min_8cm_S2-B2_1_22648&quot;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">data_s1</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">39</span>
-    
-    <span class="n">data_s_both</span> <span class="o">=</span> <span class="n">import_diann_data</span><span class="p">(</span><span class="s2">&quot;../testdata/test_diann_input.tsv&quot;</span><span class="p">,</span> 
-                                  <span class="n">sample</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;20201218_tims03_Evo03_PS_SA_HeLa_200ng_high_speed_21min_8cm_S2-B2_1_22648&quot;</span><span class="p">,</span> 
-                                            <span class="s2">&quot;20201218_tims03_Evo03_PS_SA_HeLa_200ng_high_speed_21min_8cm_S2-A2_1_22636&quot;</span><span class="p">])</span>
-    <span class="k">assert</span> <span class="n">data_s_both</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">42</span>
-    
-<span class="n">test_import_diann_data</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Aggregated-import-function">Aggregated import function<a class="anchor-link" href="#Aggregated-import-function"> </a></h2>
