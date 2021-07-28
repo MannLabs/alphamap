@@ -36,12 +36,15 @@ TAB_COUNTER = 0
 
 # ERROR/WARNING MESSAGES
 error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
+error_message_extract_samples = "It is impossible to extract raw file names from the file. Please check the list of necessary columns in the instructions for data uploading."
+error_message_no_file = "The selected file is not found. Please check whether the specified path is correct."
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
+
 if platform.system() == 'Windows':
-    filepath_placeholder = 'D:\alphapept_output.csv'
+    filepath_placeholder = 'D:\data\output_alphapept.csv'
 else:
-    filepath_placeholder = '/Users/test/alphapept_output.csv'
+    filepath_placeholder = '/Users/data/output_alphapept.csv'
 
 ### PATHS
 BASE_PATH = os.path.dirname(__file__)
@@ -950,10 +953,10 @@ def extract_samples(path):
     file_size_gb = os.stat(path).st_size / 1024**3
     if file_size_gb > SETTINGS['max_file_size_gb']:
         raise MemoryError
-    try:
-        unique_samples = extract_rawfile_unique_values(path.replace("\\", "/"))
-    except:
-        raise TypeError("This file can't be uploaded.")
+    # try:
+    unique_samples = extract_rawfile_unique_values(path.replace("\\", "/"))
+    # except:
+    #     raise TypeError("This file can't be uploaded.")
     unique_samples_sorted = natural_sort(unique_samples)
     return unique_samples_sorted
 
@@ -1026,7 +1029,9 @@ def update_data_sample_info(data1):
         elif type(e).__name__ == 'TypeError':
             experimental_data_warning.object = error_message_upload
         elif type(e).__name__ == 'ValueError':
-            experimental_data_warning.object = error_message_upload_missing_columns
+            experimental_data_warning.object = error_message_extract_samples
+        elif type(e).__name__ == 'FileNotFoundError':
+            experimental_data_warning.object = error_message_no_file
         preprocessed_exp_data.value = None
         experimental_data_sample.disabled = True
         experimental_data_sample_name.disabled = True
@@ -1050,11 +1055,15 @@ def update_data_2_sample_info(data2):
         experimental_data_2_sample.options = ['All samples'] + extract_samples(data2)
         experimental_data_2_sample.value = ['All samples']
         experimental_data_2_sample_name_remove_part.disabled = False
-    except (TypeError, MemoryError, FileNotFoundError) as e:
+    except (TypeError, MemoryError, FileNotFoundError, ValueError) as e:
         if type(e).__name__ == 'MemoryError':
             experimental_data_2_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_2_warning.object = error_message_upload
+        elif type(e).__name__ == 'ValueError':
+            experimental_data_2_warning.object = error_message_extract_samples
+        elif type(e).__name__ == 'FileNotFoundError':
+            experimental_data_2_warning.object = error_message_no_file
         preprocessed_exp_data_2.value = None
         experimental_data_2_sample.disabled = True
         experimental_data_2_sample_name.disabled = True
@@ -1078,11 +1087,15 @@ def update_data_3_sample_info(data3):
         experimental_data_3_sample.options = ['All samples'] + extract_samples(data3)
         experimental_data_3_sample.value = ['All samples']
         experimental_data_3_sample_name_remove_part.disabled = False
-    except (TypeError, MemoryError, FileNotFoundError) as e:
+    except (TypeError, MemoryError, FileNotFoundError, ValueError) as e:
         if type(e).__name__ == 'MemoryError':
             experimental_data_3_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_3_warning.object = error_message_upload
+        elif type(e).__name__ == 'ValueError':
+            experimental_data_3_warning.object = error_message_extract_samples
+        elif type(e).__name__ == 'FileNotFoundError':
+            experimental_data_3_warning.object = error_message_no_file
         preprocessed_exp_data_3.value = None
         experimental_data_3_sample.disabled = True
         experimental_data_3_sample_name.disabled = True
