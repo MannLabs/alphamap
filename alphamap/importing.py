@@ -42,7 +42,7 @@ def read_file(
                 prot = l.index(column_names[1])
                 seq = l.index(column_names[2])
             except:
-                raise ValueError
+                raise ValueError('The list of specified column names cannot be extracted from the file.')
             if i>0:
                 break
 
@@ -98,7 +98,7 @@ def extract_rawfile_unique_values(
                         filename_col_index = l.index(col)
                         break
                 if not isinstance(filename_col_index, int):
-                    raise ValueError
+                    raise ValueError('A column with the raw file names is not in the file.')
             else:
                 filename_data.append(l[filename_col_index])
             i += 1
