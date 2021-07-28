@@ -35,9 +35,10 @@ SERVER = None
 TAB_COUNTER = 0
 
 # ERROR/WARNING MESSAGES
-error_message_upload = "The selected file can't be uploaded. Please check the instructions for data uploading."
+error_message_upload = "The selected {}file can't be uploaded. Please check the instructions for data uploading."
 error_message_extract_samples = "It is impossible to extract raw file names from the file. Please check the list of necessary columns in the instructions for data uploading."
-error_message_no_file = "The selected file is not found. Please check whether the specified path is correct."
+error_message_no_file = "The selected {}file is not found. Please check whether the specified path is correct."
+error_message_upload_wrong_columns = "The columns necessary for further analysis cannot be extracted from the {} experimental file. Please check the data uploading instructions for a particular software tool."
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
 
@@ -184,7 +185,7 @@ proteases_clear_all = pn.widgets.Checkbox(
 
 # first experimental file
 experimental_data = pn.widgets.TextInput(
-    name='Upload a result file:',
+    name='Upload the first result file:',
     placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
@@ -224,7 +225,7 @@ experimental_data_sample_name_remove_part = pn.widgets.TextInput(
 )
 # second experimental file
 experimental_data_2 = pn.widgets.TextInput(
-    name='Upload a result file:',
+    name='Upload the second result file:',
     placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
@@ -264,7 +265,7 @@ experimental_data_2_sample_name_remove_part = pn.widgets.TextInput(
 )
 # third experimental file
 experimental_data_3 = pn.widgets.TextInput(
-    name='Upload a result file:',
+    name='Upload the third result file:',
     placeholder=filepath_placeholder,
     width=445,
     margin=(23,0,5,15)
@@ -313,7 +314,11 @@ preprocessed_exp_data_2 = pn.widgets.DataFrame(
 preprocessed_exp_data_3 = pn.widgets.DataFrame(
     name='Exp_data_3'
 )
-
+upload_data_warning = pn.pane.Alert(
+    # width=700,
+    alert_type="danger",
+    # align='center',
+)
 #####################################
 # BUTTONS
 upload_button = pn.widgets.Button(
@@ -761,7 +766,13 @@ main_part = pn.Column(
         upload_button,
         upload_spinner,
         align='center',
-        margin=(20, 0),
+        margin=(0, 0),
+        sizing_mode='stretch_width',
+    ),
+    pn.Row(
+        upload_data_warning,
+        align='center',
+        margin=(0, 0),
         sizing_mode='stretch_width',
     ),
     background='#eaeaea',
@@ -850,6 +861,8 @@ def visualize_buttons():
 def upload_experimental_data():
     global ac_gene_conversion
     all_unique_proteins = []
+    preprocessed_exp_data.value = preprocessed_exp_data_2.value = preprocessed_exp_data_3.value = None
+    upload_data_warning.object = ""
     if experimental_data.value:
         if experimental_data_sample.value == ['All samples']:
             data_samples = None
@@ -865,9 +878,15 @@ def upload_experimental_data():
                 fasta = full_fasta,
                 modification_exp = r'\[.*?\]',
                 verbose = False)
-        except (TypeError, AttributeError) as e:
-            pass
-        all_unique_proteins.extend(preprocessed_exp_data.value.unique_protein_id.unique().tolist())
+            all_unique_proteins.extend(preprocessed_exp_data.value.unique_protein_id.unique().tolist())
+        except (TypeError, MemoryError, FileNotFoundError, ValueError, AttributeError) as e:
+            if type(e).__name__ == 'MemoryError':
+                upload_data_warning.object = error_message_size
+            elif type(e).__name__  in ['TypeError', 'ValueError', 'AttributeError']:
+                upload_data_warning.object = error_message_upload_wrong_columns.format('first')
+            elif type(e).__name__ == 'FileNotFoundError':
+                upload_data_warning.object = error_message_no_file.format('first experimental ')
+            upload_spinner.value = False
     if experimental_data_2.value:
         if experimental_data_2_sample.value == ['All samples']:
             data_2_samples = None
@@ -884,8 +903,16 @@ def upload_experimental_data():
                 modification_exp = r'\[.*?\]',
                 verbose = False)
             all_unique_proteins.extend(preprocessed_exp_data_2.value.unique_protein_id.unique().tolist())
-        except (TypeError, AttributeError) as e:
-            pass
+        except (TypeError, MemoryError, FileNotFoundError, ValueError,
+        AttributeError) as e:
+            if not upload_data_warning.object:
+                if type(e).__name__ == 'MemoryError':
+                    upload_data_warning.object = error_message_size
+                elif type(e).__name__  in ['TypeError', 'ValueError', 'AttributeError']:
+                    upload_data_warning.object = error_message_upload_wrong_columns.format('second')
+                elif type(e).__name__ == 'FileNotFoundError':
+                    upload_data_warning.object = error_message_no_file.format('second experimental ')
+            upload_spinner.value = False
     if experimental_data_3.value:
         if experimental_data_3_sample.value == ['All samples']:
             data_3_samples = None
@@ -902,8 +929,15 @@ def upload_experimental_data():
                 modification_exp = r'\[.*?\]',
                 verbose = False)
             all_unique_proteins.extend(preprocessed_exp_data_3.value.unique_protein_id.unique().tolist())
-        except (TypeError, AttributeError):
-            pass
+        except (TypeError, MemoryError, FileNotFoundError, ValueError, AttributeError) as e:
+            if not upload_data_warning.object:
+                if type(e).__name__ == 'MemoryError':
+                    upload_data_warning.object = error_message_size
+                elif type(e).__name__  in ['TypeError', 'ValueError', 'AttributeError']:
+                    upload_data_warning.object = error_message_upload_wrong_columns.format('third')
+                elif type(e).__name__ == 'FileNotFoundError':
+                    upload_data_warning.object = error_message_no_file.format('third experimental ')
+            upload_spinner.value = False
     ac_gene_conversion = {
         each: f"{full_fasta.get_by_id(each).description.get('GN')} ({full_fasta.get_by_id(each).description.get('id')})" \
         for each in sorted(list(set(all_unique_proteins)))}
@@ -991,6 +1025,7 @@ def extract_name(filename, sample, sample_name, sample_name_remove_prefix):
     watch=True
 )
 def clear_dashboard(*args):
+    print('inside clear_dashboard function')
     global download_pdf
     download_pdf = pn.widgets.FileDownload(
         callback=download_pdf_report,
@@ -1027,11 +1062,11 @@ def update_data_sample_info(data1):
         if type(e).__name__ == 'MemoryError':
             experimental_data_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
-            experimental_data_warning.object = error_message_upload
+            experimental_data_warning.object = error_message_upload.format('')
         elif type(e).__name__ == 'ValueError':
             experimental_data_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_warning.object = error_message_no_file
+            experimental_data_warning.object = error_message_no_file.format('')
         preprocessed_exp_data.value = None
         experimental_data_sample.disabled = True
         experimental_data_sample_name.disabled = True
@@ -1059,11 +1094,11 @@ def update_data_2_sample_info(data2):
         if type(e).__name__ == 'MemoryError':
             experimental_data_2_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
-            experimental_data_2_warning.object = error_message_upload
+            experimental_data_2_warning.object = error_message_upload.format('')
         elif type(e).__name__ == 'ValueError':
             experimental_data_2_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_2_warning.object = error_message_no_file
+            experimental_data_2_warning.object = error_message_no_file.format('')
         preprocessed_exp_data_2.value = None
         experimental_data_2_sample.disabled = True
         experimental_data_2_sample_name.disabled = True
@@ -1091,11 +1126,11 @@ def update_data_3_sample_info(data3):
         if type(e).__name__ == 'MemoryError':
             experimental_data_3_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
-            experimental_data_3_warning.object = error_message_upload
+            experimental_data_3_warning.object = error_message_upload.format('')
         elif type(e).__name__ == 'ValueError':
             experimental_data_3_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_3_warning.object = error_message_no_file
+            experimental_data_3_warning.object = error_message_no_file.format('')
         preprocessed_exp_data_3.value = None
         experimental_data_3_sample.disabled = True
         experimental_data_3_sample_name.disabled = True
@@ -1187,55 +1222,61 @@ def change_autocomplete_input(search_by):
     upload_button.param.clicks
 )
 def upload_data(clicks):
+    print(clicks)
     if clicks > 0 and any(
         [experimental_data_sample.value, experimental_data_2_sample.value, experimental_data_3_sample.value]
     ):
+        print('inside upload_data function')
         upload_spinner.value = True
         select_protein.value = None
         # preload the data
         upload_organism_info()
         upload_experimental_data()
         # create a layout
-        app = pn.Column(
-            pn.Row(
-                # pn.layout.VSpacer(width=100),
-                pn.Column(
-                    select_protein,
-                    search_by,
-                    predefined_protein_list_titel,
-                    predefined_protein_list,
-                    pn.Row(
-                        download_pdf,
-                        download_pdf_loading_spinner
+        if len(upload_data_warning.object) == 0:
+            app = pn.Column(
+                pn.Row(
+                    pn.Column(
+                        select_protein,
+                        search_by,
+                        predefined_protein_list_titel,
+                        predefined_protein_list,
+                        pn.Row(
+                            download_pdf,
+                            download_pdf_loading_spinner
+                        ),
+                        download_pdf_error
                     ),
-                    download_pdf_error
+                    pn.layout.VSpacer(width=80),
+                    pn.Column(
+                        uniprot_options_tab,
+                        proteases_options_tab
+                    ),
+                    align='center'
                 ),
-                pn.layout.VSpacer(width=80),
-                pn.Column(
-                    uniprot_options_tab,
-                    proteases_options_tab
+                pn.layout.HSpacer(height=4),
+                pn.Row(
+                    visualize_button,
+                    visualize_spinner,
+                    align='center'
                 ),
-                align='center'
-            ),
-            pn.layout.HSpacer(height=4),
-            pn.Row(
-                visualize_button,
-                visualize_spinner,
-                align='center'
-            ),
-            divider,
-            sizing_mode='stretch_width',
-            margin=(20, 0)
-        )
-        upload_spinner.value = False
-        return app
-
+                divider,
+                sizing_mode='stretch_width',
+                margin=(20, 0)
+            )
+            upload_spinner.value = False
+            return app
+        else:
+            return None
+    else:
+        return None
 
 @pn.depends(
     visualize_button.param.clicks
 )
 def visualize_plot(clicks):
     if select_protein.value and clicks > 0:
+        print('inside visualize_plot function')
         visualize_spinner.value = True
         # combine selected uniprot options in one list
         uniprot_options_combined = sum([each.value for each in uniprot_options.objects if each.value], [])
