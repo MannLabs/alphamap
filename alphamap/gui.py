@@ -39,9 +39,9 @@ error_message_upload = "The selected file can't be uploaded. Please check the in
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
 if platform.system() == 'Windows':
-    filepath_placeholder = 'D:\spectronaut_output.csv'
+    filepath_placeholder = 'D:\alphapept_output.csv'
 else:
-    filepath_placeholder = '/Users/test/Desktop/spectronaut_output.csv'
+    filepath_placeholder = '/Users/test/alphapept_output.csv'
 
 ### PATHS
 BASE_PATH = os.path.dirname(__file__)
@@ -1020,11 +1020,13 @@ def update_data_sample_info(data1):
         experimental_data_sample.options = ['All samples'] + extract_samples(data1)
         experimental_data_sample.value = ['All samples']
         experimental_data_sample_name_remove_part.disabled = False
-    except (TypeError, MemoryError, FileNotFoundError) as e:
+    except (TypeError, MemoryError, FileNotFoundError, ValueError) as e:
         if type(e).__name__ == 'MemoryError':
             experimental_data_warning.object = error_message_size
         elif type(e).__name__ == 'TypeError':
             experimental_data_warning.object = error_message_upload
+        elif type(e).__name__ == 'ValueError':
+            experimental_data_warning.object = error_message_upload_missing_columns
         preprocessed_exp_data.value = None
         experimental_data_sample.disabled = True
         experimental_data_sample_name.disabled = True
