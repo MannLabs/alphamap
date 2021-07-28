@@ -34,9 +34,12 @@ def read_file(
         for l in filelines:
             i += 1
             l = l.split(sep)
-            raw = l.index(column_names[0])
-            prot = l.index(column_names[1])
-            seq = l.index(column_names[2])
+            try:
+                raw = l.index(column_names[0])
+                prot = l.index(column_names[1])
+                seq = l.index(column_names[2])
+            except:
+                raise ValueError
             if i>0:
                 break
 
@@ -77,7 +80,7 @@ def extract_rawfile_unique_values(
 
     with open(file) as filelines:
         i = 0
-        filename_col_index = int()
+        filename_col_index = None
         filename_data = []
 
         for l in filelines:
@@ -85,11 +88,11 @@ def extract_rawfile_unique_values(
             # just do it for the first line
             if i == 0:
                 for col in ['R.FileName', 'Raw file', 'Run', 'shortname']:
-                    try:
+                    if col in l:
                         filename_col_index = l.index(col)
                         break
-                    except :
-                        pass
+                if not isinstance(filename_col_index, int):
+                    raise ValueError
             else:
                 filename_data.append(l[filename_col_index])
             i += 1
@@ -145,6 +148,7 @@ def import_spectronaut_data(
 
 # Cell
 import pandas as pd
+from typing import Union
 import re
 
 def import_maxquant_data(
@@ -253,6 +257,7 @@ def convert_ap_mq_mod(
 
 # Cell
 import pandas as pd
+from typing import Union
 
 def import_alphapept_data(
     file: str,
@@ -388,6 +393,7 @@ def convert_diann_mq_mod(
 
 # Cell
 import pandas as pd
+from typing import Union
 
 def import_diann_data(
     file: str,
