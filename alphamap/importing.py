@@ -17,6 +17,9 @@ def read_file(
         file (str): The name of a file.
         column_names (list): The list of three columns that should be extracted from the file.
 
+    Raises:
+        ValueError: if any of the specified columns is not in the file.
+
     Returns:
         pd.DataFrame: A pandas dataframe with all the data stored in the specified columns.
     """
@@ -68,6 +71,9 @@ def extract_rawfile_unique_values(
 
     Args:
         file (str): The name of a file.
+
+    Raises:
+        ValueError: if a column with the unique raw file names is not in the file.
 
     Returns:
         list: A sorted list of unique raw file names from the file.
