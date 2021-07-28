@@ -315,9 +315,9 @@ preprocessed_exp_data_3 = pn.widgets.DataFrame(
     name='Exp_data_3'
 )
 upload_data_warning = pn.pane.Alert(
-    # width=700,
+    width=700,
     alert_type="danger",
-    # align='center',
+    align='center',
 )
 #####################################
 # BUTTONS
@@ -772,8 +772,8 @@ main_part = pn.Column(
     pn.Row(
         upload_data_warning,
         align='center',
-        margin=(0, 0),
-        sizing_mode='stretch_width',
+        margin=(-10, 0, 0, 0),
+        # sizing_mode='stretch_width',
     ),
     background='#eaeaea',
     # min_width=1510,
@@ -1222,11 +1222,9 @@ def change_autocomplete_input(search_by):
     upload_button.param.clicks
 )
 def upload_data(clicks):
-    print(clicks)
     if clicks > 0 and any(
         [experimental_data_sample.value, experimental_data_2_sample.value, experimental_data_3_sample.value]
     ):
-        print('inside upload_data function')
         upload_spinner.value = True
         select_protein.value = None
         # preload the data
@@ -1276,7 +1274,6 @@ def upload_data(clicks):
 )
 def visualize_plot(clicks):
     if select_protein.value and clicks > 0:
-        print('inside visualize_plot function')
         visualize_spinner.value = True
         # combine selected uniprot options in one list
         uniprot_options_combined = sum([each.value for each in uniprot_options.objects if each.value], [])
@@ -1379,11 +1376,11 @@ def run():
     bokeh.server.views.ws.WSHandler.on_close = close_browser_tab(
         original_on_close
     )
-    SERVER = layout.show(threaded=True, title='AlphaMap')
-    SERVER.join()
     print("*"*30)
     print(f"* AlphaMap {alphamap.__version__} *".center(30, '*'))
     print("*"*30)
+    SERVER = layout.show(threaded=True, title='AlphaMap')
+    SERVER.join()
 
 
 def open_browser_tab(func):
