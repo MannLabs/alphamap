@@ -771,14 +771,11 @@ main_part = pn.Column(
     ),
     pn.Row(
         upload_data_warning,
-        # sizing_mode='stretch_width',
         align='center',
         width=1000,
         height=60
-        # margin=(-20, 0, 20, 0),
     ),
     background='#eaeaea',
-    # min_width=1510,
     sizing_mode='stretch_width',
     margin=(5, 0, 60, 0)
 )
@@ -1067,7 +1064,10 @@ def update_data_sample_info(data1):
         elif type(e).__name__ == 'ValueError':
             experimental_data_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_warning.object = error_message_no_file.format('')
+            if data1 == "":
+                experimental_data_warning.object = ""
+            else:
+                experimental_data_warning.object = error_message_no_file.format('')
         preprocessed_exp_data.value = None
         experimental_data_sample.disabled = True
         experimental_data_sample_name.disabled = True
@@ -1099,7 +1099,10 @@ def update_data_2_sample_info(data2):
         elif type(e).__name__ == 'ValueError':
             experimental_data_2_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_2_warning.object = error_message_no_file.format('')
+            if data2 == "":
+                experimental_data_2_warning.object = ""
+            else:
+                experimental_data_2_warning.object = error_message_no_file.format('')
         preprocessed_exp_data_2.value = None
         experimental_data_2_sample.disabled = True
         experimental_data_2_sample_name.disabled = True
@@ -1131,7 +1134,10 @@ def update_data_3_sample_info(data3):
         elif type(e).__name__ == 'ValueError':
             experimental_data_3_warning.object = error_message_extract_samples
         elif type(e).__name__ == 'FileNotFoundError':
-            experimental_data_3_warning.object = error_message_no_file.format('')
+            if data3 == "":
+                experimental_data_3_warning.object = ""
+            else:
+                experimental_data_3_warning.object = error_message_no_file.format('')
         preprocessed_exp_data_3.value = None
         experimental_data_3_sample.disabled = True
         experimental_data_3_sample_name.disabled = True
