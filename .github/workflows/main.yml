@@ -33,4 +33,5 @@ jobs:
         nbdev_test_nbs
     - name: Run system test
       run: |
+        mv testdata nbs/testdata
         nbdev_test_nbs --fname Workflow.ipynb
