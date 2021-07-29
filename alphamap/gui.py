@@ -315,8 +315,9 @@ preprocessed_exp_data_3 = pn.widgets.DataFrame(
     name='Exp_data_3'
 )
 upload_data_warning = pn.pane.Alert(
-    width=700,
+    width=900,
     alert_type="danger",
+    margin=(-20, 50, 20, 50),
     align='center',
 )
 #####################################
@@ -328,7 +329,6 @@ upload_button = pn.widgets.Button(
     height=40,
     width=170,
     align='center',
-    # margin=(0,0,0,638)
 )
 upload_spinner = pn.indicators.LoadingSpinner(
     value=False,
@@ -771,14 +771,16 @@ main_part = pn.Column(
     ),
     pn.Row(
         upload_data_warning,
-        align='center',
-        margin=(-10, 0, 0, 0),
         # sizing_mode='stretch_width',
+        align='center',
+        width=1000,
+        height=60
+        # margin=(-20, 0, 20, 0),
     ),
     background='#eaeaea',
     # min_width=1510,
     sizing_mode='stretch_width',
-    margin=(5, 0, 10, 0)
+    margin=(5, 0, 60, 0)
 )
 
 
@@ -1025,7 +1027,6 @@ def extract_name(filename, sample, sample_name, sample_name_remove_prefix):
     watch=True
 )
 def clear_dashboard(*args):
-    print('inside clear_dashboard function')
     global download_pdf
     download_pdf = pn.widgets.FileDownload(
         callback=download_pdf_report,
