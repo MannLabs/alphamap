@@ -18,6 +18,7 @@ def read_file(
         column_names (list): The list of three columns that should be extracted from the file.
 
     Raises:
+        NotImplementedError: if a specified file has not a .csv, .txt or .tsv extension.
         ValueError: if any of the specified columns is not in the file.
 
     Returns:
@@ -30,7 +31,8 @@ def read_file(
         sep='\t'
     elif file_ext=='.txt':
         sep='\t'
-
+    else:
+        raise NotImplementedError("The selected filetype isn't supported. Please specify a file with a .csv, .txt or .tsv extension.")
     with open(file) as filelines:
         i = 0
         pos = 0
