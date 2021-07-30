@@ -9,4 +9,3 @@ psutil==5.8.0
 reportlab==3.5.59
 kaleido==0.2.1
 bokeh==2.2.2
-pytest
