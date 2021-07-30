@@ -31,7 +31,7 @@ nb_path: "nbs/index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="About">About<a class="anchor-link" href="#About"> </a></h2><p>AlphaMap is a tool for peptide level MS data exploration. You can load and inspect MS data analyzed by either MaxQuant or Spectronaut. Uploaded data is processed and formatted for visual inspection of the sequence coverage of any selected protein and its identified post-translational modifications (PTMs). UniProt information is available to directly annotate sequence regions of interest such as protein domains, secondary structures, sequence variants, known PTMs, etc.</p>
+<h2 id="About">About<a class="anchor-link" href="#About"> </a></h2><p>AlphaMap is a tool for peptide level MS data exploration. You can load and inspect MS data analyzed by <a href="https://github.com/MannLabs/alphapept">AlphaPept</a>, DIA-NN, MaxQuant or Spectronaut. Uploaded data is processed and formatted for visual inspection of the sequence coverage of any selected protein and its identified post-translational modifications (PTMs). UniProt information is available to directly annotate sequence regions of interest such as protein domains, secondary structures, sequence variants, known PTMs, etc. Additionally, users can select proteases to further evaluate the distribution of proteolytic cleavage sites across a protein sequence. The functionality of AlphaMap can be accessed via an intuitive graphical user interface or – more flexibly – as a Python package that allows its integration into common analysis workflows for data visualization.</p>
 
 </div>
 </div>
@@ -109,7 +109,9 @@ pip install -e .
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Test-data">Test data<a class="anchor-link" href="#Test-data"> </a></h2><p>AlphaMap has direct data import options for MaxQuant and Spectronaut.</p>
-<h3 id="MaxQuant">MaxQuant<a class="anchor-link" href="#MaxQuant"> </a></h3><p>AlphaMap takes the <em>evidence.txt</em> file from MaxQuant as input format. A reduced example file is available for <a href="https://github.com/MannLabs/alphamap/blob/master/testdata/test_maxquant_input.txt">download here</a>.</p>
+<h3 id="AlphaPept">AlphaPept<a class="anchor-link" href="#AlphaPept"> </a></h3><p>AlphaMap takes the <em>results.csv</em> file from AlphaPept as input format. An example is available for <a href="https://github.com/MannLabs/alphamap/releases/download/v0.0.210730-alpha/test_alphapept_input.csv">download here</a>.</p>
+<h3 id="DIA-NN">DIA-NN<a class="anchor-link" href="#DIA-NN"> </a></h3><p>AlphaMap takes the peptide-level output .tsv file from DIA-NN as input format. An example is available for <a href="https://github.com/MannLabs/alphamap/releases/download/v0.0.210730-alpha/test_diann_input.tsv">download here</a>.</p>
+<h3 id="MaxQuant">MaxQuant<a class="anchor-link" href="#MaxQuant"> </a></h3><p>AlphaMap takes the <em>evidence.txt</em> file from MaxQuant as input format. A reduced example file is available for <a href="https://github.com/MannLabs/alphamap/releases/download/v0.0.210622-alpha/test_maxquant_input.txt">download here</a>.</p>
 <h3 id="Spectronaut">Spectronaut<a class="anchor-link" href="#Spectronaut"> </a></h3><p>AlphaMap takes Spectronaut results exported in normal long format (.csv or .tsv) as input. Necessary columns include:</p>
 <ul>
 <li>PEP.AllOccuringProteinAccessions</li>
@@ -117,7 +119,7 @@ pip install -e .
 <li>R.FileName</li>
 </ul>
 <p>To ensure proper formatting of the Spectronaut output, an export scheme is available for <a href="https://github.com/MannLabs/alphamap/blob/master/alphamap/data/spectronaut_export_scheme.rs">download here</a>.</p>
-<p>A reduced example file is also available for <a href="https://github.com/MannLabs/alphamap/blob/master/testdata/test_spectronaut_input.csv">download here</a>.
+<p>A reduced example file is also available for <a href="https://github.com/MannLabs/alphamap/releases/download/v0.0.210622-alpha/test_spectronaut_input.tsv">download here</a>.
 <!-- It is not directly clear how to download this individual file from here. Luckily, the two larger ones have a "download" button on the top right --></p>
 
 </div>
@@ -131,14 +133,14 @@ pip install -e .
 <li><a href="#python-and-jupyter-notebooks"><strong>Python:</strong></a> This allows to access data and explore it interactively with custom code.</li>
 </ul>
 <p>NOTE: The first time you use a fresh installation of AlphaMap, it is often quite slow because some functions might still need compilation on your local operating system and architecture. Subsequent use should be a lot faster.</p>
-<h3 id="GUI">GUI<a class="anchor-link" href="#GUI"> </a></h3><p>Please refer to the <a href="alphamap/data/alphamap_tutorial.pdf">GUI manual</a> for detailed instructions on the installation and usage of the stand-alone AlphaMap GUI.</p>
+<h3 id="GUI">GUI<a class="anchor-link" href="#GUI"> </a></h3><p>Please refer to the <a href="https://github.com/MannLabs/alphamap/blob/master/alphamap/data/alphamap_tutorial.pdf">GUI manual</a> for detailed instructions on the installation and usage of the stand-alone AlphaMap GUI.</p>
 <p>If the GUI was not installed through a one-click GUI installer, it can be activated with the following <code>bash</code> command:</p>
 <div class="highlight"><pre><span></span>alphamap
 </pre></div>
 <p>Note that this needs to be prepended with a <code>!</code> when you want to run this from within a Jupyter notebook. When the command is run directly from the command-line, make sure you use the right environment (activate it with e.g. <code>conda activate alphamap</code> or set an alias to the binary executable).</p>
 <h3 id="Python-and-Jupyter-notebooks">Python and Jupyter notebooks<a class="anchor-link" href="#Python-and-Jupyter-notebooks"> </a></h3><p>AlphaMap can be imported as a Python package into any Python script or notebook with the command <code>import alphamap</code>.</p>
-<p>A <a href="Workflow.ipynb">Jupyter notebook tutorial</a> is available to demonstrate how to load and visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.</p>
-<p>AlphaMap includes fasta files and UniProt annotations for: 'Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold', 'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis' and 'Saccharomyces cerevisiae'. If additional organisms are of interest, corresponding .fasta files and sequence annotations can be downloaded directly from UniProt. A <a href="Uniprot_preprocessing.ipynb">Jupyter notebook tutorial</a> shows how to load and format a UniProt annotation file.</p>
+<p>A Jupyter notebook tutorial <a href="Workflow.ipynb">'Workflow.ipynb'</a> is available to demonstrate how to load AlphaMap as python module and hot to visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.</p>
+<p>AlphaMap includes fasta files and UniProt annotations for: 'Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold', 'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae', 'SARS-COV' and 'SARS-COV-2'. If additional organisms are of interest, corresponding .fasta files and sequence annotations can be downloaded directly from UniProt. A Jupyter notebook tutorial <a href="Uniprot_preprocessing.ipynb">'Uniprot_preprocessing.ipynb'</a> shows how to load and format a UniProt annotation file.</p>
 
 </div>
 </div>
