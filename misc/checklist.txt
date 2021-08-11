@@ -3,7 +3,8 @@
 Versions updated
   conda activate alphamap
   cd misc
-  bumpversion patch --config-file bumpversion.cfg
+  bumpversion patch --config-file bumpversion.cfg 
+  # replace patch (-.-.x) with minor (-.x.-) or major (x.-.-) depending on type of update
   conda deactivate
   # bumpversion patch --new-version VERSION --config-file bumpversion.cfg
 
