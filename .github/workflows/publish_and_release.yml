@@ -22,12 +22,12 @@ jobs:
         id: master_version_bumped
         shell: bash -l {0}
         run: |
-          current_version=$(grep "__version__" alphatims/__init__.py | cut -f3 -d ' ' | sed 's/"//g')
+          current_version=$(grep "__version__" alphamap/__init__.py | cut -f3 -d ' ' | sed 's/"//g')
           current_version_as_regex=$(echo $current_version | sed 's/\./\\./g')
           conda create -n version_check python=3.8 pip=20.1 -y
           conda activate version_check
           set +e
-          already_on_pypi=$(pip install alphatims== 2>&1 | grep -c "$current_version_as_regex")
+          already_on_pypi=$(pip install alphamap== 2>&1 | grep -c "$current_version_as_regex")
           set -e
           conda deactivate
           if [ $already_on_pypi -ne 0 ]; then
@@ -72,7 +72,7 @@ jobs:
       - name: Test installer for Linux
         shell: bash -l {0}
         run: |
-          sudo dpkg -i misc/one_click_linux/dist/alphatims_gui_installer_linux.deb
+          sudo dpkg -i misc/one_click_linux/dist/alphamap_gui_installer_linux.deb
       - name: Upload Linux Installer
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -80,8 +80,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.Create_Draft_On_GitHub.outputs.upload_url }}
-          asset_path: misc/one_click_linux/dist/alphatims_gui_installer_linux.deb
-          asset_name: alphatims_gui_installer_linux.deb
+          asset_path: misc/one_click_linux/dist/alphamap_gui_installer_linux.deb
+          asset_name: alphamap_gui_installer_linux.deb
           asset_content_type: application/octet-stream
   Create_MacOS_Release:
     runs-on: macos-latest
@@ -104,7 +104,7 @@ jobs:
       - name: Test installer for MacOS
         shell: bash -l {0}
         run: |
-          sudo installer -pkg misc/one_click_macos/dist/alphatims_gui_installer_macos.pkg -target /
+          sudo installer -pkg misc/one_click_macos/dist/alphamap_gui_installer_macos.pkg -target /
       - name: Upload MacOS Installer
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -112,8 +112,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.Create_Draft_On_GitHub.outputs.upload_url }}
-          asset_path: misc/one_click_macos/dist/alphatims_gui_installer_macos.pkg
-          asset_name: alphatims_gui_installer_macos.pkg
+          asset_path: misc/one_click_macos/dist/alphamap_gui_installer_macos.pkg
+          asset_name: alphamap_gui_installer_macos.pkg
           asset_content_type: application/octet-stream
   Create_Windows_Release:
     runs-on: windows-latest
@@ -139,7 +139,7 @@ jobs:
         run: |
           cd misc/one_click_windows/dist/
           echo "TODO, this test seems to freeze the runner..."
-          # ./alphatims_gui_installer_windows.exe //verysilent //log=log.txt //noicons //tasks= //portable=1
+          # ./alphamap_gui_installer_windows.exe //verysilent //log=log.txt //noicons //tasks= //portable=1
           # cat log.txt
       - name: Upload Windows Installer
         id: upload-release-asset
@@ -148,8 +148,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.Create_Draft_On_GitHub.outputs.upload_url }}
-          asset_path: misc/one_click_windows/dist/alphatims_gui_installer_windows.exe
-          asset_name: alphatims_gui_installer_windows.exe
+          asset_path: misc/one_click_windows/dist/alphamap_gui_installer_windows.exe
+          asset_name: alphamap_gui_installer_windows.exe
           asset_content_type: application/octet-stream
   Create_PyPi_Release:
     runs-on: ubuntu-latest
@@ -167,8 +167,8 @@ jobs:
       - name: Prepare distribution
         shell: bash -l {0}
         run: |
-          conda env create --force --name alphatims --file misc/conda_development_environment.yaml
-          conda activate alphatims
+          conda env create --force --name alphamap --file misc/conda_development_environment.yaml
+          conda activate alphamap
           rm -rf dist
           rm -rf build
           python setup.py sdist bdist_wheel
@@ -182,10 +182,10 @@ jobs:
       - name: Test PyPI test release
         shell: bash -l {0}
         run: |
-          conda create -n alphatims_pip_test python=3.8 -y
-          conda activate alphatims_pip_test
-          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphatims[plotting,legacy]"
-          alphatims
+          conda create -n alphamap_pip_test python=3.8 -y
+          conda activate alphamap_pip_test
+          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap"
+          alphamap
           conda deactivate
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
@@ -210,8 +210,8 @@ jobs:
       - name: Test pip installation from PyPi
         shell: bash -l {0}
         run: |
-          conda create -n alphatims_pip_test python=3.8 -y
-          conda activate alphatims_pip_test
-          pip install "alphatims[plotting,legacy]"
-          alphatims
+          conda create -n alphamap_pip_test python=3.8 -y
+          conda activate alphamap_pip_test
+          pip install "alphamap"
+          alphamap
           conda deactivate
