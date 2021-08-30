@@ -100,8 +100,7 @@ jobs:
         shell: bash -l {0}
         run: |
           cd misc/one_click_windows
-          # . ./create_installer_windows.bat
-          . ./create_installer_windows.sh
+          . ./create_installer_windows.bat
       - name: Test installer for Windows
         shell: bash -l {0}
         run: |
