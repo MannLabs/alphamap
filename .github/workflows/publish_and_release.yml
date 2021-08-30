@@ -153,7 +153,8 @@ jobs:
           conda create -n alphamap_pip_test python=3.8 -y
           conda activate alphamap_pip_test
           pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap"
-          alphamap
+          echo "TODO, this will run forever.."
+          #alphamap
           conda deactivate
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@master
