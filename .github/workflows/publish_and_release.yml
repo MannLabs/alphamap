@@ -134,7 +134,7 @@ jobs:
       - name: Prepare distribution
         shell: bash -l {0}
         run: |
-          conda create -n alphamap_pip_test python=3.8 -y
+          conda create -n alphamap python=3.8 -y
           pip install twine
           conda activate alphamap
           rm -rf dist
