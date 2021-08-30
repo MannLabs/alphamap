@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "AlphaMap"
-#define MyAppVersion "0.0.8"
+#define MyAppVersion "0.1.0"
 #define MyAppPublisher "Max Planck Institute of Biochemistry, Mann department"
 #define MyAppURL "https://github.com/MannLabs/alphamap"
 #define MyAppExeName "alphamap_gui.exe"
