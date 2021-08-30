@@ -100,12 +100,12 @@ jobs:
         shell: bash -l {0}
         run: |
           cd misc/one_click_windows
-          . ./create_installer_windows.bat
+          . ./create_installer_windows.sh
       - name: Test installer for Windows
         shell: bash -l {0}
         run: |
           cd misc/one_click_windows/dist/
-          echo "TODO, this test seems to freeze the runner..."
+          #echo "TODO, this test seems to freeze the runner..."
           # ./alphamap_gui_installer_windows.exe //verysilent //log=log.txt //noicons //tasks= //portable=1
           # cat log.txt
       - name: Upload Windows Installer
