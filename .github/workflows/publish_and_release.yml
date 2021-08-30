@@ -115,8 +115,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.Create_Draft_On_GitHub.outputs.upload_url }}
-          asset_path: misc/one_click_windows/dist/alphamap_gui_installer_windows.exe
-          asset_name: alphamap_gui_installer_windows.exe
+          asset_path: misc/one_click_windows/dist/alphamap_installer_windows.exe
+          asset_name: alphamap_installer_windows.exe
           asset_content_type: application/octet-stream
   Create_PyPi_Release:
     runs-on: ubuntu-latest
