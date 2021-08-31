@@ -70,7 +70,8 @@ def extract_rawfile_unique_values(
     file: str
 ) -> list:
     """Extract the unique raw file names from "R.FileName" (Spectronaut output), "Raw file" (MaxQuant output),
-    "shortname" (AlphaPept output) or "Run" (DIA-NN output) column.
+    "shortname" (AlphaPept output) or "Run" (DIA-NN output) column or from the "Spectral Count" column from the
+    combined_peptide.tsv file without modifications for the FragPipe.
 
     Args:
         file (str): The name of a file.
@@ -104,6 +105,9 @@ def extract_rawfile_unique_values(
                     # to check the case with the FragPipe peptide.tsv file when we don't have the info about the experiment name
                     if ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)) and ("Peptide" in "".join(l)):
                         return []
+                    # to check the case with the FragPipe combined_peptide.tsv file when the experiment name is included in the "Spectral Count" column
+                    elif ("Sequence" in "".join(l)) and ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)):
+                        return sorted(list(set([col.replace('_', '').replace(' Spectral Count', '') for col in l if 'Spectral Count' in col])))
                     else:
                         raise ValueError('A column with the raw file names is not in the file.')
             else:
@@ -655,7 +659,7 @@ def import_data(
         if verbose:
             print("Import DIA-NN output")
         data = import_diann_data(input_info, sample=sample)
-    elif set(["Protein ID", "Assigned Modifications", "Peptide"]).issubset(uploaded_data_columns):
+    elif set(["Protein ID", "Assigned Modifications"]).issubset(uploaded_data_columns):
         if verbose:
             print("Import FragPipe output")
         data = import_fragpipe_data(input_info, sample=sample)
