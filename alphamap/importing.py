@@ -101,7 +101,11 @@ def extract_rawfile_unique_values(
                         filename_col_index = l.index(col)
                         break
                 if not isinstance(filename_col_index, int):
-                    raise ValueError('A column with the raw file names is not in the file.')
+                    # to check the case with the FragPipe peptide.tsv file when we don't have the info about the experiment name
+                    if ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)) and ("Peptide" in "".join(l)):
+                        return []
+                    else:
+                        raise ValueError('A column with the raw file names is not in the file.')
             else:
                 filename_data.append(l[filename_col_index])
             i += 1
@@ -463,7 +467,6 @@ def convert_fragpipe_mq_mod(
     Returns:
         str: The peptide sequence with modification in a similar to DIA-NN style.
     """
-
     modif_convers_dict = {
         42.0106: '[Acetyl ({})]',
         -0.9840: '[Amidated ({})]',
@@ -495,7 +498,7 @@ def convert_fragpipe_mq_mod(
         modifs_posit = [''] * (len(sequence) + 1)
         for mod in assigned_modifications.split(','):
             mod = mod.strip()
-            data = mod.replace(')', '').split('(')
+            data = mod.replace(')', '').replace('"', '').split('(')
             mod_pos, mod_mass = data[0], float(data[1])
             if mod_pos == 'N-term':
                 posit = 0
@@ -635,6 +638,7 @@ def import_data(
 
         uploaded_data_columns = set(l)
         input_info = file
+
     if set(["Proteins","Modified sequence","Raw file"]).issubset(uploaded_data_columns):
         if verbose:
             print("Import MaxQuant output")
@@ -651,7 +655,7 @@ def import_data(
         if verbose:
             print("Import DIA-NN output")
         data = import_diann_data(input_info, sample=sample)
-    elif set(["Protein ID", "Peptide", "Assigned Modifications"]).issubset(uploaded_data_columns):
+    elif set(["Protein ID", "Assigned Modifications", "Peptide"]).issubset(uploaded_data_columns):
         if verbose:
             print("Import FragPipe output")
         data = import_fragpipe_data(input_info, sample=sample)
