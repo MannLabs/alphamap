@@ -325,7 +325,6 @@ upload_data_warning = pn.pane.Alert(
 upload_button = pn.widgets.Button(
     name='Upload data',
     button_type='primary',
-    css_classes=['button_options'],
     height=40,
     width=170,
     align='center',
@@ -342,7 +341,6 @@ upload_spinner = pn.indicators.LoadingSpinner(
 visualize_button = pn.widgets.Button(
     name='Visualize protein',
     button_type='primary',
-    css_classes=['button_options'],
     height=40,
     width=170,
     align='center',
@@ -548,9 +546,9 @@ proteases_options_tab = pn.Card(
 ### MAIN PART
 project_description = pn.pane.Markdown(
     """### AlphaMap enables the exploration of proteomic datasets on the peptide level. It is possible to evaluate the sequence coverage of any identified protein and its post-translational modifications (PTMs). AlphaMap further integrates all available UniProt sequence annotations as well as information about proteolytic cleavage sites.""",
-    margin=(10, 0, -20, 0),
+    margin=(0, 0, -20, 0),
     css_classes=['main-part'],
-    width=635
+    width=700
 )
 
 divider_descr = pn.pane.HTML(
@@ -584,7 +582,7 @@ project_instuction = pn.pane.Markdown(
     """,
     width=530,
     align='start',
-    margin=(20, 80, 0, 10)
+    margin=(0, 80, 0, 10)
 )
 
 alphamap_tutorial = pn.widgets.FileDownload(
@@ -664,6 +662,25 @@ diann_description = pn.pane.Markdown(
     margin=(0, 80, 0, 20)
 )
 
+fragpipe_description = pn.pane.Markdown(
+    """
+    There are two options to visualize data analyzed by FragPipe:
+
+    1) Upload individual **"peptide.tsv"** files for single MS runs. In this case, the following columns from the original file are used for visualization:
+    >- Protein ID
+    >- Peptide
+    >- Assigned Modifications
+
+    2) Upload the **"combined_peptide.tsv"** file with the joint information about peptides identified in all runs (there is an option to select the experiment(s)). Be aware that the combined_peptide.tsv does not provide information about PTM localization. PTMs are therefore not shown for this option. Following columns are used for visalization:
+    >- Protein ID
+    >- Sequence
+    >- All 'Spectral Count' columns containing information about individual experiments
+    """,
+    width=530,
+    align='start',
+    margin=(0, 80, 0, 20)
+)
+
 spectronaut_instructions = pn.Card(
     spectronaut_description,
     spectronaut_scheme,
@@ -698,6 +715,16 @@ alphapept_instructions = pn.Card(
 diann_instructions = pn.Card(
     diann_description,
     title='DIA-NN instructions',
+    collapsed=True,
+    width=530,
+    align='start',
+    margin=(0, 80, 5, 10),
+    css_classes=['spectronaut_instr']
+)
+
+fragpipe_instructions = pn.Card(
+    fragpipe_description,
+    title='FragPipe instructions',
     collapsed=True,
     width=530,
     align='start',
@@ -740,7 +767,7 @@ selection_box = pn.Column(
     experimental_data_warning,
     experimental_data_sample,
     additional_data_card,
-    margin=(20, 30, 10, 30),
+    margin=(0, 30, 10, 30),
     width=790,
     css_classes=['selection_box'],
 )
@@ -756,7 +783,8 @@ main_part = pn.Column(
             spectronaut_instructions,
             maxquant_instructions,
             alphapept_instructions,
-            diann_instructions
+            diann_instructions,
+            fragpipe_instructions
         ),
         selection_box,
         align='center',
