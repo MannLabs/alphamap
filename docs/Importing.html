@@ -31,13 +31,13 @@ nb_path: "nbs\Importing.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="This-notebook-provides-a-function-to-import-peptide-level-data-from-Spectronaut,-MaxQuant,-AlphaPept,-DIA-NN">This notebook provides a function to import peptide level data from Spectronaut, MaxQuant, AlphaPept, DIA-NN<a class="anchor-link" href="#This-notebook-provides-a-function-to-import-peptide-level-data-from-Spectronaut,-MaxQuant,-AlphaPept,-DIA-NN"> </a></h2><p>The preprocessed data is stored in a pandas dataframe with following columns:</p>
+<h2 id="This-notebook-provides-a-function-to-import-peptide-level-data-from-Spectronaut,-MaxQuant,-AlphaPept,-DIA-NN-and-FragPipe">This notebook provides a function to import peptide level data from Spectronaut, MaxQuant, AlphaPept, DIA-NN and FragPipe<a class="anchor-link" href="#This-notebook-provides-a-function-to-import-peptide-level-data-from-Spectronaut,-MaxQuant,-AlphaPept,-DIA-NN-and-FragPipe"> </a></h2><p>The preprocessed data is stored in a pandas dataframe with following columns:</p>
 <ul>
 <li>all_protein_ids: all UniProt IDs the peptide map to separated by ';'</li>
 <li>modified_sequence: the peptide sequence with all modifications included in square brackets</li>
 <li>naked_sequence: the naked peptide sequence</li>
 </ul>
-<p>It is possible to further select one or more specific samples for import. A single sample can be provided as character string. Multiple samples can be provided as list of character strings. The raw MS filename should match corresponding entries in the "R.FileName", "Raw file", "shortname" or "Run" column of the Spectronaut, MaxQuant, AlphaPept or DIA-NN analysis respectively.</p>
+<p>It is possible to further select one or more specific samples for import. A single sample can be provided as character string. Multiple samples can be provided as list of character strings. The raw MS filename should match corresponding entries in the "R.FileName", "Raw file", "shortname" or "Run" column of the Spectronaut, MaxQuant, AlphaPept or DIA-NN analysis respectively. In the FragPipe "combined_peptide.tsv" file all 'Spectral Count' columns are used to extract information about individual experiments.</p>
 
 </div>
 </div>
