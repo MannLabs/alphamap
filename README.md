@@ -4,7 +4,7 @@
 
 ## About
 
-AlphaMap is a tool for peptide level MS data exploration. You can load and inspect MS data analyzed by [AlphaPept](https://github.com/MannLabs/alphapept), DIA-NN, MaxQuant or Spectronaut. Uploaded data is processed and formatted for visual inspection of the sequence coverage of any selected protein and its identified post-translational modifications (PTMs). UniProt information is available to directly annotate sequence regions of interest such as protein domains, secondary structures, sequence variants, known PTMs, etc. Additionally, users can select proteases to further evaluate the distribution of proteolytic cleavage sites across a protein sequence. The functionality of AlphaMap can be accessed via an intuitive graphical user interface or – more flexibly – as a Python package that allows its integration into common analysis workflows for data visualization. 
+AlphaMap is a tool for peptide level MS data exploration. You can load and inspect MS data analyzed by [AlphaPept](https://github.com/MannLabs/alphapept), DIA-NN, MaxQuant, Spectronaut or FragPipe. Uploaded data is processed and formatted for visual inspection of the sequence coverage of any selected protein and its identified post-translational modifications (PTMs). UniProt information is available to directly annotate sequence regions of interest such as protein domains, secondary structures, sequence variants, known PTMs, etc. Additionally, users can select proteases to further evaluate the distribution of proteolytic cleavage sites across a protein sequence. The functionality of AlphaMap can be accessed via an intuitive graphical user interface or - more flexibly - as a Python package that allows its integration into common analysis workflows for data visualization. 
 
 
 ## License
@@ -29,8 +29,9 @@ The GUI of AlphaMap is a completely stand-alone tool that requires no knowledge 
 * [**Windows**](https://github.com/MannLabs/alphamap/releases/latest/download/alphamap_installer_windows.exe)
 * [**MacOS**](https://github.com/MannLabs/alphamap/releases/latest/download/alphamap_gui_installer_macos.pkg)
 
-***IMPORTANT: Please refer to the [GUI manual](alphamap/data/alphamap_tutorial.pdf) for detailed instructions on the installation, troubleshooting and usage of the stand-alone AlphaMap GUI.***
+***IMPORTANT: Please refer to the [GUI manual](alphamap/data/alphamap_tutorial.pdf) for detailed instructions on the installation, troubleshooting and usage of the stand-alone AlphaMap GUI.*** 
 
+***IMPORTANT***: The one-click-installers on macOS and Windows require **at least macOS Catalina (10.15) or higher** and **Windows 10** respectively. For Windows, a system update might be necessary in case older versions do not work. To prevent installation errors on **Windows**, we recommend **uninstalling the previous AlphaMap version before installing a new one**.
 
 ### Pip
 
@@ -102,6 +103,11 @@ To ensure proper formatting of the Spectronaut output, an export scheme is avail
 A reduced example file is also available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210622-alpha/test_spectronaut_input.tsv).
 <!-- It is not directly clear how to download this individual file from here. Luckily, the two larger ones have a "download" button on the top right -->
 
+### FragPipe
+There are two options to visualize data analyzed by FragPipe:
+1) Upload individual **"peptide.tsv"** files for single MS runs. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.1.3/test_fragpipe_input.tsv).
+
+2) Upload the **"combined_peptide.tsv"** file with the joint information about peptides identified in all runs (there is an option to select the experiment(s)). Be aware that the combined_peptide.tsv does not provide information about PTM localization. PTMs are therefore not shown for this option. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.1.3/combined_peptide.txt).
 
 ## Usage
 
