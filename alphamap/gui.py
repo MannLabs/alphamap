@@ -562,7 +562,7 @@ project_instuction = pn.pane.Markdown(
     """#### How to use AlphaMap:
     1. Select the organism of your proteomic study.
     2. Provide the filepath to your proteomic datasets analyzed by
-    AlphaPept, MaxQuant, Spectronaut or DIA-NN.
+    AlphaPept, MaxQuant, Spectronaut, DIA-NN or FragPipe.
         - Wait for samples to be displayed in the 'Select samples' field.
         - (optional) Select either all samples (default) or any specific
         sample(s) to visualize together as one trace.
