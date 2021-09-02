@@ -105,9 +105,9 @@ A reduced example file is also available for [download here](https://github.com/
 
 ### FragPipe
 There are two options to visualize data analyzed by FragPipe:
-1) Upload individual **"peptide.tsv"** files for single MS runs. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.1.3/test_fragpipe_input.tsv).
+1) Upload individual **"peptide.tsv"** files for single MS runs. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/0.1.3/test_fragpipe_input.tsv).
 
-2) Upload the **"combined_peptide.tsv"** file with the joint information about peptides identified in all runs (there is an option to select the experiment(s)). Be aware that the combined_peptide.tsv does not provide information about PTM localization. PTMs are therefore not shown for this option. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.1.3/combined_peptide.txt).
+2) Upload the **"combined_peptide.tsv"** file with the joint information about peptides identified in all runs (there is an option to select the experiment(s)). Be aware that the combined_peptide.tsv does not provide information about PTM localization. PTMs are therefore not shown for this option. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/0.1.3/combined_peptide.txt).
 
 ## Usage
 
