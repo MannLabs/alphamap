@@ -7,7 +7,7 @@ rm -rf dist
 rm -rf build
 python setup.py sdist bdist_wheel
 cd misc/one_click_windows
-pip install "../../dist/alphamap-0.1.3-py3-none-any.whl"
+pip install "../../dist/alphamap-0.1.4-py3-none-any.whl"
 pip install pyinstaller==4.2
 # TODO https://stackoverflow.com/questions/54175042/python-3-7-anaconda-environment-import-ssl-dll-load-fail-error/60405693#60405693
 pyinstaller ../pyinstaller/alphamap.spec -y
