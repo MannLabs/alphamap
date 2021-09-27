@@ -663,7 +663,7 @@ def import_data(
         pos = 0
         for l in filelines:
             i += 1
-            l = l.split(sep)
+            l = l.strip().split(sep)
             if i>0:
                 break
 
