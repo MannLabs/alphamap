@@ -527,8 +527,19 @@ proteases_options = pn.widgets.CheckBoxGroup(
     margin=10
 )
 
+custom_enzyme_field = pn.widgets.TextInput(
+    name='Type a regular expression:',
+    disabled=True,
+    align='end',
+    width=160,
+    # margin=(0,150,10,-30)S
+)
+
 proteases_options_tab = pn.Card(
-    proteases_options,
+    pn.Row(
+        proteases_options,
+        custom_enzyme_field
+    ),
     pn.Row(
         proteases_select_all,
         proteases_clear_all,
