@@ -1250,6 +1250,14 @@ def change_proteases_selection(select, clear):
 
 
 @pn.depends(
+    custom_enzyme_field.param.value,
+    watch=True
+)
+def update_protease_dict(_):
+    protease_dict['custom_enzyme'] = custom_enzyme_field.value
+
+
+@pn.depends(
     search_by.param.value,
     watch=True
 )
