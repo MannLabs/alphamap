@@ -1258,6 +1258,17 @@ def update_protease_dict(_):
 
 
 @pn.depends(
+    proteases_options.param.value,
+    watch=True
+)
+def de_activate_custom_enzyme_field(_):
+    if 'custom_enzyme' in proteases_options.value:
+        custom_enzyme_field.disabled = False
+    else:
+        custom_enzyme_field.disabled = True
+
+
+@pn.depends(
     search_by.param.value,
     watch=True
 )
