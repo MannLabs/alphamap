@@ -532,6 +532,7 @@ custom_enzyme_field = pn.widgets.TextInput(
     disabled=True,
     align='end',
     width=160,
+    placeholder='([KR](?=[^P]))'
     # margin=(0,150,10,-30)S
 )
 
