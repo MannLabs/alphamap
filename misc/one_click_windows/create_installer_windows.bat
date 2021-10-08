@@ -15,7 +15,7 @@ call rmdir dist /s /q
 call rmdir build /s /q
 call python setup.py sdist bdist_wheel
 call cd misc/one_click_windows
-call pip install "../../dist/alphamap-0.1.4-py3-none-any.whl"
+call pip install "../../dist/alphamap-0.1.5-py3-none-any.whl"
 call pip install pyinstaller==4.2
 call pyinstaller ../pyinstaller/alphamap.spec -y
 call conda deactivate
