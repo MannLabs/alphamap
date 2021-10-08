@@ -527,8 +527,20 @@ proteases_options = pn.widgets.CheckBoxGroup(
     margin=10
 )
 
+custom_enzyme_field = pn.widgets.TextInput(
+    name='Type a regular expression:',
+    disabled=True,
+    align='end',
+    width=160,
+    placeholder='([KR](?=[^P]))'
+    # margin=(0,150,10,-30)S
+)
+
 proteases_options_tab = pn.Card(
-    proteases_options,
+    pn.Row(
+        proteases_options,
+        custom_enzyme_field
+    ),
     pn.Row(
         proteases_select_all,
         proteases_clear_all,
@@ -1236,6 +1248,25 @@ def change_proteases_selection(select, clear):
         proteases_clear_all.value = False
         proteases_select_all.value = False
         proteases_options.value = []
+
+
+@pn.depends(
+    custom_enzyme_field.param.value,
+    watch=True
+)
+def update_protease_dict(_):
+    protease_dict['custom_enzyme'] = custom_enzyme_field.value
+
+
+@pn.depends(
+    proteases_options.param.value,
+    watch=True
+)
+def de_activate_custom_enzyme_field(_):
+    if 'custom_enzyme' in proteases_options.value:
+        custom_enzyme_field.disabled = False
+    else:
+        custom_enzyme_field.disabled = True
 
 
 @pn.depends(

@@ -42,6 +42,7 @@ protease_dict["trypsin_full"] = "([KR](?=[^P]))|((?<=W)K(?=P))|((?<=M)R(?=P))"
 protease_dict["trypsin_exception"] = "((?<=[CD])K(?=D))|((?<=C)K(?=[HY]))|((?<=C)R(?=K))|((?<=R)R(?=[HR]))"
 protease_dict["non-specific"] = "()"
 protease_dict["trypsin"] = "([KR](?=[^P]))"
+protease_dict["custom_enzyme"] = "[]"
 
 # Cell
 import re
@@ -56,7 +57,10 @@ def get_cleavage_sites(sequence: str, protease: str):
         list: List of cleavage site indices for the selected protease.
 
     """
-    pattern = re.compile(protease_dict[protease])
+    try:
+        pattern = re.compile(protease_dict[protease])
+    except:
+        return []
     pattern_idx = pattern.finditer(sequence)
     pattern_idx = [m.start(0) for m in pattern_idx]
     return pattern_idx
