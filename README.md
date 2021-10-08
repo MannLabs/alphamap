@@ -81,7 +81,7 @@ pip install -e .
 
 ## Test data
 
-AlphaMap has direct data import options for MaxQuant and Spectronaut.
+AlphaMap has direct data import options for AlphaPept, DIA-NN, MaxQuant, Spectronaut and FragPipe.
 
 ### AlphaPept
 AlphaMap takes the *results.csv* file from AlphaPept as input format. An example is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210730-alpha/test_alphapept_input.csv).
