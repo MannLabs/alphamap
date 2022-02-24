@@ -13,11 +13,12 @@ from io import StringIO
 import pyteomics.fasta
 # visualization libraries
 import panel as pn
+pn.extension()
 import plotly.graph_objects as go
 # local
 from alphamap.importing import import_data, extract_rawfile_unique_values
 from alphamap.preprocessing import format_input_data
-from alphamap.sequenceplot import plot_peptide_traces, uniprot_color_dict, create_pdf_report
+from alphamap.sequenceplot import plot_peptide_traces, uniprot_color_dict, create_pdf_report, plot_3d_structure
 from alphamap.uniprot_integration import uniprot_feature_dict
 from alphamap.proteolytic_cleavage import protease_dict
 from alphamap.organisms_data import all_organisms, import_fasta, import_uniprot_annotation
@@ -64,6 +65,7 @@ phosposite_link_path = os.path.join(IMAGE_PATH, "phosphosite_logo.png")
 protter_link_path = os.path.join(IMAGE_PATH, "protter_logo.png")
 pdb_link_path = os.path.join(IMAGE_PATH, "pdb_logo.png")
 peptide_atlas_link_path = os.path.join(IMAGE_PATH, "peptide_atlas_logo.png")
+alphafold_link_path = os.path.join(IMAGE_PATH, "alphamap_icon.png")
 
 ### Upload an extension and a GUI style
 def get_css_style(
@@ -176,6 +178,14 @@ proteases_select_all = pn.widgets.Checkbox(
     width=150
 )
 proteases_clear_all = pn.widgets.Checkbox(
+    name='Clear all',
+    width=150
+)
+alphafold_select_all = pn.widgets.Checkbox(
+    name='Select all',
+    width=150
+)
+alphafold_clear_all = pn.widgets.Checkbox(
     name='Clear all',
     width=150
 )
@@ -408,7 +418,8 @@ def download_pdf_report():
         selected_features=[uniprot_feature_dict[each] for each in uniprot_options_combined],
         uniprot_feature_dict=uniprot_feature_dict,
         uniprot_color_dict=uniprot_color_dict,
-        selected_proteases=proteases_options.value
+        selected_proteases=proteases_options.value,
+        selected_alphafold_features=alphafold_options.value,
     )
     download_pdf_loading_spinner.value = False
     return report
@@ -555,6 +566,112 @@ proteases_options_tab = pn.Card(
 )
 
 
+### List of alphafold options for linear sequence plot
+alphafold_options = pn.widgets.CheckBoxGroup(
+    options=["AlphaFold confidence", "AlphaFold exposure", "AlphaFold IDR", "AlphaFold secondary structures"],
+    value=[''],
+    align='center',
+    margin=10
+)
+
+alphafold_options_tab = pn.Card(
+    pn.Row(
+        alphafold_options
+    ),
+    pn.Row(
+        alphafold_select_all,
+        alphafold_clear_all,
+        margin=5
+    ),
+    title='AlphaFold annotation',
+    collapsed=True,
+    header_background='EAEAEA',
+    active_header_background='EAEAEA',
+    width=860,
+    css_classes=['uniprot_options'],
+)
+
+### List of alphafold options for 3D sequence plot
+alphafold3D_options = pn.widgets.Select(
+    options=['AlphaFold confidence','AlphaFold exposure','AlphaFold IDR','AlphaFold secondary structures', 'MS peptides', 'MS modified peptides', 'MS PTMs', 'MS PTMs on AlphaFold IDR'],
+    value='MS modified peptides',
+    align='center',
+    margin=10
+)
+
+alphafold3D_options_tab = pn.Card(
+    pn.Row(
+        alphafold3D_options
+    ),
+    title='Structure coloring',
+    collapsed=False,
+    header_background='EAEAEA',
+    active_header_background='EAEAEA',
+    width=860,
+    css_classes=['uniprot_options'],
+)
+
+### MS data selection for 3D sequence plot
+data3D_options = pn.widgets.Select(
+    options=['all'],
+    value='all',
+    align='center',
+    margin=10
+)
+
+@pn.depends(
+    upload_button.param.clicks,
+    watch=True
+)
+def update_data3D_options(clicks):
+    if clicks > 0 and any(
+        [experimental_data_sample.value, experimental_data_2_sample.value, experimental_data_3_sample.value]
+    ):
+        available_data_names = []
+        if experimental_data.value:
+            available_data_names.append(
+                extract_name(os.path.splitext(os.path.basename(experimental_data.value))[0],
+                             experimental_data_sample.value,
+                             experimental_data_sample_name.value,
+                             experimental_data_sample_name_remove_part.value
+                )
+            )
+        if experimental_data_2.value:
+            available_data_names.append(
+                extract_name(os.path.splitext(os.path.basename(experimental_data_2.value))[0],
+                             experimental_data_2_sample.value,
+                             experimental_data_2_sample_name.value,
+                             experimental_data_2_sample_name_remove_part.value
+                )
+            )
+        if experimental_data_3.value:
+            available_data_names.append(
+                extract_name(os.path.splitext(os.path.basename(experimental_data_3.value))[0],
+                             experimental_data_3_sample.value,
+                             experimental_data_3_sample_name.value,
+                             experimental_data_3_sample_name_remove_part.value
+                )
+            )
+        if len(available_data_names) == 1:
+            data3D_options.options = [available_data_names[0]]
+            data3D_options.value = available_data_names[0]
+        else:
+            available_data_names.insert(0, "all")
+            data3D_options.options = available_data_names
+            data3D_options.value = available_data_names[0]
+
+data3D_options_tab = pn.Card(
+    pn.Row(
+        data3D_options
+    ),
+    title='MS data selection',
+    collapsed=False,
+    header_background='EAEAEA',
+    active_header_background='EAEAEA',
+    width=860,
+    css_classes=['uniprot_options'],
+)
+
 ### MAIN PART
 project_description = pn.pane.Markdown(
     """### AlphaMap enables the exploration of proteomic datasets on the peptide level. It is possible to evaluate the sequence coverage of any identified protein and its post-translational modifications (PTMs). AlphaMap further integrates all available UniProt sequence annotations as well as information about proteolytic cleavage sites.""",
@@ -588,7 +705,8 @@ project_instuction = pn.pane.Markdown(
     4. Select a protein of interest by UniProt accession or gene name.
     5. (optional) Load a list of pre-selected proteins to reduce the list
     of available proteins.
-    6. Select annotation options for the sequence visualization.
+    6. Select annotation options for either a linear sequence plot or
+    a 3D visualization based on structure predictions from AlphaFold2.
     7. Press the 'Visualize Protein' button.
     8. Enjoy exploring your data!
     """,
@@ -857,6 +975,13 @@ peptide_atlas_link = pn.pane.PNG(
     # align='center',
     margin=(0, 20)
 )
+alphafold_link = pn.pane.PNG(
+    alphafold_link_path,
+    width=180,
+    height=60,
+    # align='center',
+    margin=(0, 20)
+)
 
 
 def extract_uniprot_ai(protein, search_by):
@@ -872,6 +997,7 @@ def update_all_links():
     protter_link.link_url = 'https://wlab.ethz.ch/protter/#up=' + selected_protein_id
     pdb_link.link_url = f'https://www.rcsb.org/search?request=%7B%22query%22%3A%7B%22parameters%22%3A%7B%22value%22%3A%22{selected_protein_id}%22%7D%2C%22type%22%3A%22terminal%22%2C%22service%22%3A%22text%22%2C%22node_id%22%3A0%7D%2C%22return_type%22%3A%22entry%22%2C%22request_options%22%3A%7B%22pager%22%3A%7B%22start%22%3A0%2C%22rows%22%3A100%7D%2C%22scoring_strategy%22%3A%22combined%22%2C%22sort%22%3A%5B%7B%22sort_by%22%3A%22score%22%2C%22direction%22%3A%22desc%22%7D%5D%7D%2C%22request_info%22%3A%7B%22src%22%3A%22ui%22%2C%22query_id%22%3A%223407f72e3370cd10196490437be3ec87%22%7D%7D'
     peptide_atlas_link.link_url = f"https://db.systemsbiology.net/sbeams/cgi/PeptideAtlas/GetProtein?protein_name={selected_protein_id}&action=QUERY"
+    alphafold_link.link_url = 'https://alphafold.ebi.ac.uk/entry/' + selected_protein_id
 
 def visualize_buttons():
     if select_protein.value:
@@ -887,6 +1013,7 @@ def visualize_buttons():
             protter_link,
             pdb_link,
             peptide_atlas_link,
+            alphafold_link,
             height=60,
             sizing_mode='stretch_width',
             margin=(50,0)
@@ -1268,6 +1395,20 @@ def de_activate_custom_enzyme_field(_):
     else:
         custom_enzyme_field.disabled = True
 
+@pn.depends(
+    alphafold_select_all.param.value,
+    alphafold_clear_all.param.value,
+    watch=True
+)
+def change_alphafold_selection(select, clear):
+    if select:
+        alphafold_clear_all.value = False
+        alphafold_select_all.value = False
+        alphafold_options.value = alphafold_options.options
+    if clear:
+        alphafold_clear_all.value = False
+        alphafold_select_all.value = False
+        alphafold_options.value = []
 
 @pn.depends(
     search_by.param.value,
@@ -1283,7 +1424,21 @@ def change_autocomplete_input(search_by):
             select_protein.options = list(ac_gene_conversion.keys())
 
 
+### Tabs for linear and 3D plots
+plot_selection_tabs = pn.Tabs(
+    ('Linear sequence plot', pn.Column(uniprot_options_tab,proteases_options_tab,alphafold_options_tab)),
+    ('3D plot', pn.Column(alphafold3D_options_tab, data3D_options_tab)))
+
 ### VISUALIZATION
+import alphamap
+import os
+import tempfile
+BASE_PATH = os.path.dirname(alphamap.__file__)
+js_path_global = os.path.join(BASE_PATH, 'js')
+cif_path_global = tempfile.gettempdir()
+pn.extension(js_files={'js': 'js/alphafold-viz.js'})
+pn.extension(css_files=['js/alphafold-viz.css'])
+
 @pn.depends(
     upload_button.param.clicks
 )
@@ -1312,10 +1467,7 @@ def upload_data(clicks):
                         download_pdf_error
                     ),
                     pn.layout.VSpacer(width=80),
-                    pn.Column(
-                        uniprot_options_tab,
-                        proteases_options_tab
-                    ),
+                    pn.Column(plot_selection_tabs),
                     align='center'
                 ),
                 pn.layout.HSpacer(height=4),
@@ -1325,6 +1477,7 @@ def upload_data(clicks):
                     align='center'
                 ),
                 divider,
+                align='center',
                 sizing_mode='stretch_width',
                 margin=(20, 0)
             )
@@ -1386,37 +1539,65 @@ def visualize_plot(clicks):
             visualize_spinner.value = False
             return None
         # create a main figure
-        fig =  plot_peptide_traces(
-            df = all_data,
-            name = all_names,
-            protein = selected_protein,
-            fasta = full_fasta,
-            uniprot = full_uniprot,
-            selected_features = [uniprot_feature_dict[each] for each in uniprot_options_combined],
-            uniprot_feature_dict = uniprot_feature_dict,
-            uniprot_color_dict = uniprot_color_dict,
-            selected_proteases=proteases_options.value,
-            dashboard=True
-        )
-        plot =  pn.Column(
-            pn.Pane(
-                fig,
-                config={'toImageButtonOptions':
-                           {'format': 'svg', # one of png, svg, jpeg, webp
-                            'filename': f"alphamap_{full_fasta[selected_protein].description['name']}_{full_fasta[selected_protein].description['id']}",
-                            'height': 500,
-                            'width': 1500,
-                            'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
-                           }
-                       },
+        if plot_selection_tabs.active == 0:
+            fig =  plot_peptide_traces(
+                df = all_data,
+                name = all_names,
+                protein = selected_protein,
+                fasta = full_fasta,
+                uniprot = full_uniprot,
+                selected_features = [uniprot_feature_dict[each] for each in uniprot_options_combined],
+                uniprot_feature_dict = uniprot_feature_dict,
+                uniprot_color_dict = uniprot_color_dict,
+                selected_proteases=proteases_options.value,
+                selected_alphafold_features=alphafold_options.value,
+                dashboard=True
+            )
+            plot =  pn.Column(
+                pn.Pane(
+                    fig,
+                    config={'toImageButtonOptions':
+                               {'format': 'svg', # one of png, svg, jpeg, webp
+                                'filename': f"alphamap_{full_fasta[selected_protein].description['name']}_{full_fasta[selected_protein].description['id']}",
+                                'height': 500,
+                                'width': 1500,
+                                'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
+                               }
+                           },
+                    align='center',
+                    sizing_mode='stretch_width',
+                    # width=1500
+                ),
+                visualize_buttons,
                 align='center',
-                sizing_mode='stretch_width',
-                # width=1500
-            ),
-            visualize_buttons,
-            align='center',
-            sizing_mode='stretch_width'
-        )
+                sizing_mode='stretch_width'
+            )
+        else:
+            if not ((data3D_options.value == 'all') or (isinstance(all_data, pd.DataFrame))):
+                selected_data_idx = all_names.index(data3D_options.value)
+                all_data = all_data[selected_data_idx]
+
+            print(all_data)
+
+            plot3D_html, js_path, cif_path = plot_3d_structure(
+                    df = all_data,
+                    name = data3D_options.value,
+                    protein = selected_protein,
+                    fasta = full_fasta,
+                    selected_coloring = alphafold3D_options.value,
+                    dashboard = True)
+
+            plot =  pn.Row(pn.Column(pn.layout.HSpacer(height=80),
+                            pn.panel(plot3D_html, width = 1500, align='center', sizing_mode='stretch_width'),
+                            visualize_buttons,
+                            align='center', sizing_mode='stretch_width'),
+                            align='center', sizing_mode='stretch_width')
+
+            global js_path_global
+            js_path_global = js_path
+            global cif_path_global
+            cif_path_global = cif_path
+
         visualize_spinner.value = False
         return plot
     else:
@@ -1445,8 +1626,9 @@ def run():
     print("*"*30)
     print(f"* AlphaMap {alphamap.__version__} *".center(30, '*'))
     print("*"*30)
-    SERVER = layout.show(threaded=True, title='AlphaMap')
-    SERVER.join()
+    #SERVER = layout.show(threaded=True, title='AlphaMap')
+    #SERVER.join()
+    SERVER = pn.serve(layout, threaded=True, title='AlphaMap', static_dirs={'js': js_path_global, 'cif': cif_path_global})
 
 
 def open_browser_tab(func):
@@ -1492,6 +1674,36 @@ proteases_options_tab.jscallback(
         $container.animate({scrollTop: $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
         """,
     args={'card': proteases_options_tab}
+);
+
+alphafold_options_tab.jscallback(
+    collapsed="""
+        var $container = $("html,body");
+        var $scrollTo = $('.uniprot_options');
+
+        $container.animate({scrollTop: $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+        """,
+    args={'card': alphafold_options_tab}
+);
+
+alphafold3D_options_tab.jscallback(
+    collapsed="""
+        var $container = $("html,body");
+        var $scrollTo = $('.uniprot_options');
+
+        $container.animate({scrollTop: $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+        """,
+    args={'card': alphafold3D_options_tab}
+);
+
+data3D_options_tab.jscallback(
+    collapsed="""
+        var $container = $("html,body");
+        var $scrollTo = $('.uniprot_options');
+
+        $container.animate({scrollTop: $container.offset().top + $container.scrollTop(), scrollLeft: 0},300);
+        """,
+    args={'card': data3D_options_tab}
 );
 
 additional_data_card.jscallback(
