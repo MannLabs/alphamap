@@ -1,0 +1,1 @@
+uglifyjs alphafold-viz.js -o min/alphafold-viz.min.js --compress --mangle
