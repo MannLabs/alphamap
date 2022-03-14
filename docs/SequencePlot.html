@@ -26,6 +26,407 @@ nb_path: "nbs/SequencePlot.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+
+<div id="40d851cd-733c-44fa-9e56-3f0aa4abdbaa" class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#40d851cd-733c-44fa-9e56-3f0aa4abdbaa');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.2.min.js", "https://unpkg.com/@holoviz/panel@^0.10.3/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.3/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/json.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/dataframe.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+
+<div id="76f72944-d18e-4821-ab01-da398335ad39" class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#76f72944-d18e-4821-ab01-da398335ad39');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -53,7 +454,7 @@ nb_path: "nbs/SequencePlot.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="format_uniprot_annotation" class="doc_header"><code>format_uniprot_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_uniprot_annotation</code>(<strong><code>uniprot_ann</code></strong>:<code>DataFrame</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>)</p>
+<h4 id="format_uniprot_annotation" class="doc_header"><code>format_uniprot_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_uniprot_annotation</code>(<strong><code>uniprot_ann</code></strong>:<code>DataFrame</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>)</p>
 </blockquote>
 <p>Function to format uniprot annotation for plotting.</p>
 <p>Args:
@@ -103,7 +504,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L89" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="get_plot_data" class="doc_header"><code>get_plot_data</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L90" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_plot_data</code>(<strong><code>protein</code></strong>, <strong><code>df</code></strong>, <strong><code>fasta</code></strong>)</p>
 </blockquote>
 <p>Function to format experimental data for plotting.</p>
 <p>Args:
@@ -147,7 +548,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
+<h4 id="plot_single_peptide_traces" class="doc_header"><code>plot_single_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L182" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_single_peptide_traces</code>(<strong><code>df_plot</code></strong>, <strong><code>protein</code></strong>, <strong><code>fasta</code></strong>)</p>
 </blockquote>
 <p>Function to plot single peptide trace.</p>
 <p>Args:
@@ -219,7 +620,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_quality_category" class="doc_header"><code>get_quality_category</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L403" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_quality_category</code>(<strong><code>s</code></strong>)</p>
+<h4 id="get_quality_category" class="doc_header"><code>get_quality_category</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L404" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_quality_category</code>(<strong><code>s</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -250,7 +651,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_exposure_category" class="doc_header"><code>get_exposure_category</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L415" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_exposure_category</code>(<strong><code>s</code></strong>)</p>
+<h4 id="get_exposure_category" class="doc_header"><code>get_exposure_category</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L416" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_exposure_category</code>(<strong><code>s</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -281,7 +682,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_alphafold_annotation" class="doc_header"><code>get_alphafold_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L427" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_alphafold_annotation</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
+<h4 id="get_alphafold_annotation" class="doc_header"><code>get_alphafold_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L428" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_alphafold_annotation</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -334,7 +735,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L518" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>selected_alphafold_features</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>dashboard</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
+<h4 id="plot_peptide_traces" class="doc_header"><code>plot_peptide_traces</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L519" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_peptide_traces</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>py'&gt;</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>selected_alphafold_features</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>dashboard</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
 </blockquote>
 <p>Function to generate the sequence plot.</p>
 <p>Args:
@@ -386,7 +787,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_annotation" class="doc_header"><code>extract_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L873" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_annotation</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="extract_annotation" class="doc_header"><code>extract_annotation</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L874" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_annotation</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 
 </div>
@@ -417,7 +818,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="manipulate_cif" class="doc_header"><code>manipulate_cif</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L884" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>manipulate_cif</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>MS_data</code></strong>:<code>DataFrame</code>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
+<h4 id="manipulate_cif" class="doc_header"><code>manipulate_cif</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L885" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>manipulate_cif</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>MS_data</code></strong>:<code>DataFrame</code>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -448,7 +849,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="adjust_html" class="doc_header"><code>adjust_html</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L985" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>adjust_html</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>coloring</code></strong>:<code>str</code>, <strong><code>data_name</code></strong>:<code>str</code>)</p>
+<h4 id="adjust_html" class="doc_header"><code>adjust_html</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L986" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>adjust_html</code>(<strong><code>protein</code></strong>:<code>str</code>, <strong><code>coloring</code></strong>:<code>str</code>, <strong><code>data_name</code></strong>:<code>str</code>)</p>
 </blockquote>
 
 </div>
@@ -479,7 +880,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_ms_concensus" class="doc_header"><code>get_ms_concensus</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ms_concensus</code>(<strong><code>ms_list</code></strong>)</p>
+<h4 id="get_ms_concensus" class="doc_header"><code>get_ms_concensus</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_ms_concensus</code>(<strong><code>ms_list</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -510,9 +911,9 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_3d_structure" class="doc_header"><code>plot_3d_structure</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_3d_structure</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>selected_coloring</code></strong>:<code>str</code>, <strong><code>dashboard</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
+<h4 id="plot_3d_structure" class="doc_header"><code>plot_3d_structure</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1116" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_3d_structure</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>py'&gt;</code>, <strong><code>selected_coloring</code></strong>:<code>str</code>, <strong><code>dashboard</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>download_folder</code></strong>:<code>str</code>=<em><code>'/var/folders/zx/n29r0swn0hddt1qgy159sjrw0000gn/T'</code></em>)</p>
 </blockquote>
-<p>Function to generate the sequence plot.</p>
+<p>Function to generate the 3D sequence plot.</p>
 <p>Args:
     df (pd.DataFrame/list): Single dataframe or list of dataframes containing the datasets to plot.
     name (str): Single string containing the name of the MS dataset in df.
@@ -543,6 +944,500 @@ Returns:
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="format_for_3Dviz" class="doc_header"><code>format_for_3Dviz</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1188" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>format_for_3Dviz</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>ptm_dataset</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Function to format data for 3D visualization.</p>
+<p>Args:
+    df (pd.DataFrame): Single dataframe containing PTM data for visualization,
+    formatted accorinding to StructureMap.
+    ptm_dataset (str): Single string containing the name of the target PTM column in df.</p>
+<p>Returns:
+    pd.DataFrame: DataFrame containing the formatted PTM dat</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="visualize_structure_in_panel" class="doc_header"><code>visualize_structure_in_panel</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1225" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>visualize_structure_in_panel</code>(<strong><code>plot_html</code></strong>:<code>str</code>, <strong><code>js_path</code></strong>:<code>str</code>, <strong><code>cif_path</code></strong>:<code>str</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+
+<div id="4068b4d7-e911-428c-b293-e01fd5cb1daa" class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#4068b4d7-e911-428c-b293-e01fd5cb1daa');
+
+(function(root) {
+  function now() {
+    return new Date();
+  }
+
+  var force = true;
+
+  if (typeof root._bokeh_onload_callbacks === "undefined" || force === true) {
+    root._bokeh_onload_callbacks = [];
+    root._bokeh_is_loading = undefined;
+  }
+
+  if (typeof (root._bokeh_timeout) === "undefined" || force === true) {
+    root._bokeh_timeout = Date.now() + 5000;
+    root._bokeh_failed_load = false;
+  }
+
+  function run_callbacks() {
+    try {
+      root._bokeh_onload_callbacks.forEach(function(callback) {
+        if (callback != null)
+          callback();
+      });
+    } finally {
+      delete root._bokeh_onload_callbacks
+    }
+    console.debug("Bokeh: all callbacks have finished");
+  }
+
+  function load_libs(css_urls, js_urls, callback) {
+    if (css_urls == null) css_urls = [];
+    if (js_urls == null) js_urls = [];
+
+    root._bokeh_onload_callbacks.push(callback);
+    if (root._bokeh_is_loading > 0) {
+      console.debug("Bokeh: BokehJS is being loaded, scheduling callback at", now());
+      return null;
+    }
+    if (js_urls == null || js_urls.length === 0) {
+      run_callbacks();
+      return null;
+    }
+    console.debug("Bokeh: BokehJS not loaded, scheduling load and callback at", now());
+    root._bokeh_is_loading = css_urls.length + js_urls.length;
+
+    function on_load() {
+      root._bokeh_is_loading--;
+      if (root._bokeh_is_loading === 0) {
+        console.debug("Bokeh: all BokehJS libraries/stylesheets loaded");
+        run_callbacks()
+      }
+    }
+
+    function on_error() {
+      console.error("failed to load " + url);
+    }
+
+    for (var i = 0; i < css_urls.length; i++) {
+      var url = css_urls[i];
+      const element = document.createElement("link");
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.rel = "stylesheet";
+      element.type = "text/css";
+      element.href = url;
+      console.debug("Bokeh: injecting link tag for BokehJS stylesheet: ", url);
+      document.body.appendChild(element);
+    }
+
+    var skip = [];
+    if (window.requirejs) {
+      require([], function() {
+      })
+    }
+    for (var i = 0; i < js_urls.length; i++) {
+      var url = js_urls[i];
+      if (skip.indexOf(url) >= 0) { on_load(); continue; }
+      var element = document.createElement('script');
+      element.onload = on_load;
+      element.onerror = on_error;
+      element.async = false;
+      element.src = url;
+      console.debug("Bokeh: injecting script tag for BokehJS library: ", url);
+      document.head.appendChild(element);
+    }
+	if (!js_urls.length) {
+      on_load()
+    }
+  };
+
+  function inject_raw_css(css) {
+    const element = document.createElement("style");
+    element.appendChild(document.createTextNode(css));
+    document.body.appendChild(element);
+  }
+
+  var js_urls = ["https://cdn.bokeh.org/bokeh/release/bokeh-2.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.2.2.min.js", "https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.2.2.min.js", "https://unpkg.com/@holoviz/panel@^0.10.3/dist/panel.min.js"];
+  var css_urls = ["https://unpkg.com/@holoviz/panel@0.10.3/dist/css/alerts.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/card.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/widgets.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/markdown.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/json.css", "https://unpkg.com/@holoviz/panel@0.10.3/dist/css/dataframe.css"];
+
+  var inline_js = [
+    function(Bokeh) {
+      Bokeh.set_log_level("info");
+    },
+    function(Bokeh) {} // ensure no trailing comma for IE
+  ];
+
+  function run_inline_js() {
+    if ((root.Bokeh !== undefined) || (force === true)) {
+      for (var i = 0; i < inline_js.length; i++) {
+        inline_js[i].call(root, root.Bokeh);
+      }} else if (Date.now() < root._bokeh_timeout) {
+      setTimeout(run_inline_js, 100);
+    } else if (!root._bokeh_failed_load) {
+      console.log("Bokeh: BokehJS failed to load within specified timeout.");
+      root._bokeh_failed_load = true;
+    }
+  }
+
+  if (root._bokeh_is_loading === 0) {
+    console.debug("Bokeh: BokehJS loaded, going straight to plotting");
+    run_inline_js();
+  } else {
+    load_libs(css_urls, js_urls, function() {
+      console.debug("Bokeh: BokehJS plotting callback run at", now());
+      run_inline_js();
+    });
+  }
+}(window));
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+
+
+<div id="dc1bff81-36ba-4d3b-8a35-74de1a402fad" class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#dc1bff81-36ba-4d3b-8a35-74de1a402fad');
+
+if ((window.PyViz === undefined) || (window.PyViz instanceof HTMLElement)) {
+  window.PyViz = {comms: {}, comm_status:{}, kernels:{}, receivers: {}, plot_index: []}
+}
+
+
+    function JupyterCommManager() {
+    }
+
+    JupyterCommManager.prototype.register_target = function(plot_id, comm_id, msg_handler) {
+      if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        comm_manager.register_target(comm_id, function(comm) {
+          comm.on_msg(msg_handler);
+        });
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        window.PyViz.kernels[plot_id].registerCommTarget(comm_id, function(comm) {
+          comm.onMsg = msg_handler;
+        });
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        google.colab.kernel.comms.registerTarget(comm_id, (comm) => {
+          var messages = comm.messages[Symbol.asyncIterator]();
+          function processIteratorResult(result) {
+            var message = result.value;
+            console.log(message)
+            var content = {data: message.data, comm_id};
+            var buffers = []
+            for (var buffer of message.buffers || []) {
+              buffers.push(new DataView(buffer))
+            }
+            var metadata = message.metadata || {};
+            var msg = {content, buffers, metadata}
+            msg_handler(msg);
+            return messages.next().then(processIteratorResult);
+          }
+          return messages.next().then(processIteratorResult);
+        })
+      }
+    }
+
+    JupyterCommManager.prototype.get_client_comm = function(plot_id, comm_id, msg_handler) {
+      if (comm_id in window.PyViz.comms) {
+        return window.PyViz.comms[comm_id];
+      } else if (window.comm_manager || ((window.Jupyter !== undefined) && (Jupyter.notebook.kernel != null))) {
+        var comm_manager = window.comm_manager || Jupyter.notebook.kernel.comm_manager;
+        var comm = comm_manager.new_comm(comm_id, {}, {}, {}, comm_id);
+        if (msg_handler) {
+          comm.on_msg(msg_handler);
+        }
+      } else if ((plot_id in window.PyViz.kernels) && (window.PyViz.kernels[plot_id])) {
+        var comm = window.PyViz.kernels[plot_id].connectToComm(comm_id);
+        comm.open();
+        if (msg_handler) {
+          comm.onMsg = msg_handler;
+        }
+      } else if (typeof google != 'undefined' && google.colab.kernel != null) {
+        var comm_promise = google.colab.kernel.comms.open(comm_id)
+        comm_promise.then((comm) => {
+          window.PyViz.comms[comm_id] = comm;
+          if (msg_handler) {
+            var messages = comm.messages[Symbol.asyncIterator]();
+            function processIteratorResult(result) {
+              var message = result.value;
+              var content = {data: message.data};
+              var metadata = message.metadata || {comm_id};
+              var msg = {content, metadata}
+              msg_handler(msg);
+              return messages.next().then(processIteratorResult);
+            }
+            return messages.next().then(processIteratorResult);
+          }
+        }) 
+        var sendClosure = (data, metadata, buffers, disposeOnDone) => {
+          return comm_promise.then((comm) => {
+            comm.send(data, metadata, buffers, disposeOnDone);
+          });
+        };
+        var comm = {
+          send: sendClosure
+        };
+      }
+      window.PyViz.comms[comm_id] = comm;
+      return comm;
+    }
+    window.PyViz.comm_manager = new JupyterCommManager();
+    
+
+
+var JS_MIME_TYPE = 'application/javascript';
+var HTML_MIME_TYPE = 'text/html';
+var EXEC_MIME_TYPE = 'application/vnd.holoviews_exec.v0+json';
+var CLASS_NAME = 'output';
+
+/**
+ * Render data to the DOM node
+ */
+function render(props, node) {
+  var div = document.createElement("div");
+  var script = document.createElement("script");
+  node.appendChild(div);
+  node.appendChild(script);
+}
+
+/**
+ * Handle when a new output is added
+ */
+function handle_add_output(event, handle) {
+  var output_area = handle.output_area;
+  var output = handle.output;
+  if ((output.data == undefined) || (!output.data.hasOwnProperty(EXEC_MIME_TYPE))) {
+    return
+  }
+  var id = output.metadata[EXEC_MIME_TYPE]["id"];
+  var toinsert = output_area.element.find("." + CLASS_NAME.split(' ')[0]);
+  if (id !== undefined) {
+    var nchildren = toinsert.length;
+    var html_node = toinsert[nchildren-1].children[0];
+    html_node.innerHTML = output.data[HTML_MIME_TYPE];
+    var scripts = [];
+    var nodelist = html_node.querySelectorAll("script");
+    for (var i in nodelist) {
+      if (nodelist.hasOwnProperty(i)) {
+        scripts.push(nodelist[i])
+      }
+    }
+
+    scripts.forEach( function (oldScript) {
+      var newScript = document.createElement("script");
+      var attrs = [];
+      var nodemap = oldScript.attributes;
+      for (var j in nodemap) {
+        if (nodemap.hasOwnProperty(j)) {
+          attrs.push(nodemap[j])
+        }
+      }
+      attrs.forEach(function(attr) { newScript.setAttribute(attr.name, attr.value) });
+      newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+    if (JS_MIME_TYPE in output.data) {
+      toinsert[nchildren-1].children[1].textContent = output.data[JS_MIME_TYPE];
+    }
+    output_area._hv_plot_id = id;
+    if ((window.Bokeh !== undefined) && (id in Bokeh.index)) {
+      window.PyViz.plot_index[id] = Bokeh.index[id];
+    } else {
+      window.PyViz.plot_index[id] = null;
+    }
+  } else if (output.metadata[EXEC_MIME_TYPE]["server_id"] !== undefined) {
+    var bk_div = document.createElement("div");
+    bk_div.innerHTML = output.data[HTML_MIME_TYPE];
+    var script_attrs = bk_div.children[0].attributes;
+    for (var i = 0; i < script_attrs.length; i++) {
+      toinsert[toinsert.length - 1].childNodes[1].setAttribute(script_attrs[i].name, script_attrs[i].value);
+    }
+    // store reference to server id on output_area
+    output_area._bokeh_server_id = output.metadata[EXEC_MIME_TYPE]["server_id"];
+  }
+}
+
+/**
+ * Handle when an output is cleared or removed
+ */
+function handle_clear_output(event, handle) {
+  var id = handle.cell.output_area._hv_plot_id;
+  var server_id = handle.cell.output_area._bokeh_server_id;
+  if (((id === undefined) || !(id in PyViz.plot_index)) && (server_id !== undefined)) { return; }
+  var comm = window.PyViz.comm_manager.get_client_comm("hv-extension-comm", "hv-extension-comm", function () {});
+  if (server_id !== null) {
+    comm.send({event_type: 'server_delete', 'id': server_id});
+    return;
+  } else if (comm !== null) {
+    comm.send({event_type: 'delete', 'id': id});
+  }
+  delete PyViz.plot_index[id];
+  if ((window.Bokeh !== undefined) & (id in window.Bokeh.index)) {
+    var doc = window.Bokeh.index[id].model.document
+    doc.clear();
+    const i = window.Bokeh.documents.indexOf(doc);
+    if (i > -1) {
+      window.Bokeh.documents.splice(i, 1);
+    }
+  }
+}
+
+/**
+ * Handle kernel restart event
+ */
+function handle_kernel_cleanup(event, handle) {
+  delete PyViz.comms["hv-extension-comm"];
+  window.PyViz.plot_index = {}
+}
+
+/**
+ * Handle update_display_data messages
+ */
+function handle_update_output(event, handle) {
+  handle_clear_output(event, {cell: {output_area: handle.output_area}})
+  handle_add_output(event, handle)
+}
+
+function register_renderer(events, OutputArea) {
+  function append_mime(data, metadata, element) {
+    // create a DOM node to render to
+    var toinsert = this.create_output_subarea(
+    metadata,
+    CLASS_NAME,
+    EXEC_MIME_TYPE
+    );
+    this.keyboard_manager.register_events(toinsert);
+    // Render to node
+    var props = {data: data, metadata: metadata[EXEC_MIME_TYPE]};
+    render(props, toinsert[0]);
+    element.append(toinsert);
+    return toinsert
+  }
+
+  events.on('output_added.OutputArea', handle_add_output);
+  events.on('output_updated.OutputArea', handle_update_output);
+  events.on('clear_output.CodeCell', handle_clear_output);
+  events.on('delete.Cell', handle_clear_output);
+  events.on('kernel_ready.Kernel', handle_kernel_cleanup);
+
+  OutputArea.prototype.register_mime_type(EXEC_MIME_TYPE, append_mime, {
+    safe: true,
+    index: 0
+  });
+}
+
+if (window.Jupyter !== undefined) {
+  try {
+    var events = require('base/js/events');
+    var OutputArea = require('notebook/js/outputarea').OutputArea;
+    if (OutputArea.prototype.mime_types().indexOf(EXEC_MIME_TYPE) == -1) {
+      register_renderer(events, OutputArea);
+    }
+  } catch(err) {
+  }
+}
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># mod_html, js_path, cif_path = plot_3d_structure(df = formatted_diann_data,</span>
+<span class="c1">#                     name = &#39;proteome&#39;,</span>
+<span class="c1">#                     protein = &quot;P23284&quot;, #Q9H7C9, P23284</span>
+<span class="c1">#                     fasta = human_fasta,</span>
+<span class="c1">#                     selected_coloring = &#39;AlphaFold quality&#39;, #&#39;AlphaFold exposure&#39;, #&#39;AlphaFold quality&#39;, &#39;MS data&#39;</span>
+<span class="c1">#                     dashboard = False)</span>
+
+<span class="c1"># visualize_structure_in_panel(mod_html, js_path, cif_path)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -566,21 +1461,38 @@ Returns:
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># plot_3d_structure(df = formatted_diann_data,</span>
-<span class="c1">#                     name = &#39;proteome&#39;,</span>
-<span class="c1">#                     protein = &quot;P23284&quot;, #Q9H7C9, P23284</span>
-<span class="c1">#                     fasta = human_fasta,</span>
-<span class="c1">#                     selected_coloring = &#39;AlphaFold quality&#39;, #&#39;AlphaFold exposure&#39;, #&#39;AlphaFold quality&#39;, &#39;MS data&#39;</span>
-<span class="c1">#                     dashboard = False)</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="plot_3d_structuremap" class="doc_header"><code>plot_3d_structuremap</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1247" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_3d_structuremap</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>organism</code></strong>:<code>str</code>, <strong><code>protein</code></strong>:<code>str</code>, <strong><code>ptm_type</code></strong>:<code>str</code>)</p>
+</blockquote>
+<p>Function to return a sigle</p>
+<p>Args:
+    df (pd.DataFrame): Single dataframe containing PTM data for visualization,
+    organism (str): String specifying the organism.
+    protein (str): String specufying the UniProt protein accession.
+    ptm_type (str): String of the PTM type to visualize.</p>
+<p>Returns:
+    go.Figure: 3D plot.</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -602,7 +1514,7 @@ Returns:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_pdf_report" class="doc_header"><code>create_pdf_report</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1191" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_pdf_report</code>(<strong><code>proteins</code></strong>:<code>list</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>pyteomics.fasta</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>)</p>
+<h4 id="create_pdf_report" class="doc_header"><code>create_pdf_report</code><a href="https://github.com/mannlabs/alphamap/tree/master/alphamap/sequenceplot.py#L1281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_pdf_report</code>(<strong><code>proteins</code></strong>:<code>list</code>, <strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>name</code></strong>:<code>str</code>, <strong><code>fasta</code></strong>:<code>py'&gt;</code>, <strong><code>uniprot</code></strong>:<code>DataFrame</code>, <strong><code>selected_features</code></strong>:<code>list</code>, <strong><code>uniprot_feature_dict</code></strong>:<code>dict</code>, <strong><code>uniprot_color_dict</code></strong>:<code>dict</code>, <strong><code>selected_proteases</code></strong>:<code>list</code>=<em><code>[]</code></em>, <strong><code>trace_colors</code></strong>:<code>list</code>=<em><code>[]</code></em>)</p>
 </blockquote>
 <p>Function to write pdf reports for selected proteins</p>
 <p>Args:
