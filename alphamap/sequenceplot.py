@@ -3,7 +3,8 @@
 __all__ = ['format_uniprot_annotation', 'ptm_shape_dict', 'get_plot_data', 'plot_single_peptide_traces',
            'custom_color_palettes', 'uniprot_color_dict', 'aa_color_dict', 'get_quality_category',
            'get_exposure_category', 'get_alphafold_annotation', 'plot_peptide_traces', 'extract_annotation',
-           'manipulate_cif', 'adjust_html', 'get_ms_concensus', 'plot_3d_structure', 'create_pdf_report']
+           'manipulate_cif', 'adjust_html', 'get_ms_concensus', 'plot_3d_structure', 'format_for_3Dviz',
+           'visualize_structure_in_panel', 'plot_3d_structuremap', 'create_pdf_report']
 
 # Cell
 import os
@@ -887,7 +888,7 @@ def manipulate_cif(protein: str,
                    ):
 
 
-    print(MS_data)
+    #print(MS_data)
 
     alphafold_annotation = get_alphafold_annotation(protein = protein,
                                                     selected_features = ["AlphaFold confidence",
@@ -1121,7 +1122,7 @@ def plot_3d_structure(df: pd.DataFrame or list,
                         download_folder: str = tempfile.gettempdir()):
 
     """
-    Function to generate the sequence plot.
+    Function to generate the 3D sequence plot.
 
     Args:
         df (pd.DataFrame/list): Single dataframe or list of dataframes containing the datasets to plot.
@@ -1181,9 +1182,98 @@ def plot_3d_structure(df: pd.DataFrame or list,
             <center> No AlphaFold structure available for {protein}. <center>
             """
 
-
-
     return mod_html, js_path, cif_path
+
+# Cell
+def format_for_3Dviz(
+    df: pd.DataFrame,
+    ptm_dataset: str
+) -> pd.DataFrame:
+    """
+    Function to format data for 3D visualization.
+
+    Args:
+        df (pd.DataFrame): Single dataframe containing PTM data for visualization,
+        formatted accorinding to StructureMap.
+        ptm_dataset (str): Single string containing the name of the target PTM column in df.
+
+    Returns:
+        pd.DataFrame: DataFrame containing the formatted PTM dat
+
+    """
+    df_mod = df[["protein_id","AA","position",ptm_dataset]]
+    df_mod = df_mod.rename(columns={"protein_id": "unique_protein_id",
+                                    "AA": "modified_sequence",
+                                    "position": "start"})
+    df_mod["modified_sequence"] = [mod+"_"+str(i) for i,mod in enumerate(df_mod["modified_sequence"])]
+    df_mod["all_protein_ids"] = df_mod["unique_protein_id"]
+    df_mod["PTMsites"] = 0
+    df_mod["start"] = df_mod["start"]-1
+    df_mod["end"] = df_mod["start"]
+    df_mod["PTMsites"] = [[i] for i in df_mod["PTMsites"]]
+    df_mod = df_mod[df_mod[ptm_dataset] == 1]
+    df_mod["marker_symbol"] = 1
+    df_mod["PTMtypes"] = [[ptm_dataset] for i in df_mod["PTMsites"]]
+    df_mod = df_mod.dropna(subset=['PTMtypes']).reset_index(drop=True)
+    return df_mod
+
+# Cell
+import os
+import tempfile
+import panel as pn
+pn.extension()
+def visualize_structure_in_panel(
+    plot_html: str,
+    js_path: str,
+    cif_path: str
+):
+    BASE_PATH = os.path.dirname(alphamap.__file__)
+    js_path_global = os.path.join(BASE_PATH, 'js')
+    cif_path_global = tempfile.gettempdir()
+    pn.extension(js_files={'js': 'js/alphafold-viz.js'})
+    pn.extension(css_files=['js/alphafold-viz.css'])
+    app = pn.Row(plot_html)
+    plot = pn.Row(pn.Column(
+        pn.layout.HSpacer(height=80),
+        pn.panel(plot_html, width = 1500, align='center', sizing_mode='stretch_width'),
+        align='center', sizing_mode='stretch_width'),
+                  align='center', sizing_mode='stretch_width')
+    pn.serve(plot, static_dirs={'js': js_path, 'cif': cif_path}, verbose=False)
+
+# Cell
+import os
+import tempfile
+from .organisms_data import import_fasta
+def plot_3d_structuremap(
+    df: pd.DataFrame,
+    organism: str,
+    protein: str,
+    ptm_type: str
+):
+    """
+    Function to return a sigle
+
+    Args:
+        df (pd.DataFrame): Single dataframe containing PTM data for visualization,
+        organism (str): String specifying the organism.
+        protein (str): String specufying the UniProt protein accession.
+        ptm_type (str): String of the PTM type to visualize.
+
+    Returns:
+        go.Figure: 3D plot.
+
+    """
+    fasta = import_fasta(organism)
+    df_sub = df[df.protein_id==protein]
+    formatted_data = format_for_3Dviz(
+        df=df_sub, ptm_dataset=ptm_type)
+    plot3D_html, js_path, cif_path = plot_3d_structure(df = formatted_data,
+                    name = 'proteome',
+                    protein = protein,
+                    fasta = fasta,
+                    selected_coloring = 'MS PTMs',
+                    dashboard = False)
+    return plot3D_html, js_path, cif_path
 
 # Cell
 from .pdflib import *

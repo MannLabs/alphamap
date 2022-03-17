@@ -17,7 +17,7 @@ rm -rf build
 python setup.py sdist bdist_wheel
 cd misc/one_click_macos
 pip install pyinstaller==4.2
-pip install "../../dist/alphamap-0.1.8-py3-none-any.whl"
+pip install "../../dist/alphamap-0.1.9-py3-none-any.whl"
 conda list
 pyinstaller ../pyinstaller/alphamap.spec -y
 conda deactivate
@@ -37,7 +37,7 @@ if false; then
   for f in $(find dist/alphamap -name '*.so' -or -name   '*.dylib'); do codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" $f; done
   codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" dist/alphamap/Contents/MacOS/alphamap_gui --force --options=runtime --entitlements entitlements.xml
   codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" dist/alphamap/Contents/MacOS/kaleido/executable/bin/kaleido --force --options=runtime --entitlements entitlements.xml
-  pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.8 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg --sign "Developer ID Installer: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)"
+  pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.9 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg --sign "Developer ID Installer: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)"
   productbuild --distribution distribution.xml --resources Resources --package-path alphamap.pkg dist/alphamap_gui_installer_macos.pkg --sign "Developer ID Installer: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)"
   requestUUID=$(xcrun altool --notarize-app --primary-bundle-id "de.mpg.biochem.alphamap.app" --username "willems@biochem.mpg.de" --password "@keychain:Alphatims-develop" --asc-provider 7QSY5527AQ --file dist/alphamap_gui_installer_macos.pkg 2>&1 | awk '/RequestUUID/ { print $NF; }')
   request_status="in progress"
@@ -49,6 +49,6 @@ if false; then
   xcrun altool --notarization-info "$requestUUID" --username "willems@biochem.mpg.de" --password "@keychain:Alphatims-develop"
   xcrun stapler staple dist/alphamap_gui_installer_macos.pkg
 else
-  pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.8 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg
+  pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.9 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg
   productbuild --distribution distribution.xml --resources Resources --package-path alphamap.pkg dist/alphamap_gui_installer_macos.pkg
 fi
