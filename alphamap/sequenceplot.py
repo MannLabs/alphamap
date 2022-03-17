@@ -888,7 +888,7 @@ def manipulate_cif(protein: str,
                    ):
 
 
-    print(MS_data)
+    #print(MS_data)
 
     alphafold_annotation = get_alphafold_annotation(protein = protein,
                                                     selected_features = ["AlphaFold confidence",
@@ -1238,7 +1238,7 @@ def visualize_structure_in_panel(
         pn.panel(plot_html, width = 1500, align='center', sizing_mode='stretch_width'),
         align='center', sizing_mode='stretch_width'),
                   align='center', sizing_mode='stretch_width')
-    pn.serve(plot, static_dirs={'js': js_path, 'cif': cif_path})
+    pn.serve(plot, static_dirs={'js': js_path, 'cif': cif_path}, verbose=False)
 
 # Cell
 import os
