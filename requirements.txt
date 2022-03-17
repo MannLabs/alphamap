@@ -1,4 +1,4 @@
-numpy==1.19.2
+numpy==1.21.0
 pandas==1.4.0
 panel==0.10.3
 param==1.10.0
