@@ -1,13 +1,12 @@
 numpy==1.19.2
 pandas==1.4.0
-panel==0.10.3
-param==1.10.0
-plotly==4.12.0
+panel==0.12.4
+plotly==5.8.0
 pyteomics==4.3.3
 pdfrw==0.4
 psutil==5.8.0
 reportlab==3.5.59
 kaleido==0.2.1
-bokeh==2.2.2
+bokeh==2.4.2
 structuremap==0.0.8
 h5py==3.6.0
