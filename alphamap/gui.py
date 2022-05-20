@@ -189,7 +189,11 @@ alphafold_clear_all = pn.widgets.Checkbox(
     name='Clear all',
     width=150
 )
-
+example_file_select = pn.widgets.Checkbox(
+    name='Load the MaxQuant example file',
+    width=150,
+    margin=(5,0,0,16)
+)
 #####################################
 # RAW EXPERIMENTAL DATA
 
@@ -896,6 +900,7 @@ selection_box = pn.Column(
         experimental_data_sample_name,
         experimental_data_sample_name_remove_part
     ),
+    example_file_select,
     experimental_data_warning,
     experimental_data_sample,
     additional_data_card,
@@ -1026,6 +1031,19 @@ def visualize_buttons():
 
 
 ### PREPROCESSING
+@pn.depends(
+    example_file_select.param.value,
+    watch=True
+)
+def use_example_file(value):
+    if value:
+        experimental_data.value = os.path.join(
+            DATA_PATH, "test_maxquant_input.txt"
+        )
+    else:
+        experimental_data.value = ''
+
+
 def upload_experimental_data():
     global ac_gene_conversion
     all_unique_proteins = []
