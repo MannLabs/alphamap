@@ -190,7 +190,7 @@ alphafold_clear_all = pn.widgets.Checkbox(
     width=150
 )
 example_file_select = pn.widgets.Checkbox(
-    name='Load the MaxQuant example file',
+    name='Load example data',
     width=150,
     margin=(5,0,0,16)
 )
