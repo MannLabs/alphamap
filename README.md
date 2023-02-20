@@ -134,7 +134,7 @@ Note that this needs to be prepended with a `!` when you want to run this from w
 
 AlphaMap can be imported as a Python package into any Python script or notebook with the command `import alphamap`.
 
-A Jupyter notebook tutorial ['Workflow.ipynb'](Workflow.ipynb) is available to demonstrate how to load AlphaMap as python module and hot to visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.
+A Jupyter notebook tutorial ['Workflow.ipynb'](Workflow.ipynb) is available to demonstrate how to load AlphaMap as python module and how to visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.
 
 AlphaMap includes fasta files and UniProt annotations for: 'Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold', 'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae', 'SARS-COV' and 'SARS-COV-2'. If additional organisms are of interest, corresponding .fasta files and sequence annotations can be downloaded directly from UniProt. A Jupyter notebook tutorial ['Uniprot_preprocessing.ipynb'](Uniprot_preprocessing.ipynb) shows how to load and format a UniProt annotation file.
 
