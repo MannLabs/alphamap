@@ -89,7 +89,7 @@ def get_peptide_position(df: pd.DataFrame, fasta: fasta, verbose:bool = True):
                                                                      verbose=verbose),
                                      axis=1, result_type='expand')
 
-    res_na = res[res.isnull().any(1)]
+    res_na = res[res.isnull().any(axis=1)]
     prots_na = res_na.unique_protein_id.unique()
 
     res = res.dropna()
