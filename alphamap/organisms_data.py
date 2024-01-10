@@ -55,7 +55,7 @@ all_organisms = {
 import os
 import urllib.request
 import shutil
-import imp
+import importlib
 from pyteomics import fasta
 def import_fasta(organism: str):
     """
@@ -71,7 +71,7 @@ def import_fasta(organism: str):
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
 
-    BASE_PATH = imp.find_module("alphamap")[1] #os.path.abspath('')
+    BASE_PATH = importlib.util.find_spec("alphamap") #imp.find_module("alphamap")[1] #os.path.abspath('')
     INI_PATH = os.path.join(BASE_PATH, '..')
     FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
     DATA_PATH = os.path.join(FUNCT_PATH, 'data')
@@ -114,7 +114,7 @@ def import_uniprot_annotation(organism: str):
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
 
-    BASE_PATH = imp.find_module("alphamap")[1] #os.path.abspath('')
+    BASE_PATH = importlib.util.find_spec("alphamap") #imp.find_module("alphamap")[1] #os.path.abspath('')
     INI_PATH = os.path.join(BASE_PATH, '..')
     FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
     DATA_PATH = os.path.join(FUNCT_PATH, 'data')
