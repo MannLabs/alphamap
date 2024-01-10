@@ -1,0 +1,130 @@
+.bk-root .bk-btn-default.bk-active {
+    background-color: #AECCE6;
+}
+
+.bk.accordion {
+    font-size: smaller;
+}
+
+.bk-root .bk-btn {
+    padding: 6px 0px 6px 0px;
+}
+
+.bk.uniprot_options {
+    margin: 17px 6px 12px 6px;
+    background-color: white;
+    font-size: 13px;
+    font-weight: initial;
+    text-align: center;
+    height: 55px;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+}
+
+.bk-root .bk-btn-primary {
+    background-color:  ;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.bk-root .bk-btn-default {
+    color: dimgrey;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.bk.card-title {
+    font-size: 13px;
+    font-weight: initial;
+}
+
+h1 {
+    color: #045082;
+    font-size: 45px;
+    line-height: 0.6;
+    text-align: center;
+}
+
+h4 {
+    color: #173245;
+    font-size: 18px;
+    line-height: 0.6;
+    text-align: center;
+}
+
+.codehilite {
+    color: #173245;
+    font-size: 14px;
+    background-color: #eaeaea;
+}
+
+.codehilite .s1 {
+    color: #173245;
+    font-weight: initial;
+}
+
+.codehilite .s2 {
+    color: #173245;
+    font-weight: bold;
+}
+
+.codehilite .ow {
+    color: #173245;
+    font-weight: initial;
+}
+
+.codehilite .k {
+    color: #173245;
+    font-weight: initial;
+}
+
+.bk.opt {
+    position: relative;
+    display: block;
+    left: 75px;
+    top: 0px;
+    width: 80px;
+    height: 80px;
+}
+
+.bk.main-part {
+    background-color: #EAEAEA;
+    font-size: 17px;
+    line-height: 23px;
+    letter-spacing: 0px;
+    font-weight: 500;
+    color: #045082;
+    text-align: center;
+    position: relative !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.bk.selection_box {
+    background-color: #EAEAEA;
+}
+
+.bk.alert-danger {
+    background-color: #EAEAEA;
+    color: #c72d3b;
+    border: 0px #EAEAEA solid;
+    padding: 0;
+    font-size: 12px;
+}
+
+.bk.alert-primary {
+    background-color: white;
+    border: 0px white solid;
+    padding: 0;
+    font-size: 12px;
+}
+
+.bk.alert-info {
+    background-color: #EAEAEA;
+    border: 0px #EAEAEA solid;
+    padding: 0;
+    font-size: 12px;
+}
