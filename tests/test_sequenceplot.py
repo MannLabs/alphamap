@@ -18,7 +18,7 @@ DATA_FOLDER = os.path.join(
     "data",
 )
 
-class TestImporting(unittest.TestCase):
+class TestSequenceplot(unittest.TestCase):
     def test_format_uniprot_annotation(self, ):
         in_df = pd.read_csv(os.path.join(DATA_FOLDER,'preprocessed_uniprot_human.csv'))
         id_df_structure = in_df[in_df.protein_id  == "P43166"]
