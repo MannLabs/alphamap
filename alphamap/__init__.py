@@ -41,5 +41,5 @@ __urls__ = {
 }
 __extra_requirements__ = {
     "development": "requirements_development.txt",
-    "gui": "requirments_gui.txt",
+    "gui": "requirements_gui.txt",
 }
