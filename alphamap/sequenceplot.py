@@ -527,6 +527,7 @@ def plot_peptide_traces(df: pd.DataFrame or list,
                         selected_proteases: list = [],
                         selected_alphafold_features: list = [],
                         dashboard: bool = False,
+                        use_plot_show: bool = False,
                         trace_colors: list = [],
                         download_folder: str = tempfile.gettempdir()):
 
@@ -544,6 +545,7 @@ def plot_peptide_traces(df: pd.DataFrame or list,
         uniprot_color_dict (dict): Uniprot color dictionary.
         selected_proteases (list, optional): List of proteases to plot. Default is an empty list.
         dashboard (bool, optional): Flag if the function is called from the dashboard. Default is 'False'.
+        use_plot_show (bool, optional): Flag if .show() should be applied to the output figure. This enables svg download. Default is 'False'.
         trace_colors (list, optional): List of manualy selected colors for each dataset in df. Default is an empty list.
 
     Returns:
@@ -860,15 +862,19 @@ def plot_peptide_traces(df: pd.DataFrame or list,
                      range=[-1, y_max + 0.2],
                      showgrid=False)
 
-    #config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
-    #                                   'filename': 'custom_image',
-    #                                   'height': 500,
-    #                                   'width': 1500,
-    #                                   'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
-    #                                  }
-    #         }
-
-    return fig #.show(config=config)
+    
+    if use_plot_show:
+        fig.update_layout(width=None)
+        config = {'toImageButtonOptions': {'format': 'svg', # one of png, svg, jpeg, webp
+                                           'filename': 'custom_image',
+                                           'height': 500,
+                                           #'width': 1500,
+                                           'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
+                                           }
+                                           }
+        return fig.show(config=config)
+    else:
+        return fig 
 
 # Cell
 def extract_annotation(df: pd.DataFrame):
