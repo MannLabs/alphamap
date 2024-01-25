@@ -88,13 +88,13 @@ def init_panel():
 header_titel = pn.pane.Markdown(
     '# AlphaMap',
     # width=1250,
-    sizing_mode='stretch_width',
+    # sizing_mode='stretch_width',
     css_classes=['main_header']
 )
 divider = pn.pane.HTML(
     '<hr style="height: 2px; border:none; background-color: #045082; width: 1480px">',
     # width=1500,
-    sizing_mode='stretch_width',
+    # sizing_mode='stretch_width',
     align='center'
 )
 mpi_biochem_logo = pn.pane.PNG(
@@ -125,7 +125,7 @@ header = pn.Row(
     header_titel,
     github_logo,
     height=70,
-    sizing_mode='stretch_width'
+    # sizing_mode='stretch_width'
 )
 
 
@@ -687,7 +687,7 @@ project_description = pn.pane.Markdown(
 divider_descr = pn.pane.HTML(
     '<hr style="height: 8px; border:none; background-color: #045082; width: 640px">',
     # width=1510,
-    sizing_mode='stretch_width',
+    # sizing_mode='stretch_width',
     align='center'
 )
 
@@ -925,14 +925,14 @@ main_part = pn.Column(
         ),
         selection_box,
         align='center',
-        sizing_mode='stretch_width',
+        # sizing_mode='stretch_width',
     ),
     pn.Row(
         upload_button,
         upload_spinner,
         align='center',
         margin=(0, 0),
-        sizing_mode='stretch_width',
+        # sizing_mode='stretch_width',
     ),
     pn.Row(
         upload_data_warning,
@@ -941,7 +941,7 @@ main_part = pn.Column(
         height=60
     ),
     background='#eaeaea',
-    sizing_mode='stretch_width',
+    # sizing_mode='stretch_width',
     margin=(5, 0, 60, 0)
 )
 
@@ -1022,7 +1022,7 @@ def visualize_buttons():
             peptide_atlas_link,
             alphafold_link,
             height=60,
-            sizing_mode='stretch_width',
+            # sizing_mode='stretch_width',
             margin=(50,0)
         )
         return buttons_layout
@@ -1498,7 +1498,7 @@ def upload_data(clicks):
                 ),
                 divider,
                 align='center',
-                sizing_mode='stretch_width',
+                # sizing_mode='stretch_width',
                 margin=(20, 0)
             )
             upload_spinner.value = False
@@ -1587,12 +1587,12 @@ def visualize_plot(clicks):
                         }
                     },
                     align='center',
-                    sizing_mode='stretch_width',
+                    # sizing_mode='stretch_width',
                     # width=1500
                 ),
                 visualize_buttons,
                 align='center',
-                sizing_mode='stretch_width',
+                # sizing_mode='stretch_width',
                 margin=(20, 0)
             )
         else:
@@ -1611,10 +1611,16 @@ def visualize_plot(clicks):
                     dashboard = True)
 
             plot =  pn.Row(pn.Column(pn.layout.HSpacer(height=80),
-                            pn.panel(plot3D_html, width = 1500, align='center', sizing_mode='stretch_width'),
+                            pn.panel(plot3D_html, width = 1500, align='center', 
+                                     # sizing_mode='stretch_width'
+                                     ),
                             visualize_buttons,
-                            align='center', sizing_mode='stretch_width'),
-                            align='center', sizing_mode='stretch_width')
+                            align='center',
+                            # sizing_mode='stretch_width'
+                            ),
+                            align='center', 
+                            #sizing_mode='stretch_width'
+                            )
 
             global js_path_global
             js_path_global = js_path
@@ -1638,7 +1644,7 @@ def run():
         main_part,
         upload_data,
         visualize_plot,
-        sizing_mode='stretch_width'
+        # sizing_mode='stretch_width'
     )
     original_open = bokeh.server.views.ws.WSHandler.open
     bokeh.server.views.ws.WSHandler.open = open_browser_tab(original_open)
