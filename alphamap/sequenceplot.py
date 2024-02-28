@@ -1169,10 +1169,13 @@ def plot_3d_structure(df: pd.DataFrame or list,
         os.remove(new_file)
     except:
         pass
-    shutil.copyfile(src = os.path.join(cif_path, protein+'_mod.cif'),
-                    dst = new_file)
+
 
     if cif_available:
+        shutil.copyfile(
+            src = os.path.join(cif_path, protein+'_mod.cif'),
+            dst = new_file)
+
         mod_html = adjust_html(protein=protein,
                                coloring=selected_coloring,
                                data_name=name)

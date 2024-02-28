@@ -102,11 +102,13 @@ def extract_rawfile_unique_values(
                         filename_col_index = l.index(col)
                         break
                 if not isinstance(filename_col_index, int):
+                    if ("Sequence" in "".join(l)) and ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)):
+                        return sorted(list(set([col.replace('_', '').replace(' Spectral Count', '') for col in l if 'Spectral Count' in col])))
                     # to check the case with the FragPipe peptide.tsv file when we don't have the info about the experiment name
-                    if ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)) and ("Peptide" in "".join(l)):
+                    elif ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)) and ("Peptide" in "".join(l)):
                         return []
                     # to check the case with the FragPipe combined_peptide.tsv file when the experiment name is included in the "Spectral Count" column
-                    elif ("Sequence" in "".join(l)) and ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)):
+                    elif ("Peptide Sequence" in "".join(l)) and ("Assigned Modifications" in "".join(l)) and ("Protein ID" in "".join(l)):
                         return sorted(list(set([col.replace('_', '').replace(' Spectral Count', '') for col in l if 'Spectral Count' in col])))
                     else:
                         raise ValueError('A column with the raw file names is not in the file.')
@@ -574,47 +576,61 @@ def import_fragpipe_data(
         sep='\t'
     elif file_ext=='.txt':
         sep='\t'
+
+    columns_in_file = pd.read_csv(file, sep=sep, nrows=0).columns
+    if "Sequence" in columns_in_file:
+        seq_col = ["Sequence", "Protein ID"]
+        id_col = "Sequence"
+    elif "Peptide" in columns_in_file:
+        seq_col = ["Protein ID", "Peptide", "Assigned Modifications"]
+        id_col = "Peptide"
+    elif "Peptide Sequence" in columns_in_file:
+        seq_col = ["Protein ID", "Peptide Sequence", "Assigned Modifications"]
+        id_col = "Peptide Sequence"
+    else:
+        seq_col = None
+        id_col = None
+
     if sample:
         if isinstance(sample, list):
             column_names = [each + ' Spectral Count' for each in sample]
-            combined_fragpipe_columns = ["Sequence", "Protein ID"] + column_names
+            combined_fragpipe_columns = seq_col + column_names
             data = pd.read_csv(file, sep=sep, low_memory=False, usecols=combined_fragpipe_columns)
             selected_indices = []
             for column_name in column_names:
                 selected_indices.extend(data[data[column_name] > 0].index.tolist())
             data_sub = data.iloc[list(set(selected_indices))]
-            data_sub = data_sub[["Sequence", "Protein ID"]]
+            data_sub = data_sub[seq_col]
         elif isinstance(sample, str):
             column_name = sample + ' Spectral Count'
-            combined_fragpipe_columns = ["Sequence", "Protein ID", column_name]
+            combined_fragpipe_columns = seq_col.append(column_name)
             data = pd.read_csv(file, sep=sep, low_memory=False, usecols=combined_fragpipe_columns)
             selected_indices = data[data[column_name] > 0].index.tolist()
             data_sub = data.iloc[selected_indices]
-            data_sub = data_sub[["Sequence", "Protein ID"]]
+            data_sub = data_sub[seq_col]
+
+        # get modified sequence
+        if id_col != "Sequence":
+            data_sub = data_sub.fillna(value={"Assigned Modifications": ''})
+            data_sub['Assigned Modifications'] = data_sub['Assigned Modifications'].astype("string")
+            modif_seq = data_sub.apply(lambda row: convert_fragpipe_mq_mod(row[id_col], row["Assigned Modifications"]), axis=1)
+            data_sub['modified_sequence'] = modif_seq.values
+        else:
+            data_sub['modified_sequence'] = data_sub[id_col]
 
         # rename columns into all_proteins_id and naked sequence
-        data_sub = data_sub.rename(columns={"Protein ID": "all_protein_ids", "Sequence": "naked_sequence"})
-        data_sub['modified_sequence'] = data_sub.naked_sequence
+        data_sub = data_sub.rename(columns={"Protein ID": "all_protein_ids", id_col: "naked_sequence"})
 
     else:
-        try:
-            combined_fragpipe_columns = ["Sequence", "Protein ID"]
-            data_sub = pd.read_csv(file, sep=sep, low_memory=False, usecols=combined_fragpipe_columns)
-
-            # rename columns into all_proteins_id and naked sequence
-            data_sub = data_sub.rename(columns={"Protein ID": "all_protein_ids", "Sequence": "naked_sequence"})
-            data_sub['modified_sequence'] = data_sub.naked_sequence
-        except:
-            fragpipe_columns = ["Protein ID", "Peptide", "Assigned Modifications"]
-            data = read_file(file, fragpipe_columns)
-            data_sub = data[["Protein ID", "Peptide", "Assigned Modifications"]]
-
-            # get modified sequence
-            modif_seq = data_sub.apply(lambda row: convert_fragpipe_mq_mod(row["Peptide"], row["Assigned Modifications"]), axis=1)
+        data_sub = pd.read_csv(file, sep=sep, low_memory=False, usecols=seq_col)
+        if id_col != "Sequence":
+            data_sub = data_sub.fillna(value={"Assigned Modifications": ''})
+            data_sub['Assigned Modifications'] = data_sub['Assigned Modifications'].astype("string")
+            modif_seq = data_sub.apply(lambda row: convert_fragpipe_mq_mod(row[id_col], row["Assigned Modifications"]), axis=1)
             data_sub['modified_sequence'] = modif_seq.values
-
-            # rename columns into all_proteins_id and naked sequence
-            data_sub = data_sub.rename(columns={"Protein ID": "all_protein_ids", "Peptide": "naked_sequence"})
+        else:
+            data_sub['modified_sequence'] = data_sub[id_col]
+        data_sub = data_sub.rename(columns={"Protein ID": "all_protein_ids", id_col: "naked_sequence"})
 
     input_data = data_sub[["all_protein_ids", "modified_sequence", "naked_sequence"]]
     input_data = input_data.dropna() # remove missing values
