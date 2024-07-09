@@ -30,6 +30,7 @@ cp alphamap_terminal dist/alphamap/Contents/MacOS
 cp ../../LICENSE Resources/LICENSE
 cp ../alpha_logo.png Resources/alpha_logo.png
 
+mkdir -p dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.fasta dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.csv dist/alphamap/Contents/MacOS/alphamap/data
 
