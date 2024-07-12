@@ -14,9 +14,10 @@ conda activate alphamapinstaller
 cd ../..
 rm -rf dist
 rm -rf build
-python setup.py sdist bdist_wheel
+pip install build
+python -m build
 cd misc/one_click_macos
-pip install pyinstaller==4.2
+pip install pyinstaller
 pip install "../../dist/alphamap-0.1.10-py3-none-any.whl"
 conda list
 pyinstaller ../pyinstaller/alphamap.spec -y
@@ -29,6 +30,7 @@ cp alphamap_terminal dist/alphamap/Contents/MacOS
 cp ../../LICENSE Resources/LICENSE
 cp ../alpha_logo.png Resources/alpha_logo.png
 
+mkdir -p dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.fasta dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.csv dist/alphamap/Contents/MacOS/alphamap/data
 
