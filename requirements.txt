@@ -10,6 +10,6 @@ reportlab==3.5.59
 kaleido==0.2.1
 bokeh==2.2.2
 structuremap==0.0.8
-h5py==3.6.0
+h5py==3.7.0
 jinja2==2.11.3
 markupsafe==2.0.1
