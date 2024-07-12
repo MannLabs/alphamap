@@ -49,9 +49,8 @@ find = {}
 
 [tool.setuptools.dynamic]
 # https://stackoverflow.com/a/73600610
-dependencies = {file = ["requirements.txt"]}
-optional-dependencies = { loose = { file = ["requirements_loose.txt",
-] }}
+dependencies = {file = ["requirements_loose.txt"]}
+optional-dependencies = { stable = { file = ["requirements_stable.txt"] }}
 version = {attr = "alphamap.__version__"}
 
 [project.scripts]
