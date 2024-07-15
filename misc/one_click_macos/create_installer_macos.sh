@@ -34,6 +34,12 @@ mkdir -p dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.fasta dist/alphamap/Contents/MacOS/alphamap/data
 cp ../../alphamap/data/*.csv dist/alphamap/Contents/MacOS/alphamap/data
 
+# link _internal folder containing the python libraries to the Frameworks folder where they are expected
+# to avoid e.g. "Failed to load Python shared library '/Applications/AlphaMap.app/Contents/Frameworks/libpython3.8.dylib'"
+cd dist/alphamap/Contents
+ln -s ./MacOS/_internal ./Frameworks
+cd -
+
 if false; then
   # https://scriptingosx.com/2019/09/notarize-a-command-line-tool/
   for f in $(find dist/alphamap -name '*.so' -or -name   '*.dylib'); do codesign --sign "Developer ID Application: Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (7QSY5527AQ)" $f; done
