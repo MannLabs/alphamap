@@ -5,7 +5,8 @@ conda activate alphamapinstaller
 cd ../..
 rm -rf dist
 rm -rf build
-python setup.py sdist bdist_wheel
+pip install build
+python -m build
 cd misc/one_click_windows
 pip install "../../dist/alphamap-0.1.10-py3-none-any.whl[stable]"
 pip install pyinstaller==4.2
