@@ -18,7 +18,7 @@ pip install "dist/alphamap-0.1.10-py3-none-any.whl[stable]"
 conda list
 
 cd misc/one_click_macos
-pip install pyinstaller
+pip install pyinstaller==5.6.2
 pyinstaller ../pyinstaller/alphamap.spec -y
 
 conda deactivate
