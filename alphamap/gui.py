@@ -453,7 +453,7 @@ download_pdf_error = pn.pane.Alert(
     width=369,
     margin=(-22, 20, 20, 20),
     alert_type="primary",
-    background='white'
+    styles={'background': 'white'}
 )
 
 ### UNIPROT OPTIONS
@@ -940,9 +940,9 @@ main_part = pn.Column(
         width=1000,
         height=60
     ),
-    background='#eaeaea',
     sizing_mode='stretch_width',
-    margin=(5, 0, 60, 0)
+    margin=(5, 0, 60, 0),
+    styles={'background': '#eaeaea'}
 )
 
 
