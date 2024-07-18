@@ -941,10 +941,18 @@ main_part = pn.Column(
         height=60
     ),
     sizing_mode='stretch_width',
-    margin=(5, 0, 60, 0),
-    styles={'background': '#eaeaea'}
+    margin=(5, 0, 60, 0)
 )
 
+
+def set_background(pn_column): # depending on the version of panel, the background color is set differently
+    if pn.__version__ >= "1.3.0":
+        pn_column.styles = {'background-color':  '#eaeaea'}
+    else:
+        pn_column.background =  '#eaeaea'
+
+
+set_background(main_part)
 
 # switch to different websites
 uniprot_link = pn.pane.PNG(
