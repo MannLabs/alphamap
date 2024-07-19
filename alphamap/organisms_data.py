@@ -55,8 +55,8 @@ all_organisms = {
 import os
 import urllib.request
 import shutil
-import imp
 from pyteomics import fasta
+import alphamap
 def import_fasta(organism: str):
     """
     Import fasta file for the selected organism.
@@ -71,7 +71,7 @@ def import_fasta(organism: str):
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
 
-    BASE_PATH = imp.find_module("alphamap")[1] #os.path.abspath('')
+    BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
     INI_PATH = os.path.join(BASE_PATH, '..')
     FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
     DATA_PATH = os.path.join(FUNCT_PATH, 'data')
@@ -97,7 +97,6 @@ def import_fasta(organism: str):
 import os
 import urllib.request
 import shutil
-import imp
 import pandas as pd
 def import_uniprot_annotation(organism: str):
     """
@@ -114,7 +113,7 @@ def import_uniprot_annotation(organism: str):
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
 
-    BASE_PATH = imp.find_module("alphamap")[1] #os.path.abspath('')
+    BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
     INI_PATH = os.path.join(BASE_PATH, '..')
     FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
     DATA_PATH = os.path.join(FUNCT_PATH, 'data')
