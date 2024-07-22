@@ -38,13 +38,18 @@ The GUI of AlphaMap is a completely stand-alone tool that requires no knowledge 
 AlphaMap can be installed in an existing Python 3.8 environment with a single `bash` command. *This `bash` command can also be run directly from within a Jupyter notebook by prepending it with a `!`*.
 
 ```bash
+pip install alphamap[stable]
+```
+The [stable] tag ensures you get the latest stable release with fixed dependencies. However, it can be omitted if you prefer more flexible dependency versions:
+
+```bash
 pip install alphamap
 ```
 
 When a new version of AlphaMap becomes available, the old version can easily be upgraded by running e.g. the command again with an additional `--upgrade` flag:
 
 ```bash
-pip install alphamap --upgrade
+pip install --upgrade alphamap[stable] 
 ```
 
 NOTE: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
@@ -71,10 +76,12 @@ For any Python package, it is highly recommended to use a [conda virtual environ
 ```bash
 conda create -n alphamap python=3.8 -y
 conda activate alphamap
-pip install -e .
+pip install -e ".[stable]"
 ```
 
 * By using the editable flag `-e`, all modifications to the AlphaMap [source code folder](alphamap) are directly reflected when running AlphaMap. Note that the AlphaMap folder cannot be moved and/or renamed if an editable version is installed.
+
+* The [stable] tag ensures you get the latest stable release with fixed dependencies. However, it can be omitted if you prefer more flexible dependency versions.
 
 * When using Jupyter notebooks and multiple conda environments direcly from the terminal, it is recommended to `conda install nb_conda_kernels` in the conda base environment. Hereafter, running a `jupyter notebook` from the conda base environment should have a `python [conda env: alphamap]` kernel available, in addition to all other conda kernels in which the command `conda install ipykernel` was run.
 

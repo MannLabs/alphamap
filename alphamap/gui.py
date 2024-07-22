@@ -189,7 +189,11 @@ alphafold_clear_all = pn.widgets.Checkbox(
     name='Clear all',
     width=150
 )
-
+example_file_select = pn.widgets.Checkbox(
+    name='Load example data',
+    width=150,
+    margin=(5,0,0,16)
+)
 #####################################
 # RAW EXPERIMENTAL DATA
 
@@ -449,7 +453,7 @@ download_pdf_error = pn.pane.Alert(
     width=369,
     margin=(-22, 20, 20, 20),
     alert_type="primary",
-    background='white'
+    styles={'background': 'white'}
 )
 
 ### UNIPROT OPTIONS
@@ -703,8 +707,8 @@ project_instuction = pn.pane.Markdown(
         visualized together.
     3. Press the 'Upload Data' button.
     4. Select a protein of interest by UniProt accession or gene name.
-    5. (optional) Load a list of pre-selected proteins to reduce the list
-    of available proteins.
+    5. (optional) Load a list of pre-selected proteins to reduce the
+    list of available proteins.
     6. Select annotation options for either a linear sequence plot or
     a 3D visualization based on structure predictions from AlphaFold2.
     7. Press the 'Visualize Protein' button.
@@ -728,7 +732,7 @@ alphamap_tutorial = pn.widgets.FileDownload(
 
 spectronaut_description = pn.pane.Markdown(
     """
-    The data needs to be exported in the **normal long** format as .tsv or .csv file.
+    The data needs to be exported in the **normal long** format as .tsv or .csv file. Download an example file [here](https://raw.githubusercontent.com/MannLabs/alphamap/master/testdata/test_spectronaut_input.tsv){:target="_blank"}.
 
     It needs to include the following columns:
     >- PEP.AllOccurringProteinAccessions
@@ -752,7 +756,7 @@ spectronaut_scheme = pn.widgets.FileDownload(
 
 maxquant_description = pn.pane.Markdown(
     """
-    To visualize the proteins which were analyzed by the MaxQuant software please use the **evidence.txt** file.
+    To visualize the proteins which were analyzed by the MaxQuant software please use the **evidence.txt** file. Download an example file [here](https://raw.githubusercontent.com/MannLabs/alphamap/master/testdata/test_maxquant_input.txt){:target="_blank"}.
 
     The following columns from the file are used for visualization:
     >- Proteins
@@ -766,7 +770,7 @@ maxquant_description = pn.pane.Markdown(
 
 alphapept_description = pn.pane.Markdown(
     """
-    To visualize the proteins which were analyzed by the AlphaPept software please use the **results.csv** file.
+    To visualize the proteins which were analyzed by the AlphaPept software please use the **results.csv** file. Download an example file [here](https://raw.githubusercontent.com/MannLabs/alphamap/master/testdata/test_alphapept_input.csv){:target="_blank"}.
 
     The following columns from the file are used for visualization:
     >- protein_group
@@ -780,7 +784,7 @@ alphapept_description = pn.pane.Markdown(
 
 diann_description = pn.pane.Markdown(
     """
-    To visualize the proteins which were analyzed by the DIA-NN software please use the **{experiment_name}.tsv** file.
+    To visualize the proteins which were analyzed by the DIA-NN software please use the **{experiment_name}.tsv** file. Download an example file [here](https://raw.githubusercontent.com/MannLabs/alphamap/master/testdata/test_diann_input.tsv){:target="_blank"}.
 
     The following columns from the file are used for visualization:
     >- Protein.Ids
@@ -805,6 +809,8 @@ fragpipe_description = pn.pane.Markdown(
     >- Protein ID
     >- Sequence
     >- All 'Spectral Count' columns containing information about individual experiments
+
+    Download an example file [here](https://raw.githubusercontent.com/MannLabs/alphamap/master/testdata/test_fragpipe_input.tsv){:target="_blank"}.
     """,
     width=530,
     align='start',
@@ -894,6 +900,7 @@ selection_box = pn.Column(
         experimental_data_sample_name,
         experimental_data_sample_name_remove_part
     ),
+    example_file_select,
     experimental_data_warning,
     experimental_data_sample,
     additional_data_card,
@@ -933,11 +940,19 @@ main_part = pn.Column(
         width=1000,
         height=60
     ),
-    background='#eaeaea',
     sizing_mode='stretch_width',
     margin=(5, 0, 60, 0)
 )
 
+
+def set_background(pn_column): # depending on the version of panel, the background color is set differently
+    if pn.__version__ >= "1.3.0":
+        pn_column.styles = {'background-color':  '#eaeaea'}
+    else:
+        pn_column.background =  '#eaeaea'
+
+
+set_background(main_part)
 
 # switch to different websites
 uniprot_link = pn.pane.PNG(
@@ -1024,6 +1039,19 @@ def visualize_buttons():
 
 
 ### PREPROCESSING
+@pn.depends(
+    example_file_select.param.value,
+    watch=True
+)
+def use_example_file(value):
+    if value:
+        experimental_data.value = os.path.join(
+            DATA_PATH, "test_maxquant_input.txt"
+        )
+    else:
+        experimental_data.value = ''
+
+
 def upload_experimental_data():
     global ac_gene_conversion
     all_unique_proteins = []
@@ -1540,37 +1568,40 @@ def visualize_plot(clicks):
             return None
         # create a main figure
         if plot_selection_tabs.active == 0:
-            fig =  plot_peptide_traces(
-                df = all_data,
-                name = all_names,
-                protein = selected_protein,
-                fasta = full_fasta,
-                uniprot = full_uniprot,
-                selected_features = [uniprot_feature_dict[each] for each in uniprot_options_combined],
-                uniprot_feature_dict = uniprot_feature_dict,
-                uniprot_color_dict = uniprot_color_dict,
+            fig = plot_peptide_traces(
+                df=all_data,
+                name=all_names,
+                protein=selected_protein,
+                fasta=full_fasta,
+                uniprot=full_uniprot,
+                selected_features=[uniprot_feature_dict[each] for each in uniprot_options_combined],
+                uniprot_feature_dict=uniprot_feature_dict,
+                uniprot_color_dict=uniprot_color_dict,
                 selected_proteases=proteases_options.value,
                 selected_alphafold_features=alphafold_options.value,
                 dashboard=True
             )
-            plot =  pn.Column(
-                pn.Pane(
+            plot = pn.Column(
+                pn.pane.Plotly(
                     fig,
-                    config={'toImageButtonOptions':
-                               {'format': 'svg', # one of png, svg, jpeg, webp
-                                'filename': f"alphamap_{full_fasta[selected_protein].description['name']}_{full_fasta[selected_protein].description['id']}",
-                                'height': 500,
-                                'width': 1500,
-                                'scale': 1 # Multiply title/legend/axis/canvas sizes by this factor
-                               }
-                           },
+                    config={
+                        'toImageButtonOptions': {
+                            'format': 'svg',  # one of png, svg, jpeg, webp
+                            'filename': f"alphamap_{full_fasta[selected_protein].description['name']}_{full_fasta[selected_protein].description['id']}",
+                            'height': 500,
+                            'width': 1500,
+                            'scale': 1,  # Multiply title/legend/axis/canvas
+                            # sizes by this factor
+                        }
+                    },
                     align='center',
                     sizing_mode='stretch_width',
                     # width=1500
                 ),
                 visualize_buttons,
                 align='center',
-                sizing_mode='stretch_width'
+                sizing_mode='stretch_width',
+                margin=(20, 0)
             )
         else:
             if not ((data3D_options.value == 'all') or (isinstance(all_data, pd.DataFrame))):
