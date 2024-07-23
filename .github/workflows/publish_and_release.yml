@@ -59,6 +59,7 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
+          miniconda-version: "latest"
       - name: Conda info
         shell: bash -l {0}
         run: conda info
@@ -134,10 +135,11 @@ jobs:
         run: |
           conda create -n alphamap python=3.8 -y
           pip install twine
+          pip install build
           conda activate alphamap
           rm -rf dist
           rm -rf build
-          python setup.py sdist bdist_wheel
+          python -m build
           twine check dist/*
           conda deactivate
       - name: Publish distribution to Test PyPI
@@ -150,7 +152,7 @@ jobs:
         run: |
           conda create -n alphamap_pip_test python=3.8 -y
           conda activate alphamap_pip_test
-          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap"
+          pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple "alphamap[stable]"
           echo "TODO, this will run forever.."
           #alphamap
           conda deactivate
@@ -179,7 +181,7 @@ jobs:
         run: |
           conda create -n alphamap_pip_test python=3.8 -y
           conda activate alphamap_pip_test
-          pip install "alphamap"
+          pip install "alphamap[stable]"
           echo "TODO, this will run forever.."
           #alphamap
           conda deactivate
