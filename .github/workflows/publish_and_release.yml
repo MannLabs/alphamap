@@ -134,9 +134,8 @@ jobs:
         shell: bash -l {0}
         run: |
           conda create -n alphamap python=3.8 -y
-          pip install twine
-          pip install build
           conda activate alphamap
+          pip install twine build
           rm -rf dist
           rm -rf build
           python -m build
