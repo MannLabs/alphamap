@@ -135,10 +135,11 @@ jobs:
         run: |
           conda create -n alphamap python=3.8 -y
           pip install twine
+          pip install build
           conda activate alphamap
           rm -rf dist
           rm -rf build
-          python setup.py sdist bdist_wheel
+          python -m build
           twine check dist/*
           conda deactivate
       - name: Publish distribution to Test PyPI
