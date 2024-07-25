@@ -1,6 +1,10 @@
 # AlphaMap
+
+[![GitHub Repo stars](https://img.shields.io/github/stars/MannLabs/alphamap?style=social)](https://github.com/MannLabs/alphamap) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/MannLabs/alphamap/HEAD)
+
 > A python-based library that enables the exploration of proteomic datasets on the peptide level.
 
+![Alpha Map](assets/alphamap.png)
 
 ## About
 
