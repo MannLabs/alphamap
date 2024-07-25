@@ -13,7 +13,7 @@ rm -rf dist
 rm -rf build
 pip install build
 python -m build
-pip install "dist/alphamap-0.1.11-py3-none-any.whl[stable]"
+pip install "dist/alphamap-0.1.12-py3-none-any.whl[stable]"
 
 conda list
 
@@ -46,5 +46,5 @@ cd $CONTENTS_DIR
 ln -s ./MacOS/_internal ./Frameworks
 cd -
 
-pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.11 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg
+pkgbuild --root dist/alphamap --identifier de.mpg.biochem.alphamap.app --version 0.1.12 --install-location /Applications/AlphaMap.app --scripts scripts alphamap.pkg
 productbuild --distribution distribution.xml --resources Resources --package-path alphamap.pkg dist/alphamap_gui_installer_macos.pkg
