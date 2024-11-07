@@ -114,9 +114,9 @@ def get_plot_data(protein,df,fasta):
         df_peps = df_peps.rename(columns={"value": "seq_position"})
         df_peps['marker_symbol'] = 1
         df_peps['marker_size'] = 8
-        df_peps['PTM'] = np.NaN
-        df_peps['PTMtype'] = np.NaN
-        df_peps['PTMshape'] = np.NaN
+        df_peps['PTM'] = np.nan
+        df_peps['PTMtype'] = np.nan
+        df_peps['PTMshape'] = np.nan
         unique_pep = df_peps.modified_sequence.unique()
         for uid in unique_pep:
             df_peps_uid = df_peps[df_peps.modified_sequence==uid]
