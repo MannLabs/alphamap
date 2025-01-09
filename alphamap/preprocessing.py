@@ -54,13 +54,13 @@ def pep_position_helper(seq: str, prot: str, fasta: fasta, verbose: bool = True)
         fasta_prot = fasta[prot]
         search_res = re.search(seq,fasta_prot.sequence)
         if search_res is None:
-            start, end = np.NaN, np.NaN
+            start, end = np.nan, np.nan
             if verbose:
                 warnings.warn(f'Peptide sequence {seq} could not be mached to {prot} in the selected fasta.')
         else:
             start, end = search_res.span()
     except:
-        start, end = np.NaN, np.NaN
+        start, end = np.nan, np.nan
         if verbose:
             warnings.warn(f'No matching entry for {prot} in the selected fasta.')
 
