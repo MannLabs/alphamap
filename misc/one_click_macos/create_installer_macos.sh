@@ -4,7 +4,6 @@ FILE=alphamap.pkg
 if test -f "$FILE"; then
   rm alphamap.pkg
 fi
-conda env remove -n alphamapinstaller
 conda create -n alphamapinstaller python=3.8 -y
 conda activate alphamapinstaller
 
