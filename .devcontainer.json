@@ -9,5 +9,5 @@
     "extensions": ["ms-python.python",
                    "ms-azuretools.vscode-docker"],
     "runServices": ["notebook", "jekyll", "watcher"],
-    "postStartCommand": "pip install -e ."
+    "postStartCommand": "pip install -e '.[structuremap]'"
 }

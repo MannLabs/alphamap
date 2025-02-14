@@ -38,21 +38,22 @@ The GUI of AlphaMap is a completely stand-alone tool that requires no knowledge 
 AlphaMap can be installed in an existing Python 3.8 environment with a single `bash` command. *This `bash` command can also be run directly from within a Jupyter notebook by prepending it with a `!`*.
 
 ```bash
-pip install alphamap[stable]
+pip install alphamap[stable,structuremap-stable]
 ```
 The [stable] tag ensures you get the latest stable release with fixed dependencies. However, it can be omitted if you prefer more flexible dependency versions:
 
 ```bash
-pip install alphamap
+pip install alphamap[structuremap]
 ```
 
 When a new version of AlphaMap becomes available, the old version can easily be upgraded by running e.g. the command again with an additional `--upgrade` flag:
 
 ```bash
-pip install --upgrade alphamap[stable] 
+pip install --upgrade alphamap[stable,structuremap-stable] 
 ```
 
-NOTE: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
+Note: The `structuremap` extra can be omitted if use of `plot_3d_structuremap()` is not desired. 
+Note: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
 
 
 ### Developer
@@ -76,7 +77,7 @@ For any Python package, it is highly recommended to use a [conda virtual environ
 ```bash
 conda create -n alphamap python=3.8 -y
 conda activate alphamap
-pip install -e ".[stable]"
+pip install -e ".[stable,structuremap-stable]"
 ```
 
 * By using the editable flag `-e`, all modifications to the AlphaMap [source code folder](alphamap) are directly reflected when running AlphaMap. Note that the AlphaMap folder cannot be moved and/or renamed if an editable version is installed.
