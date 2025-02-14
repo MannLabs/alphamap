@@ -9,5 +9,4 @@ psutil
 reportlab
 kaleido
 bokeh
-structuremap
 h5py
