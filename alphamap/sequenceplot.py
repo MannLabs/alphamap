@@ -398,7 +398,13 @@ aa_color_dict = {'A':'Alanine',
                  'U':'nan'}
 
 # Cell
-from structuremap.processing import download_alphafold_cif, download_alphafold_pae, format_alphafold_data, annotate_accessibility, get_smooth_score
+try:
+    from structuremap.processing import download_alphafold_cif, download_alphafold_pae, format_alphafold_data, annotate_accessibility, get_smooth_score
+    HAS_STRUCTUREMAP = True
+except ModuleNotFoundError:
+    HAS_STRUCTUREMAP = False
+    print("WARNING: dependency 'structuremap' is not installed.")
+
 
 # Cell
 def get_quality_category(s):
@@ -428,6 +434,9 @@ def get_exposure_category(s):
 def get_alphafold_annotation(protein: str,
                              selected_features: list,
                              download_folder: str = tempfile.gettempdir()) -> pd.DataFrame:
+
+    if not HAS_STRUCTUREMAP:
+        raise ValueError("Please install alphamap with the 'structuremap' extra to use get_alphafold_annotation().")
 
     alphafold_feature_dict = dict({'AlphaFold confidence':'quality',
         'AlphaFold exposure':'nAA_12_70_pae',
