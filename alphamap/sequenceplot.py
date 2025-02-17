@@ -737,10 +737,12 @@ def plot_peptide_traces(df: pd.DataFrame or list,
 
         y_max = y_max + (len(selected_proteases)/2)
 
-
-    alphafold_annotation = get_alphafold_annotation(protein = protein,
-                                                    selected_features = selected_alphafold_features,
-                                                    download_folder = download_folder)
+    if len(selected_alphafold_features) > 0:
+        alphafold_annotation = get_alphafold_annotation(protein = protein,
+                                                        selected_features = selected_alphafold_features,
+                                                        download_folder = download_folder)
+    else:
+        alphafold_annotation = pd.DataFrame()
 
     if alphafold_annotation.empty:
         #print('no alphafold')
