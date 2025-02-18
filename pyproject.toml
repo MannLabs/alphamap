@@ -49,8 +49,12 @@ find = {}
 
 [tool.setuptools.dynamic]
 # https://stackoverflow.com/a/73600610
-dependencies = {file = ["requirements_loose.txt"]}
-optional-dependencies = { stable = { file = ["requirements_stable.txt"] }}
+dependencies = {file = ["requirements/requirements_loose.txt"]}
+
+optional-dependencies.stable = { file = ["requirements/requirements.txt"] }
+optional-dependencies.structuremap = { file = ["requirements/requirements_structuremap_loose.txt"] }
+optional-dependencies.structuremap-stable = { file = ["requirements/requirements_structuremap.txt"] }
+
 version = {attr = "alphamap.__version__"}
 
 [project.scripts]

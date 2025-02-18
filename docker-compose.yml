@@ -15,7 +15,7 @@ services:
 
   notebook:
     <<: *fastai
-    command: bash -c "pip install -e . && jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''"
+    command: bash -c "pip install -e '.[structuremap]' && jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --port=8080 --NotebookApp.token='' --NotebookApp.password=''"
     ports:
       - "8080:8080"
 
@@ -30,7 +30,7 @@ services:
      - "4000:4000"
     command: >
      bash -c "cp -r docs_src docs
-     && pip install .
+     && pip install ".[structuremap]"
      && nbdev_build_docs && cd docs
      && bundle i
      && chmod -R u+rwx . && bundle exec jekyll serve --host 0.0.0.0"

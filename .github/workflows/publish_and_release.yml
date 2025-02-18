@@ -181,7 +181,8 @@ jobs:
         run: |
           conda create -n alphamap_pip_test python=3.8 -y
           conda activate alphamap_pip_test
-          pip install "alphamap[stable]"
+          pip install "alphamap[stable,structuremap-stable]"
           echo "TODO, this will run forever.."
-          #alphamap
+          python -c "import alphamap; print('OK')"
+          #alphamap # TODO: this will run forever..
           conda deactivate

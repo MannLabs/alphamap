@@ -12,7 +12,7 @@ rm -rf dist
 rm -rf build
 pip install build
 python -m build
-pip install "dist/alphamap-0.1.13-py3-none-any.whl[stable]"
+pip install "dist/alphamap-0.1.13-py3-none-any.whl[stable,structuremap-stable]"
 
 conda list
 
