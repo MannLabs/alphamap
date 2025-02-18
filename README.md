@@ -146,3 +146,17 @@ A Jupyter notebook tutorial ['Workflow.ipynb'](Workflow.ipynb) is available to d
 
 AlphaMap includes fasta files and UniProt annotations for: 'Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold', 'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae', 'SARS-COV' and 'SARS-COV-2'. If additional organisms are of interest, corresponding .fasta files and sequence annotations can be downloaded directly from UniProt. A Jupyter notebook tutorial ['Uniprot_preprocessing.ipynb'](Uniprot_preprocessing.ipynb) shows how to load and format a UniProt annotation file.
 
+## Developer Guide
+This document gathers information on how to develop and contribute to this project.
+
+### Release process
+
+#### Tagging of changes
+In order to have release notes automatically generated, changes need to be tagged with labels.
+The following labels are used (should be safe-explanatory):
+`breaking-change`, `bug`, `enhancement`.
+
+#### Release a new version
+This package uses a shared release process defined in the
+[alphashared](https://github.com/MannLabs/alphashared) repository. Please see the instructions
+[there](https://github.com/MannLabs/alphashared/blob/reusable-release-workflow/.github/workflows/README.md#release-a-new-version)
