@@ -1,27 +1,22 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-import pkgutil
 import os
 import sys
 from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, BUNDLE, TOC
 import PyInstaller.utils.hooks
-from PyInstaller.utils.hooks import copy_metadata
-import pkg_resources
-import importlib.metadata
 
 
 ##################### User definitions
 exe_name = 'alphamap_gui'
 script_name = 'alphamap_pyinstaller.py'
 if sys.platform[:6] == "darwin":
-	icon = '../alpha_logo.icns'
+	icon = '../logos/alpha_logo.icns'
 else:
-	icon = '../alpha_logo.ico'
+	icon = '../logos/alpha_logo.ico'
 block_cipher = None
 location = os.getcwd()
 project = "alphamap"
-remove_tests = True
-bundle_name = "AlphaMap"
+bundle_name = "alphamap"
 #####################
 
 
@@ -29,7 +24,23 @@ datas, binaries, hidden_imports = PyInstaller.utils.hooks.collect_all(
 	project,
 	include_py_files=True
 )
+
+# add extra packages that don't have pyinstaller hooks
+# extra_pkgs = ["alphabase", ] # other alphaX packages would be added here
+# for pkg in extra_pkgs:
+# 	_datas, _binaries, _hidden_imports = PyInstaller.utils.hooks.collect_all(
+# 		pkg,
+# 		include_py_files=True
+# 	)
+# 	datas+=_datas
+# 	binaries+=_binaries
+# 	hidden_imports+=_hidden_imports
+
+# prepare hidden imports and datas
 hidden_imports = [h for h in hidden_imports if "__pycache__" not in h]
+# hidden_imports = sorted(
+# 		[h for h in hidden_imports if "tests" not in h.split(".")]
+# 	)
 datas = [d for d in datas if ("__pycache__" not in d[0]) and (d[1] not in [".", "Resources", "scripts"])]
 
 a = Analysis(
@@ -38,10 +49,10 @@ a = Analysis(
 	binaries=binaries,
 	datas=datas,
 	hiddenimports=hidden_imports,
-	hookspath=['./release/pyinstaller/hookdir'],
+	hookspath=[],
 	runtime_hooks=[],
 	excludes=[],
-    win_no_prefer_redirects=False,
+	win_no_prefer_redirects=False,
 	win_private_assemblies=False,
 	cipher=block_cipher,
 	noarchive=False
@@ -68,7 +79,7 @@ if sys.platform[:5] == "linux":
 		upx_exclude=[],
 		icon=icon
 	)
-else:
+else: # non-linux
 	exe = EXE(
 		pyz,
 		a.scripts,

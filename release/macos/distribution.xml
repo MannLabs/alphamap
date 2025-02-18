@@ -11,7 +11,7 @@
         <line choice="AlphaMap"/>
     </choices-outline>
     <choice id="AlphaMap" title="AlphaMap">
-        <pkg-ref id="AlphaMap.pkg"/>
+        <pkg-ref id="alphamap.pkg"/>
     </choice>
-    <pkg-ref id="AlphaMap.pkg" auth="Root">AlphaMap.pkg</pkg-ref>
+    <pkg-ref id="alphamap.pkg" auth="Root">alphamap.pkg</pkg-ref>
 </installer-script>
