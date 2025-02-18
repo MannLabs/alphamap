@@ -3,4 +3,4 @@
 
 
 # Wrapping the pyinstaller folder in a .exe package
-&  "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" .\release\windows\directlfq_innoinstaller.iss
+&  "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" .\release\windows\alphamap_innoinstaller.iss

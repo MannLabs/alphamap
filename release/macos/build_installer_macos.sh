@@ -12,4 +12,4 @@ WHL_NAME=$(cd dist && ls ./*.whl && cd ..)
 pip install "dist/${WHL_NAME}[stable,structuremap-stable]"
 
 # Creating the stand-alone pyinstaller folder
-pyinstaller release/pyinstaller/alphadia.spec --distpath dist_pyinstaller --workpath build_pyinstaller -y
+pyinstaller release/pyinstaller/alphamap.spec --distpath dist_pyinstaller --workpath build_pyinstaller -y
