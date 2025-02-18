@@ -8,8 +8,6 @@ PACKAGE_NAME=alphamap
 # BUILD_NAME is taken from environment variables, e.g. alphamap-1.2.3-macos-darwin-arm64 or alphamap-1.2.3-macos-darwin-x64
 rm -rf ${BUILD_NAME}.pkg
 
-alphamap/data/*.csv $MACOS_DIR/alphamap/data
-
 # Wrapping the pyinstaller folder in a .pkg package
 CONTENTS_FOLDER=dist_pyinstaller/${PACKAGE_NAME}/Contents
 
