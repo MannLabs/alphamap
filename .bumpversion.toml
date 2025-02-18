@@ -1,9 +1,14 @@
 [tool.bumpversion]
-current_version = "0.1.13"
+current_version = "0.1.14-dev0"
 parse = """(?x)
     (?P<major>0|[1-9]\\d*)\\.
     (?P<minor>0|[1-9]\\d*)\\.
     (?P<patch>0|[1-9]\\d*)
+    (?:
+        -                             # dash separator for pre-release section
+        (?P<pre_l>[a-zA-Z-]+)         # pre_l: pre-release label
+        (?P<pre_n>0|[1-9]\\d*)        # pre_n: pre-release version number
+    )?                                # pre-release section is optional
 """
 serialize = [
     "{major}.{minor}.{patch}-{pre_l}{pre_n}",
