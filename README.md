@@ -52,7 +52,7 @@ When a new version of AlphaMap becomes available, the old version can easily be 
 pip install --upgrade alphamap[stable,structuremap-stable] 
 ```
 
-Note: The `structuremap` extra can be omitted if use of `plot_3d_structuremap()` is not desired. 
+Note: The `structuremap` extra can be omitted in case use of `plot_3d_structuremap()` is not desired. 
 Note: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
 
 
@@ -61,15 +61,13 @@ Note: When installing with `pip`, UniProt information is not included. Upon firs
 AlphaMap can also be installed in editable (i.e. developer) mode with a few `bash` commands. This allows to fully customize the software and even modify the source code to your specific needs. When an editable Python package is installed, its source code is stored in a transparent location of your choice. While optional, it is advised to first (create and) navigate to e.g. a general software folder:
 
 ```bash
-mkdir ~/folder/where/to/install/software
-cd ~/folder/where/to/install/software
+mkdir ~/folder/where/to/install/software && cd ~/folder/where/to/install/software
 ```
 
 Next, download the AlphaMap repository from GitHub either directly or with a `git` command. This creates a new AlphaMap subfolder in your current directory.
 
 ```bash
-git clone https://github.com/MannLabs/alphamap.git
-cd alphamap
+git clone https://github.com/MannLabs/alphamap.git && cd alphamap
 ```
 
 For any Python package, it is highly recommended to use a [conda virtual environment](https://docs.conda.io/en/latest/). AlphaMap can either be installed in a new conda environment or in an already existing environment. *Note that dependency conflicts can occur with already existing packages in the latter case*! Once a conda environment is activated, AlphaMap and all its [dependencies](requirements) need to be installed.
@@ -82,23 +80,20 @@ pip install -e ".[stable,structuremap-stable]"
 
 * By using the editable flag `-e`, all modifications to the AlphaMap [source code folder](alphamap) are directly reflected when running AlphaMap. Note that the AlphaMap folder cannot be moved and/or renamed if an editable version is installed.
 
-* The [stable] tag ensures you get the latest stable release with fixed dependencies. However, it can be omitted if you prefer more flexible dependency versions.
-
-* When using Jupyter notebooks and multiple conda environments direcly from the terminal, it is recommended to `conda install nb_conda_kernels` in the conda base environment. Hereafter, running a `jupyter notebook` from the conda base environment should have a `python [conda env: alphamap]` kernel available, in addition to all other conda kernels in which the command `conda install ipykernel` was run.
+* When using Jupyter notebooks and multiple conda environments directly from the terminal, it is recommended to `conda install nb_conda_kernels` in the conda base environment. Hereafter, running a `jupyter notebook` from the conda base environment should have a `python [conda env: alphamap]` kernel available, in addition to all other conda kernels in which the command `conda install ipykernel` was run.
 
 
 ## Test data
-
 AlphaMap has direct data import options for AlphaPept, DIA-NN, MaxQuant, Spectronaut and FragPipe.
 
 ### AlphaPept
-AlphaMap takes the *results.csv* file from AlphaPept as input format. An example is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210730-alpha/test_alphapept_input.csv).
+AlphaMap takes the *results.csv* file from AlphaPept as input format. An example is available for [download here](https://github.com/MannLabs/alphamap/blob/main/testdata/test_alphapept_input.csv).
 
 ### DIA-NN
-AlphaMap takes the peptide-level output .tsv file from DIA-NN as input format. An example is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210730-alpha/test_diann_input.tsv).
+AlphaMap takes the peptide-level output .tsv file from DIA-NN as input format. An example is available for [download here](https://github.com/MannLabs/alphamap/blob/main/testdata/test_diann_input.tsv).
 
 ### MaxQuant
-AlphaMap takes the *evidence.txt* file from MaxQuant as input format. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210622-alpha/test_maxquant_input.txt).
+AlphaMap takes the *evidence.txt* file from MaxQuant as input format. A reduced example file is available for [download here](https://github.com/MannLabs/alphamap/blob/main/testdata/test_maxquant_input.txt).
 
 ### Spectronaut
 AlphaMap takes Spectronaut results exported in normal long format (.csv or .tsv) as input. Necessary columns include:
@@ -106,10 +101,9 @@ AlphaMap takes Spectronaut results exported in normal long format (.csv or .tsv)
 * EG.ModifiedSequence
 * R.FileName
 
-To ensure proper formatting of the Spectronaut output, an export scheme is available for [download here](https://github.com/MannLabs/alphamap/blob/master/alphamap/data/spectronaut_export_scheme.rs).
+To ensure proper formatting of the Spectronaut output, an export scheme is available for [download here](https://github.com/MannLabs/alphamap/blob/main/alphamap/data/spectronaut_export_scheme.rs).
 
-A reduced example file is also available for [download here](https://github.com/MannLabs/alphamap/releases/download/v0.0.210622-alpha/test_spectronaut_input.tsv).
-<!-- It is not directly clear how to download this individual file from here. Luckily, the two larger ones have a "download" button on the top right -->
+A reduced example file is also available for [download here](https://github.com/MannLabs/alphamap/blob/main/testdata/test_spectronaut_input.tsv).
 
 ### FragPipe
 There are two options to visualize data analyzed by FragPipe:
@@ -142,7 +136,7 @@ Note that this needs to be prepended with a `!` when you want to run this from w
 
 AlphaMap can be imported as a Python package into any Python script or notebook with the command `import alphamap`.
 
-A Jupyter notebook tutorial ['Workflow.ipynb'](Workflow.ipynb) is available to demonstrate how to load AlphaMap as python module and hot to visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.
+A Jupyter notebook tutorial ['Workflow.ipynb'](Workflow.ipynb) is available to demonstrate how to load AlphaMap as python module and how to visualize data interactively. When running locally it provides interactive plots, which are not rendered on GitHub.
 
 AlphaMap includes fasta files and UniProt annotations for: 'Human', 'Mouse', 'Rat', 'Cow', 'Zebrafish', 'Drosophila', 'Caenorhabditis elegans', 'Slime mold', 'Arabidopsis thaliana', 'Rice', 'Escherichia coli', 'Bacillus subtilis', 'Saccharomyces cerevisiae', 'SARS-COV' and 'SARS-COV-2'. If additional organisms are of interest, corresponding .fasta files and sequence annotations can be downloaded directly from UniProt. A Jupyter notebook tutorial ['Uniprot_preprocessing.ipynb'](Uniprot_preprocessing.ipynb) shows how to load and format a UniProt annotation file.
 
