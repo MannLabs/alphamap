@@ -54,9 +54,16 @@ all_organisms = {
 # Cell
 import os
 import urllib.request
-import shutil
 from pyteomics import fasta
 import alphamap
+
+GITHUB_URL_DATA_FOLDER = "https://raw.githubusercontent.com/MannLabs/alphamap/refs/heads/main/alphamap/data/"
+
+BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
+INI_PATH = os.path.join(BASE_PATH, '..')
+FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
+DATA_PATH = os.path.join(FUNCT_PATH, 'data')
+
 def import_fasta(organism: str):
     """
     Import fasta file for the selected organism.
@@ -70,28 +77,11 @@ def import_fasta(organism: str):
     if not organism in all_organisms.keys():
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
+    fasta_file_name = all_organisms[organism]['fasta_name']
 
-    BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
-    INI_PATH = os.path.join(BASE_PATH, '..')
-    FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
-    DATA_PATH = os.path.join(FUNCT_PATH, 'data')
+    file_path = _download_file(DATA_PATH, fasta_file_name)
 
-    fasta_name = all_organisms[organism]['fasta_name']
-
-    if not os.path.exists(os.path.join(DATA_PATH, fasta_name)):
-        print(f"The fasta file for {organism} is downloaded from github.")
-        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
-
-        github_file = os.path.join(
-            github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, fasta_name))) + '/?raw=true'
-
-        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, fasta_name), 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
-
-    fasta_file = fasta.IndexedUniProt(os.path.join(DATA_PATH, fasta_name))
-
-    return fasta_file
+    return fasta.IndexedUniProt(file_path)
 
 # Cell
 import os
@@ -112,25 +102,23 @@ def import_uniprot_annotation(organism: str):
     if not organism in all_organisms.keys():
         raise ValueError(f"Organism {organism} is not available. Please select one of the following: {list(all_organisms.keys())}")
 
+    uniprot_file_name = all_organisms[organism]['uniprot_name']
 
-    BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
-    INI_PATH = os.path.join(BASE_PATH, '..')
-    FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
-    DATA_PATH = os.path.join(FUNCT_PATH, 'data')
+    file_path = _download_file(DATA_PATH, uniprot_file_name)
 
-    uniprot_name = all_organisms[organism]['uniprot_name']
+    return pd.read_csv(file_path)
 
-    if not os.path.exists(os.path.join(DATA_PATH, uniprot_name)):
-        print(f"The uniprot annotation file for {organism} is downloaded from github.")
-        github_url_data_folder = 'https://github.com/MannLabs/alphamap/blob/master/alphamap/data/'
 
-        github_file = os.path.join(
-            github_url_data_folder,
-            os.path.basename(os.path.join(DATA_PATH, uniprot_name))) + '/?raw=true'
+def _download_file(data_path: str, file_name: str) -> str:
+    """Download a file from github if not present and return its local path."""
+    file_path = os.path.join(data_path, file_name)
+    if not os.path.exists(file_path):
+        github_file_url = os.path.join(GITHUB_URL_DATA_FOLDER, file_name)
 
-        with urllib.request.urlopen(github_file) as response, open(os.path.join(DATA_PATH, uniprot_name), 'wb') as out_file:
+        print(f"Downloading {github_file_url} to {file_path}..")
+        with urllib.request.urlopen(github_file_url) as response, \
+                 open(file_path, 'wb') as out_file:
             shutil.copyfileobj(response, out_file)
+        print(".. done")
 
-    uniprot_file = pd.read_csv(os.path.join(DATA_PATH, uniprot_name))
-
-    return uniprot_file
+    return file_path
