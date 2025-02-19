@@ -60,9 +60,7 @@ import alphamap
 GITHUB_URL_DATA_FOLDER = "https://raw.githubusercontent.com/MannLabs/alphamap/refs/heads/main/alphamap/data/"
 
 BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
-INI_PATH = os.path.join(BASE_PATH, '..')
-FUNCT_PATH = os.path.join(INI_PATH, 'alphamap')
-DATA_PATH = os.path.join(FUNCT_PATH, 'data')
+DATA_PATH = os.path.join(BASE_PATH, '..', 'alphamap', 'data')
 
 def import_fasta(organism: str):
     """
