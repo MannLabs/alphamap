@@ -19,7 +19,7 @@ cp release/macos/alphamap_terminal ${CONTENTS_FOLDER}/MacOS
 cp ./LICENSE ${CONTENTS_FOLDER}/Resources/LICENSE
 cp release/logos/alpha_logo.png ${CONTENTS_FOLDER}/Resources
 
-# If needed, include additional source such as e.g.:
+# copy files excluded in MANIFEST.in
 mkdir -p ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
 cp alphamap/data/*.fasta ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
 cp alphamap/data/*.csv ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
