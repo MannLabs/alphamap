@@ -108,7 +108,11 @@ def import_uniprot_annotation(organism: str):
 
 import tempfile
 def _download_file(data_path: str, file_name: str) -> str:
-    """Download a file from github if not present and return its local path."""
+    """Download a file `file_name` from `data_path` (e.g. GitHub) if not present and return its local path.
+
+    In case that it is not possible to download to the package-internal folder (e.g. due to permission issues),
+    a temporary directory will be created and used as a target for downloading.
+    """
     file_path = os.path.join(data_path, file_name)
     temp_dir_path = os.path.join(tempfile.gettempdir(), "alphamap_temp")
     temp_file_path = os.path.join(temp_dir_path, file_name)
@@ -137,7 +141,7 @@ def _download_file(data_path: str, file_name: str) -> str:
             return temp_file_path
 
 def _safe_download(file_path: str, response) -> None:
-    """Download a file from a response to a local path, create the destination file only after successful download."""
+    """Download a file from a response to a local path in a 'safe' manner by creating the destination file only after download is completed."""
     # TODO find a way to clean up failed downloads
     download_file_path = file_path + ".tmp"
     with open(download_file_path, 'wb') as out_file:
