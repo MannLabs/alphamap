@@ -106,17 +106,42 @@ def import_uniprot_annotation(organism: str):
 
     return pd.read_csv(file_path)
 
-
+import tempfile
 def _download_file(data_path: str, file_name: str) -> str:
     """Download a file from github if not present and return its local path."""
     file_path = os.path.join(data_path, file_name)
-    if not os.path.exists(file_path):
-        github_file_url = os.path.join(GITHUB_URL_DATA_FOLDER, file_name)
+    temp_dir_path = os.path.join(tempfile.gettempdir(), "alphamap_temp")
+    temp_file_path = os.path.join(temp_dir_path, file_name)
 
-        print(f"Downloading {github_file_url} to {file_path}..")
-        with urllib.request.urlopen(github_file_url) as response, \
-                 open(file_path, 'wb') as out_file:
-            shutil.copyfileobj(response, out_file)
-        print(".. done")
+    if os.path.exists(file_path):
+        print(f"Using cached {file_path}")
+        return file_path
 
-    return file_path
+    if os.path.exists(temp_file_path):
+        print(f"Using cached {temp_file_path}")
+        return temp_file_path
+
+    github_file_url = os.path.join(GITHUB_URL_DATA_FOLDER, file_name)
+
+    print(f"Downloading {github_file_url} ..")
+    with urllib.request.urlopen(github_file_url) as response:
+        try:
+            _safe_download(file_path, response)
+            return file_path
+        except Exception as e:
+            # in case the user has to rights to write to the package folder
+            print(f"Exception {e}: falling back to temporary location '{temp_file_path}'. Depending on your OS, you will need to clean up manually.")
+            os.makedirs(temp_dir_path, exist_ok=True)
+            _safe_download(temp_file_path, response)
+
+            return temp_file_path
+
+def _safe_download(file_path: str, response) -> None:
+    """Download a file from a response to a local path, create the destination file only after successful download."""
+    # TODO find a way to clean up failed downloads
+    download_file_path = file_path + ".tmp"
+    with open(download_file_path, 'wb') as out_file:
+        print(f".. to {file_path} ..")
+        shutil.copyfileobj(response, out_file)
+    os.rename(download_file_path, file_path)
+    print(".. done")
