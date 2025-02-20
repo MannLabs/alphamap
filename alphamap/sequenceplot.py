@@ -404,8 +404,7 @@ try:
     HAS_STRUCTUREMAP = True
 except ModuleNotFoundError:
     HAS_STRUCTUREMAP = False
-    warnings.filterwarnings("module", category=ImportWarning)
-    warnings.warn("structuremap not installed. If you want to use its functionality, install alphamap with the 'structuremap' extra.", ImportWarning)
+    warnings.warn("Dependency 'structuremap' not installed. If you want to use its functionality, install alphamap with the 'structuremap' extra.", UserWarning)
 
 # Cell
 def get_quality_category(s):
