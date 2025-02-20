@@ -12,6 +12,6 @@ pip install "dist/$WHL_NAME[stable,structuremap-stable]"
 pyinstaller release/pyinstaller/alphamap.spec --distpath dist_pyinstaller --workpath build_pyinstaller -y
 
 # copy files excluded in MANIFEST.in
-New-Item -ItemType Directory -Force -Path dist_pyinstaller/alphamap/data
-Copy-Item alphamap/data/*.fasta dist_pyinstaller/alphamap/data
-Copy-Item alphamap/data/*.csv dist_pyinstaller/alphamap/data
+New-Item -ItemType Directory -Force -Path dist_pyinstaller/alphamap_gui/_internal/alphamap/data
+Copy-Item alphamap/data/*.fasta dist_pyinstaller/alphamap_gui/_internal/alphamap/data
+Copy-Item alphamap/data/*.csv dist_pyinstaller/alphamap_gui/_internal/alphamap/data
