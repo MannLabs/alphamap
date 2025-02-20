@@ -5,7 +5,7 @@
 ; so all paths are given relative to the location of this .iss file.
 
 #define MyAppName "AlphaMap"
-#define MyAppVersion "0.2.1-dev0"
+#define MyAppVersion "0.2.1"
 #define MyAppPublisher "Max Planck Institute of Biochemistry, Mann department"
 #define MyAppURL "https://github.com/MannLabs/alphamap"
 #define MyAppExeName "alphamap_gui.exe"
