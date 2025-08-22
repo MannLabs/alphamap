@@ -82,6 +82,39 @@ pip install -e ".[stable,structuremap-stable]"
 
 * When using Jupyter notebooks and multiple conda environments directly from the terminal, it is recommended to `conda install nb_conda_kernels` in the conda base environment. Hereafter, running a `jupyter notebook` from the conda base environment should have a `python [conda env: alphamap]` kernel available, in addition to all other conda kernels in which the command `conda install ipykernel` was run.
 
+### Docker installation
+The containerized version can be used to run AlphaMap without any installation to your system.
+
+#### 1. Setting up Docker
+Install the latest version of docker (https://docs.docker.com/engine/install/).
+
+#### 2. Prepare folder structure
+Set up your data to match the expected folder structure: 
+create a folder and store its name in a variable, and specify a port
+```
+DATA_FOLDER=/home/username/data; mkdir -p $DATA_FOLDER`
+PORT=41215
+```
+
+#### 3. Start the container
+```bash
+docker run -v $DATA_FOLDER:/app/data -p $PORT:8501 mannlabs/alphamap:latest
+```
+After initial download of the container, alphamap will start running immediately,
+and can be accessed under [localhost:$PORT](localhost:41215).
+
+Note: in the app, the local `$DATA_FOLDER` needs to be referred to as "`/app/data`".
+
+#### Alternatively: Build the image yourself
+If you want to build the image yourself, you can do so by
+```bash
+docker build -t alphamap .
+```
+and run it with
+```bash
+docker run -p $PORT:41215 -v $DATA_FOLDER:/app/data -t alphamap
+```
+
 
 ## Test data
 AlphaMap has direct data import options for AlphaPept, DIA-NN, MaxQuant, Spectronaut and FragPipe.
