@@ -158,7 +158,7 @@ PORT=41215
 docker run -v $DATA_FOLDER:/app/data -p $PORT:8501 mannlabs/alphamap:latest
 ```
 After initial download of the container, alphamap will start running immediately,
-and can be accessed under [localhost:$PORT](localhost:41215).
+and can be accessed under [localhost:$PORT](http://localhost:41215).
 
 Note: in the app, the local `$DATA_FOLDER` needs to be referred to as "`/app/data`".
 
