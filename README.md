@@ -50,7 +50,7 @@ There are three different types of installation possible:
 * [**One-click GUI installataion:**](#one-click-gui-installation) Choose this installation if you only want the GUI and/or keep things as simple as possible.
 * [**Pip installataion:**](#pip-installation) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
 * [**Developer installataion:**](#developer-installation) Choose this installation if you are familiar with CLI tools, [conda](https://docs.conda.io/en/latest/) and Python. This installation allows access to all available features of AlphaMap and even allows to modify its source code directly.
-- [**Docker installation:**](#docker-installation) Choose this installation if you want to use alphamap without any changes to your system.
+* [**Docker installation:**](#docker-installation) Choose this installation if you want to use alphamap without any changes to your system.
 
 ### One-click GUI installation
 
