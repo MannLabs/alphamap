@@ -19,10 +19,10 @@ cp release/macos/alphamap_terminal ${CONTENTS_FOLDER}/MacOS
 cp ./LICENSE ${CONTENTS_FOLDER}/Resources/LICENSE
 cp release/logos/alpha_logo.png ${CONTENTS_FOLDER}/Resources
 
-# If needed, include additional source such as e.g.:
-mkdir -p ${CONTENTS_FOLDER}/MacOS/alphamap/data
-cp alphamap/data/*.fasta ${CONTENTS_FOLDER}/MacOS/alphamap/data
-cp alphamap/data/*.csv ${CONTENTS_FOLDER}/MacOS/alphamap/data
+# copy files excluded in MANIFEST.in
+mkdir -p ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
+cp alphamap/data/*.fasta ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
+cp alphamap/data/*.csv ${CONTENTS_FOLDER}/MacOS/_internal/alphamap/data
 
 # link _internal folder containing the python libraries to the Frameworks folder where they are expected
 # to avoid e.g. "Failed to load Python shared library '/Applications/AlphaMap.app/Contents/Frameworks/libpython3.8.dylib'"

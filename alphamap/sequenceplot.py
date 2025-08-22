@@ -9,6 +9,7 @@ __all__ = ['format_uniprot_annotation', 'ptm_shape_dict', 'get_plot_data', 'plot
 # Cell
 import os
 import tempfile
+import warnings
 
 # Cell
 import pandas as pd
@@ -403,8 +404,7 @@ try:
     HAS_STRUCTUREMAP = True
 except ModuleNotFoundError:
     HAS_STRUCTUREMAP = False
-    print("WARNING: dependency 'structuremap' is not installed.")
-
+    warnings.warn("Dependency 'structuremap' not installed. If you want to use its functionality, install alphamap with the 'structuremap' extra.", UserWarning)
 
 # Cell
 def get_quality_category(s):
