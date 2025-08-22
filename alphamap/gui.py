@@ -43,10 +43,14 @@ error_message_upload_wrong_columns = "The columns necessary for further analysis
 error_message_size = f"A maximum file size shouldn't exceed {SETTINGS['max_file_size_gb']} GB."
 error_message_report_long = f"Only first {SETTINGS['max_num_proteins_report']} proteins will be presented in the report."
 
-if platform.system() == 'Windows':
-    filepath_placeholder = 'D:\data\output_alphapept.csv'
-else:
-    filepath_placeholder = '/Users/data/output_alphapept.csv'
+if (filepath_placeholder:=os.environ.get("CONTAINER_DATA_PATH")) is None:
+    if platform.system() == 'Windows':
+        filepath_placeholder = 'D:\data\\'
+    else:
+        filepath_placeholder = '/Users/data/'
+
+filepath_placeholder=f"{filepath_placeholder}output_alphapept.csv"
+
 
 ### PATHS
 BASE_PATH = os.path.dirname(__file__)
