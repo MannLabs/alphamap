@@ -1,5 +1,41 @@
 # AlphaMap
-> A python-based library that enables the exploration of proteomic datasets on the peptide level.
+
+[![Publish on PyPi and release on GitHub](https://github.com/MannLabs/alphamap/actions/workflows/publish_on_pypi.yml/badge.svg)](https://github.com/MannLabs/alphamap/actions/workflows/publish_and_release.yml)
+[![pypi](https://img.shields.io/pypi/v/alphamap)](https://pypi.org/project/alphamap)
+[![GitHub release](https://img.shields.io/github/v/release/mannlabs/alphamap?display_name=tag)](https://github.com/MannLabs/alphamap/releases)
+[![GitHub downloads](https://img.shields.io/github/downloads/mannlabs/alphamap/total?label=github%20downloads)](https://github.com/MannLabs/alphamap/releases)
+[![pip downloads](https://img.shields.io/pypi/dm/alphamap?color=blue&label=pip%20downloads)](https://pypi.org/project/alphamap)
+![Python](https://img.shields.io/pypi/pyversions/alphamap)
+
+------------------------------------------------------------------------
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+
+  <h3 align="center">AlphaMap</h3>
+
+  <p align="center">
+    <a href="https://doi.org/10.1093/bioinformatics/btab674">Publication</a>
+    ·
+    <a href="https://github.com/Mannlabs/alphamap/releases/latest">Download</a>
+    ·
+    <a href="#installation">Installation</a>
+    ·
+    <a href="#usage">Usage</a>
+    ·
+    <a href="https://mannlabs.github.io/alphamap/">Documentation</a>
+    ·
+    <a href="https://alphapept.org">alphapept.org</a>
+
+  </p>
+</div>
+
+
+A python-based library that enables the exploration of proteomic datasets on the peptide level.
+
+![screenshot.png](misc/screenshot.png)
+![screenshot_detail.png](misc/screenshot_detail.png)
 
 
 ## About
@@ -7,33 +43,54 @@
 AlphaMap is a tool for peptide level MS data exploration. You can load and inspect MS data analyzed by [AlphaPept](https://github.com/MannLabs/alphapept), DIA-NN, MaxQuant, Spectronaut or FragPipe. Uploaded data is processed and formatted for visual inspection of the sequence coverage of any selected protein and its identified post-translational modifications (PTMs). UniProt information is available to directly annotate sequence regions of interest such as protein domains, secondary structures, sequence variants, known PTMs, etc. Additionally, users can select proteases to further evaluate the distribution of proteolytic cleavage sites across a protein sequence. The functionality of AlphaMap can be accessed via an intuitive graphical user interface or - more flexibly - as a Python package that allows its integration into common analysis workflows for data visualization. 
 
 
-## License
-
-AlphaMap was developed by the [Mann Labs at the Max Planck Institute of Biochemistry](https://www.biochem.mpg.de/mann) and is freely available with an [Apache License](LICENSE).
-
-
 ## Installation
 
 AlphaMap can be installed and used on Windows and MacOS.
 There are three different types of installation possible:
 
-* [**One-click GUI installer:**](#one-click-gui) Choose this installation if you only want the GUI and/or keep things as simple as possible.
-* [**Pip installer:**](#pip) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
-* [**Developer installer:**](#developer) Choose this installation if you are familiar with CLI tools, [conda](https://docs.conda.io/en/latest/) and Python. This installation allows access to all available features of AlphaMap and even allows to modify its source code directly.
+* [**One-click GUI installataion:**](#one-click-gui-installation) Choose this installation if you only want the GUI and/or keep things as simple as possible.
+* [**Pip installataion:**](#pip-installation) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
+* [**Developer installataion:**](#developer-installation) Choose this installation if you are familiar with CLI tools, [conda](https://docs.conda.io/en/latest/) and Python. This installation allows access to all available features of AlphaMap and even allows to modify its source code directly.
+- [**Docker installation:**](#docker-installation) Choose this installation if you want to use alphamap without any changes to your system.
+
+### One-click GUI installation
+
+The GUI of alphamap is a completely stand-alone tool that requires no
+knowledge of Python or CLI tools.
+
+You can download the latest release of alphamap [here](https://github.com/Mannlabs/alphamap/releases/latest).
 
 
-### One-click GUI
+#### Windows
+Download the latest `alphamap-X.Y.Z-windows-amd64.exe ` build and double click it to install. If you receive a warning during installation click *Run anyway*.
+Important note: always install alphamap into a new folder, as the installer will not properly overwrite existing installations.
 
-The GUI of AlphaMap is a completely stand-alone tool that requires no knowledge of Python. Click on one of the links below to download the latest release for:
+#### Linux
+Download the latest `alphamap-X.Y.Z-linux-x64.deb` build and install it via `dpkg -i alphamap-X.Y.Z-linux-x64.deb`.
 
-* [**Windows**](https://github.com/MannLabs/alphamap/releases/latest/download/alphamap_installer_windows.exe)
-* [**MacOS**](https://github.com/MannLabs/alphamap/releases/latest/download/alphamap_gui_installer_macos.pkg)
+#### MacOS
+Download the latest build suitable for your chip architecture
+(can be looked up by clicking on the Apple Symbol > *About this Mac* > *Chip* ("M1", "M2", "M3" -> `arm64`, "Intel" -> `x64`),
+`alphamap-X.Y.Z-macos-darwin-arm64.pkg ` or ` alphamap-X.Y.Z-macos-darwin-x64.pkg`. Open the parent folder of the downloaded file in Finder,
+right-click and select *open*. If you receive a warning during installation click *Open*.
 
-***IMPORTANT: Please refer to the [GUI manual](alphamap/data/alphamap_tutorial.pdf) for detailed instructions on the installation, troubleshooting and usage of the stand-alone AlphaMap GUI.*** 
+In newer MacOS versions, additional steps are required to enable installation of unverified software.
+This is indicated by a dialog telling you `“alphamap. ... .pkg” Not Opened`.
+1. Close this dialog by clicking `Done`.
+2. Choose `Apple menu` > `System Settings`, then `Privacy & Security` in the sidebar. (You may need to scroll down.)
+3. Go to `Security`, locate the line "alphadia.pkg was blocked to protect your Mac" then click `Open Anyway`.
+4. In the dialog windows, click `Open Anyway`.
 
-***IMPORTANT***: The one-click-installers on macOS and Windows require **at least macOS Catalina (10.15) or higher** and **Windows 10** respectively. For Windows, a system update might be necessary in case older versions do not work. To prevent installation errors on **Windows**, we recommend **uninstalling the previous AlphaMap version before installing a new one**.
 
-### Pip
+Older releases remain available on the [release
+page](https://github.com/MannLabs/alphaalphamap/releases), but no
+backwards compatibility is guaranteed.
+
+***IMPORTANT: Please refer to the [GUI manual](alphamap/data/alphamap_tutorial.pdf) for detailed instructions on the installation, 
+troubleshooting and usage of the stand-alone AlphaMap GUI.*** 
+
+
+### Pip installation
 
 AlphaMap can be installed in an existing Python 3.8 environment with a single `bash` command. *This `bash` command can also be run directly from within a Jupyter notebook by prepending it with a `!`*.
 
@@ -56,7 +113,7 @@ Note: The `structuremap` extra can be omitted in case use of `plot_3d_structurem
 Note: When installing with `pip`, UniProt information is not included. Upon first usage of a specific Organism, its information will be automatically downloaded from UniProt.
 
 
-### Developer
+### Developer installation
 
 AlphaMap can also be installed in editable (i.e. developer) mode with a few `bash` commands. This allows to fully customize the software and even modify the source code to your specific needs. When an editable Python package is installed, its source code is stored in a transparent location of your choice. While optional, it is advised to first (create and) navigate to e.g. a general software folder:
 
@@ -187,3 +244,13 @@ The following labels are used (should be safe-explanatory):
 This package uses a shared release process defined in the
 [alphashared](https://github.com/MannLabs/alphashared) repository. Please see the instructions
 [there](https://github.com/MannLabs/alphashared/blob/reusable-release-workflow/.github/workflows/README.md#release-a-new-version)
+
+## Publication
+> **AlphaMap: an open-source Python package for the visual annotation of proteomics data with sequence-specific knowledge.**
+> Voytik E, Bludau I, Willems S, Hansen FM, Brunner AD, Strauss MT, Mann M.  
+> Bioinformatics. 2022 Jan 12;38(3):849-852. doi: [10.1093/bioinformatics/btab674](https://doi.org/10.1093/bioinformatics/btab674)
+
+## License
+
+AlphaMap was developed by the [Mann Labs at the Max Planck Institute of Biochemistry](https://www.biochem.mpg.de/mann) and is freely available with an [Apache License](LICENSE).
+
