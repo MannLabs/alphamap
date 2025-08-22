@@ -47,7 +47,7 @@ Visit [alphapept.org](https://alphapept.org) for other packages of AlphaPept eco
 ## Installation
 
 AlphaMap can be installed and used on Windows and MacOS.
-There are three different types of installation possible:
+There are different types of installation possible:
 
 * [**One-click GUI installation:**](#one-click-gui-installation) Choose this installation if you only want the GUI and/or keep things as simple as possible.
 * [**Pip installation:**](#pip-installation) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
@@ -151,7 +151,7 @@ Set up your data to match the expected folder structure:
 create a folder and store its name in a variable, and specify a port
 ```
 DATA_FOLDER=/home/username/data; mkdir -p $DATA_FOLDER
-PORT=41215
+PORT=5006
 ```
 
 #### 3. Start the container
@@ -159,7 +159,7 @@ PORT=41215
 docker run -v $DATA_FOLDER:/app/data -p $PORT:8501 mannlabs/alphamap:latest
 ```
 After initial download of the container, alphamap will start running immediately,
-and can be accessed under [localhost:$PORT](http://localhost:41215).
+and can be accessed under [localhost:$PORT](http://localhost:5006).
 
 Note: in the app, the local `$DATA_FOLDER` needs to be referred to as "`/app/data`".
 
@@ -170,7 +170,7 @@ docker build -t alphamap .
 ```
 and run it with
 ```bash
-docker run -p $PORT:41215 -v $DATA_FOLDER:/app/data -t alphamap
+docker run -p $PORT:5006 -v $DATA_FOLDER:/app/data -t alphamap
 ```
 
 
