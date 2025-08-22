@@ -39,6 +39,7 @@ issues = "https://github.com/MannLabs/alphamap/issues"
 download = "https://mannlabs.github.io/alphamap/releases"
 documentation = "https://mannlabs.github.io/alphamap/"
 homepage = "https://www.alphapept.org"
+"Mann Labs Homepage" = "https://www.biochem.mpg.de/mann"
 publication = "https://doi.org/10.1093/bioinformatics/btab674"
 
 [tool.setuptools.packages]
