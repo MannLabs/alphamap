@@ -113,7 +113,7 @@ def import_uniprot_annotation(organism: str):
 def _download_file(data_path: str, file_name: str) -> str:
     """Download a file from github if not present and return its local path."""
     file_path = os.path.join(data_path, file_name)
-    os.makedirs(data_path, exist_ok=True)
+
     if not os.path.exists(file_path):
         github_file_url = os.path.join(GITHUB_URL_DATA_FOLDER, file_name)
 
