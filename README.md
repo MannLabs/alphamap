@@ -1,10 +1,11 @@
-# AlphaMap
 
 [![Publish on PyPi and release on GitHub](https://github.com/MannLabs/alphamap/actions/workflows/publish_on_pypi.yml/badge.svg)](https://github.com/MannLabs/alphamap/actions/workflows/publish_and_release.yml)
 [![pypi](https://img.shields.io/pypi/v/alphamap)](https://pypi.org/project/alphamap)
 [![GitHub release](https://img.shields.io/github/v/release/mannlabs/alphamap?display_name=tag)](https://github.com/MannLabs/alphamap/releases)
 [![GitHub downloads](https://img.shields.io/github/downloads/mannlabs/alphamap/total?label=github%20downloads)](https://github.com/MannLabs/alphamap/releases)
 ![Python](https://img.shields.io/pypi/pyversions/alphamap)
+
+# AlphaMap
 
 ------------------------------------------------------------------------
 
@@ -48,9 +49,9 @@ Visit [alphapept.org](https://alphapept.org) for other packages of AlphaPept eco
 AlphaMap can be installed and used on Windows and MacOS.
 There are three different types of installation possible:
 
-* [**One-click GUI installataion:**](#one-click-gui-installation) Choose this installation if you only want the GUI and/or keep things as simple as possible.
-* [**Pip installataion:**](#pip-installation) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
-* [**Developer installataion:**](#developer-installation) Choose this installation if you are familiar with CLI tools, [conda](https://docs.conda.io/en/latest/) and Python. This installation allows access to all available features of AlphaMap and even allows to modify its source code directly.
+* [**One-click GUI installation:**](#one-click-gui-installation) Choose this installation if you only want the GUI and/or keep things as simple as possible.
+* [**Pip installation:**](#pip-installation) Choose this installation if you want to use AlphaMap as a Python package in an existing Python 3.8 environment (e.g. a Jupyter notebook). If needed, the GUI can be installed with pip as well.
+* [**Developer installation:**](#developer-installation) Choose this installation if you are familiar with CLI tools, [conda](https://docs.conda.io/en/latest/) and Python. This installation allows access to all available features of AlphaMap and even allows to modify its source code directly.
 * [**Docker installation:**](#docker-installation) Choose this installation if you want to use alphamap without any changes to your system.
 
 ### One-click GUI installation
@@ -83,7 +84,7 @@ This is indicated by a dialog telling you `“alphamap. ... .pkg” Not Opened`.
 
 
 Older releases remain available on the [release
-page](https://github.com/MannLabs/alphaalphamap/releases), but no
+page](https://github.com/MannLabs/alphamap/releases), but no
 backwards compatibility is guaranteed.
 
 ***IMPORTANT: Please refer to the [GUI manual](alphamap/data/alphamap_tutorial.pdf) for detailed instructions on the installation, 
