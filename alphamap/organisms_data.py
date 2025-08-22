@@ -60,7 +60,10 @@ import alphamap
 GITHUB_URL_DATA_FOLDER = "https://raw.githubusercontent.com/MannLabs/alphamap/refs/heads/main/alphamap/data/"
 
 BASE_PATH = os.path.dirname(os.path.abspath(alphamap.__file__))
-DATA_PATH = os.path.join(BASE_PATH, '..', 'alphamap', 'data')
+if (container_data_path:=os.environ.get("CONTAINER_DATA_PATH")) is not None:
+    DOWNLOAD_DATA_PATH = os.path.join(container_data_path, 'download')
+else:
+    DOWNLOAD_DATA_PATH = os.path.join(BASE_PATH, '..', 'alphamap', 'data')
 
 def import_fasta(organism: str):
     """
@@ -77,7 +80,7 @@ def import_fasta(organism: str):
 
     fasta_file_name = all_organisms[organism]['fasta_name']
 
-    file_path = _download_file(DATA_PATH, fasta_file_name)
+    file_path = _download_file(DOWNLOAD_DATA_PATH, fasta_file_name)
 
     return fasta.IndexedUniProt(file_path)
 
@@ -102,7 +105,7 @@ def import_uniprot_annotation(organism: str):
 
     uniprot_file_name = all_organisms[organism]['uniprot_name']
 
-    file_path = _download_file(DATA_PATH, uniprot_file_name)
+    file_path = _download_file(DOWNLOAD_DATA_PATH, uniprot_file_name)
 
     return pd.read_csv(file_path)
 
@@ -110,6 +113,7 @@ def import_uniprot_annotation(organism: str):
 def _download_file(data_path: str, file_name: str) -> str:
     """Download a file from github if not present and return its local path."""
     file_path = os.path.join(data_path, file_name)
+    os.makedirs(data_path, exist_ok=True)
     if not os.path.exists(file_path):
         github_file_url = os.path.join(GITHUB_URL_DATA_FOLDER, file_name)
 

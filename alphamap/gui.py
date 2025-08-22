@@ -1659,7 +1659,12 @@ def run():
     print("*"*30)
     #SERVER = layout.show(threaded=True, title='AlphaMap')
     #SERVER.join()
-    SERVER = pn.serve(layout, threaded=True, title='AlphaMap', static_dirs={'js': js_path_global, 'cif': cif_path_global})
+
+    port_param = {} if (port:=int(os.environ.get("PORT", -1))) == -1 else {"port": port}
+    SERVER = pn.serve(layout,
+                      threaded=True,
+                      title='AlphaMap',
+                      **port_param)
 
 
 def open_browser_tab(func):
