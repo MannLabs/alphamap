@@ -148,7 +148,7 @@ Install the latest version of docker (https://docs.docker.com/engine/install/).
 Set up your data to match the expected folder structure: 
 create a folder and store its name in a variable, and specify a port
 ```
-DATA_FOLDER=/home/username/data; mkdir -p $DATA_FOLDER`
+DATA_FOLDER=/home/username/data; mkdir -p $DATA_FOLDER
 PORT=41215
 ```
 
