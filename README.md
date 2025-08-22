@@ -4,7 +4,6 @@
 [![pypi](https://img.shields.io/pypi/v/alphamap)](https://pypi.org/project/alphamap)
 [![GitHub release](https://img.shields.io/github/v/release/mannlabs/alphamap?display_name=tag)](https://github.com/MannLabs/alphamap/releases)
 [![GitHub downloads](https://img.shields.io/github/downloads/mannlabs/alphamap/total?label=github%20downloads)](https://github.com/MannLabs/alphamap/releases)
-[![pip downloads](https://img.shields.io/pypi/dm/alphamap?color=blue&label=pip%20downloads)](https://pypi.org/project/alphamap)
 ![Python](https://img.shields.io/pypi/pyversions/alphamap)
 
 ------------------------------------------------------------------------

@@ -13,14 +13,12 @@ authors = [
 
 readme = "README.md"
 keywords = [
-    "mass spectrometry",
     "proteomics",
-    "search engine",
-    "DIA",
-    "data-independent acquisition",
+    "mass spectrometry",
     "bioinformatics",
     "AlphaPept",
     "AlphaPept ecosystem",
+    "alphapept.org"
 ]
 license = {file = "LICENSE.txt"}
 classifiers = [
@@ -36,13 +34,12 @@ classifiers = [
 ]
 
 [project.urls]
-
-"Paper preprint" = "https://www.biochem.mpg.de/mann"
-Repository = "https://github.com/MannLabs/alphamap"
-#Documentation = "https://readthedocs.org"
-#Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
-Issues = "https://github.com/MannLabs/alphamap/issues"
-"Mann Labs Homepage" = "https://www.biochem.mpg.de/mann"
+repository = "https://github.com/MannLabs/alphamap"
+issues = "https://github.com/MannLabs/alphamap/issues"
+download = "https://mannlabs.github.io/alphamap/releases"
+documentation = "https://mannlabs.github.io/alphamap/"
+homepage = "https://www.alphapept.org"
+publication = "https://doi.org/10.1093/bioinformatics/btab674"
 
 [tool.setuptools.packages]
 find = {}
