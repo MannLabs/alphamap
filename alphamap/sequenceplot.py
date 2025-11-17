@@ -430,13 +430,17 @@ def get_exposure_category(s):
         n='No neighbors'
     return(n)
 
+class NoStructureMapError(Exception):
+    """Raise when structuremap is not installed."""
+    pass
+
 # Cell
 def get_alphafold_annotation(protein: str,
                              selected_features: list,
                              download_folder: str = tempfile.gettempdir()) -> pd.DataFrame:
 
     if not HAS_STRUCTUREMAP:
-        raise ValueError("Please install alphamap with the 'structuremap' extra to use get_alphafold_annotation().")
+        raise NoStructureMapError("Please install alphamap with the 'structuremap' extra to use get_alphafold_annotation().")
 
     alphafold_feature_dict = dict({'AlphaFold confidence':'quality',
         'AlphaFold exposure':'nAA_12_70_pae',
@@ -1165,13 +1169,21 @@ def plot_3d_structure(df: pd.DataFrame or list,
         MS_annotation = MS_annotation.groupby('position')['MS data'].apply(list).reset_index(name='MS data')
         MS_annotation['MS data'] = MS_annotation['MS data'].apply(lambda x: get_ms_concensus(x))
 
-    cif_available = manipulate_cif(protein = protein,
-                                   MS_data = MS_annotation,
-                                   download_folder = download_folder)
 
     BASE_PATH = os.path.dirname(alphamap.__file__)
     js_path = os.path.join(BASE_PATH, 'js')
     cif_path = download_folder
+
+    try:
+        cif_available = manipulate_cif(protein = protein,
+                                       MS_data = MS_annotation,
+                                       download_folder = download_folder)
+    except NoStructureMapError as e:
+        mod_html = f"""
+            <!DOCTYPE html>
+            <center> {e}. </center>
+            """
+        return mod_html, js_path, cif_path
 
 
     import shutil
@@ -1193,7 +1205,7 @@ def plot_3d_structure(df: pd.DataFrame or list,
     else:
         mod_html = f"""
             <!DOCTYPE html>
-            <center> No AlphaFold structure available for {protein}. <center>
+            <center> No AlphaFold structure available for {protein}. </center>
             """
 
     return mod_html, js_path, cif_path
