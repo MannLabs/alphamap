@@ -119,7 +119,7 @@ mpi_logo = pn.pane.JPG(
 )
 github_logo = pn.pane.PNG(
     github_logo_path,
-    link_url='https://github.com/MannLabs/pepmap',
+    link_url='https://github.com/MannLabs/alphamap',
     height=70,
     align='end'
 )
